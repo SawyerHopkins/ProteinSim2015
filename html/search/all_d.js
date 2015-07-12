@@ -3,7 +3,6 @@ var searchData=
   ['safemod',['safeMod',['../classutilities_1_1util.html#acdd7ea083cfaed10891c4224bd6dda96',1,'utilities::util']]],
   ['safemod0',['safeMod0',['../classutilities_1_1util.html#a20532fbe4b8e2a31617b4b0bd0ada31c',1,'utilities::util']]],
   ['setcell',['setCell',['../classsimulation_1_1particle.html#a624d4bef98ac2745dd15dfc2eb18e403',1,'simulation::particle']]],
-  ['seteap',['setEAP',['../classsimulation_1_1particle.html#a7f275b1dad1de57d8c9236284bce77cf',1,'simulation::particle']]],
   ['setmass',['setMass',['../classsimulation_1_1particle.html#a7da6876620ae5afb5d5fddf1e21d3517',1,'simulation::particle']]],
   ['setpos',['setPos',['../classsimulation_1_1particle.html#ad01fee28cf7ce6801b544d66d6169064',1,'simulation::particle']]],
   ['setradius',['setRadius',['../classsimulation_1_1particle.html#a6f9366303f9983a6eb623c2991003b74',1,'simulation::particle']]],

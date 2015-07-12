@@ -189,9 +189,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b0a7d7c86bf500c076f808e851d2960"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a1b0a7d7c86bf500c076f808e851d2960">getCoorNumber</a> () const </td></tr>
 <tr class="memdesc:a1b0a7d7c86bf500c076f808e851d2960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the coordination number.  <a href="#a1b0a7d7c86bf500c076f808e851d2960">More...</a><br /></td></tr>
 <tr class="separator:a1b0a7d7c86bf500c076f808e851d2960"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ec308df467149a6799bfdddeaffda6d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a3ec308df467149a6799bfdddeaffda6d">getEAP</a> () const </td></tr>
-<tr class="memdesc:a3ec308df467149a6799bfdddeaffda6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets average potential.  <a href="#a3ec308df467149a6799bfdddeaffda6d">More...</a><br /></td></tr>
-<tr class="separator:a3ec308df467149a6799bfdddeaffda6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a601187919e11ad640e53db9eae5aea80"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a601187919e11ad640e53db9eae5aea80">getPotential</a> () const </td></tr>
+<tr class="memdesc:a601187919e11ad640e53db9eae5aea80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets average potential.  <a href="#a601187919e11ad640e53db9eae5aea80">More...</a><br /></td></tr>
+<tr class="separator:a601187919e11ad640e53db9eae5aea80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17341ae7286b27a4b2721b6ea016dd2b"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classsimulation_1_1particle.html">particle</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b">getInteractions</a> () const </td></tr>
+<tr class="memdesc:a17341ae7286b27a4b2721b6ea016dd2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the interacting particles.  <a href="#a17341ae7286b27a4b2721b6ea016dd2b">More...</a><br /></td></tr>
+<tr class="separator:a17341ae7286b27a4b2721b6ea016dd2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbb7b2f9cd98c57dcbf688f29edcb46f"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classsimulation_1_1particle.html">particle</a> * &gt;<br class="typebreak" />
+::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f">getInteractionsBegin</a> ()</td></tr>
+<tr class="separator:adbb7b2f9cd98c57dcbf688f29edcb46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a023340abed6623f2801fe20e022fa8f8"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classsimulation_1_1particle.html">particle</a> * &gt;<br class="typebreak" />
+::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8">getInteractionsEnd</a> ()</td></tr>
+<tr class="separator:a023340abed6623f2801fe20e022fa8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c114862f41e44e97b2c92942342a802"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a1c114862f41e44e97b2c92942342a802">setX</a> (double val, double boxSize)</td></tr>
 <tr class="memdesc:a1c114862f41e44e97b2c92942342a802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the x position of the particle. Handles PBC and updates x0.  <a href="#a1c114862f41e44e97b2c92942342a802">More...</a><br /></td></tr>
 <tr class="separator:a1c114862f41e44e97b2c92942342a802"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,12 +222,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a79e51ea7797a22e4291acc54831681c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a79e51ea7797a22e4291acc54831681c8">setVZ</a> (double val)</td></tr>
 <tr class="memdesc:a79e51ea7797a22e4291acc54831681c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the z velocity.  <a href="#a79e51ea7797a22e4291acc54831681c8">More...</a><br /></td></tr>
 <tr class="separator:a79e51ea7797a22e4291acc54831681c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba49bac484778299692ec19cb677be08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#aba49bac484778299692ec19cb677be08">updateForce</a> (double xVal, double yVal, double zVal)</td></tr>
-<tr class="memdesc:aba49bac484778299692ec19cb677be08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the the current value of force.  <a href="#aba49bac484778299692ec19cb677be08">More...</a><br /></td></tr>
-<tr class="separator:aba49bac484778299692ec19cb677be08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae646758054fc407d5fd436baf72081d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#ae646758054fc407d5fd436baf72081d2">clearForce</a> ()</td></tr>
-<tr class="memdesc:ae646758054fc407d5fd436baf72081d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the current force and updates previous force.  <a href="#ae646758054fc407d5fd436baf72081d2">More...</a><br /></td></tr>
-<tr class="separator:ae646758054fc407d5fd436baf72081d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17cb282aa4a8776dc190be66a9f739ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a17cb282aa4a8776dc190be66a9f739ef">updateForce</a> (double xVal, double yVal, double zVal, double pot, <a class="el" href="classsimulation_1_1particle.html">particle</a> *p)</td></tr>
+<tr class="memdesc:a17cb282aa4a8776dc190be66a9f739ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the the current value of force.  <a href="#a17cb282aa4a8776dc190be66a9f739ef">More...</a><br /></td></tr>
+<tr class="separator:a17cb282aa4a8776dc190be66a9f739ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3200112cf910db814aab2156ae8381d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a3200112cf910db814aab2156ae8381d7">nextIter</a> ()</td></tr>
+<tr class="memdesc:a3200112cf910db814aab2156ae8381d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the current force and updates previous force. Resets potential, neighbors, and coordination number.  <a href="#a3200112cf910db814aab2156ae8381d7">More...</a><br /></td></tr>
+<tr class="separator:a3200112cf910db814aab2156ae8381d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a624d4bef98ac2745dd15dfc2eb18e403"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a624d4bef98ac2745dd15dfc2eb18e403">setCell</a> (int x, int y, int z)</td></tr>
 <tr class="memdesc:a624d4bef98ac2745dd15dfc2eb18e403"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the location of the containing cell.  <a href="#a624d4bef98ac2745dd15dfc2eb18e403">More...</a><br /></td></tr>
 <tr class="separator:a624d4bef98ac2745dd15dfc2eb18e403"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,15 +237,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7da6876620ae5afb5d5fddf1e21d3517"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a7da6876620ae5afb5d5fddf1e21d3517">setMass</a> (double val)</td></tr>
 <tr class="memdesc:a7da6876620ae5afb5d5fddf1e21d3517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mass of the particle.  <a href="#a7da6876620ae5afb5d5fddf1e21d3517">More...</a><br /></td></tr>
 <tr class="separator:a7da6876620ae5afb5d5fddf1e21d3517"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fc56ff5e7507ba90fd8dd1de4225469"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a6fc56ff5e7507ba90fd8dd1de4225469">incCoorNumber</a> ()</td></tr>
-<tr class="memdesc:a6fc56ff5e7507ba90fd8dd1de4225469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increase coordination number.  <a href="#a6fc56ff5e7507ba90fd8dd1de4225469">More...</a><br /></td></tr>
-<tr class="separator:a6fc56ff5e7507ba90fd8dd1de4225469"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86b63ccf783e4fc80b24ea123b40527f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a86b63ccf783e4fc80b24ea123b40527f">resetCoorNumber</a> ()</td></tr>
-<tr class="memdesc:a86b63ccf783e4fc80b24ea123b40527f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Research coordination number.  <a href="#a86b63ccf783e4fc80b24ea123b40527f">More...</a><br /></td></tr>
-<tr class="separator:a86b63ccf783e4fc80b24ea123b40527f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f275b1dad1de57d8c9236284bce77cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#a7f275b1dad1de57d8c9236284bce77cf">setEAP</a> (double val)</td></tr>
-<tr class="memdesc:a7f275b1dad1de57d8c9236284bce77cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add to the average potential.  <a href="#a7f275b1dad1de57d8c9236284bce77cf">More...</a><br /></td></tr>
-<tr class="separator:a7f275b1dad1de57d8c9236284bce77cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addb9a1fe095ee84ffb4f530d7962c7c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1particle.html#addb9a1fe095ee84ffb4f530d7962c7c1">writePosition</a> ()</td></tr>
 <tr class="memdesc:addb9a1fe095ee84ffb4f530d7962c7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the position of the particle to the console.  <a href="#addb9a1fe095ee84ffb4f530d7962c7c1">More...</a><br /></td></tr>
 <tr class="separator:addb9a1fe095ee84ffb4f530d7962c7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -290,32 +290,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae646758054fc407d5fd436baf72081d2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void simulation::particle::clearForce </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Clears the current force and updates previous force. </p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classsimulation_1_1particle_ae646758054fc407d5fd436baf72081d2_icgraph.png" border="0" usemap="#classsimulation_1_1particle_ae646758054fc407d5fd436baf72081d2_icgraph" alt=""/></div>
-<map name="classsimulation_1_1particle_ae646758054fc407d5fd436baf72081d2_icgraph" id="classsimulation_1_1particle_ae646758054fc407d5fd436baf72081d2_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1forces.html#affb1e954a88178bfc7c12762f8876b42" title="Find the net force on all particles in the system. " alt="" coords="184,13,393,39"/><area shape="rect" id="node3" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="441,5,640,47"/></map>
-</div>
-</p>
-
-</div>
-</div>
 <a class="anchor" id="a1b0a7d7c86bf500c076f808e851d2960"></a>
 <div class="memitem">
 <div class="memproto">
@@ -451,41 +425,6 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classsimulation_1_1particle_a892824a48e811528cec98450bab33ba0_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a892824a48e811528cec98450bab33ba0_icgraph" alt=""/></div>
 <map name="classsimulation_1_1particle_a892824a48e811528cec98450bab33ba0_icgraph" id="classsimulation_1_1particle_a892824a48e811528cec98450bab33ba0_icgraph">
 <area shape="rect" id="node2" href="classphysics_1_1forces.html#affb1e954a88178bfc7c12762f8876b42" title="Find the net force on all particles in the system. " alt="" coords="184,13,393,39"/><area shape="rect" id="node3" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="441,5,640,47"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a3ec308df467149a6799bfdddeaffda6d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int simulation::particle::getEAP </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets average potential. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classsimulation_1_1particle_a3ec308df467149a6799bfdddeaffda6d_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a3ec308df467149a6799bfdddeaffda6d_icgraph" alt=""/></div>
-<map name="classsimulation_1_1particle_a3ec308df467149a6799bfdddeaffda6d_icgraph" id="classsimulation_1_1particle_a3ec308df467149a6799bfdddeaffda6d_icgraph">
-<area shape="rect" id="node2" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="184,13,343,39"/></map>
 </div>
 </p>
 
@@ -701,6 +640,105 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a17341ae7286b27a4b2721b6ea016dd2b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt; simulation::particle::getInteractions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the interacting particles. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1particle_a17341ae7286b27a4b2721b6ea016dd2b_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a17341ae7286b27a4b2721b6ea016dd2b_icgraph" alt=""/></div>
+<map name="classsimulation_1_1particle_a17341ae7286b27a4b2721b6ea016dd2b_icgraph" id="classsimulation_1_1particle_a17341ae7286b27a4b2721b6ea016dd2b_icgraph">
+<area shape="rect" id="node2" href="classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="184,5,316,47"/><area shape="rect" id="node3" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="364,13,523,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="adbb7b2f9cd98c57dcbf688f29edcb46f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt;::iterator simulation::particle::getInteractionsBegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1particle_adbb7b2f9cd98c57dcbf688f29edcb46f_icgraph.png" border="0" usemap="#classsimulation_1_1particle_adbb7b2f9cd98c57dcbf688f29edcb46f_icgraph" alt=""/></div>
+<map name="classsimulation_1_1particle_adbb7b2f9cd98c57dcbf688f29edcb46f_icgraph" id="classsimulation_1_1particle_adbb7b2f9cd98c57dcbf688f29edcb46f_icgraph">
+<area shape="rect" id="node2" href="classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="203,5,335,47"/><area shape="rect" id="node3" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="383,13,541,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a023340abed6623f2801fe20e022fa8f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt;::iterator simulation::particle::getInteractionsEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1particle_a023340abed6623f2801fe20e022fa8f8_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a023340abed6623f2801fe20e022fa8f8_icgraph" alt=""/></div>
+<map name="classsimulation_1_1particle_a023340abed6623f2801fe20e022fa8f8_icgraph" id="classsimulation_1_1particle_a023340abed6623f2801fe20e022fa8f8_icgraph">
+<area shape="rect" id="node2" href="classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="192,5,324,47"/><area shape="rect" id="node3" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="372,13,531,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="ad97bbde70a2687eb72d676d76b92c8a4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -765,7 +803,42 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1particle_af61f11e09ce474b5f66172628773ceae_icgraph.png" border="0" usemap="#classsimulation_1_1particle_af61f11e09ce474b5f66172628773ceae_icgraph" alt=""/></div>
 <map name="classsimulation_1_1particle_af61f11e09ce474b5f66172628773ceae_icgraph" id="classsimulation_1_1particle_af61f11e09ce474b5f66172628773ceae_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#a246f177ad6e051686320bb319761e29b" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="204,5,349,47"/><area shape="rect" id="node4" href="classsimulation_1_1cell.html#a88aa62afb942368fc880791c7f5ccd7b" title="Adds a particle to the cell manager. " alt="" coords="184,71,369,98"/><area shape="rect" id="node5" href="classsimulation_1_1cell.html#a5fc672eb40db7f239313f049ba6e3b31" title="Removes a particle from the cell manager. " alt="" coords="197,123,357,164"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="simulation::system\l::numClusters" alt="" coords="211,188,343,229"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#a000862991e3c875fd29d8b220620c2a6" title="Get the force from the AO Potential. " alt="" coords="417,5,563,47"/></map>
+<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="204,5,349,47"/><area shape="rect" id="node4" href="classsimulation_1_1cell.html#a88aa62afb942368fc880791c7f5ccd7b" title="Adds a particle to the cell manager. " alt="" coords="184,71,369,98"/><area shape="rect" id="node5" href="classsimulation_1_1cell.html#a5fc672eb40db7f239313f049ba6e3b31" title="Removes a particle from the cell manager. " alt="" coords="197,123,357,164"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="211,188,343,229"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="424,5,569,47"/><area shape="rect" id="node7" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="417,195,576,222"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a601187919e11ad640e53db9eae5aea80"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int simulation::particle::getPotential </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets average potential. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1particle_a601187919e11ad640e53db9eae5aea80_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a601187919e11ad640e53db9eae5aea80_icgraph" alt=""/></div>
+<map name="classsimulation_1_1particle_a601187919e11ad640e53db9eae5aea80_icgraph" id="classsimulation_1_1particle_a601187919e11ad640e53db9eae5aea80_icgraph">
+<area shape="rect" id="node2" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="184,13,343,39"/></map>
 </div>
 </p>
 
@@ -800,7 +873,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1particle_aab9e4f2c235020163a50cf3debeb81b2_icgraph.png" border="0" usemap="#classsimulation_1_1particle_aab9e4f2c235020163a50cf3debeb81b2_icgraph" alt=""/></div>
 <map name="classsimulation_1_1particle_aab9e4f2c235020163a50cf3debeb81b2_icgraph" id="classsimulation_1_1particle_aab9e4f2c235020163a50cf3debeb81b2_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#a246f177ad6e051686320bb319761e29b" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="184,5,329,47"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#a000862991e3c875fd29d8b220620c2a6" title="Get the force from the AO Potential. " alt="" coords="377,5,523,47"/></map>
+<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="184,5,329,47"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="377,5,523,47"/></map>
 </div>
 </p>
 
@@ -940,7 +1013,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1particle_a9149ea2d069db9ca438e176d7b774cfd_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a9149ea2d069db9ca438e176d7b774cfd_icgraph" alt=""/></div>
 <map name="classsimulation_1_1particle_a9149ea2d069db9ca438e176d7b774cfd_icgraph" id="classsimulation_1_1particle_a9149ea2d069db9ca438e176d7b774cfd_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#a246f177ad6e051686320bb319761e29b" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="211,5,356,47"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="184,71,383,112"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,136,349,177"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#a000862991e3c875fd29d8b220620c2a6" title="Get the force from the AO Potential. " alt="" coords="457,5,603,47"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,71,629,112"/><area shape="rect" id="node7" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="451,143,609,170"/></map>
+<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="211,5,356,47"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="184,71,383,112"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,136,349,177"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="457,5,603,47"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,71,629,112"/><area shape="rect" id="node7" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="451,143,609,170"/></map>
 </div>
 </p>
 
@@ -1010,7 +1083,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1particle_ababd108a4e0fab2f349b022b83d58e3f_icgraph.png" border="0" usemap="#classsimulation_1_1particle_ababd108a4e0fab2f349b022b83d58e3f_icgraph" alt=""/></div>
 <map name="classsimulation_1_1particle_ababd108a4e0fab2f349b022b83d58e3f_icgraph" id="classsimulation_1_1particle_ababd108a4e0fab2f349b022b83d58e3f_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#a246f177ad6e051686320bb319761e29b" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="211,5,356,47"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="184,71,383,112"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,136,349,177"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#a000862991e3c875fd29d8b220620c2a6" title="Get the force from the AO Potential. " alt="" coords="457,5,603,47"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,71,629,112"/><area shape="rect" id="node7" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="451,143,609,170"/></map>
+<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="211,5,356,47"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="184,71,383,112"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,136,349,177"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="457,5,603,47"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,71,629,112"/><area shape="rect" id="node7" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="451,143,609,170"/></map>
 </div>
 </p>
 
@@ -1080,7 +1153,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1particle_ad05cfe6a32f514294b628b5a0f68d0a4_icgraph.png" border="0" usemap="#classsimulation_1_1particle_ad05cfe6a32f514294b628b5a0f68d0a4_icgraph" alt=""/></div>
 <map name="classsimulation_1_1particle_ad05cfe6a32f514294b628b5a0f68d0a4_icgraph" id="classsimulation_1_1particle_ad05cfe6a32f514294b628b5a0f68d0a4_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#a246f177ad6e051686320bb319761e29b" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="211,5,356,47"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="184,71,383,112"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,136,349,177"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#a000862991e3c875fd29d8b220620c2a6" title="Get the force from the AO Potential. " alt="" coords="457,5,603,47"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,71,629,112"/><area shape="rect" id="node7" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="451,143,609,170"/></map>
+<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="211,5,356,47"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="184,71,383,112"/><area shape="rect" id="node6" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,136,349,177"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="457,5,603,47"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,71,629,112"/><area shape="rect" id="node7" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="451,143,609,170"/></map>
 </div>
 </p>
 
@@ -1121,62 +1194,29 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a6fc56ff5e7507ba90fd8dd1de4225469"></a>
+<a class="anchor" id="a3200112cf910db814aab2156ae8381d7"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void simulation::particle::incCoorNumber </td>
+          <td class="memname">void simulation::particle::nextIter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Increase coordination number. </p>
+<p>Clears the current force and updates previous force. Resets potential, neighbors, and coordination number. </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classsimulation_1_1particle_a6fc56ff5e7507ba90fd8dd1de4225469_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a6fc56ff5e7507ba90fd8dd1de4225469_icgraph" alt=""/></div>
-<map name="classsimulation_1_1particle_a6fc56ff5e7507ba90fd8dd1de4225469_icgraph" id="classsimulation_1_1particle_a6fc56ff5e7507ba90fd8dd1de4225469_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#a246f177ad6e051686320bb319761e29b" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="184,5,329,47"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#a000862991e3c875fd29d8b220620c2a6" title="Get the force from the AO Potential. " alt="" coords="377,5,523,47"/></map>
+<div class="center"><img src="classsimulation_1_1particle_a3200112cf910db814aab2156ae8381d7_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a3200112cf910db814aab2156ae8381d7_icgraph" alt=""/></div>
+<map name="classsimulation_1_1particle_a3200112cf910db814aab2156ae8381d7_icgraph" id="classsimulation_1_1particle_a3200112cf910db814aab2156ae8381d7_icgraph">
+<area shape="rect" id="node2" href="classphysics_1_1forces.html#affb1e954a88178bfc7c12762f8876b42" title="Find the net force on all particles in the system. " alt="" coords="184,13,393,39"/><area shape="rect" id="node3" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="441,5,640,47"/></map>
 </div>
 </p>
-
-</div>
-</div>
-<a class="anchor" id="a86b63ccf783e4fc80b24ea123b40527f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void simulation::particle::resetCoorNumber </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Research coordination number. </p>
 
 </div>
 </div>
@@ -1222,38 +1262,6 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x,y,z</td><td>The position variables of the containing cell. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a7f275b1dad1de57d8c9236284bce77cf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void simulation::particle::setEAP </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Add to the average potential. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">val</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -1645,7 +1653,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="aba49bac484778299692ec19cb677be08"></a>
+<a class="anchor" id="a17cb282aa4a8776dc190be66a9f739ef"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1665,7 +1673,19 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>zVal</em>&#160;</td>
+          <td class="paramname"><em>zVal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>pot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1particle.html">particle</a> *&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1679,6 +1699,8 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">xVal,yVal,zVal</td><td>The values of force to add. </td></tr>
+    <tr><td class="paramname">pot</td><td>The potential of the force interaction. </td></tr>
+    <tr><td class="paramname">p</td><td>The particle providing the force. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1686,9 +1708,9 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classsimulation_1_1particle_aba49bac484778299692ec19cb677be08_icgraph.png" border="0" usemap="#classsimulation_1_1particle_aba49bac484778299692ec19cb677be08_icgraph" alt=""/></div>
-<map name="classsimulation_1_1particle_aba49bac484778299692ec19cb677be08_icgraph" id="classsimulation_1_1particle_aba49bac484778299692ec19cb677be08_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#a246f177ad6e051686320bb319761e29b" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="184,5,329,47"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#a000862991e3c875fd29d8b220620c2a6" title="Get the force from the AO Potential. " alt="" coords="377,5,523,47"/></map>
+<div class="center"><img src="classsimulation_1_1particle_a17cb282aa4a8776dc190be66a9f739ef_icgraph.png" border="0" usemap="#classsimulation_1_1particle_a17cb282aa4a8776dc190be66a9f739ef_icgraph" alt=""/></div>
+<map name="classsimulation_1_1particle_a17cb282aa4a8776dc190be66a9f739ef_icgraph" id="classsimulation_1_1particle_a17cb282aa4a8776dc190be66a9f739ef_icgraph">
+<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="184,5,329,47"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="377,5,523,47"/></map>
 </div>
 </p>
 
@@ -1739,7 +1761,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesimulation.html">simulation</a></li><li class="navelem"><a class="el" href="classsimulation_1_1particle.html">particle</a></li>
-    <li class="footer">Generated on Sat Jul 11 2015 11:00:13 for ProteinSim 2015 by
+    <li class="footer">Generated on Sun Jul 12 2015 10:57:30 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

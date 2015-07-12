@@ -1,0 +1,4 @@
+<map id="simulation::particle::getInteractionsEnd" name="simulation::particle::getInteractionsEnd">
+<area shape="rect" id="node2" href="$classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="192,5,324,47"/>
+<area shape="rect" id="node3" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="372,13,531,39"/>
+</map>
