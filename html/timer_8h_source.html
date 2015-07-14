@@ -126,37 +126,41 @@ $(document).ready(function(){initNavTree('timer_8h_source.html','');});
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="classdebugging_1_1timer.html#a3904556721b1960702957204232b85e4">timer</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="classdebugging_1_1timer.html#a8e7110c33fe13e6f230c31ff314cfcf8">~timer</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb">   36</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb">start</a>() { start_time = std::chrono::system_clock::now(); }</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4">   40</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4">stop</a>() { stop_time = std::chrono::system_clock::now(); }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa">   46</a></span>&#160;            <span class="keywordtype">double</span> <a class="code" href="classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa">getElapsedSeconds</a>() </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                std::chrono::system_clock::duration diff = stop_time-start_time;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">return</span> (diff.count() / pow(10,9));</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    };</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif // TIMER_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="comment">//Header Version.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classdebugging_1_1timer.html#a1c8f0a51e830c371f4d93eacb7b0537a">   28</a></span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classdebugging_1_1timer.html#a1c8f0a51e830c371f4d93eacb7b0537a">version</a> = 1;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="classdebugging_1_1timer.html#a3904556721b1960702957204232b85e4">timer</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="classdebugging_1_1timer.html#a8e7110c33fe13e6f230c31ff314cfcf8">~timer</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb">   39</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb">start</a>() { start_time = std::chrono::system_clock::now(); }</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4">   43</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4">stop</a>() { stop_time = std::chrono::system_clock::now(); }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa">   49</a></span>&#160;            <span class="keywordtype">double</span> <a class="code" href="classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa">getElapsedSeconds</a>() </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                std::chrono::system_clock::duration diff = stop_time-start_time;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordflow">return</span> (diff.count() / pow(10,9));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    };</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif // TIMER_H</span></div>
 <div class="ttc" id="classdebugging_1_1timer_html_a8e7110c33fe13e6f230c31ff314cfcf8"><div class="ttname"><a href="classdebugging_1_1timer.html#a8e7110c33fe13e6f230c31ff314cfcf8">debugging::timer::~timer</a></div><div class="ttdeci">~timer()</div><div class="ttdef"><b>Definition:</b> timer.cpp:35</div></div>
 <div class="ttc" id="classdebugging_1_1timer_html"><div class="ttname"><a href="classdebugging_1_1timer.html">debugging::timer</a></div><div class="ttdef"><b>Definition:</b> timer.h:16</div></div>
 <div class="ttc" id="classdebugging_1_1timer_html_a3904556721b1960702957204232b85e4"><div class="ttname"><a href="classdebugging_1_1timer.html#a3904556721b1960702957204232b85e4">debugging::timer::timer</a></div><div class="ttdeci">timer()</div><div class="ttdoc">Create a new timer. </div><div class="ttdef"><b>Definition:</b> timer.cpp:28</div></div>
 <div class="ttc" id="namespacedebugging_html"><div class="ttname"><a href="namespacedebugging.html">debugging</a></div><div class="ttdef"><b>Definition:</b> error.h:6</div></div>
-<div class="ttc" id="classdebugging_1_1timer_html_a6d9c3ecb80a7807a9f845aa39dd285fa"><div class="ttname"><a href="classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa">debugging::timer::getElapsedSeconds</a></div><div class="ttdeci">double getElapsedSeconds()</div><div class="ttdoc">The number of seconds elapsed between start() and stop() </div><div class="ttdef"><b>Definition:</b> timer.h:46</div></div>
-<div class="ttc" id="classdebugging_1_1timer_html_abc60a0c6906c6e018e3080cd74feabd4"><div class="ttname"><a href="classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4">debugging::timer::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">End the timer. </div><div class="ttdef"><b>Definition:</b> timer.h:40</div></div>
-<div class="ttc" id="classdebugging_1_1timer_html_ab97afae0d4e3568e652d0fe56189adeb"><div class="ttname"><a href="classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb">debugging::timer::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Start the timer. </div><div class="ttdef"><b>Definition:</b> timer.h:36</div></div>
+<div class="ttc" id="classdebugging_1_1timer_html_a6d9c3ecb80a7807a9f845aa39dd285fa"><div class="ttname"><a href="classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa">debugging::timer::getElapsedSeconds</a></div><div class="ttdeci">double getElapsedSeconds()</div><div class="ttdoc">The number of seconds elapsed between start() and stop() </div><div class="ttdef"><b>Definition:</b> timer.h:49</div></div>
+<div class="ttc" id="classdebugging_1_1timer_html_abc60a0c6906c6e018e3080cd74feabd4"><div class="ttname"><a href="classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4">debugging::timer::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">End the timer. </div><div class="ttdef"><b>Definition:</b> timer.h:43</div></div>
+<div class="ttc" id="classdebugging_1_1timer_html_a1c8f0a51e830c371f4d93eacb7b0537a"><div class="ttname"><a href="classdebugging_1_1timer.html#a1c8f0a51e830c371f4d93eacb7b0537a">debugging::timer::version</a></div><div class="ttdeci">const int version</div><div class="ttdef"><b>Definition:</b> timer.h:28</div></div>
+<div class="ttc" id="classdebugging_1_1timer_html_ab97afae0d4e3568e652d0fe56189adeb"><div class="ttname"><a href="classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb">debugging::timer::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Start the timer. </div><div class="ttdef"><b>Definition:</b> timer.h:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="timer_8h.html">timer.h</a></li>
-    <li class="footer">Generated on Sun Jul 12 2015 10:57:30 for ProteinSim 2015 by
+    <li class="footer">Generated on Tue Jul 14 2015 08:30:16 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

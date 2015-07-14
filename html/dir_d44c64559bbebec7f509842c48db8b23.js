@@ -4,7 +4,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "cell", "classsimulation_1_1cell.html", "classsimulation_1_1cell" ]
     ] ],
     [ "error.h", "error_8h.html", [
-      [ "error", "classdebugging_1_1error.html", null ]
+      [ "error", "classdebugging_1_1error.html", "classdebugging_1_1error" ]
     ] ],
     [ "force.h", "force_8h.html", [
       [ "IForce", "classphysics_1_1_i_force.html", "classphysics_1_1_i_force" ],
@@ -25,6 +25,6 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "timer", "classdebugging_1_1timer.html", "classdebugging_1_1timer" ]
     ] ],
     [ "utilities.h", "utilities_8h.html", [
-      [ "util", "classutilities_1_1util.html", null ]
+      [ "util", "classutilities_1_1util.html", "classutilities_1_1util" ]
     ] ]
 ];
