@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['physics',['physics',['../namespacephysics.html',1,'']]]
+  ['integrators',['integrators',['../namespaceintegrators.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['debugging',['debugging',['../namespacedebugging.html',1,'']]]
+  ['configreader',['configReader',['../namespaceconfig_reader.html',1,'']]]
 ];

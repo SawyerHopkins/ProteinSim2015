@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classsimulation_1_1cell.html" title="simulation::cell" alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node1" href="$classphysics_1_1_i_force.html" title="physics::IForce" alt="" coords="5,5,117,32"/>
+<area shape="rect" id="node2" href="$classphysics_1_1_a_o_potential.html" title="physics::AOPotential" alt="" coords="165,5,311,32"/>
 </map>

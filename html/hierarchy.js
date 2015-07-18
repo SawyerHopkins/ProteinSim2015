@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "simulation::cell", "classsimulation_1_1cell.html", null ],
+    [ "configReader::config", "classconfig_reader_1_1config.html", null ],
     [ "exception", null, [
       [ "debugging::error", "classdebugging_1_1error.html", null ]
     ] ],

@@ -118,9 +118,9 @@ $(document).ready(function(){initNavTree('classsimulation_1_1system.html','');})
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad58095959206e4c9a74d97051b02391b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#ad58095959206e4c9a74d97051b02391b">system</a> (std::string tName, int nPart, double conc, int scale, double m, double r, double sysTemp, double sysDT, int rnd, <a class="el" href="classintegrators_1_1_i__integrator.html">integrators::I_integrator</a> *sysInt, <a class="el" href="classphysics_1_1forces.html">physics::forces</a> *sysFcs)</td></tr>
-<tr class="memdesc:ad58095959206e4c9a74d97051b02391b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the particle system.  <a href="#ad58095959206e4c9a74d97051b02391b">More...</a><br /></td></tr>
-<tr class="separator:ad58095959206e4c9a74d97051b02391b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a88ebb2a955ce0704b28fe6a83945dd4f">system</a> (<a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *cfg, <a class="el" href="classintegrators_1_1_i__integrator.html">integrators::I_integrator</a> *sysInt, <a class="el" href="classphysics_1_1forces.html">physics::forces</a> *sysFcs)</td></tr>
+<tr class="memdesc:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the particle system.  <a href="#a88ebb2a955ce0704b28fe6a83945dd4f">More...</a><br /></td></tr>
+<tr class="separator:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a742c758a01acf0cbcac1c427207aecec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a742c758a01acf0cbcac1c427207aecec">~system</a> ()</td></tr>
 <tr class="memdesc:a742c758a01acf0cbcac1c427207aecec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the particle system.  <a href="#a742c758a01acf0cbcac1c427207aecec">More...</a><br /></td></tr>
 <tr class="separator:a742c758a01acf0cbcac1c427207aecec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,63 +164,15 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Sawyer Hopkins </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>06/27/15 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad58095959206e4c9a74d97051b02391b"></a>
+<a class="anchor" id="a88ebb2a955ce0704b28fe6a83945dd4f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">simulation::system::system </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>tName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nPart</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>conc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>sysTemp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>sysDT</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>rnd</em>, </td>
+          <td class="paramtype"><a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *&#160;</td>
+          <td class="paramname"><em>cfg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -249,9 +201,9 @@ Public Attributes</h2></td></tr>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classsimulation_1_1system_ad58095959206e4c9a74d97051b02391b_cgraph.png" border="0" usemap="#classsimulation_1_1system_ad58095959206e4c9a74d97051b02391b_cgraph" alt=""/></div>
-<map name="classsimulation_1_1system_ad58095959206e4c9a74d97051b02391b_cgraph" id="classsimulation_1_1system_ad58095959206e4c9a74d97051b02391b_cgraph">
-<area shape="rect" id="node2" href="classsimulation_1_1system.html#ad0837161915e40983ad238518274e173" title="Write the initial system parameters. " alt="" coords="185,5,317,47"/></map>
+<div class="center"><img src="classsimulation_1_1system_a88ebb2a955ce0704b28fe6a83945dd4f_cgraph.png" border="0" usemap="#classsimulation_1_1system_a88ebb2a955ce0704b28fe6a83945dd4f_cgraph" alt=""/></div>
+<map name="classsimulation_1_1system_a88ebb2a955ce0704b28fe6a83945dd4f_cgraph" id="classsimulation_1_1system_a88ebb2a955ce0704b28fe6a83945dd4f_cgraph">
+<area shape="rect" id="node2" href="classconfig_reader_1_1config.html#a67305ca929ebc60d3ed2797212a64b26" title="configReader::config\l::containsKey" alt="" coords="185,5,328,47"/><area shape="rect" id="node3" href="classconfig_reader_1_1config.html#a54352570c1092fc6b8ba8a9395411fbc" title="configReader::config\l::getParam" alt="" coords="185,71,328,112"/><area shape="rect" id="node4" href="classsimulation_1_1system.html#ad0837161915e40983ad238518274e173" title="Write the initial system parameters. " alt="" coords="191,136,323,177"/></map>
 </div>
 </p>
 
@@ -300,6 +252,15 @@ Here is the call graph for this function:</div>
 <p>Gets the length of the system box. </p>
 <dl class="section return"><dt>Returns</dt><dd>length of the system box. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1system_a08e170e3bf0d40ebb16cec7fdb4ab6c8_icgraph.png" border="0" usemap="#classsimulation_1_1system_a08e170e3bf0d40ebb16cec7fdb4ab6c8_icgraph" alt=""/></div>
+<map name="classsimulation_1_1system_a08e170e3bf0d40ebb16cec7fdb4ab6c8_icgraph" id="classsimulation_1_1system_a08e170e3bf0d40ebb16cec7fdb4ab6c8_icgraph">
+<area shape="rect" id="node2" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="185,13,260,39"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="308,13,359,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a71697fc23b52a293a38520ae4a1fd65b"></a>
@@ -326,6 +287,15 @@ Here is the call graph for this function:</div>
 <p>Gets the length of a system cell. </p>
 <dl class="section return"><dt>Returns</dt><dd>cellSize. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1system_a71697fc23b52a293a38520ae4a1fd65b_icgraph.png" border="0" usemap="#classsimulation_1_1system_a71697fc23b52a293a38520ae4a1fd65b_icgraph" alt=""/></div>
+<map name="classsimulation_1_1system_a71697fc23b52a293a38520ae4a1fd65b_icgraph" id="classsimulation_1_1system_a71697fc23b52a293a38520ae4a1fd65b_icgraph">
+<area shape="rect" id="node2" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="185,13,260,39"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="308,13,359,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a2ffba4247b947c349c880e61fdba8d09"></a>
@@ -351,6 +321,15 @@ Here is the call graph for this function:</div>
 
 <p>Gets the number of particles in the system. </p>
 <p>-----------&mdash;&mdash;SYSTEM GETTERS-----------&mdash;&mdash; </p><dl class="section return"><dt>Returns</dt><dd>Number of particles. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1system_a2ffba4247b947c349c880e61fdba8d09_icgraph.png" border="0" usemap="#classsimulation_1_1system_a2ffba4247b947c349c880e61fdba8d09_icgraph" alt=""/></div>
+<map name="classsimulation_1_1system_a2ffba4247b947c349c880e61fdba8d09_icgraph" id="classsimulation_1_1system_a2ffba4247b947c349c880e61fdba8d09_icgraph">
+<area shape="rect" id="node2" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="185,13,260,39"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="308,13,359,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -420,7 +399,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1system_a55c5d8ad30f05c60acf5b0179d97075c_icgraph.png" border="0" usemap="#classsimulation_1_1system_a55c5d8ad30f05c60acf5b0179d97075c_icgraph" alt=""/></div>
 <map name="classsimulation_1_1system_a55c5d8ad30f05c60acf5b0179d97075c_icgraph" id="classsimulation_1_1system_a55c5d8ad30f05c60acf5b0179d97075c_icgraph">
-<area shape="rect" id="node2" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="185,13,344,39"/></map>
+<area shape="rect" id="node2" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="185,13,344,39"/><area shape="rect" id="node3" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="392,13,467,39"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="515,13,565,39"/></map>
 </div>
 </p>
 
@@ -454,6 +433,15 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_cgraph.png" border="0" usemap="#classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_cgraph" alt=""/></div>
 <map name="classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_cgraph" id="classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_cgraph">
 <area shape="rect" id="node2" href="classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb" title="Start the timer. " alt="" coords="231,85,383,111"/><area shape="rect" id="node3" href="classintegrators_1_1_i__integrator.html#a61ed6c505bc18c5f8e13d4480db4948e" title="Integrates to the next system state. " alt="" coords="229,136,385,177"/><area shape="rect" id="node4" href="classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="241,201,373,243"/><area shape="rect" id="node9" href="classsimulation_1_1particle.html#a1b0a7d7c86bf500c076f808e851d2960" title="Returns the coordination number. " alt="" coords="242,397,373,439"/><area shape="rect" id="node10" href="classsimulation_1_1particle.html#a601187919e11ad640e53db9eae5aea80" title="Gets average potential. " alt="" coords="242,463,373,504"/><area shape="rect" id="node11" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="241,528,373,569"/><area shape="rect" id="node24" href="classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4" title="End the timer. " alt="" coords="232,594,383,621"/><area shape="rect" id="node25" href="classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa" title="The number of seconds elapsed between start() and stop() " alt="" coords="212,645,403,687"/><area shape="rect" id="node26" href="classutilities_1_1util.html#ab32a3031b675d59f49ebfda44e686217" title="Shows the completed progress in the console. " alt="" coords="237,711,377,738"/><area shape="rect" id="node5" href="classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="460,5,591,47"/><area shape="rect" id="node6" href="classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b" title="Get the interacting particles. " alt="" coords="460,71,591,112"/><area shape="rect" id="node7" href="classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="simulation::particle\l::getInteractionsBegin" alt="" coords="451,136,600,177"/><area shape="rect" id="node8" href="classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="simulation::particle\l::getInteractionsEnd" alt="" coords="456,201,595,243"/><area shape="rect" id="node12" href="classsimulation_1_1particle.html#a9149ea2d069db9ca438e176d7b774cfd" title="Get the X position. " alt="" coords="460,267,591,308"/><area shape="rect" id="node13" href="classsimulation_1_1particle.html#ababd108a4e0fab2f349b022b83d58e3f" title="Get the Y position. " alt="" coords="460,332,591,373"/><area shape="rect" id="node14" href="classsimulation_1_1particle.html#ad05cfe6a32f514294b628b5a0f68d0a4" title="Get the Z position. " alt="" coords="460,397,591,439"/><area shape="rect" id="node15" href="classsimulation_1_1particle.html#a9c4398b47db104ea6a2ebd5dee316c59" title="Get the previous X position. " alt="" coords="460,463,591,504"/><area shape="rect" id="node16" href="classsimulation_1_1particle.html#a526a29678039c58f8c4d992cff7168de" title="Get the previous Y position. " alt="" coords="460,528,591,569"/><area shape="rect" id="node17" href="classsimulation_1_1particle.html#a38b6cbed39aac5a18c3ea49c923a927e" title="Get the previous X position. " alt="" coords="460,593,591,635"/><area shape="rect" id="node18" href="classsimulation_1_1particle.html#a183cb7b1debdff718099a6d324a6c3c5" title="Get the current x force. " alt="" coords="460,659,591,700"/><area shape="rect" id="node19" href="classsimulation_1_1particle.html#aa7283a28e7dca902143641f0a29190c8" title="Get the current y force. " alt="" coords="460,724,591,765"/><area shape="rect" id="node20" href="classsimulation_1_1particle.html#a1d6146fc1ac50e126694cd9d27cf7857" title="Get the current z force. " alt="" coords="460,789,591,831"/><area shape="rect" id="node21" href="classsimulation_1_1particle.html#acb7a88786a9b9bf1eedefd98c8a96c00" title="Get the previous x force. " alt="" coords="460,855,591,896"/><area shape="rect" id="node22" href="classsimulation_1_1particle.html#a7ba002f0d577c60d67949589755a26f9" title="Get the previous y force. " alt="" coords="460,920,591,961"/><area shape="rect" id="node23" href="classsimulation_1_1particle.html#ae59f58f7313d2d7bf8783694f2c8d8f5" title="Get the previous z force. " alt="" coords="460,985,591,1027"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_icgraph.png" border="0" usemap="#classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_icgraph" alt=""/></div>
+<map name="classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_icgraph" id="classsimulation_1_1system_a768ca25aeeab13aeee72e637478b6720_icgraph">
+<area shape="rect" id="node2" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="212,5,287,32"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="335,5,385,32"/></map>
 </div>
 </p>
 
@@ -564,7 +552,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1system_af7bde7b98e2754b4a84e13b6841fb058_icgraph.png" border="0" usemap="#classsimulation_1_1system_af7bde7b98e2754b4a84e13b6841fb058_icgraph" alt=""/></div>
 <map name="classsimulation_1_1system_af7bde7b98e2754b4a84e13b6841fb058_icgraph" id="classsimulation_1_1system_af7bde7b98e2754b4a84e13b6841fb058_icgraph">
-<area shape="rect" id="node2" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="185,13,344,39"/></map>
+<area shape="rect" id="node2" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="392,13,467,39"/><area shape="rect" id="node4" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="185,38,344,65"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="515,13,565,39"/></map>
 </div>
 </p>
 
@@ -590,7 +578,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1system_ad0837161915e40983ad238518274e173_icgraph.png" border="0" usemap="#classsimulation_1_1system_ad0837161915e40983ad238518274e173_icgraph" alt=""/></div>
 <map name="classsimulation_1_1system_ad0837161915e40983ad238518274e173_icgraph" id="classsimulation_1_1system_ad0837161915e40983ad238518274e173_icgraph">
-<area shape="rect" id="node2" href="classsimulation_1_1system.html#ad58095959206e4c9a74d97051b02391b" title="Constructs the particle system. " alt="" coords="185,5,317,47"/></map>
+<area shape="rect" id="node2" href="classsimulation_1_1system.html#a88ebb2a955ce0704b28fe6a83945dd4f" title="Constructs the particle system. " alt="" coords="185,5,317,47"/></map>
 </div>
 </p>
 
@@ -624,7 +612,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesimulation.html">simulation</a></li><li class="navelem"><a class="el" href="classsimulation_1_1system.html">system</a></li>
-    <li class="footer">Generated on Tue Jul 14 2015 08:30:16 for ProteinSim 2015 by
+    <li class="footer">Generated on Sat Jul 18 2015 05:51:20 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

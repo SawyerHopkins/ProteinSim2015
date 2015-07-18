@@ -1,4 +1,6 @@
 <map id="simulation::particle::getInteractionsBegin" name="simulation::particle::getInteractionsBegin">
 <area shape="rect" id="node2" href="$classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="203,5,335,47"/>
 <area shape="rect" id="node3" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="383,13,541,39"/>
+<area shape="rect" id="node4" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="589,13,664,39"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="712,13,763,39"/>
 </map>

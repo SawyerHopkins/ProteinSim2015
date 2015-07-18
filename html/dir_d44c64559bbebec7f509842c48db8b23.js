@@ -3,6 +3,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "cell.h", "cell_8h.html", [
       [ "cell", "classsimulation_1_1cell.html", "classsimulation_1_1cell" ]
     ] ],
+    [ "config.h", "config_8h.html", [
+      [ "config", "classconfig_reader_1_1config.html", "classconfig_reader_1_1config" ]
+    ] ],
     [ "error.h", "error_8h.html", [
       [ "error", "classdebugging_1_1error.html", "classdebugging_1_1error" ]
     ] ],

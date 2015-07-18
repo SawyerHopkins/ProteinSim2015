@@ -1,3 +1,5 @@
 <map id="physics::IForce::isTimeDependent" name="physics::IForce::isTimeDependent">
 <area shape="rect" id="node2" href="$classphysics_1_1forces.html#a42694e8722ee9750729e7e2e9dc94709" title="Adds a force to the management system. " alt="" coords="276,5,449,32"/>
+<area shape="rect" id="node3" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="497,5,572,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="620,5,671,32"/>
 </map>
