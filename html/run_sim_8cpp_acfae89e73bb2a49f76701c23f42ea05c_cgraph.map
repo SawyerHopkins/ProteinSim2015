@@ -1,33 +1,38 @@
 <map id="runScript" name="runScript">
-<area shape="rect" id="node2" href="$classphysics_1_1forces.html#a42694e8722ee9750729e7e2e9dc94709" title="Adds a force to the management system. " alt="" coords="128,285,301,311"/>
-<area shape="rect" id="node4" href="$classsimulation_1_1system.html#a2ffba4247b947c349c880e61fdba8d09" title="Gets the number of particles in the system. " alt="" coords="149,336,281,377"/>
-<area shape="rect" id="node5" href="$classsimulation_1_1system.html#a08e170e3bf0d40ebb16cec7fdb4ab6c8" title="Gets the length of the system box. " alt="" coords="149,401,281,443"/>
-<area shape="rect" id="node6" href="$classsimulation_1_1system.html#a71697fc23b52a293a38520ae4a1fd65b" title="Gets the length of a system cell. " alt="" coords="149,467,281,508"/>
-<area shape="rect" id="node7" href="$classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="395,431,527,472"/>
-<area shape="rect" id="node20" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="135,862,294,889"/>
-<area shape="rect" id="node3" href="$classphysics_1_1_i_force.html#aa5d0ef7ad3c9d853cb87927863a53c6c" title="Flag for a force dependent time. " alt="" coords="349,285,572,311"/>
-<area shape="rect" id="node8" href="$classsimulation_1_1particle.html#a9149ea2d069db9ca438e176d7b774cfd" title="Get the X position. " alt="" coords="629,5,760,47"/>
-<area shape="rect" id="node9" href="$classsimulation_1_1particle.html#ababd108a4e0fab2f349b022b83d58e3f" title="Get the Y position. " alt="" coords="629,71,760,112"/>
-<area shape="rect" id="node10" href="$classsimulation_1_1particle.html#ad05cfe6a32f514294b628b5a0f68d0a4" title="Get the Z position. " alt="" coords="629,136,760,177"/>
-<area shape="rect" id="node11" href="$classsimulation_1_1particle.html#a9c4398b47db104ea6a2ebd5dee316c59" title="Get the previous X position. " alt="" coords="629,201,760,243"/>
-<area shape="rect" id="node12" href="$classsimulation_1_1particle.html#a526a29678039c58f8c4d992cff7168de" title="Get the previous Y position. " alt="" coords="629,267,760,308"/>
-<area shape="rect" id="node13" href="$classsimulation_1_1particle.html#a38b6cbed39aac5a18c3ea49c923a927e" title="Get the previous X position. " alt="" coords="629,332,760,373"/>
-<area shape="rect" id="node14" href="$classsimulation_1_1particle.html#a183cb7b1debdff718099a6d324a6c3c5" title="Get the current x force. " alt="" coords="629,397,760,439"/>
-<area shape="rect" id="node15" href="$classsimulation_1_1particle.html#aa7283a28e7dca902143641f0a29190c8" title="Get the current y force. " alt="" coords="629,463,760,504"/>
-<area shape="rect" id="node16" href="$classsimulation_1_1particle.html#a1d6146fc1ac50e126694cd9d27cf7857" title="Get the current z force. " alt="" coords="629,528,760,569"/>
-<area shape="rect" id="node17" href="$classsimulation_1_1particle.html#acb7a88786a9b9bf1eedefd98c8a96c00" title="Get the previous x force. " alt="" coords="629,593,760,635"/>
-<area shape="rect" id="node18" href="$classsimulation_1_1particle.html#a7ba002f0d577c60d67949589755a26f9" title="Get the previous y force. " alt="" coords="629,659,760,700"/>
-<area shape="rect" id="node19" href="$classsimulation_1_1particle.html#ae59f58f7313d2d7bf8783694f2c8d8f5" title="Get the previous z force. " alt="" coords="629,724,760,765"/>
-<area shape="rect" id="node21" href="$classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb" title="Start the timer. " alt="" coords="385,705,537,731"/>
-<area shape="rect" id="node22" href="$classintegrators_1_1_i__integrator.html#a61ed6c505bc18c5f8e13d4480db4948e" title="Integrates to the next system state. " alt="" coords="383,756,539,797"/>
-<area shape="rect" id="node23" href="$classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="395,821,527,863"/>
-<area shape="rect" id="node28" href="$classsimulation_1_1particle.html#a1b0a7d7c86bf500c076f808e851d2960" title="Returns the coordination number. " alt="" coords="395,887,526,928"/>
-<area shape="rect" id="node29" href="$classsimulation_1_1particle.html#a601187919e11ad640e53db9eae5aea80" title="Gets average potential. " alt="" coords="395,952,526,993"/>
-<area shape="rect" id="node30" href="$classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4" title="End the timer. " alt="" coords="385,1018,536,1045"/>
-<area shape="rect" id="node31" href="$classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa" title="The number of seconds elapsed between start() and stop() " alt="" coords="365,1069,556,1111"/>
-<area shape="rect" id="node32" href="$classutilities_1_1util.html#ab32a3031b675d59f49ebfda44e686217" title="Shows the completed progress in the console. " alt="" coords="391,1135,531,1162"/>
-<area shape="rect" id="node24" href="$classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="629,789,760,831"/>
-<area shape="rect" id="node25" href="$classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b" title="Get the interacting particles. " alt="" coords="629,855,760,896"/>
-<area shape="rect" id="node26" href="$classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="simulation::particle\l::getInteractionsBegin" alt="" coords="620,920,769,961"/>
-<area shape="rect" id="node27" href="$classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="simulation::particle\l::getInteractionsEnd" alt="" coords="625,985,764,1027"/>
+<area shape="rect" id="node2" href="$classphysics_1_1forces.html#a42694e8722ee9750729e7e2e9dc94709" title="Adds a force to the management system. " alt="" coords="147,5,321,32"/>
+<area shape="rect" id="node4" href="$classconfig_reader_1_1config.html#a67305ca929ebc60d3ed2797212a64b26" title="configReader::config\l::containsKey" alt="" coords="163,57,305,98"/>
+<area shape="rect" id="node5" href="$classconfig_reader_1_1config.html#a54352570c1092fc6b8ba8a9395411fbc" title="configReader::config\l::getParam" alt="" coords="163,122,305,163"/>
+<area shape="rect" id="node6" href="$classphysics_1_1forces.html#a693cc8bf1edd2240d563370518783103" title="physics::forces::setNumThreads" alt="" coords="128,188,340,215"/>
+<area shape="rect" id="node7" href="$classphysics_1_1forces.html#ab9ddef832d4b5ab584235205a09b9241" title="physics::forces::setDynamic" alt="" coords="139,239,329,265"/>
+<area shape="rect" id="node8" href="$classphysics_1_1forces.html#aecd9899c8bf9fa09ef3bab4de101878d" title="physics::forces::setDevice" alt="" coords="145,289,323,316"/>
+<area shape="rect" id="node9" href="$classsimulation_1_1system.html#a2ffba4247b947c349c880e61fdba8d09" title="Gets the number of particles in the system. " alt="" coords="168,341,300,382"/>
+<area shape="rect" id="node10" href="$classsimulation_1_1system.html#a08e170e3bf0d40ebb16cec7fdb4ab6c8" title="Gets the length of the system box. " alt="" coords="168,406,300,447"/>
+<area shape="rect" id="node11" href="$classsimulation_1_1system.html#a71697fc23b52a293a38520ae4a1fd65b" title="Gets the length of a system cell. " alt="" coords="168,471,300,513"/>
+<area shape="rect" id="node12" href="$classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="433,466,565,507"/>
+<area shape="rect" id="node25" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="155,683,313,709"/>
+<area shape="rect" id="node3" href="$classphysics_1_1_i_force.html#aa5d0ef7ad3c9d853cb87927863a53c6c" title="Flag for a force dependent time. " alt="" coords="388,5,611,32"/>
+<area shape="rect" id="node13" href="$classsimulation_1_1particle.html#a9149ea2d069db9ca438e176d7b774cfd" title="Get the X position. " alt="" coords="668,67,799,109"/>
+<area shape="rect" id="node14" href="$classsimulation_1_1particle.html#ababd108a4e0fab2f349b022b83d58e3f" title="Get the Y position. " alt="" coords="668,133,799,174"/>
+<area shape="rect" id="node15" href="$classsimulation_1_1particle.html#ad05cfe6a32f514294b628b5a0f68d0a4" title="Get the Z position. " alt="" coords="668,198,799,239"/>
+<area shape="rect" id="node16" href="$classsimulation_1_1particle.html#a9c4398b47db104ea6a2ebd5dee316c59" title="Get the previous X position. " alt="" coords="668,263,799,305"/>
+<area shape="rect" id="node17" href="$classsimulation_1_1particle.html#a526a29678039c58f8c4d992cff7168de" title="Get the previous Y position. " alt="" coords="668,329,799,370"/>
+<area shape="rect" id="node18" href="$classsimulation_1_1particle.html#a38b6cbed39aac5a18c3ea49c923a927e" title="Get the previous X position. " alt="" coords="668,394,799,435"/>
+<area shape="rect" id="node19" href="$classsimulation_1_1particle.html#a183cb7b1debdff718099a6d324a6c3c5" title="Get the current x force. " alt="" coords="668,459,799,501"/>
+<area shape="rect" id="node20" href="$classsimulation_1_1particle.html#aa7283a28e7dca902143641f0a29190c8" title="Get the current y force. " alt="" coords="668,525,799,566"/>
+<area shape="rect" id="node21" href="$classsimulation_1_1particle.html#a1d6146fc1ac50e126694cd9d27cf7857" title="Get the current z force. " alt="" coords="668,590,799,631"/>
+<area shape="rect" id="node22" href="$classsimulation_1_1particle.html#acb7a88786a9b9bf1eedefd98c8a96c00" title="Get the previous x force. " alt="" coords="668,655,799,697"/>
+<area shape="rect" id="node23" href="$classsimulation_1_1particle.html#a7ba002f0d577c60d67949589755a26f9" title="Get the previous y force. " alt="" coords="668,721,799,762"/>
+<area shape="rect" id="node24" href="$classsimulation_1_1particle.html#ae59f58f7313d2d7bf8783694f2c8d8f5" title="Get the previous z force. " alt="" coords="668,786,799,827"/>
+<area shape="rect" id="node26" href="$classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb" title="Start the timer. " alt="" coords="423,536,575,563"/>
+<area shape="rect" id="node27" href="$classintegrators_1_1_i__integrator.html#a61ed6c505bc18c5f8e13d4480db4948e" title="Integrates to the next system state. " alt="" coords="421,587,577,629"/>
+<area shape="rect" id="node28" href="$classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4" title="End the timer. " alt="" coords="424,653,575,680"/>
+<area shape="rect" id="node29" href="$classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa" title="The number of seconds elapsed between start() and stop() " alt="" coords="404,705,595,746"/>
+<area shape="rect" id="node30" href="$classsimulation_1_1particle.html#a1b0a7d7c86bf500c076f808e851d2960" title="Returns the coordination number. " alt="" coords="434,770,565,811"/>
+<area shape="rect" id="node31" href="$classsimulation_1_1particle.html#a601187919e11ad640e53db9eae5aea80" title="Gets average potential. " alt="" coords="434,835,565,877"/>
+<area shape="rect" id="node32" href="$classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c" title="Get the number of clusters in the system. " alt="" coords="433,914,565,955"/>
+<area shape="rect" id="node37" href="$classutilities_1_1util.html#ab32a3031b675d59f49ebfda44e686217" title="Shows the completed progress in the console. " alt="" coords="429,980,569,1007"/>
+<area shape="rect" id="node33" href="$classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="668,851,799,893"/>
+<area shape="rect" id="node34" href="$classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b" title="Get the interacting particles. " alt="" coords="668,917,799,958"/>
+<area shape="rect" id="node35" href="$classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="simulation::particle\l::getInteractionsBegin" alt="" coords="659,982,808,1023"/>
+<area shape="rect" id="node36" href="$classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="simulation::particle\l::getInteractionsEnd" alt="" coords="664,1047,803,1089"/>
 </map>

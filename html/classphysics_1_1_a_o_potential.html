@@ -131,9 +131,9 @@ Collaboration diagram for physics::AOPotential:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae02dd81284ce3c6adffdb75e272734e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1_a_o_potential.html#ae02dd81284ce3c6adffdb75e272734e2">AOPotential</a> (double coeff, double cut, double dTime)</td></tr>
-<tr class="memdesc:ae02dd81284ce3c6adffdb75e272734e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an new AO Potential.  <a href="#ae02dd81284ce3c6adffdb75e272734e2">More...</a><br /></td></tr>
-<tr class="separator:ae02dd81284ce3c6adffdb75e272734e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2730a6ded48ebd33fafbd031f845acb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1_a_o_potential.html#aa2730a6ded48ebd33fafbd031f845acb">AOPotential</a> (<a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *cfg)</td></tr>
+<tr class="memdesc:aa2730a6ded48ebd33fafbd031f845acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an new AO Potential.  <a href="#aa2730a6ded48ebd33fafbd031f845acb">More...</a><br /></td></tr>
+<tr class="separator:aa2730a6ded48ebd33fafbd031f845acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7d9288326d0dbc1f133354f2fb5b9fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1_a_o_potential.html#ac7d9288326d0dbc1f133354f2fb5b9fa">~AOPotential</a> ()</td></tr>
 <tr class="memdesc:ac7d9288326d0dbc1f133354f2fb5b9fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the force from memory.  <a href="#ac7d9288326d0dbc1f133354f2fb5b9fa">More...</a><br /></td></tr>
 <tr class="separator:ac7d9288326d0dbc1f133354f2fb5b9fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,32 +165,16 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Sawyer Hopkins </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>06/27/15 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae02dd81284ce3c6adffdb75e272734e2"></a>
+<a class="anchor" id="aa2730a6ded48ebd33fafbd031f845acb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">physics::AOPotential::AOPotential </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>coeff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *&#160;</td>
+          <td class="paramname"><em>cfg</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>cut</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>dTime</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -198,12 +182,19 @@ Additional Inherited Members</h2></td></tr>
 <p>Creates an new AO Potential. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coeff</td><td>The drag coefficent of the system. </td></tr>
-    <tr><td class="paramname">cut</td><td>The force cutoff distance. </td></tr>
-    <tr><td class="paramname">dTime</td><td>The time step for integration. </td></tr>
+    <tr><td class="paramname">cfg</td><td>The address of the configuration file reader. </td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classphysics_1_1_a_o_potential_aa2730a6ded48ebd33fafbd031f845acb_cgraph.png" border="0" usemap="#classphysics_1_1_a_o_potential_aa2730a6ded48ebd33fafbd031f845acb_cgraph" alt=""/></div>
+<map name="classphysics_1_1_a_o_potential_aa2730a6ded48ebd33fafbd031f845acb_cgraph" id="classphysics_1_1_a_o_potential_aa2730a6ded48ebd33fafbd031f845acb_cgraph">
+<area shape="rect" id="node2" href="classconfig_reader_1_1config.html#a67305ca929ebc60d3ed2797212a64b26" title="configReader::config\l::containsKey" alt="" coords="199,5,341,47"/><area shape="rect" id="node3" href="classconfig_reader_1_1config.html#a54352570c1092fc6b8ba8a9395411fbc" title="configReader::config\l::getParam" alt="" coords="199,71,341,112"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -412,7 +403,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacephysics.html">physics</a></li><li class="navelem"><a class="el" href="classphysics_1_1_a_o_potential.html">AOPotential</a></li>
-    <li class="footer">Generated on Sat Jul 18 2015 06:23:29 for ProteinSim 2015 by
+    <li class="footer">Generated on Sat Jul 18 2015 09:10:54 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

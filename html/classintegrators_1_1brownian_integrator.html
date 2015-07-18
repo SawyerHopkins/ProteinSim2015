@@ -131,9 +131,9 @@ Collaboration diagram for integrators::brownianIntegrator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a62daa7803fa3d31c25a4043b3f22e0b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrators_1_1brownian_integrator.html#a62daa7803fa3d31c25a4043b3f22e0b4">brownianIntegrator</a> (int nPart, double tempInit, double m, double dragCoeff, double dTime, int seed)</td></tr>
-<tr class="memdesc:a62daa7803fa3d31c25a4043b3f22e0b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the brownian motion integrator.  <a href="#a62daa7803fa3d31c25a4043b3f22e0b4">More...</a><br /></td></tr>
-<tr class="separator:a62daa7803fa3d31c25a4043b3f22e0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29cd92b6fe568c451c032812817aec0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrators_1_1brownian_integrator.html#a29cd92b6fe568c451c032812817aec0f">brownianIntegrator</a> (<a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *cfg)</td></tr>
+<tr class="memdesc:a29cd92b6fe568c451c032812817aec0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the brownian motion integrator.  <a href="#a29cd92b6fe568c451c032812817aec0f">More...</a><br /></td></tr>
+<tr class="separator:a29cd92b6fe568c451c032812817aec0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18bb226b3092553f70062996bb1acda2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintegrators_1_1brownian_integrator.html#a18bb226b3092553f70062996bb1acda2">~brownianIntegrator</a> ()</td></tr>
 <tr class="memdesc:a18bb226b3092553f70062996bb1acda2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs the integrator.  <a href="#a18bb226b3092553f70062996bb1acda2">More...</a><br /></td></tr>
 <tr class="separator:a18bb226b3092553f70062996bb1acda2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,50 +165,16 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Sawyer Hopkins </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>06/27/15 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a62daa7803fa3d31c25a4043b3f22e0b4"></a>
+<a class="anchor" id="a29cd92b6fe568c451c032812817aec0f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">integrators::brownianIntegrator::brownianIntegrator </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nPart</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *&#160;</td>
+          <td class="paramname"><em>cfg</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>tempInit</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>dragCoeff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>dTime</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>seed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -216,16 +182,20 @@ Additional Inherited Members</h2></td></tr>
 <p>Constructs the brownian motion integrator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nPart</td><td>The number of particles in the system. </td></tr>
-    <tr><td class="paramname">tempInit</td><td>The initial temperature of the system. </td></tr>
-    <tr><td class="paramname">m</td><td>the mass of the particles in the system. </td></tr>
-    <tr><td class="paramname">dragCoeff</td><td>The drag coefficent of the system. </td></tr>
-    <tr><td class="paramname">dTime</td><td>The time step for integration. </td></tr>
-    <tr><td class="paramname">seed</td><td>The random number seed. </td></tr>
+    <tr><td class="paramname">cfg</td><td>The address of the configuration file reader. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nothing </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classintegrators_1_1brownian_integrator_a29cd92b6fe568c451c032812817aec0f_cgraph.png" border="0" usemap="#classintegrators_1_1brownian_integrator_a29cd92b6fe568c451c032812817aec0f_cgraph" alt=""/></div>
+<map name="classintegrators_1_1brownian_integrator_a29cd92b6fe568c451c032812817aec0f_cgraph" id="classintegrators_1_1brownian_integrator_a29cd92b6fe568c451c032812817aec0f_cgraph">
+<area shape="rect" id="node2" href="classconfig_reader_1_1config.html#a67305ca929ebc60d3ed2797212a64b26" title="configReader::config\l::containsKey" alt="" coords="252,5,395,47"/><area shape="rect" id="node3" href="classconfig_reader_1_1config.html#a54352570c1092fc6b8ba8a9395411fbc" title="configReader::config\l::getParam" alt="" coords="252,71,395,112"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -512,7 +482,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceintegrators.html">integrators</a></li><li class="navelem"><a class="el" href="classintegrators_1_1brownian_integrator.html">brownianIntegrator</a></li>
-    <li class="footer">Generated on Sat Jul 18 2015 06:23:29 for ProteinSim 2015 by
+    <li class="footer">Generated on Sat Jul 18 2015 09:10:54 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>
