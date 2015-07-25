@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['unitvectoradv',['unitVectorAdv',['../classutilities_1_1util.html#af3ec64210ede1720e02d69b7630d8d2a',1,'utilities::util']]],
-  ['unitvectorsimple',['unitVectorSimple',['../classutilities_1_1util.html#a032995f06d24340dee527949cd9e0b6b',1,'utilities::util']]],
-  ['updateforce',['updateForce',['../classsimulation_1_1particle.html#a17cb282aa4a8776dc190be66a9f739ef',1,'simulation::particle']]]
+  ['throwcellboundserror',['throwCellBoundsError',['../classdebugging_1_1error.html#af59db802432b9d81d2d3fd5a94940256',1,'debugging::error']]],
+  ['throwinfiniteforce',['throwInfiniteForce',['../classdebugging_1_1error.html#a02aa3ff91f597241e7be1ceb91539a3a',1,'debugging::error']]],
+  ['throwinitializationerror',['throwInitializationError',['../classdebugging_1_1error.html#af186bd2fcd24ee52362f924abd8e1198',1,'debugging::error']]],
+  ['throwinputerror',['throwInputError',['../classdebugging_1_1error.html#a4d4b6f8bb7868660a2b92bef9c6dcd82',1,'debugging::error']]],
+  ['throwparticleboundserror',['throwParticleBoundsError',['../classdebugging_1_1error.html#af3e3502676912b5d03e4c628c9b7c14d',1,'debugging::error']]],
+  ['throwparticleoverlaperror',['throwParticleOverlapError',['../classdebugging_1_1error.html#af3d6063d87f25a235d723836d5a305c8',1,'debugging::error']]],
+  ['timer',['timer',['../classdebugging_1_1timer.html#a3904556721b1960702957204232b85e4',1,'debugging::timer']]]
 ];

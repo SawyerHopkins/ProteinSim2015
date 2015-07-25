@@ -133,10 +133,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5373d35ab4b6c8d884f078fa50cc4e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the system contains a time dependent force.  <a href="#a5373d35ab4b6c8d884f078fa50cc4e05">More...</a><br /></td></tr>
 <tr class="separator:a5373d35ab4b6c8d884f078fa50cc4e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a693cc8bf1edd2240d563370518783103"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1forces.html#a693cc8bf1edd2240d563370518783103">setNumThreads</a> (int num)</td></tr>
+<tr class="memdesc:a693cc8bf1edd2240d563370518783103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of threads for OMP to use.  <a href="#a693cc8bf1edd2240d563370518783103">More...</a><br /></td></tr>
 <tr class="separator:a693cc8bf1edd2240d563370518783103"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9ddef832d4b5ab584235205a09b9241"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1forces.html#ab9ddef832d4b5ab584235205a09b9241">setDynamic</a> (int num)</td></tr>
+<tr class="memdesc:ab9ddef832d4b5ab584235205a09b9241"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the dynamic/static mode of operation.  <a href="#ab9ddef832d4b5ab584235205a09b9241">More...</a><br /></td></tr>
 <tr class="separator:ab9ddef832d4b5ab584235205a09b9241"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecd9899c8bf9fa09ef3bab4de101878d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1forces.html#aecd9899c8bf9fa09ef3bab4de101878d">setDevice</a> (int num)</td></tr>
+<tr class="memdesc:aecd9899c8bf9fa09ef3bab4de101878d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the default OMP target device.  <a href="#aecd9899c8bf9fa09ef3bab4de101878d">More...</a><br /></td></tr>
 <tr class="separator:aecd9899c8bf9fa09ef3bab4de101878d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32d11adf0ddb1b6a25c8a11cb072f63f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classphysics_1_1_i_force.html">IForce</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1forces.html#a32d11adf0ddb1b6a25c8a11cb072f63f">getBegin</a> ()</td></tr>
 <tr class="memdesc:a32d11adf0ddb1b6a25c8a11cb072f63f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the beginning iterator of the force list.  <a href="#a32d11adf0ddb1b6a25c8a11cb072f63f">More...</a><br /></td></tr>
@@ -403,6 +406,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Set the default OMP target device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>Device number. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -435,6 +446,14 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set the dynamic/static mode of operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>0 for static. num &gt; 0 for dynamics. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -469,6 +488,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Set the number of threads for OMP to use. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>Number of threads. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -490,7 +517,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacephysics.html">physics</a></li><li class="navelem"><a class="el" href="classphysics_1_1forces.html">forces</a></li>
-    <li class="footer">Generated on Sat Jul 18 2015 09:17:29 for ProteinSim 2015 by
+    <li class="footer">Generated on Sat Jul 25 2015 06:45:51 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

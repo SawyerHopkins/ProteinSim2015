@@ -22,6 +22,6 @@
 <area shape="rect" id="node16" href="$classsimulation_1_1particle.html#ae59f58f7313d2d7bf8783694f2c8d8f5" title="Get the previous z force. " alt="" coords="460,724,591,765"/>
 <area shape="rect" id="node22" href="$classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="460,789,591,831"/>
 <area shape="rect" id="node23" href="$classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b" title="Get the interacting particles. " alt="" coords="460,855,591,896"/>
-<area shape="rect" id="node24" href="$classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="simulation::particle\l::getInteractionsBegin" alt="" coords="451,920,600,961"/>
-<area shape="rect" id="node25" href="$classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="simulation::particle\l::getInteractionsEnd" alt="" coords="456,985,595,1027"/>
+<area shape="rect" id="node24" href="$classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="The the beginning iterator of the interating particles. " alt="" coords="451,920,600,961"/>
+<area shape="rect" id="node25" href="$classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="Gets the end off the vector of interacting particles. " alt="" coords="456,985,595,1027"/>
 </map>
