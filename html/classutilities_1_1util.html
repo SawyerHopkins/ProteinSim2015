@@ -30,9 +30,9 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">ProteinSim 2015
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
-   <div id="projectbrief">A particle simulator</div>
+   <div id="projectbrief">A Particle Aggregation Engine</div>
   </td>
  </tr>
  </tbody>
@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('classutilities_1_1util.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,14 +107,14 @@ $(document).ready(function(){initNavTree('classutilities_1_1util.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classutilities_1_1util-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">utilities::util Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="utilities_8h_source.html">utilities.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_a_o_potential_2include_2utilities_8h_source.html">utilities.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -136,11 +136,47 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af3ec64210ede1720e02d69b7630d8d2a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#af3ec64210ede1720e02d69b7630d8d2a">unitVectorAdv</a> (double X, double Y, double Z, double X1, double Y1, double Z1, double(&amp;acc)[3], double r, int L)</td></tr>
 <tr class="memdesc:af3ec64210ede1720e02d69b7630d8d2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternative method for getting the normalized distance between two particles.  <a href="#af3ec64210ede1720e02d69b7630d8d2a">More...</a><br /></td></tr>
 <tr class="separator:af3ec64210ede1720e02d69b7630d8d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f5df4752bad2f7ee1108d521414268"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#aa6f5df4752bad2f7ee1108d521414268">safeMod</a> (double val, double base)</td></tr>
+<tr class="memdesc:aa6f5df4752bad2f7ee1108d521414268"><td class="mdescLeft">&#160;</td><td class="mdescRight">fmod can't do negative numbers so use this.  <a href="#aa6f5df4752bad2f7ee1108d521414268">More...</a><br /></td></tr>
+<tr class="separator:aa6f5df4752bad2f7ee1108d521414268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6efb59e95f4e04e9ee76ba2cfed4cd56"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a6efb59e95f4e04e9ee76ba2cfed4cd56">safeMod0</a> (double val0, double val, double base)</td></tr>
+<tr class="memdesc:a6efb59e95f4e04e9ee76ba2cfed4cd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks for PBC check on original position.  <a href="#a6efb59e95f4e04e9ee76ba2cfed4cd56">More...</a><br /></td></tr>
+<tr class="separator:a6efb59e95f4e04e9ee76ba2cfed4cd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ce159de13b1ab20b228fa6d8625aac0"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a3ce159de13b1ab20b228fa6d8625aac0">pbcDist</a> (double X, double Y, double Z, double X1, double Y1, double Z1, double L)</td></tr>
+<tr class="memdesc:a3ce159de13b1ab20b228fa6d8625aac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method for getting distance between two points.  <a href="#a3ce159de13b1ab20b228fa6d8625aac0">More...</a><br /></td></tr>
+<tr class="separator:a3ce159de13b1ab20b228fa6d8625aac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98971dcfed7e6a080aa2dc7b26aa68af"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a98971dcfed7e6a080aa2dc7b26aa68af">loadBar</a> (double x0, int n, long counter, int w=50)</td></tr>
+<tr class="memdesc:a98971dcfed7e6a080aa2dc7b26aa68af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows the completed progress in the console.  <a href="#a98971dcfed7e6a080aa2dc7b26aa68af">More...</a><br /></td></tr>
+<tr class="separator:a98971dcfed7e6a080aa2dc7b26aa68af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4765b5187e1356faa8ca2200c86729d5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a4765b5187e1356faa8ca2200c86729d5">unitVectorSimple</a> (double dX, double dY, double dZ, double r, double(&amp;acc)[3])</td></tr>
+<tr class="memdesc:a4765b5187e1356faa8ca2200c86729d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes the distances to create a unit vector in &amp;acc[3].  <a href="#a4765b5187e1356faa8ca2200c86729d5">More...</a><br /></td></tr>
+<tr class="separator:a4765b5187e1356faa8ca2200c86729d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aec82b5d3210a095336f60e7af872d7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a5aec82b5d3210a095336f60e7af872d7">unitVectorAdv</a> (double X, double Y, double Z, double X1, double Y1, double Z1, double(&amp;acc)[3], double r, int L)</td></tr>
+<tr class="memdesc:a5aec82b5d3210a095336f60e7af872d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternative method for getting the normalized distance between two particles.  <a href="#a5aec82b5d3210a095336f60e7af872d7">More...</a><br /></td></tr>
+<tr class="separator:a5aec82b5d3210a095336f60e7af872d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f5df4752bad2f7ee1108d521414268"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#aa6f5df4752bad2f7ee1108d521414268">safeMod</a> (double val, double base)</td></tr>
+<tr class="memdesc:aa6f5df4752bad2f7ee1108d521414268"><td class="mdescLeft">&#160;</td><td class="mdescRight">fmod can't do negative numbers so use this.  <a href="#aa6f5df4752bad2f7ee1108d521414268">More...</a><br /></td></tr>
+<tr class="separator:aa6f5df4752bad2f7ee1108d521414268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6efb59e95f4e04e9ee76ba2cfed4cd56"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a6efb59e95f4e04e9ee76ba2cfed4cd56">safeMod0</a> (double val0, double val, double base)</td></tr>
+<tr class="memdesc:a6efb59e95f4e04e9ee76ba2cfed4cd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks for PBC check on original position.  <a href="#a6efb59e95f4e04e9ee76ba2cfed4cd56">More...</a><br /></td></tr>
+<tr class="separator:a6efb59e95f4e04e9ee76ba2cfed4cd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ce159de13b1ab20b228fa6d8625aac0"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a3ce159de13b1ab20b228fa6d8625aac0">pbcDist</a> (double X, double Y, double Z, double X1, double Y1, double Z1, double L)</td></tr>
+<tr class="memdesc:a3ce159de13b1ab20b228fa6d8625aac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method for getting distance between two points.  <a href="#a3ce159de13b1ab20b228fa6d8625aac0">More...</a><br /></td></tr>
+<tr class="separator:a3ce159de13b1ab20b228fa6d8625aac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98971dcfed7e6a080aa2dc7b26aa68af"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a98971dcfed7e6a080aa2dc7b26aa68af">loadBar</a> (double x0, int n, long counter, int w=50)</td></tr>
+<tr class="memdesc:a98971dcfed7e6a080aa2dc7b26aa68af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows the completed progress in the console.  <a href="#a98971dcfed7e6a080aa2dc7b26aa68af">More...</a><br /></td></tr>
+<tr class="separator:a98971dcfed7e6a080aa2dc7b26aa68af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4765b5187e1356faa8ca2200c86729d5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a4765b5187e1356faa8ca2200c86729d5">unitVectorSimple</a> (double dX, double dY, double dZ, double r, double(&amp;acc)[3])</td></tr>
+<tr class="memdesc:a4765b5187e1356faa8ca2200c86729d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes the distances to create a unit vector in &amp;acc[3].  <a href="#a4765b5187e1356faa8ca2200c86729d5">More...</a><br /></td></tr>
+<tr class="separator:a4765b5187e1356faa8ca2200c86729d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aec82b5d3210a095336f60e7af872d7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a5aec82b5d3210a095336f60e7af872d7">unitVectorAdv</a> (double X, double Y, double Z, double X1, double Y1, double Z1, double(&amp;acc)[3], double r, int L)</td></tr>
+<tr class="memdesc:a5aec82b5d3210a095336f60e7af872d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternative method for getting the normalized distance between two particles.  <a href="#a5aec82b5d3210a095336f60e7af872d7">More...</a><br /></td></tr>
+<tr class="separator:a5aec82b5d3210a095336f60e7af872d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:af67d3bb6c865e7fc82b7698a9a0d7c7f"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#af67d3bb6c865e7fc82b7698a9a0d7c7f">version</a> = 1</td></tr>
-<tr class="separator:af67d3bb6c865e7fc82b7698a9a0d7c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a07bb11050de47e3c6908727f80f3feea"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities_1_1util.html#a07bb11050de47e3c6908727f80f3feea">version</a> = 1</td></tr>
+<tr class="separator:a07bb11050de47e3c6908727f80f3feea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Sawyer Hopkins </dd></dl>
@@ -211,6 +247,195 @@ Here is the caller graph for this function:</div>
 <area shape="rect" id="node2" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="193,5,352,32"/><area shape="rect" id="node3" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="400,5,475,32"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="523,5,573,32"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a98971dcfed7e6a080aa2dc7b26aa68af"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utilities::util::loadBar </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>counter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em> = <code>50</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shows the completed progress in the console. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>The amount done </td></tr>
+    <tr><td class="paramname">n</td><td>The total amount to be done. </td></tr>
+    <tr><td class="paramname">counter</td><td>A logic counter. </td></tr>
+    <tr><td class="paramname">w</td><td>The width of the progress bar. Default 50. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a98971dcfed7e6a080aa2dc7b26aa68af"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utilities::util::loadBar </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>counter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em> = <code>50</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shows the completed progress in the console. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>The amount done </td></tr>
+    <tr><td class="paramname">n</td><td>The total amount to be done. </td></tr>
+    <tr><td class="paramname">counter</td><td>A logic counter. </td></tr>
+    <tr><td class="paramname">w</td><td>The width of the progress bar. Default 50. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ce159de13b1ab20b228fa6d8625aac0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double utilities::util::pbcDist </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>L</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method for getting distance between two points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X,Y,Z</td><td>The position of the first particle </td></tr>
+    <tr><td class="paramname">X1,Y1,Z1</td><td>The position of the second particle. </td></tr>
+    <tr><td class="paramname">L</td><td>The size of the system. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance between the two particles. </dd></dl>
 
 </div>
 </div>
@@ -292,9 +517,172 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classutilities_1_1util_a508eff49e208a4572892c71348795f7b_icgraph.png" border="0" usemap="#classutilities_1_1util_a508eff49e208a4572892c71348795f7b_icgraph" alt=""/></div>
 <map name="classutilities_1_1util_a508eff49e208a4572892c71348795f7b_icgraph" id="classutilities_1_1util_a508eff49e208a4572892c71348795f7b_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="195,5,340,47"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="388,5,533,47"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="210,5,358,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="195,56,373,83"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a3ce159de13b1ab20b228fa6d8625aac0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double utilities::util::pbcDist </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>L</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method for getting distance between two points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X,Y,Z</td><td>The position of the first particle </td></tr>
+    <tr><td class="paramname">X1,Y1,Z1</td><td>The position of the second particle. </td></tr>
+    <tr><td class="paramname">L</td><td>The size of the system. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance between the two particles. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa6f5df4752bad2f7ee1108d521414268"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double utilities::util::safeMod </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>base</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>fmod can't do negative numbers so use this. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The value of the perform the division on. </td></tr>
+    <tr><td class="paramname">base</td><td>The base of the modular divison. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa6f5df4752bad2f7ee1108d521414268"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double utilities::util::safeMod </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>base</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>fmod can't do negative numbers so use this. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The value of the perform the division on. </td></tr>
+    <tr><td class="paramname">base</td><td>The base of the modular divison. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -348,6 +736,57 @@ Here is the caller graph for this function:</div>
 <area shape="rect" id="node2" href="classsimulation_1_1particle.html#a1c114862f41e44e97b2c92942342a802" title="Set the x position of the particle. Handles PBC and updates x0. " alt="" coords="200,5,331,47"/><area shape="rect" id="node7" href="classsimulation_1_1particle.html#a10f88bf88ccbb3de5807416513380c58" title="Set the y position of the particle. Handles PBC and updates y0. " alt="" coords="200,71,331,112"/><area shape="rect" id="node8" href="classsimulation_1_1particle.html#abd10f7663399e34ca3b53a0d0c953101" title="Set the z position of the particle. Handles PBC and updates z0. " alt="" coords="200,136,331,177"/><area shape="rect" id="node3" href="classsimulation_1_1particle.html#ad01fee28cf7ce6801b544d66d6169064" title="Set the position of the particle. Handles PBC and updates the previous value. " alt="" coords="379,71,509,112"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="557,37,756,79"/><area shape="rect" id="node6" href="classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="557,103,756,144"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="804,71,1003,112"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a6efb59e95f4e04e9ee76ba2cfed4cd56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double utilities::util::safeMod0 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>base</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Looks for PBC check on original position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val0</td><td>Original position. </td></tr>
+    <tr><td class="paramname">val</td><td>New position. </td></tr>
+    <tr><td class="paramname">base</td><td>The size of the system. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new old position. </dd></dl>
 
 </div>
 </div>
@@ -408,6 +847,57 @@ Here is the caller graph for this function:</div>
 <area shape="rect" id="node2" href="classsimulation_1_1particle.html#a1c114862f41e44e97b2c92942342a802" title="Set the x position of the particle. Handles PBC and updates x0. " alt="" coords="207,5,337,47"/><area shape="rect" id="node7" href="classsimulation_1_1particle.html#a10f88bf88ccbb3de5807416513380c58" title="Set the y position of the particle. Handles PBC and updates y0. " alt="" coords="207,71,337,112"/><area shape="rect" id="node8" href="classsimulation_1_1particle.html#abd10f7663399e34ca3b53a0d0c953101" title="Set the z position of the particle. Handles PBC and updates z0. " alt="" coords="207,136,337,177"/><area shape="rect" id="node3" href="classsimulation_1_1particle.html#ad01fee28cf7ce6801b544d66d6169064" title="Set the position of the particle. Handles PBC and updates the previous value. " alt="" coords="385,71,516,112"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="564,37,763,79"/><area shape="rect" id="node6" href="classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="564,103,763,144"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="811,71,1009,112"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a6efb59e95f4e04e9ee76ba2cfed4cd56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double utilities::util::safeMod0 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>base</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Looks for PBC check on original position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val0</td><td>Original position. </td></tr>
+    <tr><td class="paramname">val</td><td>New position. </td></tr>
+    <tr><td class="paramname">base</td><td>The size of the system. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new old position. </dd></dl>
 
 </div>
 </div>
@@ -502,9 +992,185 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classutilities_1_1util_af3ec64210ede1720e02d69b7630d8d2a_icgraph.png" border="0" usemap="#classutilities_1_1util_af3ec64210ede1720e02d69b7630d8d2a_icgraph" alt=""/></div>
 <map name="classutilities_1_1util_af3ec64210ede1720e02d69b7630d8d2a_icgraph" id="classutilities_1_1util_af3ec64210ede1720e02d69b7630d8d2a_icgraph">
-<area shape="rect" id="node2" href="classphysics_1_1_a_o_potential.html#ac67bae4474f5c11b07ea2e904355e903" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="232,5,377,47"/><area shape="rect" id="node3" href="classphysics_1_1_a_o_potential.html#af8143f252fda8920c9796dcbb8a448c3" title="Get the force from the AO Potential. " alt="" coords="425,5,571,47"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="247,5,395,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="232,56,411,83"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a5aec82b5d3210a095336f60e7af872d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utilities::util::unitVectorAdv </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double(&amp;)&#160;</td>
+          <td class="paramname"><em>acc</em>[3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>L</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Alternative method for getting the normalized distance between two particles. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X,Y,Z</td><td>The position of the first particle </td></tr>
+    <tr><td class="paramname">X1,Y1,Z1</td><td>The position of the second particle. </td></tr>
+    <tr><td class="paramname">acc</td><td>The array to hold the unit vectors </td></tr>
+    <tr><td class="paramname">r</td><td>The distance between the particles. </td></tr>
+    <tr><td class="paramname">L</td><td>The size of the box. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5aec82b5d3210a095336f60e7af872d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utilities::util::unitVectorAdv </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>X1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Z1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double(&amp;)&#160;</td>
+          <td class="paramname"><em>acc</em>[3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>L</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Alternative method for getting the normalized distance between two particles. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X,Y,Z</td><td>The position of the first particle </td></tr>
+    <tr><td class="paramname">X1,Y1,Z1</td><td>The position of the second particle. </td></tr>
+    <tr><td class="paramname">acc</td><td>The array to hold the unit vectors </td></tr>
+    <tr><td class="paramname">r</td><td>The distance between the particles. </td></tr>
+    <tr><td class="paramname">L</td><td>The size of the box. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -572,22 +1238,158 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="af67d3bb6c865e7fc82b7698a9a0d7c7f"></a>
+<a class="anchor" id="a4765b5187e1356faa8ca2200c86729d5"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int utilities::util::version = 1</td>
+          <td class="memname">static void utilities::util::unitVectorSimple </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double(&amp;)&#160;</td>
+          <td class="paramname"><em>acc</em>[3]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalizes the distances to create a unit vector in &amp;acc[3]. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dX</td><td>The distance in the X direction. </td></tr>
+    <tr><td class="paramname">dY</td><td>The distance in the Y direction. </td></tr>
+    <tr><td class="paramname">dZ</td><td>The distance in the Z direction. </td></tr>
+    <tr><td class="paramname">r</td><td>The magnitude of the distance. </td></tr>
+    <tr><td class="paramname">acc</td><td>The array hold the unit vectors. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4765b5187e1356faa8ca2200c86729d5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utilities::util::unitVectorSimple </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double(&amp;)&#160;</td>
+          <td class="paramname"><em>acc</em>[3]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalizes the distances to create a unit vector in &amp;acc[3]. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dX</td><td>The distance in the X direction. </td></tr>
+    <tr><td class="paramname">dY</td><td>The distance in the Y direction. </td></tr>
+    <tr><td class="paramname">dZ</td><td>The distance in the Z direction. </td></tr>
+    <tr><td class="paramname">r</td><td>The magnitude of the distance. </td></tr>
+    <tr><td class="paramname">acc</td><td>The array hold the unit vectors. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a07bb11050de47e3c6908727f80f3feea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const int utilities::util::version = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/<a class="el" href="utilities_8h_source.html">utilities.h</a></li>
-<li>src/<a class="el" href="utilities_8cpp.html">utilities.cpp</a></li>
+<li>AOPotential/include/<a class="el" href="_a_o_potential_2include_2utilities_8h_source.html">utilities.h</a></li>
+<li>ClusteredCore/src/<a class="el" href="utilities_8cpp.html">utilities.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -595,7 +1397,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceutilities.html">utilities</a></li><li class="navelem"><a class="el" href="classutilities_1_1util.html">util</a></li>
-    <li class="footer">Generated on Sat Jul 25 2015 06:45:51 for ProteinSim 2015 by
+    <li class="footer">Generated on Mon Jul 27 2015 09:23:00 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

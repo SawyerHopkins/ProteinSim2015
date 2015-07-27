@@ -1,9 +1,10 @@
-<map id="src/AOPotential.cpp" name="src/AOPotential.cpp">
-<area shape="rect" id="node2" href="$force_8h.html" title="A generic force container. " alt="" coords="745,80,807,107"/>
-<area shape="rect" id="node4" href="$cell_8h.html" title="Cells for the particle grid. " alt="" coords="749,155,803,181"/>
-<area shape="rect" id="node23" href="$config_8h.html" title="config.h" alt="" coords="913,304,981,331"/>
-<area shape="rect" id="node5" href="$particle_8h.html" title="particle.h" alt="" coords="700,229,775,256"/>
-<area shape="rect" id="node6" href="$utilities_8h.html" title="Contains some useful math wrappers. " alt="" coords="565,304,640,331"/>
-<area shape="rect" id="node17" href="$error_8h.html" title="Contains information for common runtime errors. " alt="" coords="487,379,545,405"/>
-<area shape="rect" id="node20" href="$timer_8h.html" title="Timer for diagnostics. " alt="" coords="399,379,462,405"/>
+<map id="AOPotential/src/AOPotential.cpp" name="AOPotential/src/AOPotential.cpp">
+<area shape="rect" id="node2" href="$_a_o_potential_8h.html" title="AOPotential.h" alt="" coords="589,80,691,107"/>
+<area shape="rect" id="node3" href="$_a_o_potential_2include_2force_8h.html" title="force.h" alt="" coords="689,155,751,181"/>
+<area shape="rect" id="node7" href="$_a_o_potential_2include_2utilities_8h.html" title="utilities.h" alt="" coords="565,379,640,405"/>
+<area shape="rect" id="node5" href="$_a_o_potential_2include_2cell_8h.html" title="cell.h" alt="" coords="656,229,709,256"/>
+<area shape="rect" id="node24" href="$_a_o_potential_2include_2config_8h.html" title="config.h" alt="" coords="913,379,981,405"/>
+<area shape="rect" id="node6" href="$_a_o_potential_2include_2particle_8h.html" title="particle.h" alt="" coords="640,304,715,331"/>
+<area shape="rect" id="node18" href="$_a_o_potential_2include_2error_8h.html" title="error.h" alt="" coords="487,453,545,480"/>
+<area shape="rect" id="node21" href="$_a_o_potential_2include_2timer_8h.html" title="timer.h" alt="" coords="399,453,462,480"/>
 </map>

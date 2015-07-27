@@ -2,15 +2,19 @@ var NAVTREE =
 [
   [ "ProteinSim 2015", "index.html", [
     [ "Namespaces", null, [
-      [ "Namespace List", "namespaces.html", "namespaces" ]
+      [ "Namespace List", "namespaces.html", "namespaces" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ]
+      ] ]
     ] ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -26,7 +30,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_a_o_potential_8cpp.html"
+"_a_o_potential_2include_2cell_8h.html",
+"classsimulation_1_1particle.html#a1b0a7d7c86bf500c076f808e851d2960"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

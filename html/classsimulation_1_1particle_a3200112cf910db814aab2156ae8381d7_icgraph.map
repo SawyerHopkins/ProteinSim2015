@@ -1,4 +1,6 @@
 <map id="simulation::particle::nextIter" name="simulation::particle::nextIter">
 <area shape="rect" id="node2" href="$classphysics_1_1forces.html#a4d81ed5a743fb070a69ba4c88abc2fe8" title="Find the net force on all particles in the system. " alt="" coords="184,13,393,39"/>
-<area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="441,5,640,47"/>
+<area shape="rect" id="node3" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="441,13,600,39"/>
+<area shape="rect" id="node4" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="648,13,723,39"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="771,13,821,39"/>
 </map>
