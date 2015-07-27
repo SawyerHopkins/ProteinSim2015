@@ -114,10 +114,74 @@ $(document).ready(function(){initNavTree('classsimulation_1_1system.html','');})
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_clustered_core_2include_2system_8h_source.html">system.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_a_o_potential_2include_2system_8h_source.html">system.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a88ebb2a955ce0704b28fe6a83945dd4f">system</a> (<a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *cfg, <a class="el" href="classintegrators_1_1_i__integrator.html">integrators::I_integrator</a> *sysInt, <a class="el" href="classphysics_1_1forces.html">physics::forces</a> *sysFcs)</td></tr>
+<tr class="memdesc:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the particle system.  <a href="#a88ebb2a955ce0704b28fe6a83945dd4f">More...</a><br /></td></tr>
+<tr class="separator:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a742c758a01acf0cbcac1c427207aecec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a742c758a01acf0cbcac1c427207aecec">~system</a> ()</td></tr>
+<tr class="memdesc:a742c758a01acf0cbcac1c427207aecec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the particle system.  <a href="#a742c758a01acf0cbcac1c427207aecec">More...</a><br /></td></tr>
+<tr class="separator:a742c758a01acf0cbcac1c427207aecec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ffba4247b947c349c880e61fdba8d09"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a2ffba4247b947c349c880e61fdba8d09">getNParticles</a> () const </td></tr>
+<tr class="memdesc:a2ffba4247b947c349c880e61fdba8d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of particles in the system.  <a href="#a2ffba4247b947c349c880e61fdba8d09">More...</a><br /></td></tr>
+<tr class="separator:a2ffba4247b947c349c880e61fdba8d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08e170e3bf0d40ebb16cec7fdb4ab6c8"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a08e170e3bf0d40ebb16cec7fdb4ab6c8">getBoxSize</a> () const </td></tr>
+<tr class="memdesc:a08e170e3bf0d40ebb16cec7fdb4ab6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the length of the system box.  <a href="#a08e170e3bf0d40ebb16cec7fdb4ab6c8">More...</a><br /></td></tr>
+<tr class="separator:a08e170e3bf0d40ebb16cec7fdb4ab6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71697fc23b52a293a38520ae4a1fd65b"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a71697fc23b52a293a38520ae4a1fd65b">getCellSize</a> () const </td></tr>
+<tr class="memdesc:a71697fc23b52a293a38520ae4a1fd65b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the length of a system cell.  <a href="#a71697fc23b52a293a38520ae4a1fd65b">More...</a><br /></td></tr>
+<tr class="separator:a71697fc23b52a293a38520ae4a1fd65b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a768ca25aeeab13aeee72e637478b6720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720">run</a> (double endTime)</td></tr>
+<tr class="memdesc:a768ca25aeeab13aeee72e637478b6720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the system.  <a href="#a768ca25aeeab13aeee72e637478b6720">More...</a><br /></td></tr>
+<tr class="separator:a768ca25aeeab13aeee72e637478b6720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9199baa3ab5c7853da0f20966352a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#ae9199baa3ab5c7853da0f20966352a27">writeInitTemp</a> ()</td></tr>
+<tr class="memdesc:ae9199baa3ab5c7853da0f20966352a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the temperature of the system.  <a href="#ae9199baa3ab5c7853da0f20966352a27">More...</a><br /></td></tr>
+<tr class="separator:ae9199baa3ab5c7853da0f20966352a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec5a17fa0b5b57842300fcb621918a6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#aec5a17fa0b5b57842300fcb621918a6a">writePosition</a> (int index)</td></tr>
+<tr class="memdesc:aec5a17fa0b5b57842300fcb621918a6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the position of a particle.  <a href="#aec5a17fa0b5b57842300fcb621918a6a">More...</a><br /></td></tr>
+<tr class="separator:aec5a17fa0b5b57842300fcb621918a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7bde7b98e2754b4a84e13b6841fb058"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058">writeSystem</a> (std::string name)</td></tr>
+<tr class="memdesc:af7bde7b98e2754b4a84e13b6841fb058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the system to file.  <a href="#af7bde7b98e2754b4a84e13b6841fb058">More...</a><br /></td></tr>
+<tr class="separator:af7bde7b98e2754b4a84e13b6841fb058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0837161915e40983ad238518274e173"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#ad0837161915e40983ad238518274e173">writeSystemInit</a> ()</td></tr>
+<tr class="memdesc:ad0837161915e40983ad238518274e173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the initial system parameters.  <a href="#ad0837161915e40983ad238518274e173">More...</a><br /></td></tr>
+<tr class="separator:ad0837161915e40983ad238518274e173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae38a14ff6f2f9996a3739f502980f730"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730">writeSystemState</a> (<a class="el" href="classdebugging_1_1timer.html">debugging::timer</a> *tmr)</td></tr>
+<tr class="memdesc:ae38a14ff6f2f9996a3739f502980f730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the varies that define the system state. Average potential. Average coordination number. Temperature. Cluster size.  <a href="#ae38a14ff6f2f9996a3739f502980f730">More...</a><br /></td></tr>
+<tr class="separator:ae38a14ff6f2f9996a3739f502980f730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9bf859baf2ca4a81c2b1e9b1e3e7593"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#af9bf859baf2ca4a81c2b1e9b1e3e7593">loadFromFile</a> (std::string settings, std::string sysState)</td></tr>
+<tr class="memdesc:af9bf859baf2ca4a81c2b1e9b1e3e7593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recover a system state from output files.  <a href="#af9bf859baf2ca4a81c2b1e9b1e3e7593">More...</a><br /></td></tr>
+<tr class="separator:af9bf859baf2ca4a81c2b1e9b1e3e7593"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55c5d8ad30f05c60acf5b0179d97075c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a55c5d8ad30f05c60acf5b0179d97075c">numClusters</a> ()</td></tr>
+<tr class="memdesc:a55c5d8ad30f05c60acf5b0179d97075c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of clusters in the system.  <a href="#a55c5d8ad30f05c60acf5b0179d97075c">More...</a><br /></td></tr>
+<tr class="separator:a55c5d8ad30f05c60acf5b0179d97075c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a944c9236476a3a3c8b71a4c8911aae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a2a944c9236476a3a3c8b71a4c8911aae">getCellVersion</a> ()</td></tr>
+<tr class="memdesc:a2a944c9236476a3a3c8b71a4c8911aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the flagged version of cell.h for debugging.  <a href="#a2a944c9236476a3a3c8b71a4c8911aae">More...</a><br /></td></tr>
+<tr class="separator:a2a944c9236476a3a3c8b71a4c8911aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6beb0be3c265ebe3411161ce3af257f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#ad6beb0be3c265ebe3411161ce3af257f">getConfigVersion</a> ()</td></tr>
+<tr class="memdesc:ad6beb0be3c265ebe3411161ce3af257f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the flagged version of config.h for debugging.  <a href="#ad6beb0be3c265ebe3411161ce3af257f">More...</a><br /></td></tr>
+<tr class="separator:ad6beb0be3c265ebe3411161ce3af257f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1f8ebb81b6873774fcd7b1561b45800"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#af1f8ebb81b6873774fcd7b1561b45800">getErrorVersion</a> ()</td></tr>
+<tr class="memdesc:af1f8ebb81b6873774fcd7b1561b45800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the flagged version of error.h for debugging.  <a href="#af1f8ebb81b6873774fcd7b1561b45800">More...</a><br /></td></tr>
+<tr class="separator:af1f8ebb81b6873774fcd7b1561b45800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16fbbca0500049c23376541a3dde94bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a16fbbca0500049c23376541a3dde94bd">getForceVersion</a> ()</td></tr>
+<tr class="memdesc:a16fbbca0500049c23376541a3dde94bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the flagged version of force.h before debugging.  <a href="#a16fbbca0500049c23376541a3dde94bd">More...</a><br /></td></tr>
+<tr class="separator:a16fbbca0500049c23376541a3dde94bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a561828457ae9bc823e1c44393faaec24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a561828457ae9bc823e1c44393faaec24">getParticleVersion</a> ()</td></tr>
+<tr class="memdesc:a561828457ae9bc823e1c44393faaec24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the flagged version of particle.h for debugging.  <a href="#a561828457ae9bc823e1c44393faaec24">More...</a><br /></td></tr>
+<tr class="separator:a561828457ae9bc823e1c44393faaec24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac11697a789af497b2aef639db4843e9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#ac11697a789af497b2aef639db4843e9b">getTimerVersion</a> ()</td></tr>
+<tr class="memdesc:ac11697a789af497b2aef639db4843e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the flagged version of timer.h for debugging.  <a href="#ac11697a789af497b2aef639db4843e9b">More...</a><br /></td></tr>
+<tr class="separator:ac11697a789af497b2aef639db4843e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e395591fa113e814be3e8fee9313177"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a1e395591fa113e814be3e8fee9313177">getUtilitiesVersion</a> ()</td></tr>
+<tr class="memdesc:a1e395591fa113e814be3e8fee9313177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the flagged version of utilities.h for debugging.  <a href="#a1e395591fa113e814be3e8fee9313177">More...</a><br /></td></tr>
+<tr class="separator:a1e395591fa113e814be3e8fee9313177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a488f7932049c0a05a63c373272c88c6f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a488f7932049c0a05a63c373272c88c6f">getIntegratorVersion</a> ()</td></tr>
+<tr class="separator:a488f7932049c0a05a63c373272c88c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a449341562d0c6423421ec48ba8375c8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a449341562d0c6423421ec48ba8375c8d">getSystemVersion</a> ()</td></tr>
+<tr class="separator:a449341562d0c6423421ec48ba8375c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1system.html#a88ebb2a955ce0704b28fe6a83945dd4f">system</a> (<a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *cfg, <a class="el" href="classintegrators_1_1_i__integrator.html">integrators::I_integrator</a> *sysInt, <a class="el" href="classphysics_1_1forces.html">physics::forces</a> *sysFcs)</td></tr>
 <tr class="memdesc:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the particle system.  <a href="#a88ebb2a955ce0704b28fe6a83945dd4f">More...</a><br /></td></tr>
 <tr class="separator:a88ebb2a955ce0704b28fe6a83945dd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -372,6 +436,59 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a88ebb2a955ce0704b28fe6a83945dd4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::system::system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classconfig_reader_1_1config.html">configReader::config</a> *&#160;</td>
+          <td class="paramname"><em>cfg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classintegrators_1_1_i__integrator.html">integrators::I_integrator</a> *&#160;</td>
+          <td class="paramname"><em>sysInt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classphysics_1_1forces.html">physics::forces</a> *&#160;</td>
+          <td class="paramname"><em>sysFcs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs the particle system. </p>
+<p>---------&mdash;&mdash;SYSTEM CONSTRUCTION--------&mdash;&mdash; </p><dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a742c758a01acf0cbcac1c427207aecec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::system::~system </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructs the particle system. </p>
+<dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a08e170e3bf0d40ebb16cec7fdb4ab6c8"></a>
 <div class="memitem">
@@ -431,6 +548,58 @@ Here is the caller graph for this function:</div>
 
 <p>Gets the length of the system box. </p>
 <dl class="section return"><dt>Returns</dt><dd>length of the system box. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a08e170e3bf0d40ebb16cec7fdb4ab6c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int simulation::system::getBoxSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the length of the system box. </p>
+<dl class="section return"><dt>Returns</dt><dd>length of the system box. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a71697fc23b52a293a38520ae4a1fd65b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int simulation::system::getCellSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the length of a system cell. </p>
+<dl class="section return"><dt>Returns</dt><dd>cellSize. </dd></dl>
 
 </div>
 </div>
@@ -547,6 +716,32 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a2a944c9236476a3a3c8b71a4c8911aae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getCellVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the flagged version of cell.h for debugging. </p>
+<p>---------&mdash;&mdash;VERSION CONTROL-----------&mdash;&mdash; </p><dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ad6beb0be3c265ebe3411161ce3af257f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -595,6 +790,58 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Gets the flagged version of config.h for debugging. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad6beb0be3c265ebe3411161ce3af257f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getConfigVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the flagged version of config.h for debugging. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af1f8ebb81b6873774fcd7b1561b45800"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getErrorVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the flagged version of error.h for debugging. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
@@ -700,6 +947,55 @@ Here is the caller graph for this function:</div>
 
 <p>Gets the flagged version of force.h before debugging. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a16fbbca0500049c23376541a3dde94bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getForceVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the flagged version of force.h before debugging. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a488f7932049c0a05a63c373272c88c6f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getIntegratorVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -810,6 +1106,58 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a2ffba4247b947c349c880e61fdba8d09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int simulation::system::getNParticles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the number of particles in the system. </p>
+<p>-----------&mdash;&mdash;SYSTEM GETTERS-----------&mdash;&mdash; </p><dl class="section return"><dt>Returns</dt><dd>Number of particles. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a561828457ae9bc823e1c44393faaec24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getParticleVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the flagged version of particle.h for debugging. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a561828457ae9bc823e1c44393faaec24"></a>
 <div class="memitem">
 <div class="memproto">
@@ -908,6 +1256,29 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a449341562d0c6423421ec48ba8375c8d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getSystemVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ac11697a789af497b2aef639db4843e9b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -956,6 +1327,58 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Gets the flagged version of timer.h for debugging. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac11697a789af497b2aef639db4843e9b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getTimerVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the flagged version of timer.h for debugging. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1e395591fa113e814be3e8fee9313177"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::getUtilitiesVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the flagged version of utilities.h for debugging. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
@@ -1083,6 +1506,41 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="af9bf859baf2ca4a81c2b1e9b1e3e7593"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::loadFromFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>settings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sysState</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recover a system state from output files. </p>
+<p>-----------&mdash;&mdash;SYSTEM RECOVERY----------&mdash;&mdash; </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">settings</td><td>The location of the settings file. </td></tr>
+    <tr><td class="paramname">sysState</td><td>The location of the system file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a55c5d8ad30f05c60acf5b0179d97075c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1116,6 +1574,24 @@ Here is the caller graph for this function:</div>
 <area shape="rect" id="node2" href="classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730" title="Writes the varies that define the system state. Average potential. Average coordination number..." alt="" coords="185,5,320,47"/><area shape="rect" id="node3" href="classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="368,13,527,39"/><area shape="rect" id="node4" href="run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="575,13,649,39"/><area shape="rect" id="node5" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="697,13,748,39"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a55c5d8ad30f05c60acf5b0179d97075c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int simulation::system::numClusters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the number of clusters in the system. </p>
+<p>-----------&mdash;&mdash;SYSTEM ANALYSIS----------&mdash;&mdash; </p><dl class="section return"><dt>Returns</dt><dd>Return the number of clusters </dd></dl>
 
 </div>
 </div>
@@ -1203,6 +1679,30 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a768ca25aeeab13aeee72e637478b6720"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::run </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>endTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the system. </p>
+<p>-----------&mdash;&mdash;SYSTEM HANDLING----------&mdash;&mdash; </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">endTime</td><td>When to stop running the simulation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ae9199baa3ab5c7853da0f20966352a27"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1248,6 +1748,88 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="ae9199baa3ab5c7853da0f20966352a27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::writeInitTemp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the temperature of the system. </p>
+<p>------------&mdash;&mdash;SYSTEM OUTPUT-----------&mdash;&mdash; </p>
+
+</div>
+</div>
+<a class="anchor" id="aec5a17fa0b5b57842300fcb621918a6a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::writePosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writes the position of a particle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the particle to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aec5a17fa0b5b57842300fcb621918a6a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::writePosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writes the position of a particle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the particle to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="aec5a17fa0b5b57842300fcb621918a6a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1286,38 +1868,6 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node2" href="classsimulation_1_1particle.html#addb9a1fe095ee84ffb4f530d7962c7c1" title="Writes the position of the particle to the console. " alt="" coords="185,5,316,47"/></map>
 </div>
 </p>
-
-</div>
-</div>
-<a class="anchor" id="aec5a17fa0b5b57842300fcb621918a6a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void simulation::system::writePosition </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Writes the position of a particle. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The index of the particle to write. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -1388,6 +1938,30 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="af7bde7b98e2754b4a84e13b6841fb058"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::writeSystem </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the system to file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the file to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ad0837161915e40983ad238518274e173"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1431,6 +2005,59 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="ad0837161915e40983ad238518274e173"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::writeSystemInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write the initial system parameters. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae38a14ff6f2f9996a3739f502980f730"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::writeSystemState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdebugging_1_1timer.html">debugging::timer</a> *&#160;</td>
+          <td class="paramname"><em>tmr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the varies that define the system state. Average potential. Average coordination number. Temperature. Cluster size. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae38a14ff6f2f9996a3739f502980f730"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::system::writeSystemState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdebugging_1_1timer.html">debugging::timer</a> *&#160;</td>
+          <td class="paramname"><em>tmr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the varies that define the system state. Average potential. Average coordination number. Temperature. Cluster size. </p>
+
+</div>
+</div>
 <a class="anchor" id="ae38a14ff6f2f9996a3739f502980f730"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1467,24 +2094,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="ae38a14ff6f2f9996a3739f502980f730"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void simulation::system::writeSystemState </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classdebugging_1_1timer.html">debugging::timer</a> *&#160;</td>
-          <td class="paramname"><em>tmr</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the varies that define the system state. Average potential. Average coordination number. Temperature. Cluster size. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="abee85d1cb399f4915e7e1dac3261de0a"></a>
 <div class="memitem">
@@ -1507,7 +2116,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>ClusteredCore/include/<a class="el" href="_clustered_core_2include_2system_8h_source.html">system.h</a></li>
+<li>AOPotential/include/<a class="el" href="_a_o_potential_2include_2system_8h_source.html">system.h</a></li>
 <li>ClusteredCore/src/<a class="el" href="system_8cpp.html">system.cpp</a></li>
 <li>ClusteredCore/src/<a class="el" href="system_analysis_8cpp.html">systemAnalysis.cpp</a></li>
 <li>ClusteredCore/src/<a class="el" href="system_handling_8cpp.html">systemHandling.cpp</a></li>
@@ -1521,7 +2130,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesimulation.html">simulation</a></li><li class="navelem"><a class="el" href="classsimulation_1_1system.html">system</a></li>
-    <li class="footer">Generated on Mon Jul 27 2015 09:23:00 for ProteinSim 2015 by
+    <li class="footer">Generated on Mon Jul 27 2015 11:06:47 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

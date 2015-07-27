@@ -10,6 +10,7 @@ var hierarchy =
     [ "physics::forces", "classphysics_1_1forces.html", null ],
     [ "integrators::I_integrator", "classintegrators_1_1_i__integrator.html", [
       [ "integrators::brownianIntegrator", "classintegrators_1_1brownian_integrator.html", null ],
+      [ "integrators::brownianIntegrator", "classintegrators_1_1brownian_integrator.html", null ],
       [ "integrators::brownianIntegrator", "classintegrators_1_1brownian_integrator.html", null ]
     ] ],
     [ "physics::IForce", "classphysics_1_1_i_force.html", [

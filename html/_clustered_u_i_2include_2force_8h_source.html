@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('_clustered_u_i_2include_2force_8h_sour
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    };</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">typedef</span> IForce* <a class="code" href="namespacephysics.html#ad94cfc84e177be86856a57ac3aaf13fc">create_Force</a>(<a class="code" href="classconfig_reader_1_1config.html">configReader::config</a>*);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">typedef</span> IForce* <a class="code" href="namespacephysics.html#ac159ffabc9f2132aa5731698b19438a4">create_Force</a>(<a class="code" href="classconfig_reader_1_1config.html">configReader::config</a>*);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">/********************************************/</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">class </span>forces</div>
@@ -202,7 +202,6 @@ $(document).ready(function(){initNavTree('_clustered_u_i_2include_2force_8h_sour
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#endif // FORCE_H</span></div>
 <div class="ttc" id="classsimulation_1_1particle_html"><div class="ttname"><a href="classsimulation_1_1particle.html">simulation::particle</a></div><div class="ttdef"><b>Definition:</b> particle.h:15</div></div>
-<div class="ttc" id="namespacephysics_html_ad94cfc84e177be86856a57ac3aaf13fc"><div class="ttname"><a href="namespacephysics.html#ad94cfc84e177be86856a57ac3aaf13fc">physics::create_Force</a></div><div class="ttdeci">IForce * create_Force()</div><div class="ttdef"><b>Definition:</b> force.h:94</div></div>
 <div class="ttc" id="classconfig_reader_1_1config_html"><div class="ttname"><a href="classconfig_reader_1_1config.html">configReader::config</a></div><div class="ttdef"><b>Definition:</b> config.h:15</div></div>
 <div class="ttc" id="classphysics_1_1forces_html_a693cc8bf1edd2240d563370518783103"><div class="ttname"><a href="classphysics_1_1forces.html#a693cc8bf1edd2240d563370518783103">physics::forces::setNumThreads</a></div><div class="ttdeci">void setNumThreads(int num)</div><div class="ttdoc">Set the number of threads for OMP to use. </div><div class="ttdef"><b>Definition:</b> force.h:117</div></div>
 <div class="ttc" id="classphysics_1_1_i_force_html_aa5d0ef7ad3c9d853cb87927863a53c6c"><div class="ttname"><a href="classphysics_1_1_i_force.html#aa5d0ef7ad3c9d853cb87927863a53c6c">physics::IForce::isTimeDependent</a></div><div class="ttdeci">virtual bool isTimeDependent()=0</div><div class="ttdoc">Flag for a force dependent time. </div></div>
@@ -226,6 +225,7 @@ $(document).ready(function(){initNavTree('_clustered_u_i_2include_2force_8h_sour
 <div class="ttc" id="classphysics_1_1_yukawa_html_a653c95534dff3b2a8ce123666febf83f"><div class="ttname"><a href="classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f">physics::Yukawa::iterCells</a></div><div class="ttdeci">void iterCells(int boxSize, double time, simulation::particle *index, simulation::cell *itemCell)</div><div class="ttdoc">Checks for particle interation between the index particle and all particles in the provided cell...</div><div class="ttdef"><b>Definition:</b> YukawaPotential.cpp:74</div></div>
 <div class="ttc" id="classphysics_1_1_i_force_html_a07ab6268da05fcf866e269cfe458a99d"><div class="ttname"><a href="classphysics_1_1_i_force.html#a07ab6268da05fcf866e269cfe458a99d">physics::IForce::getAcceleration</a></div><div class="ttdeci">virtual void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell *itemCell, simulation::particle **items)=0</div><div class="ttdoc">Virtual methods for forces of various parameters. </div></div>
 <div class="ttc" id="classphysics_1_1forces_html_a42694e8722ee9750729e7e2e9dc94709"><div class="ttname"><a href="classphysics_1_1forces.html#a42694e8722ee9750729e7e2e9dc94709">physics::forces::addForce</a></div><div class="ttdeci">void addForce(IForce *f)</div><div class="ttdoc">Adds a force to the management system. </div><div class="ttdef"><b>Definition:</b> force.cpp:55</div></div>
+<div class="ttc" id="namespacephysics_html_ac159ffabc9f2132aa5731698b19438a4"><div class="ttname"><a href="namespacephysics.html#ac159ffabc9f2132aa5731698b19438a4">physics::create_Force</a></div><div class="ttdeci">IForce * create_Force(configReader::config *)</div><div class="ttdef"><b>Definition:</b> force.h:58</div></div>
 <div class="ttc" id="_clustered_u_i_2include_2config_8h_html"><div class="ttname"><a href="_clustered_u_i_2include_2config_8h.html">config.h</a></div></div>
 <div class="ttc" id="classsimulation_1_1cell_html"><div class="ttname"><a href="classsimulation_1_1cell.html">simulation::cell</a></div><div class="ttdef"><b>Definition:</b> cell.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -234,7 +234,7 @@ $(document).ready(function(){initNavTree('_clustered_u_i_2include_2force_8h_sour
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2e4786b0e9f64cf058f8022413151225.html">ClusteredUI</a></li><li class="navelem"><a class="el" href="dir_2e47f7a914b41077507ae98709817ebe.html">include</a></li><li class="navelem"><a class="el" href="_clustered_u_i_2include_2force_8h.html">force.h</a></li>
-    <li class="footer">Generated on Mon Jul 27 2015 09:23:00 for ProteinSim 2015 by
+    <li class="footer">Generated on Mon Jul 27 2015 11:06:47 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

@@ -2,6 +2,7 @@ var searchData=
 [
   ['i_5fintegrator',['I_integrator',['../classintegrators_1_1_i__integrator.html',1,'integrators']]],
   ['iforce',['IForce',['../classphysics_1_1_i_force.html',1,'physics']]],
+  ['integrator_2eh',['integrator.h',['../_a_o_potential_2include_2integrator_8h.html',1,'']]],
   ['integrator_2eh',['integrator.h',['../_clustered_core_2include_2integrator_8h.html',1,'']]],
   ['integrator_2eh',['integrator.h',['../_clustered_u_i_2include_2integrator_8h.html',1,'']]],
   ['integrators',['integrators',['../namespaceintegrators.html',1,'']]],
