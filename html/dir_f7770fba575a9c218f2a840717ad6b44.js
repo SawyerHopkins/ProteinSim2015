@@ -13,6 +13,5 @@ var dir_f7770fba575a9c218f2a840717ad6b44 =
     [ "systemOutput.cpp", "system_output_8cpp.html", null ],
     [ "systemRecovery.cpp", "system_recovery_8cpp.html", null ],
     [ "timer.cpp", "timer_8cpp.html", null ],
-    [ "utilities.cpp", "utilities_8cpp.html", null ],
-    [ "YukawaPotential.cpp", "_yukawa_potential_8cpp.html", null ]
+    [ "utilities.cpp", "utilities_8cpp.html", null ]
 ];

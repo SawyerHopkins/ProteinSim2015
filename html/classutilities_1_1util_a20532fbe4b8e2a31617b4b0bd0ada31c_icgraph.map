@@ -1,9 +1,10 @@
 <map id="utilities::util::safeMod0" name="utilities::util::safeMod0">
-<area shape="rect" id="node2" href="$classsimulation_1_1particle.html#a1c114862f41e44e97b2c92942342a802" title="Set the x position of the particle. Handles PBC and updates x0. " alt="" coords="207,5,337,47"/>
-<area shape="rect" id="node7" href="$classsimulation_1_1particle.html#a10f88bf88ccbb3de5807416513380c58" title="Set the y position of the particle. Handles PBC and updates y0. " alt="" coords="207,71,337,112"/>
-<area shape="rect" id="node8" href="$classsimulation_1_1particle.html#abd10f7663399e34ca3b53a0d0c953101" title="Set the z position of the particle. Handles PBC and updates z0. " alt="" coords="207,136,337,177"/>
-<area shape="rect" id="node3" href="$classsimulation_1_1particle.html#ad01fee28cf7ce6801b544d66d6169064" title="Set the position of the particle. Handles PBC and updates the previous value. " alt="" coords="385,71,516,112"/>
-<area shape="rect" id="node4" href="$classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="564,37,763,79"/>
-<area shape="rect" id="node6" href="$classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="564,103,763,144"/>
-<area shape="rect" id="node5" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="811,71,1009,112"/>
+<area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="integrators::brownianIntegrator\l::velocityStep" alt="" coords="385,5,584,47"/>
+<area shape="rect" id="node5" href="$classsimulation_1_1particle.html#a1c114862f41e44e97b2c92942342a802" title="Set the x position of the particle. Handles PBC and updates x0. " alt="" coords="207,49,337,91"/>
+<area shape="rect" id="node8" href="$classsimulation_1_1particle.html#a10f88bf88ccbb3de5807416513380c58" title="Set the y position of the particle. Handles PBC and updates y0. " alt="" coords="207,115,337,156"/>
+<area shape="rect" id="node9" href="$classsimulation_1_1particle.html#abd10f7663399e34ca3b53a0d0c953101" title="Set the z position of the particle. Handles PBC and updates z0. " alt="" coords="207,180,337,221"/>
+<area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="632,35,831,76"/>
+<area shape="rect" id="node4" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="879,68,1077,109"/>
+<area shape="rect" id="node6" href="$classsimulation_1_1particle.html#ad01fee28cf7ce6801b544d66d6169064" title="Set the position of the particle. Handles PBC and updates the previous value. " alt="" coords="419,100,550,141"/>
+<area shape="rect" id="node7" href="$classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="632,100,831,141"/>
 </map>

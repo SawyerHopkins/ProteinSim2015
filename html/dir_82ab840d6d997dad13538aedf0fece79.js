@@ -24,7 +24,5 @@ var dir_82ab840d6d997dad13538aedf0fece79 =
     [ "timer.h", "_a_o_potential_2include_2timer_8h.html", [
       [ "timer", "classdebugging_1_1timer.html", "classdebugging_1_1timer" ]
     ] ],
-    [ "utilities.h", "_a_o_potential_2include_2utilities_8h.html", [
-      [ "util", "classutilities_1_1util.html", null ]
-    ] ]
+    [ "utilities.h", "_a_o_potential_2include_2utilities_8h.html", "_a_o_potential_2include_2utilities_8h" ]
 ];

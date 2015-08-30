@@ -1,16 +1,4 @@
 <map id="ClusteredUI/include/force.h" name="ClusteredUI/include/force.h">
-<area shape="rect" id="node2" href="$force_8cpp.html" title="ClusteredCore/src/force.cpp" alt="" coords="339,102,525,129"/>
-<area shape="rect" id="node3" href="$_yukawa_potential_8cpp.html" title="ClusteredCore/src/Yukawa\lPotential.cpp" alt="" coords="549,95,728,136"/>
-<area shape="rect" id="node4" href="$_clustered_u_i_2include_2integrator_8h.html" title="ClusteredUI/include\l/integrator.h" alt="" coords="753,95,890,136"/>
-<area shape="rect" id="node5" href="$brownian_integrator_8cpp.html" title="ClusteredCore/src/brownian\lIntegrator.cpp" alt="" coords="636,184,820,225"/>
-<area shape="rect" id="node6" href="$_clustered_u_i_2include_2system_8h.html" title="ClusteredUI/include\l/system.h" alt="" coords="845,184,982,225"/>
-<area shape="rect" id="node7" href="$system_8cpp.html" title="ClusteredCore/src/system.cpp" alt="" coords="5,281,205,307"/>
-<area shape="rect" id="node8" href="$system_analysis_8cpp.html" title="ClusteredCore/src/system\lAnalysis.cpp" alt="" coords="230,273,405,315"/>
-<area shape="rect" id="node9" href="$system_handling_8cpp.html" title="ClusteredCore/src/system\lHandling.cpp" alt="" coords="429,273,603,315"/>
-<area shape="rect" id="node10" href="$system_init_8cpp.html" title="ClusteredCore/src/system\lInit.cpp" alt="" coords="627,273,802,315"/>
-<area shape="rect" id="node11" href="$system_output_8cpp.html" title="ClusteredCore/src/system\lOutput.cpp" alt="" coords="826,273,1001,315"/>
-<area shape="rect" id="node12" href="$system_recovery_8cpp.html" title="ClusteredCore/src/system\lRecovery.cpp" alt="" coords="1025,273,1199,315"/>
-<area shape="rect" id="node13" href="$analysis_8cpp.html" title="ClusteredUI/src/analysis.cpp" alt="" coords="1223,281,1414,307"/>
-<area shape="rect" id="node14" href="$main_8cpp.html" title="ClusteredUI/src/main.cpp" alt="" coords="1439,281,1609,307"/>
-<area shape="rect" id="node15" href="$run_sim_8cpp.html" title="ClusteredUI/src/runSim.cpp" alt="" coords="1633,281,1817,307"/>
+<area shape="rect" id="node2" href="$_clustered_u_i_2include_2integrator_8h.html" title="ClusteredUI/include\l/integrator.h" alt="" coords="5,95,143,136"/>
+<area shape="rect" id="node3" href="$_clustered_u_i_2include_2system_8h.html" title="ClusteredUI/include\l/system.h" alt="" coords="5,184,143,225"/>
 </map>

@@ -1,9 +1,10 @@
 <map id="simulation::particle::getY0" name="simulation::particle::getY0">
-<area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="184,5,383,47"/>
-<area shape="rect" id="node4" href="$classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,71,349,112"/>
-<area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,5,629,47"/>
-<area shape="rect" id="node5" href="$classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730" title="Writes the varies that define the system state. Average potential. Average coordination number..." alt="" coords="463,71,597,112"/>
-<area shape="rect" id="node7" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="884,110,959,137"/>
-<area shape="rect" id="node6" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="677,82,836,109"/>
-<area shape="rect" id="node8" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="1007,110,1057,137"/>
+<area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="431,5,629,47"/>
+<area shape="rect" id="node4" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="integrators::brownianIntegrator\l::velocityStep" alt="" coords="184,35,383,76"/>
+<area shape="rect" id="node5" href="$classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,100,349,141"/>
+<area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="677,5,876,47"/>
+<area shape="rect" id="node6" href="$classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730" title="Writes the varies that define the system state. Average potential. Average coordination number..." alt="" coords="463,71,597,112"/>
+<area shape="rect" id="node8" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="924,110,999,137"/>
+<area shape="rect" id="node7" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="697,82,856,109"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="1047,110,1097,137"/>
 </map>

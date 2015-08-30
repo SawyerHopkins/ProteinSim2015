@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('classphysics_1_1_i_force.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -121,11 +121,20 @@ Inheritance diagram for physics::IForce:</div>
 <div class="dyncontent">
 <div class="center"><img src="classphysics_1_1_i_force__inherit__graph.png" border="0" usemap="#physics_1_1_i_force_inherit__map" alt="Inheritance graph"/></div>
 <map name="physics_1_1_i_force_inherit__map" id="physics_1_1_i_force_inherit__map">
-<area shape="rect" id="node2" href="class_a_o_potential.html" title="AOPotential" alt="" coords="5,80,97,107"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html" title="physics::Yukawa" alt="" coords="122,80,245,107"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html" title="AOPotential" alt="" coords="5,80,97,107"/><area shape="rect" id="node3" href="class_lennard_jones.html" title="LennardJones" alt="" coords="121,80,224,107"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a07ab6268da05fcf866e269cfe458a99d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1_i_force.html#a07ab6268da05fcf866e269cfe458a99d">getAcceleration</a> (int index, int nPart, int boxSize, double time, <a class="el" href="classsimulation_1_1cell.html">simulation::cell</a> *itemCell, <a class="el" href="classsimulation_1_1particle.html">simulation::particle</a> **items)=0</td></tr>
+<tr class="memdesc:a07ab6268da05fcf866e269cfe458a99d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual methods for forces of various parameters.  <a href="#a07ab6268da05fcf866e269cfe458a99d">More...</a><br /></td></tr>
+<tr class="separator:a07ab6268da05fcf866e269cfe458a99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d0ef7ad3c9d853cb87927863a53c6c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1_i_force.html#aa5d0ef7ad3c9d853cb87927863a53c6c">isTimeDependent</a> ()=0</td></tr>
+<tr class="memdesc:aa5d0ef7ad3c9d853cb87927863a53c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag for a force dependent time.  <a href="#aa5d0ef7ad3c9d853cb87927863a53c6c">More...</a><br /></td></tr>
+<tr class="separator:aa5d0ef7ad3c9d853cb87927863a53c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31d8fe7e9fe63e39e2ef8652bf1626f2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1_i_force.html#a31d8fe7e9fe63e39e2ef8652bf1626f2">getName</a> ()</td></tr>
+<tr class="memdesc:a31d8fe7e9fe63e39e2ef8652bf1626f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the force for logging purposes.  <a href="#a31d8fe7e9fe63e39e2ef8652bf1626f2">More...</a><br /></td></tr>
+<tr class="separator:a31d8fe7e9fe63e39e2ef8652bf1626f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07ab6268da05fcf866e269cfe458a99d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics_1_1_i_force.html#a07ab6268da05fcf866e269cfe458a99d">getAcceleration</a> (int index, int nPart, int boxSize, double time, <a class="el" href="classsimulation_1_1cell.html">simulation::cell</a> *itemCell, <a class="el" href="classsimulation_1_1particle.html">simulation::particle</a> **items)=0</td></tr>
 <tr class="memdesc:a07ab6268da05fcf866e269cfe458a99d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual methods for forces of various parameters.  <a href="#a07ab6268da05fcf866e269cfe458a99d">More...</a><br /></td></tr>
 <tr class="separator:a07ab6268da05fcf866e269cfe458a99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -238,7 +247,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, and <a class="el" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e">AOPotential</a>.</p>
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a7a00b8221c68c0f51ab07e988ab35b6d">LennardJones</a>.</p>
 
 </div>
 </div>
@@ -311,7 +320,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, and <a class="el" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e">AOPotential</a>.</p>
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a7a00b8221c68c0f51ab07e988ab35b6d">LennardJones</a>.</p>
 
 </div>
 </div>
@@ -384,7 +393,106 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e">physics::Yukawa</a>, and <a class="el" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e">AOPotential</a>.</p>
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a7a00b8221c68c0f51ab07e988ab35b6d">LennardJones</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a07ab6268da05fcf866e269cfe458a99d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void physics::IForce::getAcceleration </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nPart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>boxSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1cell.html">simulation::cell</a> *&#160;</td>
+          <td class="paramname"><em>itemCell</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1particle.html">simulation::particle</a> **&#160;</td>
+          <td class="paramname"><em>items</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Virtual methods for forces of various parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index particle to find the force on. </td></tr>
+    <tr><td class="paramname">nPart</td><td>The number of particles in the system. </td></tr>
+    <tr><td class="paramname">boxSize</td><td>The size of the system. </td></tr>
+    <tr><td class="paramname">time</td><td>The current system time. </td></tr>
+    <tr><td class="paramname">itemCell</td><td>The cell containing the index particle. </td></tr>
+    <tr><td class="paramname">items</td><td>All particles in the system. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a7a00b8221c68c0f51ab07e988ab35b6d">LennardJones</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a31d8fe7e9fe63e39e2ef8652bf1626f2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string physics::IForce::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the force for logging purposes. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -490,7 +598,7 @@ Protected Attributes</h2></td></tr>
 <p>Flag for a force dependent time. </p>
 <dl class="section return"><dt>Returns</dt><dd>True for time dependent. False otherwise. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, and <a class="el" href="class_a_o_potential.html#a33bf23a5abb74700d28745c83949c366">AOPotential</a>.</p>
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a33bf23a5abb74700d28745c83949c366">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a038262c6875e5f7ca12dda311d33e208">LennardJones</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -527,7 +635,7 @@ Here is the caller graph for this function:</div>
 <p>Flag for a force dependent time. </p>
 <dl class="section return"><dt>Returns</dt><dd>True for time dependent. False otherwise. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, and <a class="el" href="class_a_o_potential.html#a33bf23a5abb74700d28745c83949c366">AOPotential</a>.</p>
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a33bf23a5abb74700d28745c83949c366">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a038262c6875e5f7ca12dda311d33e208">LennardJones</a>.</p>
 
 </div>
 </div>
@@ -555,7 +663,35 @@ Here is the caller graph for this function:</div>
 <p>Flag for a force dependent time. </p>
 <dl class="section return"><dt>Returns</dt><dd>True for time dependent. False otherwise. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, <a class="el" href="classphysics_1_1_yukawa.html#a65e1078261c32eb596fe9a10752ae3cb">physics::Yukawa</a>, and <a class="el" href="class_a_o_potential.html#a33bf23a5abb74700d28745c83949c366">AOPotential</a>.</p>
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a33bf23a5abb74700d28745c83949c366">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a038262c6875e5f7ca12dda311d33e208">LennardJones</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa5d0ef7ad3c9d853cb87927863a53c6c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool physics::IForce::isTimeDependent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag for a force dependent time. </p>
+<dl class="section return"><dt>Returns</dt><dd>True for time dependent. False otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_a_o_potential.html#a33bf23a5abb74700d28745c83949c366">AOPotential</a>, and <a class="el" href="class_lennard_jones.html#a038262c6875e5f7ca12dda311d33e208">LennardJones</a>.</p>
 
 </div>
 </div>
@@ -609,7 +745,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacephysics.html">physics</a></li><li class="navelem"><a class="el" href="classphysics_1_1_i_force.html">IForce</a></li>
-    <li class="footer">Generated on Mon Jul 27 2015 11:09:28 for ProteinSim 2015 by
+    <li class="footer">Generated on Sat Aug 29 2015 21:01:07 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

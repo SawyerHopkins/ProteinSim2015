@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('classsimulation_1_1cell.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -124,6 +124,39 @@ Collaboration diagram for simulation::cell:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ac397785234949c1c58ebdda7ac767816"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#ac397785234949c1c58ebdda7ac767816">cell</a> ()</td></tr>
+<tr class="separator:ac397785234949c1c58ebdda7ac767816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac53b97c9bb9a77209b15d2edb286085"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#aac53b97c9bb9a77209b15d2edb286085">~cell</a> ()</td></tr>
+<tr class="separator:aac53b97c9bb9a77209b15d2edb286085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88aa62afb942368fc880791c7f5ccd7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#a88aa62afb942368fc880791c7f5ccd7b">addMember</a> (<a class="el" href="classsimulation_1_1particle.html">particle</a> *p)</td></tr>
+<tr class="memdesc:a88aa62afb942368fc880791c7f5ccd7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a particle to the cell manager.  <a href="#a88aa62afb942368fc880791c7f5ccd7b">More...</a><br /></td></tr>
+<tr class="separator:a88aa62afb942368fc880791c7f5ccd7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fc672eb40db7f239313f049ba6e3b31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#a5fc672eb40db7f239313f049ba6e3b31">removeMember</a> (<a class="el" href="classsimulation_1_1particle.html">particle</a> *p)</td></tr>
+<tr class="memdesc:a5fc672eb40db7f239313f049ba6e3b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a particle from the cell manager.  <a href="#a5fc672eb40db7f239313f049ba6e3b31">More...</a><br /></td></tr>
+<tr class="separator:a5fc672eb40db7f239313f049ba6e3b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b96ac0fda844272623674f6dc52bd0"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, <a class="el" href="classsimulation_1_1particle.html">particle</a> * &gt;<br class="typebreak" />
+::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#af4b96ac0fda844272623674f6dc52bd0">getBegin</a> ()</td></tr>
+<tr class="memdesc:af4b96ac0fda844272623674f6dc52bd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expose the pointer to the first particle in the cell.  <a href="#af4b96ac0fda844272623674f6dc52bd0">More...</a><br /></td></tr>
+<tr class="separator:af4b96ac0fda844272623674f6dc52bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b97a6a1e224cf0c2f6b54a9e2d053b"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, <a class="el" href="classsimulation_1_1particle.html">particle</a> * &gt;<br class="typebreak" />
+::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#a45b97a6a1e224cf0c2f6b54a9e2d053b">getEnd</a> ()</td></tr>
+<tr class="memdesc:a45b97a6a1e224cf0c2f6b54a9e2d053b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expose the end of the bucket.  <a href="#a45b97a6a1e224cf0c2f6b54a9e2d053b">More...</a><br /></td></tr>
+<tr class="separator:a45b97a6a1e224cf0c2f6b54a9e2d053b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae299dd22b3953003355e6b083f2be97b"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, <a class="el" href="classsimulation_1_1particle.html">particle</a> * &gt;<br class="typebreak" />
+::mapped_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#ae299dd22b3953003355e6b083f2be97b">getMember</a> (int key)</td></tr>
+<tr class="memdesc:ae299dd22b3953003355e6b083f2be97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a specific member by name.  <a href="#ae299dd22b3953003355e6b083f2be97b">More...</a><br /></td></tr>
+<tr class="separator:ae299dd22b3953003355e6b083f2be97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71624310bc55787ea020a1556eb74a89"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classsimulation_1_1cell.html">cell</a> * &gt;<br class="typebreak" />
+::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#a71624310bc55787ea020a1556eb74a89">getFirstNeighbor</a> ()</td></tr>
+<tr class="memdesc:a71624310bc55787ea020a1556eb74a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the iterator to the first neighboring cell.  <a href="#a71624310bc55787ea020a1556eb74a89">More...</a><br /></td></tr>
+<tr class="separator:a71624310bc55787ea020a1556eb74a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a56929ddd8c4fb31af9e7584068f831"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classsimulation_1_1cell.html">cell</a> * &gt;<br class="typebreak" />
+::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#a5a56929ddd8c4fb31af9e7584068f831">getLastNeighbor</a> ()</td></tr>
+<tr class="memdesc:a5a56929ddd8c4fb31af9e7584068f831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the end of the cell neighbor iterator. The parent cell is the last cell in the vector.  <a href="#a5a56929ddd8c4fb31af9e7584068f831">More...</a><br /></td></tr>
+<tr class="separator:a5a56929ddd8c4fb31af9e7584068f831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae33f4132e7c2ad45ce5cc09d8e27bec4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#ae33f4132e7c2ad45ce5cc09d8e27bec4">createNeighborhood</a> ()</td></tr>
+<tr class="memdesc:ae33f4132e7c2ad45ce5cc09d8e27bec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a vector containing points to all adjacent cells.  <a href="#ae33f4132e7c2ad45ce5cc09d8e27bec4">More...</a><br /></td></tr>
+<tr class="separator:ae33f4132e7c2ad45ce5cc09d8e27bec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac397785234949c1c58ebdda7ac767816"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#ac397785234949c1c58ebdda7ac767816">cell</a> ()</td></tr>
 <tr class="separator:ac397785234949c1c58ebdda7ac767816"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac53b97c9bb9a77209b15d2edb286085"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1cell.html#aac53b97c9bb9a77209b15d2edb286085">~cell</a> ()</td></tr>
@@ -338,6 +371,36 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac397785234949c1c58ebdda7ac767816"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::cell::cell </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aac53b97c9bb9a77209b15d2edb286085"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::cell::~cell </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a88aa62afb942368fc880791c7f5ccd7b"></a>
 <div class="memitem">
@@ -417,6 +480,47 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a88aa62afb942368fc880791c7f5ccd7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::cell::addMember </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1particle.html">particle</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a particle to the cell manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The address of the particle to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae33f4132e7c2ad45ce5cc09d8e27bec4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::cell::createNeighborhood </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a vector containing points to all adjacent cells. </p>
 
 </div>
 </div>
@@ -552,9 +656,35 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1cell_af4b96ac0fda844272623674f6dc52bd0_icgraph.png" border="0" usemap="#classsimulation_1_1cell_af4b96ac0fda844272623674f6dc52bd0_icgraph" alt=""/></div>
 <map name="classsimulation_1_1cell_af4b96ac0fda844272623674f6dc52bd0_icgraph" id="classsimulation_1_1cell_af4b96ac0fda844272623674f6dc52bd0_icgraph">
-<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="237,5,385,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="221,56,400,83"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="227,5,375,32"/><area shape="rect" id="node3" href="class_lennard_jones.html#a0426ebf0161154f61db37cb5e6a33804" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="221,56,380,83"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="af4b96ac0fda844272623674f6dc52bd0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt;int,<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt;::iterator simulation::cell::getBegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Expose the pointer to the first particle in the cell. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -587,9 +717,35 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1cell_a45b97a6a1e224cf0c2f6b54a9e2d053b_icgraph.png" border="0" usemap="#classsimulation_1_1cell_a45b97a6a1e224cf0c2f6b54a9e2d053b_icgraph" alt=""/></div>
 <map name="classsimulation_1_1cell_a45b97a6a1e224cf0c2f6b54a9e2d053b_icgraph" id="classsimulation_1_1cell_a45b97a6a1e224cf0c2f6b54a9e2d053b_icgraph">
-<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="227,5,375,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="212,56,391,83"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="217,5,365,32"/><area shape="rect" id="node3" href="class_lennard_jones.html#a0426ebf0161154f61db37cb5e6a33804" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="212,56,371,83"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a45b97a6a1e224cf0c2f6b54a9e2d053b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt;int,<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt;::iterator simulation::cell::getEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Expose the end of the bucket. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -674,7 +830,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1cell_a71624310bc55787ea020a1556eb74a89_icgraph.png" border="0" usemap="#classsimulation_1_1cell_a71624310bc55787ea020a1556eb74a89_icgraph" alt=""/></div>
 <map name="classsimulation_1_1cell_a71624310bc55787ea020a1556eb74a89_icgraph" id="classsimulation_1_1cell_a71624310bc55787ea020a1556eb74a89_icgraph">
-<area shape="rect" id="node2" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e" title="Get the force from the AO Potential. " alt="" coords="229,5,420,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e" title="Get the force from the AO Potential. " alt="" coords="215,56,435,83"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e" title="Get the force from the AO Potential. " alt="" coords="220,5,411,32"/><area shape="rect" id="node3" href="class_lennard_jones.html#a7a00b8221c68c0f51ab07e988ab35b6d" title="Get the force from the AO Potential. " alt="" coords="215,56,416,83"/></map>
 </div>
 </p>
 
@@ -732,7 +888,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a5a56929ddd8c4fb31af9e7584068f831"></a>
+<a class="anchor" id="a71624310bc55787ea020a1556eb74a89"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -740,7 +896,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::vector&lt;<a class="el" href="classsimulation_1_1cell.html">cell</a>*&gt;::iterator simulation::cell::getLastNeighbor </td>
+          <td class="memname">const std::vector&lt;<a class="el" href="classsimulation_1_1cell.html">cell</a>*&gt;::iterator simulation::cell::getFirstNeighbor </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -753,7 +909,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the end of the cell neighbor iterator. The parent cell is the last cell in the vector. </p>
+<p>Gets the iterator to the first neighboring cell. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
@@ -813,13 +969,13 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classsimulation_1_1cell_a5a56929ddd8c4fb31af9e7584068f831_icgraph.png" border="0" usemap="#classsimulation_1_1cell_a5a56929ddd8c4fb31af9e7584068f831_icgraph" alt=""/></div>
 <map name="classsimulation_1_1cell_a5a56929ddd8c4fb31af9e7584068f831_icgraph" id="classsimulation_1_1cell_a5a56929ddd8c4fb31af9e7584068f831_icgraph">
-<area shape="rect" id="node2" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e" title="Get the force from the AO Potential. " alt="" coords="228,5,419,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a8f795ce212668b43ecc4117c02f27b5e" title="Get the force from the AO Potential. " alt="" coords="213,56,433,83"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a96afc30cd71d8ca3a0e72a99172aeb8e" title="Get the force from the AO Potential. " alt="" coords="219,5,409,32"/><area shape="rect" id="node3" href="class_lennard_jones.html#a7a00b8221c68c0f51ab07e988ab35b6d" title="Get the force from the AO Potential. " alt="" coords="213,56,415,83"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="ae299dd22b3953003355e6b083f2be97b"></a>
+<a class="anchor" id="a5a56929ddd8c4fb31af9e7584068f831"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -827,10 +983,9 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::map&lt;int,<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt;::mapped_type simulation::cell::getMember </td>
+          <td class="memname">const std::vector&lt;<a class="el" href="classsimulation_1_1cell.html">cell</a>*&gt;::iterator simulation::cell::getLastNeighbor </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -841,13 +996,33 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Return a specific member by name. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>The name of the particle to get. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Gets the end of the cell neighbor iterator. The parent cell is the last cell in the vector. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5a56929ddd8c4fb31af9e7584068f831"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="classsimulation_1_1cell.html">cell</a>*&gt;::iterator simulation::cell::getLastNeighbor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the end of the cell neighbor iterator. The parent cell is the last cell in the vector. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
@@ -918,27 +1093,69 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a5fc672eb40db7f239313f049ba6e3b31"></a>
+<a class="anchor" id="ae299dd22b3953003355e6b083f2be97b"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void simulation::cell::removeMember </td>
+          <td class="memname">const std::map&lt;int,<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt;::mapped_type simulation::cell::getMember </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classsimulation_1_1particle.html">particle</a> *&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Removes a particle from the cell manager. </p>
+<p>Return a specific member by name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>The address of the particle to remove. </td></tr>
+    <tr><td class="paramname">key</td><td>The name of the particle to get. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae299dd22b3953003355e6b083f2be97b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt;int,<a class="el" href="classsimulation_1_1particle.html">particle</a>*&gt;::mapped_type simulation::cell::getMember </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a specific member by name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The name of the particle to get. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -972,6 +1189,54 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node2" href="classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="213,5,344,47"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a5fc672eb40db7f239313f049ba6e3b31"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::cell::removeMember </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1particle.html">particle</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a particle from the cell manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The address of the particle to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5fc672eb40db7f239313f049ba6e3b31"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::cell::removeMember </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1particle.html">particle</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a particle from the cell manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The address of the particle to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1102,7 +1367,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesimulation.html">simulation</a></li><li class="navelem"><a class="el" href="classsimulation_1_1cell.html">cell</a></li>
-    <li class="footer">Generated on Mon Jul 27 2015 11:09:28 for ProteinSim 2015 by
+    <li class="footer">Generated on Sat Aug 29 2015 21:01:07 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

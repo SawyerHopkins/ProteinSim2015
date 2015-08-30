@@ -1,22 +1,7 @@
 <map id="ClusteredUI/include/utilities.h" name="ClusteredUI/include/utilities.h">
-<area shape="rect" id="node2" href="$utilities_8cpp.html" title="ClusteredCore/src/utilities.cpp" alt="" coords="161,102,359,129"/>
-<area shape="rect" id="node3" href="$_clustered_u_i_2include_2particle_8h.html" title="ClusteredUI/include\l/particle.h" alt="" coords="383,95,521,136"/>
-<area shape="rect" id="node4" href="$particle_8cpp.html" title="ClusteredCore/src/particle.cpp" alt="" coords="257,191,455,218"/>
-<area shape="rect" id="node5" href="$_clustered_u_i_2include_2cell_8h.html" title="ClusteredUI/include\l/cell.h" alt="" coords="479,184,617,225"/>
-<area shape="rect" id="node6" href="$cell_8cpp.html" title="ClusteredCore/src/cell.cpp" alt="" coords="369,281,546,307"/>
-<area shape="rect" id="node7" href="$_clustered_u_i_2include_2force_8h.html" title="ClusteredUI/include\l/force.h" alt="" coords="570,273,707,315"/>
-<area shape="rect" id="node8" href="$force_8cpp.html" title="ClusteredCore/src/force.cpp" alt="" coords="339,370,525,397"/>
-<area shape="rect" id="node9" href="$_yukawa_potential_8cpp.html" title="ClusteredCore/src/Yukawa\lPotential.cpp" alt="" coords="549,363,728,404"/>
-<area shape="rect" id="node10" href="$_clustered_u_i_2include_2integrator_8h.html" title="ClusteredUI/include\l/integrator.h" alt="" coords="753,363,890,404"/>
-<area shape="rect" id="node11" href="$brownian_integrator_8cpp.html" title="ClusteredCore/src/brownian\lIntegrator.cpp" alt="" coords="636,452,820,493"/>
-<area shape="rect" id="node12" href="$_clustered_u_i_2include_2system_8h.html" title="ClusteredUI/include\l/system.h" alt="" coords="845,452,982,493"/>
-<area shape="rect" id="node13" href="$system_8cpp.html" title="ClusteredCore/src/system.cpp" alt="" coords="5,549,205,575"/>
-<area shape="rect" id="node14" href="$system_analysis_8cpp.html" title="ClusteredCore/src/system\lAnalysis.cpp" alt="" coords="230,541,405,583"/>
-<area shape="rect" id="node15" href="$system_handling_8cpp.html" title="ClusteredCore/src/system\lHandling.cpp" alt="" coords="429,541,603,583"/>
-<area shape="rect" id="node16" href="$system_init_8cpp.html" title="ClusteredCore/src/system\lInit.cpp" alt="" coords="627,541,802,583"/>
-<area shape="rect" id="node17" href="$system_output_8cpp.html" title="ClusteredCore/src/system\lOutput.cpp" alt="" coords="826,541,1001,583"/>
-<area shape="rect" id="node18" href="$system_recovery_8cpp.html" title="ClusteredCore/src/system\lRecovery.cpp" alt="" coords="1025,541,1199,583"/>
-<area shape="rect" id="node19" href="$analysis_8cpp.html" title="ClusteredUI/src/analysis.cpp" alt="" coords="1223,549,1414,575"/>
-<area shape="rect" id="node20" href="$main_8cpp.html" title="ClusteredUI/src/main.cpp" alt="" coords="1439,549,1609,575"/>
-<area shape="rect" id="node21" href="$run_sim_8cpp.html" title="ClusteredUI/src/runSim.cpp" alt="" coords="1633,549,1817,575"/>
+<area shape="rect" id="node2" href="$_clustered_u_i_2include_2particle_8h.html" title="ClusteredUI/include\l/particle.h" alt="" coords="5,95,143,136"/>
+<area shape="rect" id="node3" href="$_clustered_u_i_2include_2cell_8h.html" title="ClusteredUI/include\l/cell.h" alt="" coords="5,184,143,225"/>
+<area shape="rect" id="node4" href="$_clustered_u_i_2include_2force_8h.html" title="ClusteredUI/include\l/force.h" alt="" coords="5,273,143,315"/>
+<area shape="rect" id="node5" href="$_clustered_u_i_2include_2integrator_8h.html" title="ClusteredUI/include\l/integrator.h" alt="" coords="5,363,143,404"/>
+<area shape="rect" id="node6" href="$_clustered_u_i_2include_2system_8h.html" title="ClusteredUI/include\l/system.h" alt="" coords="5,452,143,493"/>
 </map>

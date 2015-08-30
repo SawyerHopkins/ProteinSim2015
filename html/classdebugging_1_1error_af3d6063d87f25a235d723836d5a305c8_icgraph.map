@@ -1,4 +1,4 @@
 <map id="debugging::error::throwParticleOverlapError" name="debugging::error::throwParticleOverlapError">
-<area shape="rect" id="node2" href="$class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="267,5,415,32"/>
-<area shape="rect" id="node3" href="$classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="252,56,431,83"/>
+<area shape="rect" id="node2" href="$class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="257,5,405,32"/>
+<area shape="rect" id="node3" href="$class_lennard_jones.html#a0426ebf0161154f61db37cb5e6a33804" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="252,56,411,83"/>
 </map>

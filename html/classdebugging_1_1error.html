@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('classdebugging_1_1error.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -119,11 +119,15 @@ $(document).ready(function(){initNavTree('classdebugging_1_1error.html','');});
 Inheritance diagram for debugging::error:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdebugging_1_1error__inherit__graph.png" border="0" usemap="#debugging_1_1error_inherit__map" alt="Inheritance graph"/></div>
+<map name="debugging_1_1error_inherit__map" id="debugging_1_1error_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for debugging::error:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdebugging_1_1error__coll__graph.png" border="0" usemap="#debugging_1_1error_coll__map" alt="Collaboration graph"/></div>
+<map name="debugging_1_1error_coll__map" id="debugging_1_1error_coll__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -146,6 +150,24 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a4d4b6f8bb7868660a2b92bef9c6dcd82"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#a4d4b6f8bb7868660a2b92bef9c6dcd82">throwInputError</a> ()</td></tr>
 <tr class="memdesc:a4d4b6f8bb7868660a2b92bef9c6dcd82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when input arguments are invalid.  <a href="#a4d4b6f8bb7868660a2b92bef9c6dcd82">More...</a><br /></td></tr>
 <tr class="separator:a4d4b6f8bb7868660a2b92bef9c6dcd82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a436ab74b317901d2110fca87da69cf22"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#a436ab74b317901d2110fca87da69cf22">throwInitializationError</a> ()</td></tr>
+<tr class="memdesc:a436ab74b317901d2110fca87da69cf22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when system initial conditions cannot be resolved.  <a href="#a436ab74b317901d2110fca87da69cf22">More...</a><br /></td></tr>
+<tr class="separator:a436ab74b317901d2110fca87da69cf22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106aaaf9f585d59e1377f2760cf76a2d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#a106aaaf9f585d59e1377f2760cf76a2d">throwCellBoundsError</a> (int cx, int cy, int cz)</td></tr>
+<tr class="memdesc:a106aaaf9f585d59e1377f2760cf76a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when trying to access a non existant cell.  <a href="#a106aaaf9f585d59e1377f2760cf76a2d">More...</a><br /></td></tr>
+<tr class="separator:a106aaaf9f585d59e1377f2760cf76a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff5861c4aabcabcc37922c296480dad2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#aff5861c4aabcabcc37922c296480dad2">throwParticleBoundsError</a> (int x, int y, int z)</td></tr>
+<tr class="memdesc:aff5861c4aabcabcc37922c296480dad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when the particle is outside the box after PBC check.  <a href="#aff5861c4aabcabcc37922c296480dad2">More...</a><br /></td></tr>
+<tr class="separator:aff5861c4aabcabcc37922c296480dad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc1561b4a69addff2922e8f6db29440d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#adc1561b4a69addff2922e8f6db29440d">throwParticleOverlapError</a> (int nameI, int nameJ, double r)</td></tr>
+<tr class="memdesc:adc1561b4a69addff2922e8f6db29440d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when particles are closer than the accepted tolerance.  <a href="#adc1561b4a69addff2922e8f6db29440d">More...</a><br /></td></tr>
+<tr class="separator:adc1561b4a69addff2922e8f6db29440d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07b5a7ef28f4c627f2358e6009bcbe4a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#a07b5a7ef28f4c627f2358e6009bcbe4a">throwInfiniteForce</a> ()</td></tr>
+<tr class="memdesc:a07b5a7ef28f4c627f2358e6009bcbe4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when force is given value NaN.  <a href="#a07b5a7ef28f4c627f2358e6009bcbe4a">More...</a><br /></td></tr>
+<tr class="separator:a07b5a7ef28f4c627f2358e6009bcbe4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a561c02a98864b95e6358cf034b0ee55f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#a561c02a98864b95e6358cf034b0ee55f">throwInputError</a> ()</td></tr>
+<tr class="memdesc:a561c02a98864b95e6358cf034b0ee55f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when input arguments are invalid.  <a href="#a561c02a98864b95e6358cf034b0ee55f">More...</a><br /></td></tr>
+<tr class="separator:a561c02a98864b95e6358cf034b0ee55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a436ab74b317901d2110fca87da69cf22"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebugging_1_1error.html#a436ab74b317901d2110fca87da69cf22">throwInitializationError</a> ()</td></tr>
 <tr class="memdesc:a436ab74b317901d2110fca87da69cf22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw when system initial conditions cannot be resolved.  <a href="#a436ab74b317901d2110fca87da69cf22">More...</a><br /></td></tr>
 <tr class="separator:a436ab74b317901d2110fca87da69cf22"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -336,6 +358,54 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a106aaaf9f585d59e1377f2760cf76a2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwCellBoundsError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when trying to access a non existant cell. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cx,cy,cz</td><td>The cell to be accessed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a02aa3ff91f597241e7be1ceb91539a3a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -364,9 +434,34 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdebugging_1_1error_a02aa3ff91f597241e7be1ceb91539a3a_icgraph.png" border="0" usemap="#classdebugging_1_1error_a02aa3ff91f597241e7be1ceb91539a3a_icgraph" alt=""/></div>
 <map name="classdebugging_1_1error_a02aa3ff91f597241e7be1ceb91539a3a_icgraph" id="classdebugging_1_1error_a02aa3ff91f597241e7be1ceb91539a3a_icgraph">
-<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="263,5,411,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="248,56,427,83"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="253,5,401,32"/><area shape="rect" id="node3" href="class_lennard_jones.html#a0426ebf0161154f61db37cb5e6a33804" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="248,56,407,83"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a07b5a7ef28f4c627f2358e6009bcbe4a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwInfiniteForce </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when force is given value NaN. </p>
 
 </div>
 </div>
@@ -495,6 +590,81 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a436ab74b317901d2110fca87da69cf22"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwInitializationError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when system initial conditions cannot be resolved. </p>
+
+</div>
+</div>
+<a class="anchor" id="a561c02a98864b95e6358cf034b0ee55f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwInputError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when input arguments are invalid. </p>
+
+</div>
+</div>
+<a class="anchor" id="a561c02a98864b95e6358cf034b0ee55f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwInputError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when input arguments are invalid. </p>
+
+</div>
+</div>
 <a class="anchor" id="a561c02a98864b95e6358cf034b0ee55f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -554,7 +724,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a561c02a98864b95e6358cf034b0ee55f"></a>
+<a class="anchor" id="aff5861c4aabcabcc37922c296480dad2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -562,10 +732,27 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void debugging::error::throwInputError </td>
+          <td class="memname">static void debugging::error::throwParticleBoundsError </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -575,7 +762,109 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Throw when input arguments are invalid. </p>
+<p>Throw when the particle is outside the box after PBC check. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x,y,z</td><td>The position of the particle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aff5861c4aabcabcc37922c296480dad2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwParticleBoundsError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when the particle is outside the box after PBC check. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x,y,z</td><td>The position of the particle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aff5861c4aabcabcc37922c296480dad2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwParticleBoundsError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when the particle is outside the box after PBC check. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x,y,z</td><td>The position of the particle. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -633,152 +922,6 @@ Here is the caller graph for this function:</div>
 <area shape="rect" id="node2" href="classsimulation_1_1particle.html#a1c114862f41e44e97b2c92942342a802" title="Set the x position of the particle. Handles PBC and updates x0. " alt="" coords="252,5,383,47"/><area shape="rect" id="node7" href="classsimulation_1_1particle.html#a10f88bf88ccbb3de5807416513380c58" title="Set the y position of the particle. Handles PBC and updates y0. " alt="" coords="252,71,383,112"/><area shape="rect" id="node8" href="classsimulation_1_1particle.html#abd10f7663399e34ca3b53a0d0c953101" title="Set the z position of the particle. Handles PBC and updates z0. " alt="" coords="252,136,383,177"/><area shape="rect" id="node3" href="classsimulation_1_1particle.html#ad01fee28cf7ce6801b544d66d6169064" title="Set the position of the particle. Handles PBC and updates the previous value. " alt="" coords="431,71,561,112"/><area shape="rect" id="node4" href="classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="609,37,808,79"/><area shape="rect" id="node6" href="classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="609,103,808,144"/><area shape="rect" id="node5" href="classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="856,71,1055,112"/></map>
 </div>
 </p>
-
-</div>
-</div>
-<a class="anchor" id="aff5861c4aabcabcc37922c296480dad2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void debugging::error::throwParticleBoundsError </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Throw when the particle is outside the box after PBC check. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x,y,z</td><td>The position of the particle. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="aff5861c4aabcabcc37922c296480dad2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void debugging::error::throwParticleBoundsError </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Throw when the particle is outside the box after PBC check. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x,y,z</td><td>The position of the particle. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="adc1561b4a69addff2922e8f6db29440d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void debugging::error::throwParticleOverlapError </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nameI</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nameJ</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>r</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Throw when particles are closer than the accepted tolerance. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nameI</td><td>Name of the index particle. </td></tr>
-    <tr><td class="paramname">nameJ</td><td>Name of the force particle. </td></tr>
-    <tr><td class="paramname">r</td><td>The distance between the particles. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -885,9 +1028,109 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdebugging_1_1error_af3d6063d87f25a235d723836d5a305c8_icgraph.png" border="0" usemap="#classdebugging_1_1error_af3d6063d87f25a235d723836d5a305c8_icgraph" alt=""/></div>
 <map name="classdebugging_1_1error_af3d6063d87f25a235d723836d5a305c8_icgraph" id="classdebugging_1_1error_af3d6063d87f25a235d723836d5a305c8_icgraph">
-<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="267,5,415,32"/><area shape="rect" id="node3" href="classphysics_1_1_yukawa.html#a653c95534dff3b2a8ce123666febf83f" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="252,56,431,83"/></map>
+<area shape="rect" id="node2" href="class_a_o_potential.html#a774b24942268371a06496b6be3d6bc9d" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="257,5,405,32"/><area shape="rect" id="node3" href="class_lennard_jones.html#a0426ebf0161154f61db37cb5e6a33804" title="Checks for particle interation between the index particle and all particles in the provided cell..." alt="" coords="252,56,411,83"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="adc1561b4a69addff2922e8f6db29440d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwParticleOverlapError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nameI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nameJ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when particles are closer than the accepted tolerance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nameI</td><td>Name of the index particle. </td></tr>
+    <tr><td class="paramname">nameJ</td><td>Name of the force particle. </td></tr>
+    <tr><td class="paramname">r</td><td>The distance between the particles. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="adc1561b4a69addff2922e8f6db29440d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void debugging::error::throwParticleOverlapError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nameI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nameJ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throw when particles are closer than the accepted tolerance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nameI</td><td>Name of the index particle. </td></tr>
+    <tr><td class="paramname">nameJ</td><td>Name of the force particle. </td></tr>
+    <tr><td class="paramname">r</td><td>The distance between the particles. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -922,7 +1165,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacedebugging.html">debugging</a></li><li class="navelem"><a class="el" href="classdebugging_1_1error.html">error</a></li>
-    <li class="footer">Generated on Mon Jul 27 2015 11:09:28 for ProteinSim 2015 by
+    <li class="footer">Generated on Sat Aug 29 2015 21:01:07 for ProteinSim 2015 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>
