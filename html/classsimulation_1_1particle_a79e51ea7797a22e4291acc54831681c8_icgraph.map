@@ -1,5 +1,5 @@
 <map id="simulation::particle::setVZ" name="simulation::particle::setVZ">
-<area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="integrators::brownianIntegrator\l::velocityStep" alt="" coords="184,5,383,47"/>
+<area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="Integrates the velocity when desired. " alt="" coords="184,5,383,47"/>
 <area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="431,5,629,47"/>
 <area shape="rect" id="node4" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="677,5,876,47"/>
 </map>

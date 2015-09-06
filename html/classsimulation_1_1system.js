@@ -91,5 +91,9 @@ var classsimulation_1_1system =
     [ "writeSystemState", "classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730", null ],
     [ "writeSystemState", "classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730", null ],
     [ "writeSystemState", "classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730", null ],
-    [ "writeSystemState", "classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730", null ]
+    [ "writeSystemState", "classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730", null ],
+    [ "writeSystemXYZ", "classsimulation_1_1system.html#affce019ec2d44b13e9781868d318fbdd", null ],
+    [ "writeSystemXYZ", "classsimulation_1_1system.html#affce019ec2d44b13e9781868d318fbdd", null ],
+    [ "writeSystemXYZ", "classsimulation_1_1system.html#affce019ec2d44b13e9781868d318fbdd", null ],
+    [ "writeSystemXYZ", "classsimulation_1_1system.html#affce019ec2d44b13e9781868d318fbdd", null ]
 ];

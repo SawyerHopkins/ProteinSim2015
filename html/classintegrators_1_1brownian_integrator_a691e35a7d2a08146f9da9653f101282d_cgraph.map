@@ -24,7 +24,7 @@
 <area shape="rect" id="node24" href="$classsimulation_1_1particle.html#a7ba002f0d577c60d67949589755a26f9" title="Get the previous y force. " alt="" coords="745,959,876,1000"/>
 <area shape="rect" id="node25" href="$classsimulation_1_1particle.html#a1d6146fc1ac50e126694cd9d27cf7857" title="Get the current z force. " alt="" coords="745,1024,876,1065"/>
 <area shape="rect" id="node26" href="$classsimulation_1_1particle.html#ae59f58f7313d2d7bf8783694f2c8d8f5" title="Get the previous z force. " alt="" coords="745,1089,876,1131"/>
-<area shape="rect" id="node27" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="integrators::brownianIntegrator\l::velocityStep" alt="" coords="499,769,697,811"/>
+<area shape="rect" id="node27" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="Integrates the velocity when desired. " alt="" coords="499,769,697,811"/>
 <area shape="rect" id="node28" href="$classsimulation_1_1particle.html#a966e02d0028a46648d309600b9228db1" title="Set the x velocity. " alt="" coords="745,828,876,869"/>
 <area shape="rect" id="node29" href="$classsimulation_1_1particle.html#a9a44687f01feb04ade804af2408949b7" title="Set the y velocity. " alt="" coords="745,645,876,687"/>
 <area shape="rect" id="node30" href="$classsimulation_1_1particle.html#a79e51ea7797a22e4291acc54831681c8" title="Set the z velocity. " alt="" coords="745,711,876,752"/>

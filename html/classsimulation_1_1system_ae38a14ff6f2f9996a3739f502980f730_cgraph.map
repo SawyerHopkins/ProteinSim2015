@@ -1,30 +1,31 @@
 <map id="simulation::system::writeSystemState" name="simulation::system::writeSystemState">
-<area shape="rect" id="node2" href="$classutilities_1_1util.html#aafd8fe5507575e1dbd22b682513835b0" title="utilities::util::setTerminal\lColour" alt="" coords="427,789,591,831"/>
-<area shape="rect" id="node3" href="$classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,397,349,439"/>
-<area shape="rect" id="node16" href="$classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4" title="End the timer. " alt="" coords="208,654,359,681"/>
-<area shape="rect" id="node17" href="$classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa" title="The number of seconds elapsed between start() and stop() " alt="" coords="188,705,379,747"/>
-<area shape="rect" id="node18" href="$classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb" title="Start the timer. " alt="" coords="207,771,359,798"/>
-<area shape="rect" id="node19" href="$classsimulation_1_1particle.html#a1b0a7d7c86bf500c076f808e851d2960" title="Returns the coordination number. " alt="" coords="218,823,349,864"/>
-<area shape="rect" id="node20" href="$classsimulation_1_1particle.html#a601187919e11ad640e53db9eae5aea80" title="Gets average potential. " alt="" coords="218,888,349,929"/>
-<area shape="rect" id="node21" href="$classsimulation_1_1system.html#ad0b0d8a89506bd443acd77cf4e31e4fe" title="Get the number of clusters in the system. " alt="" coords="217,953,349,995"/>
-<area shape="rect" id="node26" href="$classsimulation_1_1system.html#a4d217a56a2df53ad2f17082aca518592" title="Returns the temperature of the system. " alt="" coords="217,1148,349,1189"/>
-<area shape="rect" id="node4" href="$classsimulation_1_1particle.html#a9149ea2d069db9ca438e176d7b774cfd" title="Get the X position. " alt="" coords="443,528,574,569"/>
-<area shape="rect" id="node5" href="$classsimulation_1_1particle.html#ababd108a4e0fab2f349b022b83d58e3f" title="Get the Y position. " alt="" coords="443,593,574,635"/>
-<area shape="rect" id="node6" href="$classsimulation_1_1particle.html#ad05cfe6a32f514294b628b5a0f68d0a4" title="Get the Z position. " alt="" coords="443,659,574,700"/>
-<area shape="rect" id="node7" href="$classsimulation_1_1particle.html#a9c4398b47db104ea6a2ebd5dee316c59" title="Get the previous X position. " alt="" coords="443,724,574,765"/>
-<area shape="rect" id="node8" href="$classsimulation_1_1particle.html#a526a29678039c58f8c4d992cff7168de" title="Get the previous Y position. " alt="" coords="443,5,574,47"/>
-<area shape="rect" id="node9" href="$classsimulation_1_1particle.html#a38b6cbed39aac5a18c3ea49c923a927e" title="Get the previous X position. " alt="" coords="443,71,574,112"/>
-<area shape="rect" id="node10" href="$classsimulation_1_1particle.html#a183cb7b1debdff718099a6d324a6c3c5" title="Get the current x force. " alt="" coords="443,136,574,177"/>
-<area shape="rect" id="node11" href="$classsimulation_1_1particle.html#aa7283a28e7dca902143641f0a29190c8" title="Get the current y force. " alt="" coords="443,201,574,243"/>
-<area shape="rect" id="node12" href="$classsimulation_1_1particle.html#a1d6146fc1ac50e126694cd9d27cf7857" title="Get the current z force. " alt="" coords="443,267,574,308"/>
-<area shape="rect" id="node13" href="$classsimulation_1_1particle.html#acb7a88786a9b9bf1eedefd98c8a96c00" title="Get the previous x force. " alt="" coords="443,332,574,373"/>
-<area shape="rect" id="node14" href="$classsimulation_1_1particle.html#a7ba002f0d577c60d67949589755a26f9" title="Get the previous y force. " alt="" coords="443,397,574,439"/>
-<area shape="rect" id="node15" href="$classsimulation_1_1particle.html#ae59f58f7313d2d7bf8783694f2c8d8f5" title="Get the previous z force. " alt="" coords="443,463,574,504"/>
-<area shape="rect" id="node22" href="$classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="443,855,574,896"/>
-<area shape="rect" id="node23" href="$classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b" title="Get the interacting particles. " alt="" coords="443,920,574,961"/>
-<area shape="rect" id="node24" href="$classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="The the beginning iterator of the interating particles. " alt="" coords="434,985,583,1027"/>
-<area shape="rect" id="node25" href="$classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="Gets the end off the vector of interacting particles. " alt="" coords="439,1051,578,1092"/>
-<area shape="rect" id="node27" href="$classsimulation_1_1particle.html#a7d5f814ddee3f8811cdc329e1bc1a918" title="Get the x velocity. " alt="" coords="443,1247,574,1288"/>
-<area shape="rect" id="node28" href="$classsimulation_1_1particle.html#a065d6627f579b068f6fd4d986035d0ea" title="Get the y velocity. " alt="" coords="443,1116,574,1157"/>
-<area shape="rect" id="node29" href="$classsimulation_1_1particle.html#ad07977176dd85afd4a2ba9d37373bac5" title="Get the z velocity. " alt="" coords="443,1181,574,1223"/>
+<area shape="rect" id="node2" href="$classutilities_1_1util.html#aafd8fe5507575e1dbd22b682513835b0" title="Set the text terminal text colour. " alt="" coords="427,5,591,47"/>
+<area shape="rect" id="node3" href="$classsimulation_1_1system.html#af7bde7b98e2754b4a84e13b6841fb058" title="Writes the system to file. " alt="" coords="217,627,349,668"/>
+<area shape="rect" id="node16" href="$classsimulation_1_1system.html#affce019ec2d44b13e9781868d318fbdd" title="Outputs the system as XYZ for visualization purposes. " alt="" coords="217,431,349,472"/>
+<area shape="rect" id="node17" href="$classdebugging_1_1timer.html#abc60a0c6906c6e018e3080cd74feabd4" title="End the timer. " alt="" coords="208,693,359,719"/>
+<area shape="rect" id="node18" href="$classdebugging_1_1timer.html#a6d9c3ecb80a7807a9f845aa39dd285fa" title="The number of seconds elapsed between start() and stop() " alt="" coords="188,744,379,785"/>
+<area shape="rect" id="node19" href="$classdebugging_1_1timer.html#ab97afae0d4e3568e652d0fe56189adeb" title="Start the timer. " alt="" coords="207,810,359,837"/>
+<area shape="rect" id="node20" href="$classsimulation_1_1particle.html#a1b0a7d7c86bf500c076f808e851d2960" title="Returns the coordination number. " alt="" coords="218,861,349,903"/>
+<area shape="rect" id="node21" href="$classsimulation_1_1particle.html#a601187919e11ad640e53db9eae5aea80" title="Gets average potential. " alt="" coords="218,927,349,968"/>
+<area shape="rect" id="node22" href="$classsimulation_1_1system.html#ad0b0d8a89506bd443acd77cf4e31e4fe" title="Get the number of clusters in the system. " alt="" coords="217,169,349,211"/>
+<area shape="rect" id="node27" href="$classsimulation_1_1system.html#a4d217a56a2df53ad2f17082aca518592" title="Returns the temperature of the system. " alt="" coords="217,1148,349,1189"/>
+<area shape="rect" id="node4" href="$classsimulation_1_1particle.html#a9149ea2d069db9ca438e176d7b774cfd" title="Get the X position. " alt="" coords="443,332,574,373"/>
+<area shape="rect" id="node5" href="$classsimulation_1_1particle.html#ababd108a4e0fab2f349b022b83d58e3f" title="Get the Y position. " alt="" coords="443,397,574,439"/>
+<area shape="rect" id="node6" href="$classsimulation_1_1particle.html#ad05cfe6a32f514294b628b5a0f68d0a4" title="Get the Z position. " alt="" coords="443,463,574,504"/>
+<area shape="rect" id="node7" href="$classsimulation_1_1particle.html#a9c4398b47db104ea6a2ebd5dee316c59" title="Get the previous X position. " alt="" coords="443,920,574,961"/>
+<area shape="rect" id="node8" href="$classsimulation_1_1particle.html#a526a29678039c58f8c4d992cff7168de" title="Get the previous Y position. " alt="" coords="443,985,574,1027"/>
+<area shape="rect" id="node9" href="$classsimulation_1_1particle.html#a38b6cbed39aac5a18c3ea49c923a927e" title="Get the previous X position. " alt="" coords="443,1051,574,1092"/>
+<area shape="rect" id="node10" href="$classsimulation_1_1particle.html#a183cb7b1debdff718099a6d324a6c3c5" title="Get the current x force. " alt="" coords="443,528,574,569"/>
+<area shape="rect" id="node11" href="$classsimulation_1_1particle.html#aa7283a28e7dca902143641f0a29190c8" title="Get the current y force. " alt="" coords="443,593,574,635"/>
+<area shape="rect" id="node12" href="$classsimulation_1_1particle.html#a1d6146fc1ac50e126694cd9d27cf7857" title="Get the current z force. " alt="" coords="443,659,574,700"/>
+<area shape="rect" id="node13" href="$classsimulation_1_1particle.html#acb7a88786a9b9bf1eedefd98c8a96c00" title="Get the previous x force. " alt="" coords="443,724,574,765"/>
+<area shape="rect" id="node14" href="$classsimulation_1_1particle.html#a7ba002f0d577c60d67949589755a26f9" title="Get the previous y force. " alt="" coords="443,789,574,831"/>
+<area shape="rect" id="node15" href="$classsimulation_1_1particle.html#ae59f58f7313d2d7bf8783694f2c8d8f5" title="Get the previous z force. " alt="" coords="443,855,574,896"/>
+<area shape="rect" id="node23" href="$classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="443,71,574,112"/>
+<area shape="rect" id="node24" href="$classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b" title="Get the interacting particles. " alt="" coords="443,136,574,177"/>
+<area shape="rect" id="node25" href="$classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="The the beginning iterator of the interating particles. " alt="" coords="434,201,583,243"/>
+<area shape="rect" id="node26" href="$classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="Gets the end off the vector of interacting particles. " alt="" coords="439,267,578,308"/>
+<area shape="rect" id="node28" href="$classsimulation_1_1particle.html#a7d5f814ddee3f8811cdc329e1bc1a918" title="Get the x velocity. " alt="" coords="443,1116,574,1157"/>
+<area shape="rect" id="node29" href="$classsimulation_1_1particle.html#a065d6627f579b068f6fd4d986035d0ea" title="Get the y velocity. " alt="" coords="443,1181,574,1223"/>
+<area shape="rect" id="node30" href="$classsimulation_1_1particle.html#ad07977176dd85afd4a2ba9d37373bac5" title="Get the z velocity. " alt="" coords="443,1247,574,1288"/>
 </map>

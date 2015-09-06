@@ -1,7 +1,7 @@
 <map id="integrators::brownianIntegrator::brownianIntegrator" name="integrators::brownianIntegrator::brownianIntegrator">
 <area shape="rect" id="node2" href="$classconfig_reader_1_1config.html#afea80a3f95234989d692b4b6daa23a09" title="Get a option from the configuration file. " alt="" coords="280,5,423,47"/>
-<area shape="rect" id="node4" href="$classintegrators_1_1brownian_integrator.html#aa535490eb4ad08120f55c921f2182f27" title="integrators::brownianIntegrator\l::setupHigh" alt="" coords="252,71,451,112"/>
-<area shape="rect" id="node5" href="$classintegrators_1_1brownian_integrator.html#a19ee8db829ca27f7f1dad38bfcc65093" title="integrators::brownianIntegrator\l::setupLow" alt="" coords="252,136,451,177"/>
-<area shape="rect" id="node6" href="$classintegrators_1_1brownian_integrator.html#a1f3e7c241da9e7530973c23cd6a31969" title="integrators::brownianIntegrator\l::setupZero" alt="" coords="252,201,451,243"/>
+<area shape="rect" id="node4" href="$classintegrators_1_1brownian_integrator.html#aa535490eb4ad08120f55c921f2182f27" title="Normal coefficents for high gamma. " alt="" coords="252,71,451,112"/>
+<area shape="rect" id="node5" href="$classintegrators_1_1brownian_integrator.html#a19ee8db829ca27f7f1dad38bfcc65093" title="Series expanded coefficents for low gamma. " alt="" coords="252,136,451,177"/>
+<area shape="rect" id="node6" href="$classintegrators_1_1brownian_integrator.html#a1f3e7c241da9e7530973c23cd6a31969" title="Special case coefficents. " alt="" coords="252,201,451,243"/>
 <area shape="rect" id="node3" href="$classconfig_reader_1_1config.html#a67305ca929ebc60d3ed2797212a64b26" title="Check that the key is in the configuration file. " alt="" coords="499,5,641,47"/>
 </map>

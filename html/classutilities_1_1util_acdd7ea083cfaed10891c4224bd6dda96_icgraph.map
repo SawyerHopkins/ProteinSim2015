@@ -1,5 +1,5 @@
 <map id="utilities::util::safeMod" name="utilities::util::safeMod">
-<area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="integrators::brownianIntegrator\l::velocityStep" alt="" coords="379,5,577,47"/>
+<area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#a924702547f58cab32a28c5278ebba925" title="Integrates the velocity when desired. " alt="" coords="379,5,577,47"/>
 <area shape="rect" id="node5" href="$classsimulation_1_1particle.html#a1c114862f41e44e97b2c92942342a802" title="Set the x position of the particle. Handles PBC and updates x0. " alt="" coords="200,49,331,91"/>
 <area shape="rect" id="node8" href="$classsimulation_1_1particle.html#a10f88bf88ccbb3de5807416513380c58" title="Set the y position of the particle. Handles PBC and updates y0. " alt="" coords="200,115,331,156"/>
 <area shape="rect" id="node9" href="$classsimulation_1_1particle.html#abd10f7663399e34ca3b53a0d0c953101" title="Set the z position of the particle. Handles PBC and updates z0. " alt="" coords="200,180,331,221"/>
