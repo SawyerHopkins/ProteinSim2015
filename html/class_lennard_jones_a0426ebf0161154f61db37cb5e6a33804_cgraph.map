@@ -8,7 +8,8 @@
 <area shape="rect" id="node8" href="$classsimulation_1_1particle.html#ad05cfe6a32f514294b628b5a0f68d0a4" title="Get the Z position. " alt="" coords="246,355,377,397"/>
 <area shape="rect" id="node9" href="$classsimulation_1_1particle.html#aab9e4f2c235020163a50cf3debeb81b2" title="Get the radius of the particle. " alt="" coords="246,421,377,462"/>
 <area shape="rect" id="node10" href="$classdebugging_1_1error.html#af3d6063d87f25a235d723836d5a305c8" title="Throw when particles are closer than the accepted tolerance. " alt="" coords="212,486,411,527"/>
-<area shape="rect" id="node11" href="$classutilities_1_1util.html#af3ec64210ede1720e02d69b7630d8d2a" title="Alternative method for getting the normalized distance between two particles. " alt="" coords="222,552,401,579"/>
-<area shape="rect" id="node12" href="$classdebugging_1_1error.html#a02aa3ff91f597241e7be1ceb91539a3a" title="Throw when force is given value NaN. " alt="" coords="214,603,409,645"/>
-<area shape="rect" id="node13" href="$classsimulation_1_1particle.html#a1a7c000eba0b05628d44927d6a34dde4" title="Adds the the current value of force. " alt="" coords="246,669,377,710"/>
+<area shape="rect" id="node11" href="$classutilities_1_1util.html#a6c3e955059d5756a22ddc85b9b5c0b9b" title="A faster pow function with binary decomposition. " alt="" coords="233,551,390,593"/>
+<area shape="rect" id="node12" href="$classutilities_1_1util.html#af3ec64210ede1720e02d69b7630d8d2a" title="Alternative method for getting the normalized distance between two particles. " alt="" coords="222,617,401,644"/>
+<area shape="rect" id="node13" href="$classdebugging_1_1error.html#a02aa3ff91f597241e7be1ceb91539a3a" title="Throw when force is given value NaN. " alt="" coords="214,669,409,710"/>
+<area shape="rect" id="node14" href="$classsimulation_1_1particle.html#a1a7c000eba0b05628d44927d6a34dde4" title="Adds the the current value of force. " alt="" coords="246,734,377,775"/>
 </map>
