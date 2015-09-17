@@ -40,12 +40,14 @@ namespace integrators
 			 * @param f The force acting on the system.
 			 * @return Return 0 for no error.
 			 */
-			virtual int nextSystem(double time, double dt, int nParticles, int boxSize, simulation::cell**** cells, simulation::particle** items, physics::forces* f)=0;
+			__device__
+			virtual void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::forces* f)=0;
 
 			/**
 			 * @brief Get the name of the integrator for logging purposes.
 			 * @return 
 			 */
+			__host__ __device__
 			std::string getName() { return name; }
 
 	};
@@ -163,7 +165,8 @@ namespace integrators
 			 * @param f The force acting on the system.
 			 * @return Return 0 for no error.
 			 */
-			int nextSystem(double time, double dt, int nParticles, int boxSize, simulation::cell**** cells, simulation::particle** items, physics::forces* f);
+			__device__
+			void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::forces* f);
 
 			/**
 			 * @brief Integrates to the next system state.
@@ -175,7 +178,8 @@ namespace integrators
 			 * @param f The force acting on the system.
 			 * @return Return 0 for no error.
 			 */
-			int firstStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::forces* f);
+			__device__
+			void firstStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::forces* f);
 
 			/**
 			 * @brief Integrates to the next system state.
@@ -187,7 +191,8 @@ namespace integrators
 			 * @param f The force acting on the system.
 			 * @return Return 0 for no error.
 			 */
-			int normalStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::forces* f);
+			__device__
+			void normalStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::forces* f);
 
 			/**
 			 * @brief Integrates the velocity when desired.
@@ -197,6 +202,7 @@ namespace integrators
 			 * @param dt The amount of time to advance.
 			 * @param boxSize The size of the system.
 			 */
+			__device__
 			void velocityStep(simulation::particle** items, int i, double xNew0, double yNew0, double zNew0, double dt, double boxSize);
 
 	};

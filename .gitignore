@@ -6,3 +6,6 @@ bin/*
 .codelite/*
 *.workspace
 **/*.project
+.tern_port
+.tern_project
+

@@ -26,13 +26,17 @@ namespace simulation
 
 			//Information about the system.
 			int nParticles;
+			int *d_nParticles;
 			double concentration;
 			int boxSize;
+			int *d_boxSize;
 			int cellSize;
 			int cellScale;
 			double temp;
 			double currentTime;
+			double *d_currentTime;
 			double dTime;
+			double *d_dTime;
 
 			//Settings flags
 			int outputFreq;
@@ -44,22 +48,19 @@ namespace simulation
 
 			//System entities.
 			particle** particles;
+			particle** d_particles;
 			cell**** cells;
 
 			//System integrator.
 			integrators::I_integrator* integrator;
+			integrators::I_integrator* d_integrator;
 			physics::forces* sysForces;
+			physics::forces* d_sysForces;
 
 			/********************************************//**
 			*-------------------SYSTEM INIT------------------
 			 ***********************************************/
 
-			/**
-			 * @brief Creates the cell system.
-			 * @param numCells The number of cells to be created.
-			 * @param scale The number of cells in each dimension. (numCells^1/3)
-			 */
-			void initCells(int numCells, int scale);
 			/**
 			 * @brief Creates an initial uniform distribution of particles.
 			 * @param r The radius of the particles
@@ -128,17 +129,17 @@ namespace simulation
 			 * @brief Gets the number of particles in the system.
 			 * @return Number of particles.
 			 */
-			const int getNParticles() const { return nParticles; }
+			 int getNParticles() const { return nParticles; }
 			/**
 			 * @brief Gets the length of the system box.
 			 * @return length of the system box.
 			 */
-			const int getBoxSize() const { return boxSize; }
+			 int getBoxSize() const { return boxSize; }
 			/**
 			 * @brief Gets the length of a system cell.
 			 * @return cellSize.
 			 */
-			const int getCellSize() const { return cellSize; }
+			 int getCellSize() const { return cellSize; }
 
 			/********************************************//**
 			*-----------------SYSTEM HANDLING----------------

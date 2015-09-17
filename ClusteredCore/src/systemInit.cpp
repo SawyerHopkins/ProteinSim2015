@@ -29,104 +29,6 @@ namespace simulation
 	*------------------SYSTEM INIT-------------------
 	************************************************/
 
-	void system::initCells(int numCells, int scale)
-	{
-
-		//Create the cells.
-		cells = new cell***[scale];
-		for(int i=0; i < scale; i++)
-		{
-			cells[i] = new cell**[scale];
-			for(int j=0; j < scale; j++)
-			{
-				cells[i][j] = new cell*[scale];
-				for(int k=0; k < scale; k++)
-				{
-					cells[i][j][k] = new cell;
-				}
-			}
-		}
-
-		//Set the cell neighbors.
-		for(int x=0; x < scale; x++)
-		{
-			for(int y=0; y < scale; y++)
-			{
-				for(int z=0; z < scale; z++)
-				{
-					int left = x-1;
-					int right = x+1;
-					int top = y-1;
-					int bot = y+1;
-					int front = z-1;
-					int back = z+1;
-
-					if (x == 0)
-					{
-						left = (scale-1);
-					}
-					else if (x == (scale-1))
-					{
-						right = 0;
-					}
-
-					if (y == 0)
-					{
-						top = (scale-1);
-					}
-					else if (y == (scale-1))
-					{
-						bot = 0;
-					}
-
-					if (z == 0)
-					{
-						front = (scale-1);
-					}
-					else if (z == (scale-1))
-					{
-						back = 0;
-					}
-
-					//Set the 6 principle cells next the current cell.
-					//Access diagonals through combinations of these six.
-					cells[x][y][z]->left = cells[left][y][z];
-					cells[x][y][z]->right = cells[right][y][z];
-					cells[x][y][z]->top = cells[x][top][z];
-					cells[x][y][z]->bot = cells[x][bot][z];
-					cells[x][y][z]->front = cells[x][y][front];
-					cells[x][y][z]->back = cells[x][y][back];
-				}
-			}
-		}
-
-		//Check the cell neighborhood mapping.
-		for(int x=0; x < scale; x++)
-		{
-			for(int y=0; y < scale; y++)
-			{
-				for(int z=0; z < scale; z++)
-				{
-					cells[x][y][z]->createNeighborhood();
-				}
-			}
-		}
-
-		//Assign the particle to their starting cell.
-		for(int i=0; i < nParticles; i++)
-		{
-			int cx = particles[i]->getX() / cellSize;
-			int cy = particles[i]->getY() / cellSize;
-			int cz = particles[i]->getZ() / cellSize;
-
-			//Tell the particle what cell its in, then add to cell.
-			particles[i]->setCell(cx,cy,cz);
-			cells[cx][cy][cz]->addMember(particles[i]);
-
-		}
-
-	}
-
 	void system::initParticles(double r, double m)
 	{
 		particles = new particle*[nParticles];
@@ -167,6 +69,13 @@ namespace simulation
 
 		std::cout << "---Maxwell distribution created. Creating cell assignment.\n\n";
 
+		//Copy particles over.
+		cudaMalloc((void**)&d_particles, nParticles*sizeof(particle*))
+		for (int i = 0; i < nParticles; i++)
+		{
+			cudaMalloc((void **)&d_particles[i], sizeof(particle));
+			cudaMemcpy(d_particles[i], &particles[i], sizeof(particle), cudaMemcpyHostToDevice);
+		}
 	}
 
 	void system::initCheck(std::mt19937* gen, std::uniform_real_distribution<double>* distribution)

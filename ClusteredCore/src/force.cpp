@@ -32,55 +32,14 @@ namespace physics
 	forces::forces()
 	{
 		timeDependent=false;
-		omp_set_dynamic(0);
-		omp_set_num_threads(1);
 	}
 
 	forces::~forces()
 	{
 		//Free memory from the Force associated with the IForce Pointer.
-		for (std::vector<IForce*>::iterator i = flist.begin(); i != flist.end(); ++i)
-		{
-			delete[] *i;
-		}
 		//Free memory of the IForce Pointers.
-		delete[] &flist;
-		delete[] &timeDependent;
-	}
-
-	/********************************************//**
-	*-----------------FORCE MANAGEMENT---------------
-	 ***********************************************/
-
-	void forces::addForce(IForce* f)
-	{
-		flist.push_back(f);
-		if (f->isTimeDependent())
-		{
-			timeDependent=true;
-		}
-	}
-
-	void forces::getAcceleration(int nPart, int boxSize, double time, simulation::cell**** cells, simulation::particle** items)
-	{
-		#pragma omp parallel
-		{
-			#pragma omp for
-			for (int index = 0; index < nPart; index++)
-			{
-				//Resets the force on the particle.
-				items[index]->nextIter();
-
-				simulation::particle* p = items[index];
-				simulation::cell* itemCell = cells[p->getCX()][p->getCY()][p->getCZ()];
-
-				//Iterates through all forces.
-				for (std::vector<IForce*>::iterator it = flist.begin(); it != flist.end(); ++it)
-				{
-					(*it)->getAcceleration(index, nPart, boxSize, time, itemCell, items);
-				}
-			}
-		}
+		delete &flist;
+		delete &timeDependent;
 	}
 
 }

@@ -39,18 +39,21 @@ namespace physics
 			 * @param itemCell The cell containing the index particle. 
 			 * @param items All particles in the system.
 			 */
+			__device__ __host__
 			virtual void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items)=0;
 
 			/**
 			 * @brief Flag for a force dependent time.
 			 * @return True for time dependent. False otherwise. 
 			 */
+			__device__ __host__
 			virtual bool isTimeDependent()=0;
 
 			/**
 			 * @brief Get the name of the force for logging purposes.
 			 * @return 
 			 */
+			__device__ __host__
 			std::string getName() { return name; }
 
 	};
@@ -73,7 +76,7 @@ namespace physics
 		private:
 
 			//A vector of all forces in the system.
-			std::vector<IForce*> flist;
+			IForce* flist;
 			//Flagged if flist contains a time dependant force.
 			bool timeDependent;
 
@@ -89,55 +92,14 @@ namespace physics
 			~forces();
 
 			/**
-			 * @brief Adds a force to the management system.
-			 * @param f The force to add. Must implement IForce interface.
-			 */
-			void addForce(IForce* f);
-
-			/**
-			 * @brief Find the net force on all particles in the system.  
-			 * @param nPart The number of particles in the system.
-			 * @param boxSize The size of the system.
-			 * @param time The current system time.
-			 * @param cells The system cell manager.
-			 * @param items The particles in the system.
-			 */
-			void getAcceleration(int nPart, int boxSize, double time, simulation::cell**** cells, simulation::particle** items);
-
-			/**
 			 * @brief Checks if the system contains a time dependent force.
 			 * @return True if time dependent. False otherwise.
 			 */
+			__host__ __device__
 			bool isTimeDependent() { return timeDependent; }
 
-			/**
-			 * @brief Set the number of threads for OMP to use
-			 * @param num Number of threads.
-			 */
-			void setNumThreads(int num) { if (num > 0) {omp_set_num_threads(num);} }
-			/**
-			 * @brief Set the dynamic/static mode of operation.
-			 * @param num 0 for static. num > 0 for dynamics.
-			 */
-			void setDynamic(int num) { omp_set_dynamic(num); }
-			/**
-			 * @brief Set the default OMP target device.
-			 * @param num Device number.
-			 */
-			void setDevice(int num) { omp_set_default_device(num); }
-
-			//Iterators
-
-			/**
-			 * @brief Gets the beginning iterator of the force list.
-			 * @return flist.begin().
-			 */
-			std::vector<IForce*>::iterator getBegin() { return flist.begin(); }
-			/**
-			 * @brief Gets the end iterator of the force list.
-			 * @return flist.end();
-			 */
-			std::vector<IForce*>::iterator getEnd() { return flist.end(); }
+			__device__
+			IForce* getForce() { return flist; }
 
 	};
 
