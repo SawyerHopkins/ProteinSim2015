@@ -26,8 +26,10 @@ namespace simulation
 {
 
 	__device__
-	cell::cell()
+	cell::cell(int cellParts) : members(new particle*[cellParts])
 	{
+		maxMem = cellParts;
+		gridCounter = 0;
 		//Set neighbors as self until initialized by the system.
 		top = this;
 		bot = this;
@@ -43,33 +45,6 @@ namespace simulation
 		delete[] &members;
 		delete[] &neighbors;
 	}
-
-/*
-	__device__
-	void cell::addMember(particle* p)
-	{
-		//Adds member with name as the key.
-		bool search = true;
-		int i =0;
-		while (search)
-		{
-			if (members[i] == 0)
-			{
-				search = false;
-				members[i] = p;
-			}
-			i++;
-		}
-	}
-
-	__device__
-	void cell::removeMember(particle* p)
-	{
-		members[findIndex(p)] = 0;
-		//Removes the member by associated key.
-	}
-	 
-*/
 
 	__device__
 	int cell::findIndex(particle* p)

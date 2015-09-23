@@ -144,19 +144,19 @@ namespace simulation
 		}
 
 		double eap = (totEAP / double(nParticles));
-		double nClust = numClusters(outXYZ);
+		//double nClust = numClusters(outXYZ);
 		double avgCoor = double(totCoor) / double(nParticles);
 
 		//Output the current system statistics.
 		std::cout <<"\n<R>: " << avgCoor << " - Rt: " << totCoor << "\n";
 		std::cout <<"<EAP>: " << eap << "\n";
-		std::cout <<"<N>/Nc: " << nClust << "\n";
+		//std::cout <<"<N>/Nc: " << nClust << "\n";
 		std::cout <<"Temperature: " << getTemperature() << "\n";
 
 		//Output the number of clusters with time.
-		std::ofstream myFileClust(trialName + "/clustGraph.txt", std::ios_base::app | std::ios_base::out);
-		myFileClust << currentTime << " " << nClust << "\n";
-		myFileClust.close();
+		//std::ofstream myFileClust(trialName + "/clustGraph.txt", std::ios_base::app | std::ios_base::out);
+		//myFileClust << currentTime << " " << nClust << "\n";
+		//myFileClust.close();
 
 		//Output the average potential with time.
 		std::ofstream myFilePot(trialName + "/potGraph.txt", std::ios_base::app | std::ios_base::out);

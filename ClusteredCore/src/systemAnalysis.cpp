@@ -28,6 +28,7 @@ namespace simulation
 
 	int system::numClusters(int xyz)
 	{
+		/*
 		//A map of all the particles in the system by name.
 		std::map<int,particle*> selectionPool;
 
@@ -131,6 +132,8 @@ namespace simulation
 		return avgSize;
 
 		//return clusterPool.size();
+		*/
+		return 0;
 	}
 
 	double system::getTemperature()

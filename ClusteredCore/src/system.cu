@@ -21,10 +21,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #include "system.h"
+#include "globals.cuh"
 
 namespace simulation
 {
-	system::system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::forces* sysFcs)
+	system::system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs)
 	{
 
 		//Sets the trial name
@@ -112,7 +113,7 @@ namespace simulation
 		cellSize = boxSize / scale;
 		boxSize = cellSize * scale;
 		cellScale = scale;
-		int numCells = pow(scale,3.0);
+		numCells = pow(scale,3.0);
 
 		//Sets the actual concentration.
 		concentration = vP/pow(boxSize,3.0);
@@ -121,21 +122,33 @@ namespace simulation
 
 		//Create particles.
 		initParticles(r,m);
+		particlesPerCell = 10;
 
-		//Create cells.
-		initCells<<1,1>>(numCells, cellScale);
-		std::cout << "Created: " << numCells << " cells from scale: " <<  cellScale << "\n";
 
 		//Copy over system variables to device.
 		cudaMalloc((void **)&d_nParticles, sizeof(int));
 		cudaMalloc((void **)&d_boxSize, sizeof(int));
 		cudaMalloc((void **)&d_dTime, sizeof(double));
 		cudaMalloc((void **)&d_currentTime, sizeof(double));
+		cudaMalloc((void **)&d_cellScale, sizeof(int));
+		cudaMalloc((void **)&d_cellSize, sizeof(int));
+		cudaMalloc((void **)&d_numCells, sizeof(int));
+		cudaMalloc((void **)&d_particlesPerCell, sizeof(int));
 
 		cudaMemcpy(d_nParticles, &nParticles, sizeof(int), cudaMemcpyHostToDevice);
 		cudaMemcpy(d_boxSize, &boxSize, sizeof(int), cudaMemcpyHostToDevice);
 		cudaMemcpy(d_dTime, &dTime, sizeof(double), cudaMemcpyHostToDevice);
 		cudaMemcpy(d_currentTime, &currentTime, sizeof(double), cudaMemcpyHostToDevice);
+		cudaMemcpy(d_cellScale, &cellScale, sizeof(int), cudaMemcpyHostToDevice);
+		cudaMemcpy(d_cellSize, &cellSize, sizeof(int), cudaMemcpyHostToDevice);
+		cudaMemcpy(d_numCells, &numCells, sizeof(int), cudaMemcpyHostToDevice);
+		cudaMemcpy(d_particlesPerCell, &particlesPerCell, sizeof(int), cudaMemcpyHostToDevice);
+
+		//Create cells.
+		initCells<<<1,1>>>(numCells, cellScale, cells, particlesPerCell);
+		resetCells<<<scale,1>>>(d_cellScale, cells,d_particlesPerCell);
+		updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
+		std::cout << "Created: " << numCells << " cells from scale: " <<  cellScale << "\n";
 
 		writeSystemInit();
 
@@ -163,11 +176,12 @@ namespace simulation
 		while (currentTime < endTime)
 		{
 			//Get the forces acting on the system.
-			d_sysForces->getAcceleration<<<1,1>>>(d_nParticles,d_boxSize,d_currentTime,&cells,&d_particles);
+			getAcceleration<<<nParticles,1>>>(d_nParticles,d_boxSize,d_currentTime,cells,d_particles,d_sysForces);
 			//Get the next system.
-			d_integrator->nextSystem<<<1,1>>>(currentTime, dTime, nParticles, boxSize, &cells, &particles, d_sysForces);
+			nextSystem<<<nParticles,1>>>(d_currentTime, d_dTime, d_nParticles, d_boxSize, cells, d_particles, d_sysForces, d_integrator);
 			//Call cell manager.
-			updateCells<<<1,1>>>();
+			resetCells<<<cellScale,1>>>(d_cellScale, cells,d_particlesPerCell);
+			updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
 
 			//Output a snapshot every second.
 			if ( (counter % outputFreq) == 0 )

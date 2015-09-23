@@ -70,7 +70,7 @@ namespace simulation
 		std::cout << "---Maxwell distribution created. Creating cell assignment.\n\n";
 
 		//Copy particles over.
-		cudaMalloc((void**)&d_particles, nParticles*sizeof(particle*))
+		cudaMalloc((void**)&d_particles, nParticles*sizeof(particle*));
 		for (int i = 0; i < nParticles; i++)
 		{
 			cudaMalloc((void **)&d_particles[i], sizeof(particle));

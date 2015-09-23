@@ -24,7 +24,7 @@ SOFTWARE.*/
 
 namespace utilities
 {
-	__host__ __device__
+	__device__
 	double util::safeMod(double val, double base)
 	{
 		//0 mod n is always zero
@@ -54,7 +54,7 @@ namespace utilities
 		}
 	}
 
-	__host__ __device__
+	__device__
 	double util::safeMod0(double val0, double val, double base)
 	{
 		//The difference between the two values.
@@ -78,7 +78,7 @@ namespace utilities
 		}
 	}
 
-	__device__
+	__host__ __device__
 	double util::pbcDist(double X,double Y, double Z,double X1, double Y1,double Z1,double L)
 	{
 

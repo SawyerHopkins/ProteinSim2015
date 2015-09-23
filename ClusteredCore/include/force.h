@@ -39,7 +39,7 @@ namespace physics
 			 * @param itemCell The cell containing the index particle. 
 			 * @param items All particles in the system.
 			 */
-			__device__ __host__
+			__device__
 			virtual void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items)=0;
 
 			/**

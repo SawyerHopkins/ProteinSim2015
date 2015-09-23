@@ -31,12 +31,18 @@ namespace simulation
 			int boxSize;
 			int *d_boxSize;
 			int cellSize;
+			int *d_cellSize;
 			int cellScale;
+			int *d_cellScale;
 			double temp;
 			double currentTime;
 			double *d_currentTime;
 			double dTime;
 			double *d_dTime;
+			int particlesPerCell;
+			int *d_particlesPerCell;
+			int numCells;
+			int *d_numCells;
 
 			//Settings flags
 			int outputFreq;
@@ -51,11 +57,13 @@ namespace simulation
 			particle** d_particles;
 			cell**** cells;
 
+			uint2* particleHash;
+
 			//System integrator.
 			integrators::I_integrator* integrator;
 			integrators::I_integrator* d_integrator;
-			physics::forces* sysForces;
-			physics::forces* d_sysForces;
+			physics::IForce* sysForces;
+			physics::IForce* d_sysForces;
 
 			/********************************************//**
 			*-------------------SYSTEM INIT------------------
@@ -91,16 +99,6 @@ namespace simulation
 			 */
 			bool checkDir(std::string path);
 
-			/********************************************//**
-			*-----------------SYSTEM HANDLING----------------
-			 ***********************************************/
-
-			/**
-			 * @brief Updates the cells that the particles are located in.
-			 * @return 
-			 */
-			void updateCells();
-
 		public:
 
 			//Header Version.
@@ -114,7 +112,7 @@ namespace simulation
 			 * @brief Constructs the particle system.
 			 * @return Nothing.
 			 */
-			system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::forces* sysFcs);
+			system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs);
 			/**
 			 * @brief Destructs the particle system.
 			 * @return Nothing.

@@ -25,65 +25,62 @@ SOFTWARE.*/
 namespace integrators
 {
 
-	__global__
-	void brownianIntegrator::nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::forces* f)
+	__device__
+	void brownianIntegrator::nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::IForce* f)
 	{
 		//Checks what method is needed.
 		if (time == 0)
 		{
-			firstStep(time, dt, nParticles, boxSize, items, f);
+			firstStep(*time, *dt, *nParticles, *boxSize, items, f);
 		}
 		else
 		{
-			normalStep(time, dt, nParticles, boxSize, items, f);
+			normalStep(*time, *dt, *nParticles, *boxSize, items, f);
 		}
 	}
 
 	__device__
-	void brownianIntegrator::firstStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::forces* f)
+	void brownianIntegrator::firstStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::IForce* f)
 	{
-		//Add 4 threads to the team.
-		for (int i=0; i < nParticles; i++)
-		{
-
+		int i= (blockDim.x * blockIdx.x) + threadIdx.x;
 			//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 
-			memCorrX[i] = 0.0;
-			memCorrY[i] = 0.0;
-			memCorrZ[i] = 0.0;
+		memCorrX[i] = 0.0;
+		memCorrY[i] = 0.0;
+		memCorrZ[i] = 0.0;
 
-			memX[i] = (*Dist)(*gen);
-			memY[i] = (*Dist)(*gen);
-			memZ[i] = (*Dist)(*gen);
+		//memX[i] = (*Dist)(*gen);
+		//memY[i] = (*Dist)(*gen);
+		//memZ[i] = (*Dist)(*gen);
 
-			double m = 1.0/items[i]->getMass();
-			double xNew = items[i]->getX() + (items[i]->getVX() * coEff1 * dt) + (items[i]->getFX() * coEff3 * dt * dt * m) + (sig1 * memX[i]);
-			double yNew = items[i]->getY() + (items[i]->getVY() * coEff1 * dt) + (items[i]->getFY() * coEff3 * dt * dt * m) + (sig1 * memY[i]);
-			double zNew = items[i]->getZ() + (items[i]->getVZ() * coEff1 * dt) + (items[i]->getFZ() * coEff3 * dt * dt * m) + (sig1 * memZ[i]);
-			items[i]->setPos(xNew,yNew,zNew,boxSize);
-
-		}
+		double m = 1.0/items[i]->getMass();
+		double xNew = items[i]->getX() + (items[i]->getVX() * coEff1 * dt) + (items[i]->getFX() * coEff3 * dt * dt * m) + (sig1 * memX[i]);
+		double yNew = items[i]->getY() + (items[i]->getVY() * coEff1 * dt) + (items[i]->getFY() * coEff3 * dt * dt * m) + (sig1 * memY[i]);
+		double zNew = items[i]->getZ() + (items[i]->getVZ() * coEff1 * dt) + (items[i]->getFZ() * coEff3 * dt * dt * m) + (sig1 * memZ[i]);
+		items[i]->setPos(xNew,yNew,zNew,boxSize);
 	}
 
 	__device__
-	void brownianIntegrator::normalStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::forces* f)
+	void brownianIntegrator::normalStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::IForce* f)
 	{
+
+		int i = (blockDim.x * blockIdx.x) + threadIdx.x;
 
 		double dt2 = dt * dt;
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 		//New random walk.
-		memCorrX[i] = (*Dist)(*tgens[omp_get_thread_num()]);
-		memCorrY[i] = (*Dist)(*tgens[omp_get_thread_num()]);
-		memCorrZ[i] = (*Dist)(*tgens[omp_get_thread_num()]);
+		//memCorrX[i] = (*Dist)(*tgens[0]);
+		//memCorrY[i] = (*Dist)(*tgens[0]);
+		//memCorrZ[i] = (*Dist)(*tgens[0]);
 
 		//Correlation to last random walk.
-		memCorrX[i] = sig2 * ((corr * memX[i])+(dev * memCorrX[i]));
-		memCorrY[i] = sig2 * ((corr * memY[i])+(dev * memCorrY[i]));
-		memCorrZ[i] = sig2 * ((corr * memZ[i])+(dev * memCorrZ[i]));
+		//memCorrX[i] = sig2 * ((corr * memX[i])+(dev * memCorrX[i]));
+		//memCorrY[i] = sig2 * ((corr * memY[i])+(dev * memCorrY[i]));
+		//memCorrZ[i] = sig2 * ((corr * memZ[i])+(dev * memCorrZ[i]));
 
-		memX[i] = (*Dist)(*tgens[omp_get_thread_num()]);
-		memY[i] = (*Dist)(*tgens[omp_get_thread_num()]);
-		memZ[i] = (*Dist)(*tgens[omp_get_thread_num()]);
+		//memX[i] = (*Dist)(*tgens[0]);
+		//memY[i] = (*Dist)(*tgens[0]);
+		//memZ[i] = (*Dist)(*tgens[0]);
 
 		double m = 1.0/items[i]->getMass();
 
@@ -146,7 +143,6 @@ namespace integrators
 	__device__
 	void brownianIntegrator::velocityStep(simulation::particle** items, int i, double xNew0, double yNew0, double zNew0, double dt, double boxSize)
 	{
-
 		double m = 1.0/items[i]->getMass();
 
 		//Current position and previous position are already PBC safe.

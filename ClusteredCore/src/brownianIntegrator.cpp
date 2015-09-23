@@ -86,11 +86,6 @@ namespace integrators
 		Dist = new std::normal_distribution<double>(0.0,1.0);
 
 		//Create thread safe random devices.
-		for (int i = 0; i < omp_get_max_threads(); i++)
-		{
-			double tSeed = (*Dist)(*gen);
-			tgens[i] = new std::mt19937(tSeed);
-		}
 
 		std::cout.precision(7);
 

@@ -76,7 +76,7 @@ namespace utilities
 			 * @param L The size of the system.
 			 * @return The distance between the two particles.
 			 */
-			__device__
+			__device__ __host__
 			static double pbcDist(double X,double Y, double Z,double X1, double Y1,double Z1,double L);
 
 			//

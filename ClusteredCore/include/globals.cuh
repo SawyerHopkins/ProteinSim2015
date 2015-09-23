@@ -20,12 +20,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.*/
 
-#include "force.h"
+#include "integrator.h"
 
-namespace physics
-{
 	/********************************************//**
-	*-----------------FORCE MANAGEMENT---------------
+	*--------------CUDA FORCE MANAGEMENT-------------
 	 ***********************************************/
 	/**
 	 * @brief Find the net force on all particles in the system.  
@@ -36,46 +34,40 @@ namespace physics
 	 * @param items The particles in the system.
 	 */
 	__global__
-	void getAcceleration(int *nPart, int *boxSize, double *time, simulation::cell**** cells, simulation::particle** items, IForce* flist)
+	void getAcceleration(int *nPart, int *boxSize, double *time, simulation::cell**** cells, simulation::particle** items, physics::IForce* flist)
 	{
-		int index = 0;
-		for (index; index < nPart; index++)
-		{
-			//Resets the force on the particle.
-			items[index]->nextIter();
+		int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+		items[index]->nextIter();
+		simulation::particle* p = items[index];
+		simulation::cell* itemCell = cells[p->getCX()][p->getCY()][p->getCZ()];
 
-			simulation::particle* p = items[index];
-			simulation::cell* itemCell = cells[p->getCX()][p->getCY()][p->getCZ()];
-
-			//Iterates through all forces.
-			flist->getAcceleration(index, *nPart, *boxSize, *time, itemCell, items);
-		}
+		//Iterates through all forces.
+		flist->getAcceleration(index, *nPart, *boxSize, *time, itemCell, items);
 	}
 
-}
-
-namespace integrators
-{
+	/********************************************//**
+	*-----------CUDA INTEGRATION MANAGEMENT----------
+	 ***********************************************/
 
 	__global__
-	void brownianIntegrator::nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::forces* f, I_integrator* inter)
+	void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::IForce* f, integrators::I_integrator* inter)
 	{
-		inter->nextSystem(time, dt, nParticles, boxSize, cells, items, f)
+		inter->nextSystem(time, dt, nParticles, boxSize, cells, items, f);
 	}
 
-}
 
-namespace simulation
-{
+	/********************************************//**
+	*---------------CUDA CELL MANAGEMENT-------------
+	 ***********************************************/
 	/**
 	 * @brief Creates the cell system.
 	 * @param numCells The number of cells to be created.
 	 * @param scale The number of cells in each dimension. (numCells^1/3)
 	 */
 	__global__
-	void system::initCells(int numCells, int scale, simulation::cell**** cells, simulation::particle** d_particles)
+	void initCells(int numCells, int scale, simulation::cell**** cells, int particlesPerCell)
 	{
-
+		using namespace simulation;
 		//Create the cells.
 		cells = new cell***[scale];
 		for(int i=0; i < scale; i++)
@@ -86,7 +78,7 @@ namespace simulation
 				cells[i][j] = new cell*[scale];
 				for(int k=0; k < scale; k++)
 				{
-					cells[i][j][k] = new cell();
+					cells[i][j][k] = new cell(particlesPerCell);
 				}
 			}
 		}
@@ -156,18 +148,57 @@ namespace simulation
 			}
 		}
 
-		//Assign the particle to their starting cell.
-		for(int i=0; i < nParticles; i++)
-		{
-			int cx = d_particles[i]->getX() / cellSize;
-			int cy = d_particles[i]->getY() / cellSize;
-			int cz = d_particles[i]->getZ() / cellSize;
+	}
 
-			//Tell the particle what cell its in, then add to cell.
-			d_particles[i]->setCell(cx,cy,cz);
-			cells[cx][cy][cz]->addMember(&(d_particles[i]));
+	/**
+	 * @brief Creates the cell system.
+	 * @param numCells The number of cells to be created.
+	 * @param scale The number of cells in each dimension. (numCells^1/3)
+	 */
+	__global__
+	void updateCells(int *scale, int *size, simulation::cell**** cells, simulation::particle** d_particles)
+	{
+			int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+			//New cell
+			int cX = int( d_particles[index]->getX() / double(*size) );
+			int cY = int( d_particles[index]->getY() / double(*size) );
+			int cZ = int( d_particles[index]->getZ() / double(*size) );
 
-		}
+			//Old cell
+			int cX0 = d_particles[index]->getCX();
+			int cY0 = d_particles[index]->getCY();
+			int cZ0 = d_particles[index]->getCZ();
+
+			if ((cX != cX0) || (cY != cY0) || (cZ != cZ0))
+			{
+
+				if (cX > ((*scale)-1))
+				{
+					debugging::error::throwCellBoundsError(cX,cY,cZ);
+				}
+				if (cY > ((*scale)-1))
+				{
+					debugging::error::throwCellBoundsError(cX,cY,cZ);
+				}
+				if (cZ > ((*scale)-1))
+				{
+					debugging::error::throwCellBoundsError(cX,cY,cZ);
+				}
+
+				d_particles[index]->setCell(cX,cY,cZ);
+
+				int j = atomicAdd( &(cells[cX][cY][cZ]->gridCounter) ,1);
+				cells[cX][cY][cZ]->members[j] = d_particles[index];
+			}
+	}
+
+	__global__
+	void resetCells(int *scale, simulation::cell**** cells, int *particlesPerCell)
+	{
+		int x = blockIdx.x;
+		int y = blockIdx.y;
+		int z = blockIdx.z;
+
+		cells[x][y][z]->gridCounter = 0;
 
 	}
-}

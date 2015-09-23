@@ -18,21 +18,19 @@ namespace simulation
 
 		private:
 
-			//The particles in the cell.
-			//std::map<int,particle*> members;
 			cell* neighbors[27];
-			//std::vector<cell*> neighbors;
 
 		public:
 
 			//Header Version.
 			static const int version = 1;
 			int maxMem;
+			int gridCounter;
 			particle** members;
 
 			//Constructor and Destructor
 			__device__
-			cell();
+			cell(int cellParts);
 			__device__
 			~cell();
 
