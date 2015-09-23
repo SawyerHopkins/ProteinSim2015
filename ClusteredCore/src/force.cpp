@@ -29,9 +29,10 @@ namespace physics
 	*---------------MANAGER CONSTRUCTION-------------
 	 ***********************************************/
 
-	forces::forces()
+	forces::forces(IForce* add)
 	{
 		timeDependent=false;
+		flist = add;
 	}
 
 	forces::~forces()

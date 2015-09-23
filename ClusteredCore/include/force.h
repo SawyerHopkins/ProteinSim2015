@@ -85,7 +85,7 @@ namespace physics
 			/**
 			 * @brief Creates the force management system.
 			 */
-			forces();
+			forces(IForce* add);
 			/**
 			 * @brief Releases the management system.
 			 */

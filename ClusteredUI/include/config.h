@@ -5,7 +5,6 @@
 #include <sstream>
 #include <iostream>
 #include <map>
-#include <regex>
 
 namespace configReader
 {

@@ -72,19 +72,18 @@ void runScript()
 	physics::IForce* loadForce = factory(cfg);
 
 	//Add the force to the force manager.
-	physics::forces * force = new physics::forces();
-	force->addForce(loadForce);
+	physics::forces * force = new physics::forces(loadForce);
 
-	util::writeTerminal("Creating force manager.\n", Colour::Green);
-	int num_threads = cfg->getParam<double>("threads",1);
-	force->setNumThreads(num_threads);
+	//til::writeTerminal("Creating force manager.\n", Colour::Green);
+	//int num_threads = cfg->getParam<double>("threads",1);
+	//force->setNumThreads(num_threads);
 
-	int num_dyn = cfg->getParam<double>("omp_dynamic",0);
-	force->setDynamic(num_dyn);
+	//int num_dyn = cfg->getParam<double>("omp_dynamic",0);
+	//force->setDynamic(num_dyn);
 
 	//Does not work on GCC 4.8 and below.
-	int num_dev = cfg->getParam<double>("omp_device",0);
-	force->setDevice(num_dev);
+	//int num_dev = cfg->getParam<double>("omp_device",0);
+	//force->setDevice(num_dev);
 
 	/*-------------INTEGRATOR-------------*/
 
@@ -96,7 +95,7 @@ void runScript()
 
 	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
 	//Creates the particle system.
-	simulation::system * sys = new simulation::system(cfg, difeq, force);
+	simulation::system * sys = new simulation::system(cfg, difeq, loadForce);
 
 	/*---------------RUNNING--------------*/
 

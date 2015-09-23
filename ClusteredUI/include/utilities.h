@@ -1,6 +1,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
+#include <math.h>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
@@ -13,6 +14,10 @@
 #include <map>
 #include "error.h"
 #include "timer.h"
+#include <cuda_runtime.h>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+#include <thrust/pair.h>
 
 namespace utilities
 {
@@ -51,6 +56,7 @@ namespace utilities
 			 * @param base The base of the modular divison.
 			 * @return 
 			 */
+			__host__ __device__
 			static double safeMod(double val, double base);
 
 			/**
@@ -60,6 +66,7 @@ namespace utilities
 			 * @param base The size of the system.
 			 * @return The new old position.
 			 */
+			__host__ __device__
 			static double safeMod0(double val0, double val, double base);
 
 			/**
@@ -69,6 +76,7 @@ namespace utilities
 			 * @param L The size of the system.
 			 * @return The distance between the two particles.
 			 */
+			__device__ __host__
 			static double pbcDist(double X,double Y, double Z,double X1, double Y1,double Z1,double L);
 
 			//
@@ -89,6 +97,7 @@ namespace utilities
 			 * @param r The magnitude of the distance.
 			 * @param acc The array hold the unit vectors.
 			 */
+			__device__
 			static void unitVectorSimple(double dX, double dY, double dZ, double r, double (&acc)[3]);
 
 			/**
@@ -99,6 +108,7 @@ namespace utilities
 			 * @param r The distance between the particles.
 			 * @param L The size of the box.
 			 */
+			__device__
 			static void unitVectorAdv(double X,double Y, double Z,double X1, double Y1,double Z1,double (&acc)[3],double r,int L);
 
 			/**
@@ -123,6 +133,7 @@ namespace utilities
 			 * @param exp The exponent.
 			 * @return 
 			 */
+			__device__
 			static double powBinaryDecomp(double base, int exp);
 
 	};

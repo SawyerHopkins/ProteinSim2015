@@ -26,13 +26,23 @@ namespace simulation
 
 			//Information about the system.
 			int nParticles;
+			int *d_nParticles;
 			double concentration;
 			int boxSize;
+			int *d_boxSize;
 			int cellSize;
+			int *d_cellSize;
 			int cellScale;
+			int *d_cellScale;
 			double temp;
 			double currentTime;
+			double *d_currentTime;
 			double dTime;
+			double *d_dTime;
+			int particlesPerCell;
+			int *d_particlesPerCell;
+			int numCells;
+			int *d_numCells;
 
 			//Settings flags
 			int outputFreq;
@@ -44,22 +54,21 @@ namespace simulation
 
 			//System entities.
 			particle** particles;
+			particle** d_particles;
 			cell**** cells;
+
+			uint2* particleHash;
 
 			//System integrator.
 			integrators::I_integrator* integrator;
-			physics::forces* sysForces;
+			integrators::I_integrator* d_integrator;
+			physics::IForce* sysForces;
+			physics::IForce* d_sysForces;
 
 			/********************************************//**
 			*-------------------SYSTEM INIT------------------
 			 ***********************************************/
 
-			/**
-			 * @brief Creates the cell system.
-			 * @param numCells The number of cells to be created.
-			 * @param scale The number of cells in each dimension. (numCells^1/3)
-			 */
-			void initCells(int numCells, int scale);
 			/**
 			 * @brief Creates an initial uniform distribution of particles.
 			 * @param r The radius of the particles
@@ -90,16 +99,6 @@ namespace simulation
 			 */
 			bool checkDir(std::string path);
 
-			/********************************************//**
-			*-----------------SYSTEM HANDLING----------------
-			 ***********************************************/
-
-			/**
-			 * @brief Updates the cells that the particles are located in.
-			 * @return 
-			 */
-			void updateCells();
-
 		public:
 
 			//Header Version.
@@ -113,7 +112,7 @@ namespace simulation
 			 * @brief Constructs the particle system.
 			 * @return Nothing.
 			 */
-			system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::forces* sysFcs);
+			system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs);
 			/**
 			 * @brief Destructs the particle system.
 			 * @return Nothing.
@@ -128,17 +127,17 @@ namespace simulation
 			 * @brief Gets the number of particles in the system.
 			 * @return Number of particles.
 			 */
-			const int getNParticles() const { return nParticles; }
+			 int getNParticles() const { return nParticles; }
 			/**
 			 * @brief Gets the length of the system box.
 			 * @return length of the system box.
 			 */
-			const int getBoxSize() const { return boxSize; }
+			 int getBoxSize() const { return boxSize; }
 			/**
 			 * @brief Gets the length of a system cell.
 			 * @return cellSize.
 			 */
-			const int getCellSize() const { return cellSize; }
+			 int getCellSize() const { return cellSize; }
 
 			/********************************************//**
 			*-----------------SYSTEM HANDLING----------------

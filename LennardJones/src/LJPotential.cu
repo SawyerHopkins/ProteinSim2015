@@ -66,17 +66,20 @@ LennardJones::LennardJones(configReader::config* cfg)
 	utilities::util::writeTerminal("---Lennard Jones Potential successfully added.\n\n", utilities::Colour::Cyan);
 }
 
+__device__
 void LennardJones::iterCells(int boxSize, double time, particle* index, cell* itemCell)
 {
 	double pot = 0;
 
-	for(std::map<int,particle*>::iterator it=itemCell->getBegin(); it != itemCell->getEnd(); ++it)
+	int i = 0;
+	while (i < itemCell->gridCounter)
 	{
-		if (it->second->getName() != index->getName())
+		particle* it = itemCell->members[i];
+		if (it->getName() != index->getName())
 		{
-			//Distance between the two particles.
+			//Distance between the two particles. 
 			double rSquared = utilities::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
-																it->second->getX(), it->second->getY(), it->second->getZ(),
+																it->getX(), it->getY(), it->getZ(),
 																boxSize);
 
 			//If the particles are in the potential well.
@@ -85,10 +88,10 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 				double r = sqrt(rSquared);
 
 				//If the particles overlap there are problems.
-				double size = (index->getRadius() + it->second->getRadius());
+				double size = (index->getRadius() + it->getRadius());
 				if(r< (0.8*size) )
 				{
-					debugging::error::throwParticleOverlapError(index->getName(), it->second->getName(), r);
+					debugging::error::throwParticleOverlapError(index->getName(), it->getName(), r);
 				}
 
 				//-------------------------------------
@@ -140,7 +143,7 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 				//Normalize the force.
 				double unitVec[3] {0.0,0.0,0.0};
 				utilities::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
-													it->second->getX(), it->second->getY(), it->second->getZ(),
+													it->getX(), it->getY(), it->getZ(),
 													unitVec, r, boxSize);
 
 				//Updates the acceleration.;
@@ -158,22 +161,26 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 				//Add to the net force on the particle.
 				if (r < 1.1)
 				{
-					index->updateForce(fx,fy,fz,pot,it->second);
+					index->updateForce(fx,fy,fz,pot,it);
 				}
 				else
 				{
-					index->updateForce(fx,fy,fz,pot,it->second,false);
+					index->updateForce(fx,fy,fz,pot,it,false);
 				}
 			}
 		}
+		i++;
 	}
 }
 
+__device__
 void LennardJones::getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items)
 {
-	for(auto it = itemCell->getFirstNeighbor(); it != itemCell->getLastNeighbor(); ++it)
+	int i = 0;
+	while (i < 27)
 	{
-		iterCells(boxSize,time,items[index],*it);
+		iterCells(boxSize, time, items[index], itemCell->getNeighbor(i));
+		i++;
 	}
 }
 

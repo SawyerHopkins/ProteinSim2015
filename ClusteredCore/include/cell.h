@@ -61,7 +61,7 @@ namespace simulation
 			 * @return 
 			 */
 			__device__
-			const cell* getNeighbor(int i) { return neighbors[i]; }
+			cell* getNeighbor(int i) { return neighbors[i]; }
 			/**
 			 * @brief Creates a vector containing points to all adjacent cells.
 			 */

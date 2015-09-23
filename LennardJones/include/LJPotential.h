@@ -1,5 +1,4 @@
 #include "force.h"
-#include "utilities.h"
 
 /**
  * @class Yukawa
@@ -47,11 +46,13 @@ private:
 		 * @param itemCell The cell containing the index particle.
 		 * @param items All particles in the system.
 		 */
+		__device__
 		void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items);
 		/**
 		 * @brief Flag for a force dependent time.
 		 * @return True for time dependent. False otherwise. 
 		 */
+		__device__ __host__
 		bool isTimeDependent() { return false; }
 		/**
 		 * @brief Checks for particle interation between the index particle and all particles in the provided cell.
@@ -60,6 +61,7 @@ private:
 		 * @param index The particle to find the force on.
 		 * @param itemCell The cell to check for interactions in.
 		 */
+		__device__
 		void iterCells(int boxSize, double time, simulation::particle* index, simulation::cell* itemCell);
 
 };
