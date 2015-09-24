@@ -73,6 +73,8 @@ namespace simulation
 			*--------------SYSTEM CONSTRUCTION---------------
 			************************************************/
 
+			__device__ __host__
+			particle(){};
 			//Constructor/Destructor
 			/**
 			 * @brief Creates a new particle with specified name.
@@ -87,6 +89,9 @@ namespace simulation
 			 */
 			__device__ __host__
 			~particle();
+
+			__device__ __host__
+			void init(int pid);
 
 			/********************************************//**
 			*-----------------SYSTEM GETTERS-----------------

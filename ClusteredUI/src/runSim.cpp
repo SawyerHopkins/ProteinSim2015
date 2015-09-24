@@ -67,6 +67,15 @@ void runScript()
 		util::writeTerminal("\n\nCould not find symbol: getForce\n\n", Colour::Red);
 		return;
 	}
+	
+	//Set the number of particles.
+	int nParticles = cfg->getParam<int>("nParticles",0);
+
+	if (nParticles == 0)
+	{
+		util::writeTerminal("\n\nSystem must start with more than zero particles.", Colour::Red);
+		return;
+	}
 
 	//Create a new force instance from the factory.
 	physics::IForce* loadForce = factory(cfg);
@@ -95,7 +104,7 @@ void runScript()
 
 	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
 	//Creates the particle system.
-	simulation::system * sys = new simulation::system(cfg, difeq, loadForce);
+	simulation::system * sys = new simulation::system(cfg, difeq, loadForce, nParticles);
 
 	/*---------------RUNNING--------------*/
 

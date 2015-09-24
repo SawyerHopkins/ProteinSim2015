@@ -45,7 +45,7 @@ namespace simulation
 			//Write the particle positions in XYZ format, spoofing all particles as Hydrogen.
 			for (int i =0; i < nParticles; i++)
 			{
-				myFile << "H " << particles[i]->getX() << " " << particles[i]->getY() << " " << particles[i]->getZ() << "\n";
+				myFile << "H " << particles[i].getX() << " " << particles[i].getY() << " " << particles[i].getZ() << "\n";
 			}
 		}
 	}
@@ -58,10 +58,10 @@ namespace simulation
 		//Write each point in the system as a line of csv formatted as: X,Y,Z
 		for (int i = 0; i < nParticles; i++)
 		{
-			myFile << particles[i]->getX() << "," << particles[i]->getY() << "," << particles[i]->getZ() << ",";
-			myFile << particles[i]->getX0() << "," << particles[i]->getY0() << "," << particles[i]->getZ0() << ",";
-			myFile << particles[i]->getFX() << "," << particles[i]->getFY() << "," << particles[i]->getFZ() << ",";
-			myFile << particles[i]->getFX0() << "," << particles[i]->getFY0() << "," << particles[i]->getFZ0();
+			myFile << particles[i].getX() << "," << particles[i].getY() << "," << particles[i].getZ() << ",";
+			myFile << particles[i].getX0() << "," << particles[i].getY0() << "," << particles[i].getZ0() << ",";
+			myFile << particles[i].getFX() << "," << particles[i].getFY() << "," << particles[i].getFZ() << ",";
+			myFile << particles[i].getFX0() << "," << particles[i].getFY0() << "," << particles[i].getFZ0();
 			if (i < (nParticles-1))
 			{
 				myFile << "\n";
@@ -77,9 +77,9 @@ namespace simulation
 		//Get V^2 for each particle.
 		for (int i = 0; i < nParticles; i++)
 		{
-			v2 += particles[i]->getVX()*particles[i]->getVX();
-			v2 += particles[i]->getVY()*particles[i]->getVY();
-			v2 += particles[i]->getVZ()*particles[i]->getVZ();
+			v2 += particles[i].getVX()*particles[i].getVX();
+			v2 += particles[i].getVY()*particles[i].getVY();
+			v2 += particles[i].getVZ()*particles[i].getVZ();
 		}
 		//Average v2.
 		double vAvg = v2 / float(nParticles);
@@ -139,8 +139,8 @@ namespace simulation
 		int totEAP = 0;
 		for (int i=0; i<nParticles; i++)
 		{
-			totCoor+=particles[i]->getCoorNumber();
-			totEAP+=particles[i]->getPotential();
+			totCoor+=particles[i].getCoorNumber();
+			totEAP+=particles[i].getPotential();
 		}
 
 		double eap = (totEAP / double(nParticles));

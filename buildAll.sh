@@ -16,20 +16,6 @@ cd ../
 
 echo
 tput setaf 2
-echo Making AOPotential
-tput setaf 7
-echo
-
-cd AOPotential
-make clean
-echo
-./AOPotential.sh
-cd ../
-
-#----------
-
-echo
-tput setaf 2
 echo Making Lennard Jones Potential
 tput setaf 7
 echo
@@ -62,5 +48,5 @@ echo Copying Forces
 tput setaf 7
 echo
 
-cp AOPotential/bin/AOPot.so ClusteredUI/bin/AOPot.so
 cp LennardJones/bin/LJ.so ClusteredUI/bin/LJ.so
+cp settings.cfg ClusteredUI/bin/settings.cfg

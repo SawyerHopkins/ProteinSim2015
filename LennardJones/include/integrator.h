@@ -41,7 +41,7 @@ namespace integrators
 			 * @return Return 0 for no error.
 			 */
 			__device__
-			virtual void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::IForce* f)=0;
+			virtual void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle* items, physics::IForce* f)=0;
 
 			/**
 			 * @brief Get the name of the integrator for logging purposes.
@@ -166,7 +166,7 @@ namespace integrators
 			 * @return Return 0 for no error.
 			 */
 			__device__
-			void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::IForce* f);
+			void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle* items, physics::IForce* f);
 
 			/**
 			 * @brief Integrates to the next system state.
@@ -179,7 +179,7 @@ namespace integrators
 			 * @return Return 0 for no error.
 			 */
 			__device__
-			void firstStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::IForce* f);
+			void firstStep(double time, double dt, int nParticles, int boxSize, simulation::particle* items, physics::IForce* f);
 
 			/**
 			 * @brief Integrates to the next system state.
@@ -192,7 +192,7 @@ namespace integrators
 			 * @return Return 0 for no error.
 			 */
 			__device__
-			void normalStep(double time, double dt, int nParticles, int boxSize, simulation::particle** items, physics::IForce* f);
+			void normalStep(double time, double dt, int nParticles, int boxSize, simulation::particle* items, physics::IForce* f);
 
 			/**
 			 * @brief Integrates the velocity when desired.
@@ -203,7 +203,7 @@ namespace integrators
 			 * @param boxSize The size of the system.
 			 */
 			__device__
-			void velocityStep(simulation::particle** items, int i, double xNew0, double yNew0, double zNew0, double dt, double boxSize);
+			void velocityStep(simulation::particle* items, int i, double xNew0, double yNew0, double zNew0, double dt, double boxSize);
 
 	};
 

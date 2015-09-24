@@ -31,8 +31,6 @@ namespace simulation
 
 	void system::initParticles(double r, double m)
 	{
-		particles = new particle*[nParticles];
-
 		//If there is no inital seed create one.
 		if (seed==0)
 		{
@@ -46,14 +44,14 @@ namespace simulation
 		//Iterates through all points.
 		for(int i = 0; i < nParticles; i++)
 		{
-			particles[i] = new particle(i);
+			particles[i].init(i);
 
-			particles[i]->setX( distribution(gen) * boxSize , boxSize);
-			particles[i]->setY( distribution(gen) * boxSize , boxSize);
-			particles[i]->setZ( distribution(gen) * boxSize , boxSize);
+			particles[i].setX( distribution(gen) * boxSize , boxSize);
+			particles[i].setY( distribution(gen) * boxSize , boxSize);
+			particles[i].setZ( distribution(gen) * boxSize , boxSize);
 
-			particles[i]->setRadius(r);
-			particles[i]->setMass(m);
+			particles[i].setRadius(r);
+			particles[i].setMass(m);
 
 		}
 
@@ -69,13 +67,15 @@ namespace simulation
 
 		std::cout << "---Maxwell distribution created. Creating cell assignment.\n\n";
 
-		//Copy particles over.
-		cudaMalloc((void**)&d_particles, nParticles*sizeof(particle*));
-		for (int i = 0; i < nParticles; i++)
-		{
-			cudaMalloc((void **)&d_particles[i], sizeof(particle));
-			cudaMemcpy(d_particles[i], &particles[i], sizeof(particle), cudaMemcpyHostToDevice);
-		}
+		std::cout << "---ok.\n\n";
+
+		int size = nParticles * sizeof(particle);
+
+		std::cout << "---good.\n\n";
+		cudaMalloc((void **)&d_particles, size);
+		std::cout << "---better.\n\n";
+		cudaMemcpy(d_particles, particles, size, cudaMemcpyHostToDevice);
+		std::cout << "---best.\n\n";
 	}
 
 	void system::initCheck(std::mt19937* gen, std::uniform_real_distribution<double>* distribution)
@@ -101,12 +101,12 @@ namespace simulation
 					{
 						//Gets the distance between the two particles.
 
-						double radius = utilities::util::pbcDist(particles[i]->getX(), particles[i]->getY(), particles[i]->getZ(),
-																			particles[j]->getX(), particles[j]->getY(), particles[j]->getZ(),
+						double radius = utilities::util::pbcDist(particles[i].getX(), particles[i].getY(), particles[i].getZ(),
+																			particles[j].getX(), particles[j].getY(), particles[j].getZ(),
 																			boxSize);
 
 						//Gets the sum of the particle radius.
-						double r = particles[i]->getRadius() + particles[j]->getRadius();
+						double r = particles[i].getRadius() + particles[j].getRadius();
 
 						//If the particles are slightly closer than twice their radius resolve conflict.
 						if (radius < 1.1*r)
@@ -124,9 +124,9 @@ namespace simulation
 							resolution = false;
 
 							//Set new uniform random position.
-							particles[i]->setX( (*distribution)(*gen) * boxSize , boxSize );
-							particles[i]->setY( (*distribution)(*gen) * boxSize , boxSize );
-							particles[i]->setZ( (*distribution)(*gen) * boxSize , boxSize );
+							particles[i].setX( (*distribution)(*gen) * boxSize , boxSize );
+							particles[i].setY( (*distribution)(*gen) * boxSize , boxSize );
+							particles[i].setZ( (*distribution)(*gen) * boxSize , boxSize );
 						}
 					}
 				}
@@ -148,21 +148,21 @@ namespace simulation
 			r1=(*distribution)(*gen);
 			r2=(*distribution)(*gen);
 
-			particles[i]->setVX(sqrt(-2.0 * log(r1) ) * cos(8.0*atan(1)*r2));
+			particles[i].setVX(sqrt(-2.0 * log(r1) ) * cos(8.0*atan(1)*r2));
 		}
 
 		for(i=0; i<nParticles; i++)
 		{
 			r1=(*distribution)(*gen);
 			r2=(*distribution)(*gen);
-			particles[i]->setVY(sqrt(-2.0 * log(r1) ) * cos(8.0*atan(1)*r2));
+			particles[i].setVY(sqrt(-2.0 * log(r1) ) * cos(8.0*atan(1)*r2));
 		}
 
 		for(i=0; i<nParticles; i++)
 		{
 			r1=(*distribution)(*gen);
 			r2=(*distribution)(*gen);
-			particles[i]->setVZ(sqrt(-2.0 * log(r1) ) * cos(8.0*atan(1)*r2));
+			particles[i].setVZ(sqrt(-2.0 * log(r1) ) * cos(8.0*atan(1)*r2));
 		}
 		
 		//Normalize the initial velocities according to the system temperature.
@@ -171,7 +171,7 @@ namespace simulation
 		
 		for(i=0; i<nParticles; i++)
 		{
-			double vx = particles[i]->getVX();
+			double vx = particles[i].getVX();
 			vsum=vsum+vx;
 			vsum2=vsum2+(vx*vx);
 		}
@@ -184,7 +184,7 @@ namespace simulation
 
 		for(i=0; i<nParticles; i++)
 		{
-			particles[i]->setVX(ratio*(particles[i]->getVX()-vsum));
+			particles[i].setVX(ratio*(particles[i].getVX()-vsum));
 		}
 
 		//maxwell for vy//
@@ -193,7 +193,7 @@ namespace simulation
 		
 		for(i=0; i<nParticles; i++)
 		{
-			double vy = particles[i]->getVY();
+			double vy = particles[i].getVY();
 			vsum=vsum+vy;
 			vsum2=vsum2+(vy*vy);
 		}
@@ -206,7 +206,7 @@ namespace simulation
 
 		for(i=0; i<nParticles; i++)
 		{
-			particles[i]->setVY(ratio*(particles[i]->getVY()-vsum));
+			particles[i].setVY(ratio*(particles[i].getVY()-vsum));
 		}
 
 		//maxwell for vz//
@@ -215,7 +215,7 @@ namespace simulation
 		
 		for(i=0; i<nParticles; i++)
 		{
-			double vz = particles[i]->getVZ();
+			double vz = particles[i].getVZ();
 			vsum=vsum+vz;
 			vsum2=vsum2+(vz*vz);
 		}
@@ -228,7 +228,7 @@ namespace simulation
 
 		for(i=0; i<nParticles; i++)
 		{
-			particles[i]->setVZ(ratio*(particles[i]->getVZ()-vsum));
+			particles[i].setVZ(ratio*(particles[i].getVZ()-vsum));
 		}
 
 		//Write the system temp to verify.

@@ -53,8 +53,8 @@ namespace simulation
 			int seed;
 
 			//System entities.
-			particle** particles;
-			particle** d_particles;
+			particle* particles;
+			particle* d_particles;
 			cell**** cells;
 
 			uint2* particleHash;
@@ -112,7 +112,7 @@ namespace simulation
 			 * @brief Constructs the particle system.
 			 * @return Nothing.
 			 */
-			system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs);
+			system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs, int nParts);
 			/**
 			 * @brief Destructs the particle system.
 			 * @return Nothing.
@@ -161,7 +161,7 @@ namespace simulation
 			 * @brief Writes the position of a particle.
 			 * @param index The index of the particle to write.
 			 */
-			void writePosition(int index) { particles[index]->writePosition(); }
+			void writePosition(int index) { particles[index].writePosition(); }
 			/**
 			 * @brief Writes the system to file.
 			 * @param name The name of the file to write to.

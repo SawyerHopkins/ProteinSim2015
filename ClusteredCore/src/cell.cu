@@ -25,7 +25,7 @@ SOFTWARE.*/
 namespace simulation
 {
 
-	__device__
+	__host__ __device__
 	cell::cell(int cellParts) : members(new particle*[cellParts])
 	{
 		maxMem = cellParts;
@@ -39,14 +39,14 @@ namespace simulation
 		right = this;
 	}
 
-	__device__
+	__host__ __device__
 	cell::~cell()
 	{
 		delete[] &members;
 		delete[] &neighbors;
 	}
 
-	__device__
+	__host__ __device__
 	int cell::findIndex(particle* p)
 	{
 		int i =0;
@@ -58,7 +58,7 @@ namespace simulation
 		return -1;
 	}
 
-	__device__
+	__host__ __device__
 	void cell::createNeighborhood()
 	{
 		//Add the cross section at the cell.

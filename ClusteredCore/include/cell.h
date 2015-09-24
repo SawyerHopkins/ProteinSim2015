@@ -29,9 +29,9 @@ namespace simulation
 			particle** members;
 
 			//Constructor and Destructor
-			__device__
+			__host__ __device__
 			cell(int cellParts);
-			__device__
+			__host__ __device__
 			~cell();
 
 			//Cell neighbors
@@ -47,25 +47,25 @@ namespace simulation
 			 * @param p
 			 * @return 
 			 */
-			__device__
+			__host__ __device__
 			int findIndex(particle* p);
 			/**
 			 * @brief Gets the member at specific index.
 			 * @param key
 			 * @return 
 			 */
-			__device__
+			__host__ __device__
 			const particle* getMember(int key) { return members[key]; }
 			/**
 			 * @brief Gets the iterator to the first neighboring cell.
 			 * @return 
 			 */
-			__device__
+			__host__ __device__
 			cell* getNeighbor(int i) { return neighbors[i]; }
 			/**
 			 * @brief Creates a vector containing points to all adjacent cells.
 			 */
-			 __device__
+			__host__ __device__
 			void createNeighborhood();
 
 	};

@@ -31,6 +31,40 @@ namespace simulation
 	__device__ __host__
 	particle::particle(int pid)
 	{
+		init(pid);
+	}
+
+	__device__ __host__
+	particle::~particle()
+	{
+		delete &x;
+		delete &y;
+		delete &z;
+		delete &x0;
+		delete &y0;
+		delete &z0;
+		delete &fx;
+		delete &fy;
+		delete &fz;
+		delete &fx0;
+		delete &fy0;
+		delete &fz0;
+		delete &vx;
+		delete &vy;
+		delete &vz;
+		delete &m;
+		delete &r;
+		delete &cx;
+		delete &cy;
+		delete &cz;
+		delete &name;
+		delete &coorNumber;
+		delete &potential;
+	}
+
+	__device__ __host__
+	void particle::init(int pid)
+	{
 		//Set the initial parameters.
 		name = pid;
 
@@ -66,34 +100,6 @@ namespace simulation
 
 		coorNumber = 0;
 		potential = 0;
-	}
-
-	__device__ __host__
-	particle::~particle()
-	{
-		delete &x;
-		delete &y;
-		delete &z;
-		delete &x0;
-		delete &y0;
-		delete &z0;
-		delete &fx;
-		delete &fy;
-		delete &fz;
-		delete &fx0;
-		delete &fy0;
-		delete &fz0;
-		delete &vx;
-		delete &vy;
-		delete &vz;
-		delete &m;
-		delete &r;
-		delete &cx;
-		delete &cy;
-		delete &cz;
-		delete &name;
-		delete &coorNumber;
-		delete &potential;
 	}
 
 	/********************************************//**

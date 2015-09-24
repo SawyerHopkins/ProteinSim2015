@@ -8,4 +8,4 @@ bin/*
 **/*.project
 .tern_port
 .tern_project
-
+.tern-port

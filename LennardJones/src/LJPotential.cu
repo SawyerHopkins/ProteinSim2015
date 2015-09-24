@@ -70,13 +70,14 @@ __device__
 void LennardJones::iterCells(int boxSize, double time, particle* index, cell* itemCell)
 {
 	double pot = 0;
-
+	printf("LOOK");
 	int i = 0;
 	while (i < itemCell->gridCounter)
 	{
 		particle* it = itemCell->members[i];
 		if (it->getName() != index->getName())
 		{
+			printf("HIT");
 			//Distance between the two particles. 
 			double rSquared = utilities::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
 																it->getX(), it->getY(), it->getZ(),
@@ -174,12 +175,13 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 }
 
 __device__
-void LennardJones::getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items)
+void LennardJones::getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle* item)
 {
+	printf("START");
 	int i = 0;
 	while (i < 27)
 	{
-		iterCells(boxSize, time, items[index], itemCell->getNeighbor(i));
+		iterCells(boxSize, time, item, itemCell->getNeighbor(i));
 		i++;
 	}
 }

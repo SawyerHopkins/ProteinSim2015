@@ -47,13 +47,7 @@ private:
 		 * @param items All particles in the system.
 		 */
 		__device__
-		void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items);
-		/**
-		 * @brief Flag for a force dependent time.
-		 * @return True for time dependent. False otherwise. 
-		 */
-		__device__ __host__
-		bool isTimeDependent() { return false; }
+		void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle* item);
 		/**
 		 * @brief Checks for particle interation between the index particle and all particles in the provided cell.
 		 * @param boxSize The size of the system.

@@ -143,9 +143,9 @@ namespace simulation
 		for (int i = 0; i < nParticles; i++)
 		{
 			//Add the totat velocity squares.
-			double vx = particles[i]->getVX();
-			double vy = particles[i]->getVY();
-			double vz = particles[i]->getVZ();
+			double vx = particles[i].getVX();
+			double vy = particles[i].getVY();
+			double vz = particles[i].getVZ();
 			vtot += (vx*vx);
 			vtot += (vy*vy);
 			vtot += (vz*vz);

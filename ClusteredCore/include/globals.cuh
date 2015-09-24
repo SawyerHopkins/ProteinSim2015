@@ -24,6 +24,7 @@ THE SOFTWARE.*/
 #define GLOBALS_H
 
 #include "integrator.h"
+#include<stdio.h>
 
 	/********************************************//**
 	*--------------CUDA FORCE MANAGEMENT-------------
@@ -37,15 +38,19 @@ THE SOFTWARE.*/
 	 * @param items The particles in the system.
 	 */
 	__global__
-	void getAcceleration(int *nPart, int *boxSize, double *time, simulation::cell**** cells, simulation::particle** items, physics::IForce* flist)
+	void getAcceleration(int *nPart, int *boxSize, double *time, simulation::cell**** cells, simulation::particle* items, physics::IForce* flist)
 	{
+		int index = blockIdx.x;
+		items[index].setPos(1.0,1.0,1.0,50);
+		/*
 		int index = (blockDim.x * blockIdx.x) + threadIdx.x;
-		items[index]->nextIter();
-		simulation::particle* p = items[index];
+		items[index].nextIter();
+		simulation::particle* p = &items[index];
 		simulation::cell* itemCell = cells[p->getCX()][p->getCY()][p->getCZ()];
 
 		//Iterates through all forces.
-		flist->getAcceleration(index, *nPart, *boxSize, *time, itemCell, items);
+		flist->getAcceleration(index, *nPart, *boxSize, *time, itemCell, p);
+		 */
 	}
 
 	/********************************************//**
@@ -53,7 +58,7 @@ THE SOFTWARE.*/
 	 ***********************************************/
 
 	__global__
-	void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle** items, physics::IForce* f, integrators::I_integrator* inter)
+	void nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle* items, physics::IForce* f, integrators::I_integrator* inter)
 	{
 		inter->nextSystem(time, dt, nParticles, boxSize, cells, items, f);
 	}
@@ -159,18 +164,18 @@ THE SOFTWARE.*/
 	 * @param scale The number of cells in each dimension. (numCells^1/3)
 	 */
 	__global__
-	void updateCells(int *scale, int *size, simulation::cell**** cells, simulation::particle** d_particles)
+	void updateCells(int *scale, int *size, simulation::cell**** cells, simulation::particle* d_particles)
 	{
 			int index = (blockDim.x * blockIdx.x) + threadIdx.x;
 			//New cell
-			int cX = int( d_particles[index]->getX() / double(*size) );
-			int cY = int( d_particles[index]->getY() / double(*size) );
-			int cZ = int( d_particles[index]->getZ() / double(*size) );
+			int cX = int( d_particles[index].getX() / double(*size) );
+			int cY = int( d_particles[index].getY() / double(*size) );
+			int cZ = int( d_particles[index].getZ() / double(*size) );
 
 			//Old cell
-			int cX0 = d_particles[index]->getCX();
-			int cY0 = d_particles[index]->getCY();
-			int cZ0 = d_particles[index]->getCZ();
+			int cX0 = d_particles[index].getCX();
+			int cY0 = d_particles[index].getCY();
+			int cZ0 = d_particles[index].getCZ();
 
 			if ((cX != cX0) || (cY != cY0) || (cZ != cZ0))
 			{
@@ -188,15 +193,15 @@ THE SOFTWARE.*/
 					debugging::error::throwCellBoundsError(cX,cY,cZ);
 				}
 
-				d_particles[index]->setCell(cX,cY,cZ);
+				d_particles[index].setCell(cX,cY,cZ);
 
 				int j = atomicAdd( &(cells[cX][cY][cZ]->gridCounter) ,1);
-				cells[cX][cY][cZ]->members[j] = d_particles[index];
+				cells[cX][cY][cZ]->members[j] = &d_particles[index];
 			}
 	}
 
 	__global__
-	void resetCells(int *scale, simulation::cell**** cells, int *particlesPerCell)
+	void resetCells(simulation::cell**** cells)
 	{
 		int x = blockIdx.x;
 		int y = blockIdx.y;

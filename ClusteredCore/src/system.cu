@@ -25,8 +25,11 @@ SOFTWARE.*/
 
 namespace simulation
 {
-	system::system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs)
+	system::system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs, int nParts) : particles(new particle[nParts])
 	{
+		/********************************************//**
+		*------------------SETUP OUTPUT------------------
+		************************************************/
 
 		//Sets the trial name
 		trialName = cfg->getParam<std::string>("trialName", "");
@@ -66,6 +69,10 @@ namespace simulation
 			}
 
 		}
+
+		/********************************************//**
+		*-------------------LOAD INPUT-------------------
+		************************************************/
 
 		//Set time information
 		currentTime = 0;
@@ -117,39 +124,66 @@ namespace simulation
 
 		//Sets the actual concentration.
 		concentration = vP/pow(boxSize,3.0);
+		particlesPerCell = 10;
 
 		std::cout << "---System concentration: " << concentration << "\n";
 
-		//Create particles.
-		initParticles(r,m);
-		particlesPerCell = 10;
-
+		/********************************************//**
+		*-----------------COPY VARIABLES-----------------
+		************************************************/
 
 		//Copy over system variables to device.
 		cudaMalloc((void **)&d_nParticles, sizeof(int));
-		cudaMalloc((void **)&d_boxSize, sizeof(int));
-		cudaMalloc((void **)&d_dTime, sizeof(double));
-		cudaMalloc((void **)&d_currentTime, sizeof(double));
-		cudaMalloc((void **)&d_cellScale, sizeof(int));
-		cudaMalloc((void **)&d_cellSize, sizeof(int));
-		cudaMalloc((void **)&d_numCells, sizeof(int));
-		cudaMalloc((void **)&d_particlesPerCell, sizeof(int));
-
 		cudaMemcpy(d_nParticles, &nParticles, sizeof(int), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void **)&d_boxSize, sizeof(int));
 		cudaMemcpy(d_boxSize, &boxSize, sizeof(int), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void **)&d_dTime, sizeof(double));
 		cudaMemcpy(d_dTime, &dTime, sizeof(double), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void **)&d_currentTime, sizeof(double));
 		cudaMemcpy(d_currentTime, &currentTime, sizeof(double), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void **)&d_cellScale, sizeof(int));
 		cudaMemcpy(d_cellScale, &cellScale, sizeof(int), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void **)&d_cellSize, sizeof(int));
 		cudaMemcpy(d_cellSize, &cellSize, sizeof(int), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void **)&d_numCells, sizeof(int));
 		cudaMemcpy(d_numCells, &numCells, sizeof(int), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void **)&d_particlesPerCell, sizeof(int));
 		cudaMemcpy(d_particlesPerCell, &particlesPerCell, sizeof(int), cudaMemcpyHostToDevice);
+
+		cudaMalloc((void *****)&cells, sizeof(cell****));
+		/********************************************//**
+		*----------------CREATE PARTICLES----------------
+		************************************************/
+
+		initParticles(r,m);
+
+		/********************************************//**
+		*------------------CREATE CELLS------------------
+		************************************************/
+
+		dim3 cellBlocks(scale,scale,scale);
 
 		//Create cells.
 		initCells<<<1,1>>>(numCells, cellScale, cells, particlesPerCell);
-		resetCells<<<scale,1>>>(d_cellScale, cells,d_particlesPerCell);
-		updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
-		std::cout << "Created: " << numCells << " cells from scale: " <<  cellScale << "\n";
+		cudaDeviceSynchronize();
+		printf("Device Variable Copying:\t%s\n", cudaGetErrorString(cudaGetLastError()));
 
+		resetCells<<<cellBlocks,1>>>(cells);
+		cudaDeviceSynchronize();
+		printf("Device Variable Copying:\t%s\n", cudaGetErrorString(cudaGetLastError()));
+
+		updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
+		cudaDeviceSynchronize();
+		printf("Device Variable Copying:\t%s\n", cudaGetErrorString(cudaGetLastError()));
+
+		std::cout << "Created: " << numCells << " cells from scale: " <<  cellScale << "\n";
 		writeSystemInit();
 
 	}
@@ -177,16 +211,24 @@ namespace simulation
 		{
 			//Get the forces acting on the system.
 			getAcceleration<<<nParticles,1>>>(d_nParticles,d_boxSize,d_currentTime,cells,d_particles,d_sysForces);
+			printf("Device Variable Copying:\t%s\n", cudaGetErrorString(cudaGetLastError()));
+			//cudaDeviceSynchronize();
 			//Get the next system.
-			nextSystem<<<nParticles,1>>>(d_currentTime, d_dTime, d_nParticles, d_boxSize, cells, d_particles, d_sysForces, d_integrator);
+			//nextSystem<<<nParticles,1>>>(d_currentTime, d_dTime, d_nParticles, d_boxSize, cells, d_particles, d_sysForces, d_integrator);
+			//cudaDeviceSynchronize();
 			//Call cell manager.
-			resetCells<<<cellScale,1>>>(d_cellScale, cells,d_particlesPerCell);
-			updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
-
+			///resetCells<<<cellScale,1>>>(cells);
+			//cudaDeviceSynchronize();
+			//updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
+			cudaDeviceSynchronize();
+			printf("Device Variable Copying:\t%s\n", cudaGetErrorString(cudaGetLastError()));
 			//Output a snapshot every second.
 			if ( (counter % outputFreq) == 0 )
 			{
 				cudaMemcpy(particles,d_particles, nParticles*sizeof(particle) ,cudaMemcpyDeviceToHost);
+				printf("Device Variable Copying:\t%s\n", cudaGetErrorString(cudaGetLastError()));
+				int q = 0;
+				std::cin >> q;
 				if (currentTime > 0)
 				{
 					utilities::util::clearLines(13);
