@@ -8,12 +8,10 @@
 
 namespace configReader
 {
-
 	using namespace std;
 
 	class config
 	{
-
 		private:
 
 			map<string, string> options;
@@ -51,9 +49,7 @@ namespace configReader
 			 * @brief Hide configuration output.
 			 */
 			void hideOutput() { suppressOutput = true; }
- 
 	};
-
 }
 
 #endif // CONFIG_H

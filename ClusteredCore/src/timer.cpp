@@ -24,7 +24,6 @@ SOFTWARE.*/
 
 namespace debugging
 {
-
 timer::timer()
 {
 	//Set the initial time.
@@ -32,10 +31,6 @@ timer::timer()
 	stop_time = start_time;
 }
 
-timer::~timer()
-{
-}
-
-
+timer::~timer(){}
 }
 

@@ -6,7 +6,6 @@
 
 namespace debugging
 {
-
 	/**
 	 * @class error
 	 * @author Sawyer Hopkins
@@ -16,7 +15,6 @@ namespace debugging
 	 */
 	class error : public std::exception
 	{
-
 		public:
 
 			//Header Version.
@@ -46,7 +44,7 @@ namespace debugging
 			 * @param r The distance between the particles.
 			 */
 			__device__ __host__
-			static void throwParticleOverlapError(int nameI, int nameJ, double r);
+			static void throwParticleOverlapError(int nameI, int nameJ, float r);
 			/**
 			 * @brief Throw when force is given value NaN.
 			 */
@@ -57,9 +55,7 @@ namespace debugging
 			 */
 			__device__ __host__
 			static void throwInputError();
-
 	};
-
 }
 
 #endif // ERROR_H

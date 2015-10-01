@@ -15,10 +15,10 @@ GFLAGS := -m64 -arch=sm_50 --std=c++11 --compiler-options '-fPIC'
 ################################################################################
 #################################HOST CODE PATHS################################
 ################################################################################
-SRCEXT := cpp
+SRCEXT := cu
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-LIB := -ldl -lc -L./linked -lcore -lkernal -lcudart
+LIB := -ldl -lc -L./linked -lcore -lkernal -lcudart -lcuda
 TARGET := bin/Clustered
 ################################################################################
 ######################################RULES#####################################
@@ -35,7 +35,7 @@ $(TARGET): $(OBJECTS)
 	$(EXEC) $(NVCC) $(GFLAGS) $^ $(LIB) -o $(TARGET)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	$(EXEC) $(NVCC) $(GFLAGS) $(INC) -o $@ -c $<
+	$(EXEC) $(NVCC) $(GFLAGS) $(INC) -o $@ -dc $<
 
 #clean rules:
 

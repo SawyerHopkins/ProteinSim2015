@@ -26,7 +26,7 @@ using namespace std;
 
 namespace utilities
 {
-	void util::loadBar(double x0, int n, long counter, int w)
+	void util::loadBar(float x0, int n, long counter, int w)
 	{
 		/**************************************************************************************//**
 		*----------------------------------------SOURCE FROM---------------------------------------
@@ -41,7 +41,7 @@ namespace utilities
 		//Choose when to update console.
 		if ( (x != n) && (counter % 100 != 0) ) return;
 
-		double ratio  =  x/(double)n;
+		float ratio  =  x/(float)n;
 		int   c      =  ratio * w;
 
 		cout.precision(4);
@@ -112,6 +112,5 @@ namespace utilities
 			}
 		}
 	}
-
 }
 

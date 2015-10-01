@@ -21,52 +21,191 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #include "integrator.h"
+#include <stdio.h> 
 
 namespace integrators
 {
+	__device__
+	void brownianIntegrator::cudaLoad(float * vars)
+	{
+		//Set the number of particles.
+		memSize = vars[0];
+		velFreq = vars[1];
+		velCounter = 0;
+
+		//Create he memory blocks for mem and memCoor
+		memX = new float[memSize];
+		memY = new float[memSize];
+		memZ = new float[memSize];
+		memCorrX = new float[memSize];
+		memCorrY = new float[memSize];
+		memCorrZ = new float[memSize];
+
+		//Sets the system temperature.
+		temp = vars[2];
+
+		//Set the mass.
+		mass = vars[3];
+
+		//Sets the system drag.
+		gamma = vars[4];
+
+		//Sets the integration time step.
+		dt = vars[5];
+		dtInv = 1.0 / dt;
+
+		//Create vital variables
+		y = gamma*dt;
+
+		setupHigh();
+		if (gamma < 0.05)
+		{
+			setupLow();
+		}
+		if (gamma == 0)
+		{
+			setupZero();
+		}
+
+		float gamma2 = gamma*gamma;
+
+		sig1   =  sqrt(+temp*sig1/gamma2);
+		sig2   =  sqrt(-temp*sig2/gamma2);
+		corr = (temp/(gamma2)) * (gn/(sig1*sig2));
+		dev = sqrt(1.0 - (corr*corr));
+
+		//Set the random number generator seed.
+		int rSeed = 0;
+		rSeed = vars[6];
+	}
+
+	__host__ __device__
+	void brownianIntegrator::setupHigh()
+	{
+		//Coefficents for High Gamma.
+		//SEE GUNSTEREN AND BERENDSEN 1981
+		float ty = 2.0*y;
+
+		coEff0 = exp(-y);
+		float aa1 = 1.0-coEff0;
+		float aa2 = 0.5*y*(1.0+coEff0)-aa1;
+		float aa3 = y-aa1;
+		coEff1 = aa1/y;
+		coEff2 = aa2/(y*y);
+		coEff3 = aa3/(y*y);
+
+
+		sig1 =  2.0*y-3.0+4.0*exp(-y)-exp(-ty);
+		sig2 = -2.0*y-3.0+4.0*exp( y)-exp(ty);
+
+		gn  = exp(y)-ty-exp(-y);
+
+		goy2 = gn/(y*y);
+		goy3 = gn/(y*y*y);
+
+		hn  = y/(exp(y)-exp(-y));
+	}
+
+	__host__ __device__
+	void brownianIntegrator::setupLow()
+	{
+		//Coefficents for Low Gamma (from series expansion).
+		//SEE GUNSTEREN AND BERENDSEN 1981
+		float y1 = y;
+		float y2 = y1*y1;
+		float y3 = y2*y1;
+		float y4 = y3*y1;
+		float y5 = y4*y1;
+		float y6 = y5*y1;
+		float y7 = y6*y1;
+		float y8 = y7*y1;
+		float y9 = y8*y1;
+
+		coEff1 = 1.0-0.5*y1+(1.0/6.0)*y2-(1.0/24.0)*y3
+           +(1.0/120.0)*y4;
+		coEff2 = (1.0/12.0)*y1-(1.0/24.0)*y2+(1.0/80.0)
+           *y3-(1.0/360.0)*y4;
+		coEff3 = 0.5-(1.0/6.0)*y1+(1.0/24.0)*y2-(1.0/120.0)*y3;
+
+		sig1 = +(2.0/3.0)*y3-0.5*y4+(7.0/30.0)*y5-(1.0/12.0)
+            *y6+(31.0/1260.0)*y7
+            -(1.0/160.0)*y8+(127.0/90720.0)*y9;
+		sig2 = -(2.0/3.0)*y3-0.5*y4-(7.0/30.)*y5-(1.0/12.0)
+            *y6-(31.0/1260.0)*y7
+            -(1.0/160.0)*y8-(127.0/90720.0)*y9;
+
+		goy2 = (1.0/3.0)*y1+(1.0/60.0)*y3;
+		goy3 = 1.0/3.0+(1.0/60.0)*y2;
+
+		hn = 0.5-(1.00/12.0)*y2+(7.0/720.0)*y4;
+		gn = (1.0/3.0)*y3+(1.0/60.0)*y5;
+	}
+
+	__host__ __device__
+	void brownianIntegrator::setupZero()
+	{
+		//Special case coefficents.
+		//SEE GUNSTEREN AND BERENDSEN 1981
+		coEff0 = 1.0;
+		coEff1 = 1.0;
+		coEff2 = 0.0;
+		coEff3 = 0.5;
+	}
+
+	__host__ __device__
+	float brownianIntegrator::getWidth(float y)
+	{
+		return (2*y) - 3.0 + (4.0*exp(-y)) - exp(-2.0*y);
+	}
 
 	__device__
-	void brownianIntegrator::nextSystem(double *time, double *dt, int *nParticles, int *boxSize, simulation::cell**** cells, simulation::particle* items, physics::IForce* f)
+	void brownianIntegrator::cudaTest()
+	{
+		printf("%f\n",gamma);
+	}
+
+	__device__
+	void brownianIntegrator::nextSystem(float *time, float *dt, int *nParticles, int *boxSize, simulation::particle* items)
 	{
 		//Checks what method is needed.
 		if (time == 0)
 		{
-			firstStep(*time, *dt, *nParticles, *boxSize, items, f);
+			firstStep(*time, *dt, *nParticles, *boxSize, items);
 		}
 		else
 		{
-			normalStep(*time, *dt, *nParticles, *boxSize, items, f);
+			normalStep(*time, *dt, *nParticles, *boxSize, items);
 		}
 	}
 
 	__device__
-	void brownianIntegrator::firstStep(double time, double dt, int nParticles, int boxSize, simulation::particle* items, physics::IForce* f)
+	void brownianIntegrator::firstStep(float time, float dt, int nParticles, int boxSize, simulation::particle* items)
 	{
 		int i= (blockDim.x * blockIdx.x) + threadIdx.x;
-			//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
+		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 
-		memCorrX[i] = 0.0;
-		memCorrY[i] = 0.0;
-		memCorrZ[i] = 0.0;
+		//memCorrX[i] = 0.0;
+		//memCorrY[i] = 0.0;
+		//memCorrZ[i] = 0.0;
 
 		//memX[i] = (*Dist)(*gen);
 		//memY[i] = (*Dist)(*gen);
 		//memZ[i] = (*Dist)(*gen);
 
-		double m = 1.0/items[i].getMass();
-		double xNew = items[i].getX() + (items[i].getVX() * coEff1 * dt) + (items[i].getFX() * coEff3 * dt * dt * m) + (sig1 * memX[i]);
-		double yNew = items[i].getY() + (items[i].getVY() * coEff1 * dt) + (items[i].getFY() * coEff3 * dt * dt * m) + (sig1 * memY[i]);
-		double zNew = items[i].getZ() + (items[i].getVZ() * coEff1 * dt) + (items[i].getFZ() * coEff3 * dt * dt * m) + (sig1 * memZ[i]);
+		float m = 1.0/items[i].getMass();
+		float xNew = items[i].getX() + (items[i].getVX() * coEff1 * dt) + (items[i].getFX() * coEff3 * dt * dt * m); //+ (sig1 * memX[i]);
+		float yNew = items[i].getY() + (items[i].getVY() * coEff1 * dt) + (items[i].getFY() * coEff3 * dt * dt * m); //+ (sig1 * memY[i]);
+		float zNew = items[i].getZ() + (items[i].getVZ() * coEff1 * dt) + (items[i].getFZ() * coEff3 * dt * dt * m); //+ (sig1 * memZ[i]);
 		items[i].setPos(xNew,yNew,zNew,boxSize);
 	}
 
 	__device__
-	void brownianIntegrator::normalStep(double time, double dt, int nParticles, int boxSize, simulation::particle* items, physics::IForce* f)
+	void brownianIntegrator::normalStep(float time, float dt, int nParticles, int boxSize, simulation::particle* items)
 	{
 
-		int i = (blockDim.x * blockIdx.x) + threadIdx.x;
+		int i = blockIdx.x;
 
-		double dt2 = dt * dt;
+		float dt2 = dt * dt;
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 		//New random walk.
 		//memCorrX[i] = (*Dist)(*tgens[0]);
@@ -82,30 +221,30 @@ namespace integrators
 		//memY[i] = (*Dist)(*tgens[0]);
 		//memZ[i] = (*Dist)(*tgens[0]);
 
-		double m = 1.0/items[i].getMass();
+		float m = 1.0/items[i].getMass();
 
-		double x0 = items[i].getX0();
-		double y0 = items[i].getY0();
-		double z0 = items[i].getZ0();
+		float x0 = items[i].getX0();
+		float y0 = items[i].getY0();
+		float z0 = items[i].getZ0();
 
 		//Run the integration routine.
-		double xNew = ((1.0+coEff0) * items[i].getX());
+		float xNew = ((1.0+coEff0) * items[i].getX());
 		xNew -= (coEff0 * x0);
 		xNew += (m * dt2 * coEff1 * items[i].getFX());
 		xNew += (m * dt2 * coEff2 * (items[i].getFX() - items[i].getFX0()));
-		xNew += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
+		//xNew += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
 
-		double yNew = ((1.0+coEff0) * items[i].getY()) ;
+		float yNew = ((1.0+coEff0) * items[i].getY()) ;
 		yNew -= (coEff0 * y0);
 		yNew += (m * dt2 * coEff1 * items[i].getFY());
 		yNew += (m * dt2 * coEff2 * (items[i].getFY() - items[i].getFY0()));
-		yNew += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
+		//yNew += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
 
-		double zNew = ((1.0+coEff0) * items[i].getZ());
+		float zNew = ((1.0+coEff0) * items[i].getZ());
 		zNew -= (coEff0 * z0);
 		zNew += (m * dt2 * coEff1 * items[i].getFZ());
 		zNew += (m * dt2 * coEff2 * (items[i].getFZ() - items[i].getFZ0()));
-		zNew += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
+		//zNew += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
 
 		//Velocity is not needed for brownianIntegration.
 		//Run velocity integration at the same frequency as
@@ -118,6 +257,7 @@ namespace integrators
 		//velFreq = 0.
 		//-------------------------------------------------
 		//For all other cases do whatever.
+
 		if (velFreq == 0)
 		{
 			velocityStep(items, i, xNew, yNew, zNew, dt, boxSize);
@@ -127,7 +267,7 @@ namespace integrators
 			velocityStep(items, i, xNew, yNew, zNew, dt, boxSize);
 		}
 
-		items[i].setPos(xNew, yNew, zNew, boxSize);
+		items[i].setPos(xNew,yNew,zNew,boxSize);
 
 		//Manage velocity output counter.
 		if (velCounter == velFreq)
@@ -141,49 +281,49 @@ namespace integrators
 	}
 
 	__device__
-	void brownianIntegrator::velocityStep(simulation::particle* items, int i, double xNew0, double yNew0, double zNew0, double dt, double boxSize)
+	void brownianIntegrator::velocityStep(simulation::particle* items, int i, float xNew0, float yNew0, float zNew0, float dt, float boxSize)
 	{
-		double m = 1.0/items[i].getMass();
+		float m = 1.0/items[i].getMass();
 
 		//Current position and previous position are already PBC safe.
 		//Their difference is also already PBC safe.
-		double dx0 = items[i].getX() - items[i].getX0();
-		double dy0 = items[i].getY() - items[i].getY0();
-		double dz0 = items[i].getZ() - items[i].getZ0();
+		float dx0 = items[i].getX() - items[i].getX0();
+		float dy0 = items[i].getY() - items[i].getY0();
+		float dz0 = items[i].getZ() - items[i].getZ0();
 
 		//Make the new position PBC safe.
-		double xNew = utilities::util::safeMod(xNew0,boxSize);
-		double yNew = utilities::util::safeMod(yNew0,boxSize);
-		double zNew = utilities::util::safeMod(zNew0,boxSize);
+		float xNew = utilities::util::safeMod(xNew0,boxSize);
+		float yNew = utilities::util::safeMod(yNew0,boxSize);
+		float zNew = utilities::util::safeMod(zNew0,boxSize);
 
 		//Make the difference between the new position and the current position PBC safe.
-		double x0 = utilities::util::safeMod0(items[i].getX(), xNew, boxSize);
-		double y0 = utilities::util::safeMod0(items[i].getY(), yNew, boxSize);
-		double z0 = utilities::util::safeMod0(items[i].getZ(), zNew, boxSize);
+		float x0 = utilities::util::safeMod0(items[i].getX(), xNew, boxSize);
+		float y0 = utilities::util::safeMod0(items[i].getY(), yNew, boxSize);
+		float z0 = utilities::util::safeMod0(items[i].getZ(), zNew, boxSize);
 
 		//Take the difference.
-		double dx = xNew - x0;
-		double dy = yNew - y0;
-		double dz = zNew - z0;
+		float dx = xNew - x0;
+		float dy = yNew - y0;
+		float dz = zNew - z0;
 
 		//Precompute.
-		double dt2 = dt * dt;
-		double dt3 = dt * dt2;
+		float dt2 = dt * dt;
+		float dt3 = dt * dt2;
 
 		//Run the integration routine.
-		double vxNew = dx + dx0;
+		float vxNew = dx + dx0;
 		vxNew += (m * dt2 * goy2 * items[i].getFX());
 		vxNew -= (m * dt3 * goy3 * (items[i].getFX() - items[i].getFX0()));
 		vxNew += (memCorrX[i] - sig1*memX[i]);
 		vxNew *= (hn * dtInv);
 
-		double vyNew = dy + dy0;
+		float vyNew = dy + dy0;
 		vyNew += (m * dt2 * goy2 * items[i].getFY());
 		vyNew -= (m * dt3 * goy3 * (items[i].getFY() - items[i].getFY0()));
 		vyNew += (memCorrY[i] - sig1*memY[i]);
 		vyNew *= (hn * dtInv);
 
-		double vzNew = dz + dz0;
+		float vzNew = dz + dz0;
 		vzNew += (m * dt2 * goy2 * items[i].getFZ());
 		vzNew -= (m * dt3 * goy3 * (items[i].getFZ() - items[i].getFZ0()));
 		vzNew += (memCorrZ[i] - sig1*memZ[i]);
@@ -193,6 +333,5 @@ namespace integrators
 		items[i].setVX(vxNew);
 		items[i].setVY(vyNew);
 		items[i].setVZ(vzNew);
-
 	}
 }

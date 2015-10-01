@@ -24,7 +24,6 @@ SOFTWARE.*/
 
 namespace simulation
 {
-
 	__host__ __device__
 	cell::cell(int cellParts) : members(new particle*[cellParts])
 	{
@@ -96,6 +95,5 @@ namespace simulation
 		//Adds the parent cell to the end of the vector.
 		neighbors[26]=this;
 	}
-
 }
 

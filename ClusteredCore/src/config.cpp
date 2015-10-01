@@ -24,7 +24,6 @@ SOFTWARE.*/
 
 namespace configReader
 {
-
 	config::config(string fileName)
 	{
 		hideOutput();
@@ -76,7 +75,6 @@ namespace configReader
 				options[key] = val;
 			}
 		}
-
 	}
 
 	config::~config()
@@ -158,30 +156,6 @@ namespace configReader
 
 	}
 
-	template<> double config::getParam<double>(string key, double def)
-	{
-		double val = def;
-		bool exists = containsKey(key);
-
-		if (exists == true)
-		{
-			val = std::stod(options[key],nullptr);
-		}
-
-		if (suppressOutput == false)
-		{
-			if (exists == false)
-			{
-				std::cout << "-Option: '" << key << "' missing\n";
-				std::cout << "-Using default.\n";
-			}
-			std::cout << "---" << key << ": " << val << "\n";
-		}
-
-		return val;
-
-	}
-
 	template<> string config::getParam<string>(string key, string def)
 	{
 		string val = def;
@@ -205,6 +179,5 @@ namespace configReader
 		return val;
 
 	}
-
 }
 

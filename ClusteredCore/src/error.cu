@@ -24,7 +24,6 @@ SOFTWARE.*/
 
 namespace debugging
 {
-
 	__device__ __host__
 	void error::throwInitializationError()
 	{
@@ -58,7 +57,7 @@ namespace debugging
 	}
 
 	__device__ __host__
-	void error::throwParticleOverlapError(int nameI, int nameJ, double r)
+	void error::throwParticleOverlapError(int nameI, int nameJ, float r)
 	{
 		#if __CUDA_ARCH__ > 0
 		#else
@@ -90,6 +89,5 @@ namespace debugging
 		exit(7706);
 		#endif
 	}
-
 }
 

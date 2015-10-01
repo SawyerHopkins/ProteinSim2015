@@ -5,7 +5,6 @@
 
 namespace debugging
 {
-
 	/**
 	 * @class timer
 	 * @author Sawyer Hopkins
@@ -15,7 +14,6 @@ namespace debugging
 	 */
 	class timer
 	{
-
 		private:
 
 			//System time objects.
@@ -46,14 +44,12 @@ namespace debugging
 			 * @brief The number of seconds elapsed between start() and stop()
 			 * @return The difference between stop_time and start_time. 
 			 */
-			double getElapsedSeconds() 
+			float getElapsedSeconds() 
 			{
 				std::chrono::system_clock::duration diff = stop_time-start_time;
 				return (diff.count() / pow(10,9));
 			}
-
 	};
-
 }
 
 #endif // TIMER_H

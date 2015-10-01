@@ -24,7 +24,6 @@ SOFTWARE.*/
 
 namespace simulation
 {
-
 	/********************************************//**
 	*-----------------SYSTEM OUTPUT------------------
 	************************************************/
@@ -73,7 +72,7 @@ namespace simulation
 
 	void system::writeInitTemp()
 	{
-		double v2 = 0.0;
+		float v2 = 0.0;
 		//Get V^2 for each particle.
 		for (int i = 0; i < nParticles; i++)
 		{
@@ -82,8 +81,8 @@ namespace simulation
 			v2 += particles[i].getVZ()*particles[i].getVZ();
 		}
 		//Average v2.
-		double vAvg = v2 / float(nParticles);
-		double temp = (vAvg / 3.0);
+		float vAvg = v2 / float(nParticles);
+		float temp = (vAvg / 3.0);
 		//
 		std::cout << "---Temp: " << temp << " m/k" << "\n";
 	}
@@ -126,11 +125,11 @@ namespace simulation
 
 		//Calculate the perfomance.
 		tmr->stop();
-		double timePerCycle = tmr->getElapsedSeconds() / double(outputFreq);
+		float timePerCycle = tmr->getElapsedSeconds() / float(outputFreq);
 		std::setprecision(4);
 		std::cout << "\n" << "Average Cycle Time: " << timePerCycle << " seconds.\n";
-		double totalTime = (cycleHour*timePerCycle);
-		double finishedTime = ((currentTime/dTime) / 3600) * timePerCycle;
+		float totalTime = (cycleHour*timePerCycle);
+		float finishedTime = ((currentTime/dTime) / 3600) * timePerCycle;
 		std::cout << "Time for completion: " << (totalTime-finishedTime) << " hours.\n";
 		tmr->start();
 
@@ -143,9 +142,9 @@ namespace simulation
 			totEAP+=particles[i].getPotential();
 		}
 
-		double eap = (totEAP / double(nParticles));
-		//double nClust = numClusters(outXYZ);
-		double avgCoor = double(totCoor) / double(nParticles);
+		float eap = (totEAP / float(nParticles));
+		//float nClust = numClusters(outXYZ);
+		float avgCoor = float(totCoor) / float(nParticles);
 
 		//Output the current system statistics.
 		std::cout <<"\n<R>: " << avgCoor << " - Rt: " << totCoor << "\n";
@@ -168,5 +167,4 @@ namespace simulation
 		myFileCoor << currentTime << " " << avgCoor << "\n";
 		myFileCoor.clear();
 	}
-
 }

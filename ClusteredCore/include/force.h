@@ -6,7 +6,6 @@
 
 namespace physics
 {
-
 	/********************************************//**
 	*-----------------FORCE INTERFACE----------------
 	 ***********************************************/
@@ -20,11 +19,6 @@ namespace physics
 	 */
 	class IForce
 	{
-
-		protected:
-
-			std::string name;
-
 		public:
 
 			//Header Version.
@@ -40,18 +34,32 @@ namespace physics
 			 * @param items All particles in the system.
 			 */
 			__device__
-			virtual void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle* items)=0;
+			virtual void getAcceleration(int index, int nPart, int boxSize, float time, simulation::cell* itemCell, simulation::particle* items)=0;
 
 			/**
-			 * @brief Get the name of the force for logging purposes.
-			 * @return 
+			 * @brief Run any precalculation tests on the device to ensure it has properly loaded.
 			 */
-			__device__ __host__
-			std::string getName() { return name; }
+			__device__
+			virtual void cudaTest()=0;
 
+			/**
+			 * @brief Load any initial variables into the force object.
+			 * @param vars Initial variable array.
+			 */
+			__device__
+			virtual void cudaLoad(float* vars)=0;
 	};
 
+	/** Create the host force */
 	typedef IForce* create_Force(configReader::config*);
+	/** Create the Device force */
+	typedef void create_cudaForce(physics::IForce*);
+	/** Load variables into the device force */
+	typedef void cuda_load(physics::IForce*, float*);
+	/** Run tests on the device force */
+	typedef void cuda_test(physics::IForce*);
+	/** Run getAcceleration on device force */
+	typedef void run_force(int, int, int, float, simulation::cell*, simulation::particle*, physics::IForce*);
 
 	/********************************************//**
 	*----------------FORCE MANAGEMENT----------------
@@ -62,7 +70,7 @@ namespace physics
 	 * @author Sawyer Hopkins
 	 * @date 06/27/15
 	 * @file force.h
-	 * @brief Management system for a collection of forces.
+	 * @brief Management system for a collection of forces. This force is currently orphaned in cuda branch.
 	 */
 	class forces
 	{
@@ -83,19 +91,19 @@ namespace physics
 			 * @brief Releases the management system.
 			 */
 			~forces();
-
 			/**
 			 * @brief Checks if the system contains a time dependent force.
 			 * @return True if time dependent. False otherwise.
 			 */
 			__host__ __device__
 			bool isTimeDependent() { return timeDependent; }
-
+			/**
+			 * @brief Get the list of forces.
+			 * @return 
+			 */
 			__device__
 			IForce* getForce() { return flist; }
-
 	};
-
 }
 
 #endif // FORCE_H

@@ -5,7 +5,6 @@
 
 namespace simulation
 {
-
 	/**
 	 * @class cell
 	 * @author Sawyer Hopkins
@@ -15,7 +14,6 @@ namespace simulation
 	 */
 	class cell
 	{
-
 		private:
 
 			cell* neighbors[27];
@@ -67,9 +65,7 @@ namespace simulation
 			 */
 			__host__ __device__
 			void createNeighborhood();
-
 	};
-
 }
 
 #endif // CELL_H

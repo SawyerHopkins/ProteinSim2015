@@ -23,7 +23,6 @@ SOFTWARE.*/
 
 namespace simulation
 {
-
 	/********************************************//**
 	*--------------SYSTEM CONSTRUCTION---------------
 	************************************************/
@@ -107,9 +106,9 @@ namespace simulation
 	************************************************/
 
 	__device__ __host__
-	void particle::setX(double val, double boxSize)
+	void particle::setX(float val, float boxSize)
 	{
-		double xTemp = x;
+		float xTemp = x;
 		//Update current position.
 		x = utilities::util::safeMod(val, boxSize);
 		//Set lat position.
@@ -121,9 +120,9 @@ namespace simulation
 	}
 
 	__device__ __host__
-	void particle::setY(double val, double boxSize)
+	void particle::setY(float val, float boxSize)
 	{
-		double yTemp = y;
+		float yTemp = y;
 		//Update current position.
 		y = utilities::util::safeMod(val, boxSize);
 		//Set lat position.
@@ -135,9 +134,9 @@ namespace simulation
 	}
 
 	__device__ __host__
-	void particle::setZ(double val, double boxSize)
+	void particle::setZ(float val, float boxSize)
 	{
-		double zTemp = z;
+		float zTemp = z;
 		//Update current position.
 		z = utilities::util::safeMod(val, boxSize);
 		//Set lat position.
@@ -149,7 +148,7 @@ namespace simulation
 	}
 
 	__device__ __host__
-	void particle::setPos(double xVal, double yVal, double zVal, double boxSize)
+	void particle::setPos(float xVal, float yVal, float zVal, float boxSize)
 	{
 		//Update all the positions.
 		setX(xVal,boxSize);
@@ -158,7 +157,7 @@ namespace simulation
 	}
 
 	__device__ __host__
-	void particle::updateForce(double xVal, double yVal, double zVal, double pot, particle* p, bool countPair)
+	void particle::updateForce(float xVal, float yVal, float zVal, float pot, particle* p, bool countPair)
 	{
 		//Add to potential.
 		potential+=pot;
@@ -195,5 +194,41 @@ namespace simulation
 		fz = 0.0;
 	}
 
+	__device__
+	void particle::copyDummy(particle* dummy)
+	{
+		name = dummy->getName();
+
+		x = dummy->getX();
+		y = dummy->getY();
+		z = dummy->getZ();
+
+		x0 = dummy->getX0();
+		y0 = dummy->getY0();
+		z0 = dummy->getZ0();
+
+		fx = dummy->getFX();
+		fy = dummy->getFY();
+		fz = dummy->getFZ();
+		
+		fx0 = dummy->getFX0();
+		fy0 = dummy->getFY0();
+		fz0 = dummy->getFZ0();
+
+		vx = dummy->getVX();
+		vy = dummy->getVY();
+		vz = dummy->getVZ();
+
+		r = dummy->getRadius();
+		m = dummy->getMass();
+
+		cx = dummy->getCX();
+		cy = dummy->getCY();
+		cz = dummy->getCZ();
+
+		coorNumber = 0;
+		potential = 0;
+
+	}
 }
 

@@ -24,12 +24,11 @@ SOFTWARE.*/
 
 namespace simulation
 {
-
 	/********************************************//**
 	*------------------SYSTEM INIT-------------------
 	************************************************/
 
-	void system::initParticles(double r, double m)
+	void system::initParticles(float r, float m)
 	{
 		//If there is no inital seed create one.
 		if (seed==0)
@@ -39,7 +38,7 @@ namespace simulation
 		}
 		//Setup random uniform distribution generator.
 		std::mt19937 gen(seed);
-		std::uniform_real_distribution<double> distribution(0.0,1.0);
+		std::uniform_real_distribution<float> distribution(0.0,1.0);
 		
 		//Iterates through all points.
 		for(int i = 0; i < nParticles; i++)
@@ -66,19 +65,9 @@ namespace simulation
 		maxwellVelocityInit(&gen, &distribution);
 
 		std::cout << "---Maxwell distribution created. Creating cell assignment.\n\n";
-
-		std::cout << "---ok.\n\n";
-
-		int size = nParticles * sizeof(particle);
-
-		std::cout << "---good.\n\n";
-		cudaMalloc((void **)&d_particles, size);
-		std::cout << "---better.\n\n";
-		cudaMemcpy(d_particles, particles, size, cudaMemcpyHostToDevice);
-		std::cout << "---best.\n\n";
 	}
 
-	void system::initCheck(std::mt19937* gen, std::uniform_real_distribution<double>* distribution)
+	void system::initCheck(std::mt19937* gen, std::uniform_real_distribution<float>* distribution)
 	{
 		//Keeps track of how many resolutions we have attempted.
 		int counter = 0;
@@ -101,12 +90,12 @@ namespace simulation
 					{
 						//Gets the distance between the two particles.
 
-						double radius = utilities::util::pbcDist(particles[i].getX(), particles[i].getY(), particles[i].getZ(),
+						float radius = utilities::util::pbcDist(particles[i].getX(), particles[i].getY(), particles[i].getZ(),
 																			particles[j].getX(), particles[j].getY(), particles[j].getZ(),
 																			boxSize);
 
 						//Gets the sum of the particle radius.
-						double r = particles[i].getRadius() + particles[j].getRadius();
+						float r = particles[i].getRadius() + particles[j].getRadius();
 
 						//If the particles are slightly closer than twice their radius resolve conflict.
 						if (radius < 1.1*r)
@@ -135,11 +124,11 @@ namespace simulation
 
 	}
 
-	void system::maxwellVelocityInit(std::mt19937* gen, std::uniform_real_distribution<double>* distribution)
+	void system::maxwellVelocityInit(std::mt19937* gen, std::uniform_real_distribution<float>* distribution)
 	{
-		double r1,r2;
-		double vsum,vsum2;
-		double sigold,vsig,ratio;
+		float r1,r2;
+		float vsum,vsum2;
+		float sigold,vsig,ratio;
 		int i;
 
 		//Set the initial velocities.
@@ -171,7 +160,7 @@ namespace simulation
 		
 		for(i=0; i<nParticles; i++)
 		{
-			double vx = particles[i].getVX();
+			float vx = particles[i].getVX();
 			vsum=vsum+vx;
 			vsum2=vsum2+(vx*vx);
 		}
@@ -193,7 +182,7 @@ namespace simulation
 		
 		for(i=0; i<nParticles; i++)
 		{
-			double vy = particles[i].getVY();
+			float vy = particles[i].getVY();
 			vsum=vsum+vy;
 			vsum2=vsum2+(vy*vy);
 		}
@@ -215,7 +204,7 @@ namespace simulation
 		
 		for(i=0; i<nParticles; i++)
 		{
-			double vz = particles[i].getVZ();
+			float vz = particles[i].getVZ();
 			vsum=vsum+vz;
 			vsum2=vsum2+(vz*vz);
 		}
@@ -337,5 +326,4 @@ namespace simulation
 		}
 		return validDir;
 	}
-
 }

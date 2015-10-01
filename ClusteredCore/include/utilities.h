@@ -21,7 +21,6 @@
 
 namespace utilities
 {
-
 	//Console colour codes.
 	#define __BLACK "\033[0;30m"
 	#define __RED "\033[0;31m"
@@ -57,7 +56,7 @@ namespace utilities
 			 * @return 
 			 */
 			__host__ __device__
-			static double safeMod(double val, double base);
+			static float safeMod(float val, float base);
 
 			/**
 			 * @brief Looks for PBC check on original position.
@@ -67,7 +66,7 @@ namespace utilities
 			 * @return The new old position.
 			 */
 			__host__ __device__
-			static double safeMod0(double val0, double val, double base);
+			static float safeMod0(float val0, float val, float base);
 
 			/**
 			 * @brief Method for getting distance between two points.
@@ -77,7 +76,7 @@ namespace utilities
 			 * @return The distance between the two particles.
 			 */
 			__device__ __host__
-			static double pbcDist(double X,double Y, double Z,double X1, double Y1,double Z1,double L);
+			static float pbcDist(float X, float Y, float Z, float X1, float Y1, float Z1, float L);
 
 			//
 			/**
@@ -87,7 +86,7 @@ namespace utilities
 			 * @param counter A logic counter.
 			 * @param w The width of the progress bar. Default 50.
 			 */
-			static void loadBar(double x0, int n, long counter ,int w = 50);
+			static void loadBar(float x0, int n, long counter ,int w = 50);
 
 			/**
 			 * @brief Normalizes the distances to create a unit vector in &acc[3].
@@ -98,7 +97,7 @@ namespace utilities
 			 * @param acc The array hold the unit vectors.
 			 */
 			__device__
-			static void unitVectorSimple(double dX, double dY, double dZ, double r, double (&acc)[3]);
+			static void unitVectorSimple(float dX, float dY, float dZ, float r, float (&acc)[3]);
 
 			/**
 			 * @brief Alternative method for getting the normalized distance between two particles.
@@ -109,7 +108,7 @@ namespace utilities
 			 * @param L The size of the box.
 			 */
 			__device__
-			static void unitVectorAdv(double X,double Y, double Z,double X1, double Y1,double Z1,double (&acc)[3],double r,int L);
+			static void unitVectorAdv(float X,float Y, float Z,float X1, float Y1,float Z1,float (&acc)[3],float r,int L);
 
 			/**
 			 * @brief Set the text terminal text colour.
@@ -134,10 +133,8 @@ namespace utilities
 			 * @return 
 			 */
 			__device__
-			static double powBinaryDecomp(double base, int exp);
-
+			static float powBinaryDecomp(float base, int exp);
 	};
-
 }
 
 #endif // UTILITIES_H

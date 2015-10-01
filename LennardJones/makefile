@@ -18,7 +18,7 @@ GFLAGS := -m64 -arch=sm_50 --std=c++11 --compiler-options '-fPIC'
 SRCEXT := cu
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-LIB := -L./linked -lcore -lkernal
+LIB := -L./linked -lcore -lkernal -ldl -lc
 TARGET := bin/LJ.so
 ################################################################################
 ######################################RULES#####################################

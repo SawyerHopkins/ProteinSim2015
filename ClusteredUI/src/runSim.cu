@@ -20,34 +20,42 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include "system.h"
+#include "ui.h"
 #include <dlfcn.h>
 
 using namespace std;
 using namespace utilities;
 
-/**
- * @brief Run a new simulation.
- */
-void runScript()
+__global__
+void setupIntegrator(integrators::brownianIntegrator * difeq)
 {
-	/*----------------CFG-----------------*/
+	difeq = new integrators::brownianIntegrator();
+}
 
-	util::writeTerminal("Looking for configuration file.\n\n", Colour::Green);
-	configReader::config * cfg =new configReader::config("settings.cfg");
-	cfg->showOutput();
+void initIntegrator(integrators::brownianIntegrator * difeq, configReader::config * cfg)
+{
+	//Allocate enough memory to hold this object in device memory.
+	integrators::brownianIntegrator * dummy = new integrators::brownianIntegrator(cfg);
+	cudaMalloc((void **)&difeq, sizeof(dummy));
+	//Setup the integrator.
+	setupIntegrator<<<1,1>>>(difeq);
+	cudaDeviceSynchronize();
+	
+	string err = cudaGetErrorString(cudaGetLastError());
+	if (err != "no error")
+	{
+		util::writeTerminal("CUDA KERNEL: setupIntegrator -" + err + "\n", Colour::Red);
+	}
+	else
+	{
+		util::writeTerminal("CUDA KERNEL: setupIntegrator -" + err + "\n", Colour::Green);
+	}
+	
+	//printf("CUDA KERNEL: setupIntegrator -\t%s\n\n", cudaGetErrorString(cudaGetLastError()));
+}
 
-	/*---------------FORCES---------------*/
-
-	//Creates a force manager.
-	util::writeTerminal("Adding required forces.\n", Colour::Green);
-
-	std::string forceName = cfg->getParam<std::string>("force","");
-	std::string fileName = "./" + forceName + ".so";
-
-	//Opens the force library.
-	void* forceLib = dlopen(fileName.c_str(), RTLD_LAZY);
-
+void initForces(void* forceLib, physics::IForce * force, configReader::config * cfg)
+{
 	//Throw error if the library does not exist.
 	if (!forceLib)
 	{
@@ -67,7 +75,62 @@ void runScript()
 		util::writeTerminal("\n\nCould not find symbol: getForce\n\n", Colour::Red);
 		return;
 	}
-	
+
+	//Create a new force instance from the factory.
+	physics::IForce* dummy = factory(cfg);
+	//Allocate enough memory to hold this object in device memory.
+	cudaMalloc((void **)&force, sizeof(dummy));
+
+	//Make a factory to create the force instance.
+	physics::create_cudaForce* cudaFactory = (physics::create_cudaForce*) dlsym(forceLib,"getCudaForce");
+	err = dlerror();
+
+	//If the force is not properly implemented.
+	if (err)
+	{
+		util::writeTerminal("\nCould not find symbol: getCudaForce", Colour::Red);
+		return;
+	}
+
+	cudaFactory(force);
+
+	physics::cuda_test* testFactory = (physics::cuda_test*) dlsym(forceLib,"getCudaTest");
+
+	testFactory(force);
+}
+
+/**
+ * @brief Run a new simulation.
+ */
+void runScript()
+{
+	/*----------------CFG-----------------*/
+
+	util::writeTerminal("Looking for configuration file.\n\n", Colour::Green);
+	configReader::config * cfg =new configReader::config("settings.cfg");
+	cfg->showOutput();
+
+	/*-------------INTEGRATOR-------------*/
+
+	//Create the integrator.
+	util::writeTerminal("Creating integrator.\n", Colour::Green);
+	integrators::brownianIntegrator * difeq;
+	initIntegrator(difeq, cfg);
+
+	/*---------------FORCES---------------*/
+
+	//Create the force.
+	util::writeTerminal("Creating forces.\n", Colour::Green);
+	std::string forceName = cfg->getParam<std::string>("force","");
+	std::string fileName = "./" + forceName + ".so";
+	physics::IForce * loadForce;
+	void* forceLib = dlopen(fileName.c_str(), RTLD_LAZY);
+	//initForces(forceLib, loadForce, cfg);
+
+	/*---------------SYSTEM---------------*/
+
+	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
+
 	//Set the number of particles.
 	int nParticles = cfg->getParam<int>("nParticles",0);
 
@@ -76,35 +139,8 @@ void runScript()
 		util::writeTerminal("\n\nSystem must start with more than zero particles.", Colour::Red);
 		return;
 	}
-
-	//Create a new force instance from the factory.
-	physics::IForce* loadForce = factory(cfg);
-
-	//Add the force to the force manager.
-	physics::forces * force = new physics::forces(loadForce);
-
-	//til::writeTerminal("Creating force manager.\n", Colour::Green);
-	//int num_threads = cfg->getParam<double>("threads",1);
-	//force->setNumThreads(num_threads);
-
-	//int num_dyn = cfg->getParam<double>("omp_dynamic",0);
-	//force->setDynamic(num_dyn);
-
-	//Does not work on GCC 4.8 and below.
-	//int num_dev = cfg->getParam<double>("omp_device",0);
-	//force->setDevice(num_dev);
-
-	/*-------------INTEGRATOR-------------*/
-
-	//Create the integrator.
-	util::writeTerminal("Creating integrator.\n", Colour::Green);
-	integrators::brownianIntegrator * difeq = new integrators::brownianIntegrator(cfg);
-
-	/*---------------SYSTEM---------------*/
-
-	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
 	//Creates the particle system.
-	simulation::system * sys = new simulation::system(cfg, difeq, loadForce, nParticles);
+	simulation::system * sys = new simulation::system(cfg, difeq, loadForce, forceLib, nParticles);
 
 	/*---------------RUNNING--------------*/
 
@@ -132,7 +168,7 @@ void runScript()
 
 	util::writeTerminal("Starting integration.\n", Colour::Green);
 
-	int endTime = cfg->getParam<double>("endTime",1000);
+	int endTime = cfg->getParam<float>("endTime",1000);
 
 	sys->run(endTime);
 

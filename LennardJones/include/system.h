@@ -1,10 +1,10 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 #include "integrator.h"
+#include <dlfcn.h>
 
 namespace simulation
 {
-
 	/**
 	 * @class system
 	 * @author Sawyer Hopkins
@@ -14,7 +14,6 @@ namespace simulation
 	 */
 	class system
 	{
-
 		private:
 
 			/********************************************//**
@@ -27,18 +26,18 @@ namespace simulation
 			//Information about the system.
 			int nParticles;
 			int *d_nParticles;
-			double concentration;
+			float concentration;
 			int boxSize;
 			int *d_boxSize;
 			int cellSize;
 			int *d_cellSize;
 			int cellScale;
 			int *d_cellScale;
-			double temp;
-			double currentTime;
-			double *d_currentTime;
-			double dTime;
-			double *d_dTime;
+			float temp;
+			float currentTime;
+			float *d_currentTime;
+			float dTime;
+			float *d_dTime;
 			int particlesPerCell;
 			int *d_particlesPerCell;
 			int numCells;
@@ -47,7 +46,7 @@ namespace simulation
 			//Settings flags
 			int outputFreq;
 			int outXYZ;
-			double cycleHour;
+			float cycleHour;
 
 			//Random number seed.
 			int seed;
@@ -55,15 +54,12 @@ namespace simulation
 			//System entities.
 			particle* particles;
 			particle* d_particles;
-			cell**** cells;
-
-			uint2* particleHash;
+			cell* cells;
 
 			//System integrator.
-			integrators::I_integrator* integrator;
-			integrators::I_integrator* d_integrator;
+			integrators::brownianIntegrator* integrator;
 			physics::IForce* sysForces;
-			physics::IForce* d_sysForces;
+			void* forceLib;
 
 			/********************************************//**
 			*-------------------SYSTEM INIT------------------
@@ -74,19 +70,19 @@ namespace simulation
 			 * @param r The radius of the particles
 			 * @param m The mass of the particles.
 			 */
-			void initParticles(double r, double m);
+			void initParticles(float r, float m);
 			/**
 			 * @brief Creates a maxwell distribution of velocities for the system temperature.
 			 * @param gen The random generator the initalize particles.
 			 * @param distribution The distribution for the particles.
 			 */
-			void maxwellVelocityInit(std::mt19937* gen, std::uniform_real_distribution<double>* distribution);
+			void maxwellVelocityInit(std::mt19937* gen, std::uniform_real_distribution<float>* distribution);
 			/**
 			 * @brief Fixes any particle overlap in the random initalization.
 			 * @param gen The random generator the initalize particles.
 			 * @param distribution The distribution for the particles.
 			 */
-			void initCheck(std::mt19937* gen, std::uniform_real_distribution<double>* distribution);
+			void initCheck(std::mt19937* gen, std::uniform_real_distribution<float>* distribution);
 			/**
 			 * @brief Get input for working directory. Create if needed.
 			 * @return The working directory 
@@ -98,6 +94,8 @@ namespace simulation
 			 * @return True is the path is valid.
 			 */
 			bool checkDir(std::string path);
+
+			void checkCuda(std::string name);
 
 		public:
 
@@ -112,7 +110,7 @@ namespace simulation
 			 * @brief Constructs the particle system.
 			 * @return Nothing.
 			 */
-			system(configReader::config* cfg, integrators::I_integrator* sysInt, physics::IForce* sysFcs, int nParts);
+			system(configReader::config* cfg, integrators::brownianIntegrator* sysInt, physics::IForce* sysFcs, void* frcLib, int nParts);
 			/**
 			 * @brief Destructs the particle system.
 			 * @return Nothing.
@@ -147,7 +145,7 @@ namespace simulation
 			 * @brief Runs the system.
 			 * @param endTime When to stop running the simulation.
 			 */
-			void run(double endTime);
+			void run(float endTime);
 
 			/********************************************//**
 			*------------------SYSTEM OUTPUT-----------------
@@ -205,7 +203,7 @@ namespace simulation
 			 * @brief Returns the temperature of the system.
 			 * @return 
 			 */
-			double getTemperature();
+			float getTemperature();
 
 			/********************************************//**
 			 *---------------VERSION CONTROL-----------------
@@ -227,11 +225,6 @@ namespace simulation
 			 */
 			int getErrorVersion() { return debugging::error::version; }
 			/**
-			 * @brief Gets the flagged version of force.h before debugging.
-			 * @return 
-			 */
-			int getForceVersion() { return physics::IForce::version; }
-			/**
 			 * @brief Gets the flagged version of particle.h for debugging.
 			 * @return 
 			 */
@@ -247,18 +240,11 @@ namespace simulation
 			 */
 			int getUtilitiesVersion() { return utilities::util::version; }
 			/**
-			 * @brief Gets the flagged version of the integrator for debugging..
-			 * @return  
-			 */
-			int getIntegratorVersion() { return integrators::I_integrator::version; }
-			/**
 			 * @brief Gets the flagged version of system.h for debugging.
 			 * @return 
 			 */
 			int getSystemVersion() { return version; }
-
 	};
-
 }
 
 #endif // SYSTEM_H

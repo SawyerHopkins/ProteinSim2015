@@ -25,7 +25,7 @@ SOFTWARE.*/
 namespace utilities
 {
 	__device__
-	double util::safeMod(double val, double base)
+	float util::safeMod(float val, float base)
 	{
 		//0 mod n is always zero
 		if (val == 0)
@@ -55,10 +55,10 @@ namespace utilities
 	}
 
 	__device__
-	double util::safeMod0(double val0, double val, double base)
+	float util::safeMod0(float val0, float val, float base)
 	{
 		//The difference between the two values.
-		double dx = val - val0;
+		float dx = val - val0;
 		//If the values are further apart than half the system, use PBC.
 		if (fabs(dx) > base/2 )
 		{
@@ -79,12 +79,12 @@ namespace utilities
 	}
 
 	__host__ __device__
-	double util::pbcDist(double X,double Y, double Z,double X1, double Y1,double Z1,double L)
+	float util::pbcDist(float X,float Y, float Z,float X1, float Y1,float Z1,float L)
 	{
 
-		double dx = fabs(X-X1);
-		double dy = fabs(Y-Y1);
-		double dz = fabs(Z-Z1);
+		float dx = fabs(X-X1);
+		float dy = fabs(Y-Y1);
+		float dz = fabs(Z-Z1);
 
 		//Check X direction.
 		if(dx > L/2 )
@@ -109,7 +109,7 @@ namespace utilities
 	}
 
 	__device__
-	void util::unitVectorSimple(double dX, double dY, double dZ, double r, double (&acc)[3])
+	void util::unitVectorSimple(float dX, float dY, float dZ, float r, float (&acc)[3])
 	{
 		//Normalize by distance.
 		acc[0]=dX/r;
@@ -118,9 +118,9 @@ namespace utilities
 	}
 
 	__device__
-	void util::unitVectorAdv(double X,double Y, double Z,double X1, double Y1,double Z1,double (&acc)[3],double r,int L)
+	void util::unitVectorAdv(float X,float Y, float Z,float X1, float Y1,float Z1,float (&acc)[3],float r,int L)
 	{
-		double dx,dy,dz;
+		float dx,dy,dz;
 
 		dx=X1-X; dy=Y1-Y; dz=Z1-Z;
 
@@ -169,9 +169,9 @@ namespace utilities
 	}
 
 	__device__
-	double util::powBinaryDecomp(double base, int exp)
+	float util::powBinaryDecomp(float base, int exp)
 	{
-		double answer = 1;
+		float answer = 1;
 		while(exp)
 		{
 			if (exp & 1)

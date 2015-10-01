@@ -3,7 +3,6 @@
 #include "utilities.h"
 namespace simulation
 {
-
 	/**
 	 * @class particle
 	 * @author Sawyer Hopkins
@@ -13,7 +12,6 @@ namespace simulation
 	 */
 	class particle
 	{
-
 		/********************************************//**
 		*----------------SYSTEM VARIABLES----------------
 		************************************************/
@@ -24,35 +22,35 @@ namespace simulation
 			int name;
 
 			//Contains the current spacial information for x,y,z cordinates.
-			double x;
-			double y;
-			double z;
+			float x;
+			float y;
+			float z;
 
 			//Contains the previous spacial information for x,y,z cordinates.
-			double x0;
-			double y0;
-			double z0;
+			float x0;
+			float y0;
+			float z0;
 
 			//Contains the velocity information for x,y,z cordinates.
-			double vx;
-			double vy;
-			double vz;
+			float vx;
+			float vy;
+			float vz;
 
 			//Contains the current force information for the x,y,z cordinates.
-			double fx;
-			double fy;
-			double fz;
+			float fx;
+			float fy;
+			float fz;
 
 			//Contains the previous force information for the x,y,z cordinates.
-			double fx0;
-			double fy0;
-			double fz0;
+			float fx0;
+			float fy0;
+			float fz0;
 
 			//Contains the radius of each particle.
-			double r;
+			float r;
 
 			//Contains the mass of each particle.
-			double m;
+			float m;
 
 			//Contains the current cell identification.
 			int cx;
@@ -62,7 +60,7 @@ namespace simulation
 			//Coordination number.
 			int coorNumber;
 			//Effective average potenital.
-			double potential;
+			float potential;
 
 		public:
 
@@ -93,6 +91,9 @@ namespace simulation
 			__device__ __host__
 			void init(int pid);
 
+			__device__
+			void copyDummy(particle* dummy);
+
 			/********************************************//**
 			*-----------------SYSTEM GETTERS-----------------
 			************************************************/
@@ -104,19 +105,19 @@ namespace simulation
 			 * @return  exposes private variable x.
 			 */
 			__device__ __host__
-			double getX() const { return x; }
+			float getX() const { return x; }
 			/**
 			 * @brief Get the Y position
 			 * @return  exposes private variable y.
 			 */
 			__device__ __host__
-			double getY() const { return y; }
+			float getY() const { return y; }
 			/**
 			 * @brief Get the Z position
 			 * @return  exposes private variable z.
 			 */
 			__device__ __host__
-			double getZ() const { return z; }
+			float getZ() const { return z; }
 
 			//Getters for previous position.
 
@@ -125,19 +126,19 @@ namespace simulation
 			 * @return  exposes private variable x0.
 			 */
 			__device__ __host__
-			double getX0() const { return x0; }
+			float getX0() const { return x0; }
 			/**
 			 * @brief Get the previous Y position
 			 * @return  exposes private variable y0.
 			 */
 			__device__ __host__
-			double getY0() const { return y0; }
+			float getY0() const { return y0; }
 			/**
 			 * @brief Get the previous X position
 			 * @return  exposes private variable z0.
 			 */
 			__device__ __host__
-			double getZ0() const { return z0; }
+			float getZ0() const { return z0; }
 
 			//Getters for velocity.
 
@@ -146,19 +147,19 @@ namespace simulation
 			 * @return  exposes private variable x.
 			 */
 			__device__ __host__
-			double getVX() const { return vx; }
+			float getVX() const { return vx; }
 			/**
 			 * @brief Get the y velocity.
 			 * @return  exposes private variable y.
 			 */
 			__device__ __host__
-			double getVY() const { return vy; }
+			float getVY() const { return vy; }
 			/**
 			 * @brief Get the z velocity.
 			 * @return  exposes private variable z.
 			 */
 			__device__ __host__
-			double getVZ() const { return vz; }
+			float getVZ() const { return vz; }
  
 			//Getters for current force.
 
@@ -167,19 +168,19 @@ namespace simulation
 			 * @return  exposes private variable fx.
 			 */
 			__device__ __host__
-			double getFX() const { return fx; }
+			float getFX() const { return fx; }
 			/**
 			 * @brief Get the current y force.
 			 * @return  exposes private variable fy.
 			 */
 			__device__ __host__
-			double getFY() const { return fy; }
+			float getFY() const { return fy; }
 			/**
 			 * @brief Get the current z force.
 			 * @return  exposes private variable fz.
 			 */
 			__device__ __host__
-			double getFZ() const { return fz; }
+			float getFZ() const { return fz; }
 
 			//Getters for previous force.
 
@@ -188,19 +189,19 @@ namespace simulation
 			 * @return  exposes private variable fx0.
 			 */
 			__device__ __host__
-			double getFX0() const { return fx0; }
+			float getFX0() const { return fx0; }
 			/**
 			 * @brief Get the previous y force.
 			 * @return  exposes private variable fy0.
 			 */
 			__device__ __host__
-			double getFY0() const { return fy0; }
+			float getFY0() const { return fy0; }
 			/**
 			 * @brief Get the previous z force.
 			 * @return  exposes private variable fz0.
 			 */
 			__device__ __host__
-			double getFZ0() const { return fz0; }
+			float getFZ0() const { return fz0; }
 
 			//Getters for containing cell.
 
@@ -230,19 +231,19 @@ namespace simulation
 			 * @return  exposes private variable r.
 			 */
 			__device__ __host__
-			double getRadius() const { return r; }
+			float getRadius() const { return r; }
 			/**
 			 * @brief Get the mass of the particle.
 			 * @return  exposes private variable m.
 			 */
 			__device__ __host__
-			double getMass() const { return m; }
+			float getMass() const { return m; }
 			/**
 			 * @brief Get the name of the particle.
 			 * @return  exposes private variable name.
 			 */
 			__device__ __host__
-			double getName() const { return name; }
+			float getName() const { return name; }
 			/**
 			 * @brief Returns the coordination number.
 			 * @return
@@ -266,46 +267,46 @@ namespace simulation
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setX(double val, double boxSize);
+			void setX(float val, float boxSize);
 			/**
 			 * @brief Set the y position of the particle. Handles PBC and updates y0.
 			 * @param val The new y position. 
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setY(double val, double boxSize);
+			void setY(float val, float boxSize);
 			/**
 			 * @brief Set the z position of the particle. Handles PBC and updates z0.
 			 * @param val The new z position. 
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setZ(double val, double boxSize);
+			void setZ(float val, float boxSize);
 			/**
 			 * @brief Set the position of the particle. Handles PBC and updates the previous value.
 			 * @param xVal,yVal,zVal The new position. 
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setPos(double xVal, double yVal, double zVal, double boxSize);
+			void setPos(float xVal, float yVal, float zVal, float boxSize);
 			/**
 			 * @brief Set the x velocity.
 			 * @param val The velocity to set.
 			 */
 			__device__ __host__
-			void setVX(double val) { vx = val; }
+			void setVX(float val) { vx = val; }
 			/**
 			 * @brief Set the y velocity.
 			 * @param val The velocity to set.
 			 */
 			__device__ __host__
-			void setVY(double val) { vy = val; }
+			void setVY(float val) { vy = val; }
 			/**
 			 * @brief Set the z velocity.
 			 * @param val The velocity to set.
 			 */
 			__device__ __host__
-			void setVZ(double val) { vz = val; }
+			void setVZ(float val) { vz = val; }
 			/**
 			 * @brief Adds the the current value of force.
 			 * @param xVal,yVal,zVal The values of force to add.
@@ -313,7 +314,7 @@ namespace simulation
 			 * @param p The particle providing the force.
 			 */
 			__device__ __host__
-			void updateForce(double xVal, double yVal, double zVal, double pot, particle* p, bool countPair = true);
+			void updateForce(float xVal, float yVal, float zVal, float pot, particle* p, bool countPair = true);
 
 			/**
 			 * @brief Clears the current force and updates previous force. Resets potential, neighbors, and coordination number.
@@ -331,14 +332,13 @@ namespace simulation
 			 * @param val Radius value.
 			 */
 			__device__ __host__
-			void setRadius(double val) { r = val; }
+			void setRadius(float val) { r = val; }
 			/**
 			 * @brief Sets the mass of the particle.
 			 * @param val Mass value.
 			 */
 			__device__ __host__
-			void setMass(double val) { m = val; }
-
+			void setMass(float val) { m = val; }
 
 			/********************************************//**
 			*------------------SYSTEM OUTPUT-----------------
@@ -348,9 +348,7 @@ namespace simulation
 			 * @brief Writes the position of the particle to the console.
 			 */
 			void writePosition() { std::cout << x << ", " << y << ", " << z << "\n"; }
-
 	};
-
 }
 
 #endif // PARTICLE_H
