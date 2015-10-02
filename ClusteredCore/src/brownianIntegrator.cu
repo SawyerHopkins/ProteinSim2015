@@ -168,7 +168,7 @@ namespace integrators
 	void brownianIntegrator::nextSystem(float *time, float *dt, int *nParticles, int *boxSize, simulation::particle* items)
 	{
 		//Checks what method is needed.
-		if (time == 0)
+		if (*time == 0)
 		{
 			firstStep(*time, *dt, *nParticles, *boxSize, items);
 		}
@@ -176,6 +176,7 @@ namespace integrators
 		{
 			normalStep(*time, *dt, *nParticles, *boxSize, items);
 		}
+		*time = *time + *dt;
 	}
 
 	__device__

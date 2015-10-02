@@ -25,7 +25,8 @@ SOFTWARE.*/
 
 namespace simulation
 {
-	system::system(configReader::config* cfg, integrators::brownianIntegrator* sysInt, physics::IForce* sysFrc, void* frcLib, int nParts) : particles(new particle[nParts])
+	system::system(configReader::config* cfg, integrators::brownianIntegrator* sysInt, physics::IForce** sysFrc, physics::cuda_Acceleration* acc, int nParts) 
+	: particles(new particle[nParts])
 	{
 		/********************************************//**
 		*------------------SETUP OUTPUT------------------
@@ -99,7 +100,7 @@ namespace simulation
 
 		//Set the internal forces.
 		sysForces = sysFrc;
-		forceLib = frcLib;
+		forceFactory = acc;
 
 		//Set the concentration.
 		float conc = cfg->getParam<float>("conc",0.01);
@@ -161,13 +162,8 @@ namespace simulation
 		cudaMalloc((void **)&d_particlesPerCell, sizeof(int));
 		cudaMemcpy(d_particlesPerCell, &particlesPerCell, sizeof(int), cudaMemcpyHostToDevice);
 
-		cudaMalloc((void **)&integrator, sizeof(sysInt));
-		cudaMemcpy(integrator, &sysInt, sizeof(sysInt), cudaMemcpyHostToDevice);
-
-		//cudaMalloc((void **)&sysForces, sizeof(sysFcs));
-		//cudaMemcpy(sysForces, &sysFcs, sizeof(sysFcs), cudaMemcpyHostToDevice);
-
-		checkCuda("bulkCopy");
+		cudaMalloc((void **)&integrator, sizeof(*sysInt));
+		cudaMemcpy(integrator, &sysInt, sizeof(*sysInt), cudaMemcpyHostToDevice);
 
 		/********************************************//**
 		*----------------CREATE PARTICLES----------------
@@ -180,6 +176,7 @@ namespace simulation
 		cudaMalloc((void **)&d_particles, size);
 		cudaMemcpy(d_particles, particles, size, cudaMemcpyHostToDevice);
 		checkCuda("copyParticles");
+
 		/********************************************//**
 		*----------------CREATE INTEGRATOR----------------
 		************************************************/
@@ -211,48 +208,6 @@ namespace simulation
 		/********************************************//**
 		*-----------------CREATE FORCES------------------
 		************************************************/
-
-		utilities::util::writeTerminal("\n Loading required forces.\n", utilities::Colour::Green);
-		//Setup variables to copy.
-		//This should be automated for a general number of inputs in future builds.
-		float* frcLocal = new float[7];
-		float* frcDevice;
-		int frcSize = 7 * sizeof(float);
-		cudaMalloc((void **)&frcDevice, frcSize);
-		frcLocal[0] = cfg->getParam<float>("kT", 10.0);
-		frcLocal[1] = cfg->getParam<float>("radius",0.5);
-		frcLocal[2] = cfg->getParam<float>("mass",1.0);
-		frcLocal[3] = cfg->getParam<float>("yukawaStrength",8.0);
-		frcLocal[4] = cfg->getParam<int>("ljNum",18.0);
-		frcLocal[5] = cfg->getParam<float>("cutOff",2.5);
-		frcLocal[6] = cfg->getParam<float>("debyeLength",0.5);
-		cudaMemcpy(frcDevice,frcLocal,frcSize,cudaMemcpyHostToDevice);
-
-		//Make a factory to create the force instance.
-		physics::cuda_load* loadFactory = (physics::cuda_load*) dlsym(forceLib,"getCudaLoad");
-		const char* dlErr = dlerror();
-
-		//If the force is not properly implemented.
-		if (dlErr)
-		{
-			utilities::util::writeTerminal("\n\nCould not find symbol: getCudaLoad\n\n", utilities::Colour::Red);
-			return;
-		}
-		
-		//loadFactory(sysForces, frcDevice);
-
-		//Make a factory to create the force instance.
-		physics::cuda_test* testFactory = (physics::cuda_test*) dlsym(forceLib,"getCudaTest");
-		dlErr = dlerror();
-
-		//If the force is not properly implemented.
-		if (dlErr)
-		{
-			utilities::util::writeTerminal("\n\nCould not find symbol: getCudaTest\n\n", utilities::Colour::Red);
-			return;
-		}
-		
-		//testFactory(sysForces);
 
 		/********************************************//**
 		*------------------CREATE CELLS------------------
@@ -333,18 +288,15 @@ namespace simulation
 		while (currentTime < endTime)
 		{
 			//Get the forces acting on the system.
-
+			forceFactory(sysForces, d_nParticles, d_boxSize, d_cellScale, d_currentTime, cells, d_particles, nParticles);
 			//Get the next system.
 			nextSystem<<<nParticles,1>>>(d_currentTime, d_dTime, d_nParticles, d_boxSize, d_particles, integrator);
 			cudaDeviceSynchronize();
-			checkCuda("nextSystem");
 			//Call cell manager.
 			resetCells<<<nParticles,1>>>(cells);
 			cudaDeviceSynchronize();
-			checkCuda("resetCells");
 			updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
 			cudaDeviceSynchronize();
-			checkCuda("updateCells");
 			//Output a snapshot every second.
 			if ( (counter % outputFreq) == 0 )
 			{
@@ -352,10 +304,8 @@ namespace simulation
 				{
 					cudaMemcpy(particles,d_particles, nParticles*sizeof(particle) ,cudaMemcpyDeviceToHost);
 					checkCuda("copyFromDevice");
-					utilities::util::clearLines(14);
+					utilities::util::clearLines(11);
 				}
-				int q = 0;
-				std::cin >> q;
 				writeSystemState(tmr);
 			}
 

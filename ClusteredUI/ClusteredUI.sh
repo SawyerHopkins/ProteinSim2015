@@ -12,8 +12,3 @@ cp ../ClusteredCore/bin/*.a linked/
 tput setaf 7
 echo Done
 make
-echo Done
-make
-echo Executing Post Build commands ...
-
-echo Done

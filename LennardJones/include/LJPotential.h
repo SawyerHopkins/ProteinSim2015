@@ -28,7 +28,7 @@ private:
 	public:
 
 		__device__
-		LennardJones(){};
+		LennardJones(float* vars);
 		/**
 		 * @brief Creates an new AO Potential.
 		 * @param cfg The address of the configuration file reader.
@@ -38,9 +38,6 @@ private:
 		 * @brief Releases the force from memory.
 		 */
 		~LennardJones();
-
-		__device__
-		void cudaLoad(float * vars);
 
 		/**
 		 * @brief Get the force from the AO Potential.
@@ -52,7 +49,7 @@ private:
 		 * @param items All particles in the system.
 		 */
 		__device__
-		void getAcceleration(int index, int nPart, int boxSize, float time, simulation::cell* itemCell, simulation::particle* item);
+		void getAcceleration(int* nPart, int* boxSize, int* cellScale ,float* time, simulation::cell* cells, simulation::particle* items);
 		/**
 		 * @brief Checks for particle interation between the index particle and all particles in the provided cell.
 		 * @param boxSize The size of the system.
@@ -61,36 +58,28 @@ private:
 		 * @param itemCell The cell to check for interactions in.
 		 */
 		__device__
-		void iterCells(int boxSize, float time, simulation::particle* index, simulation::cell* itemCell);
+		void iterCells(int* boxSize, simulation::particle* index, simulation::cell* itemCell);
 
 		__device__
-		void cudaTest(){ printf("%d\n",1234); }
-
-
+		void cudaTest(){ printf("%f\n",kT); }
 };
 
 __global__
-void cudaForce(physics::IForce* force)
+void buildKernel(physics::IForce** force, float* vars)
 {
-	force = new LennardJones();
+	(*force) = new LennardJones(vars);
 }
 
 __global__
-void cudaTest(physics::IForce* force)
+void testKernel(physics::IForce** force)
 {
-	((LennardJones*)force)->cudaTest();
+	(*force)->cudaTest();
 }
 
 __global__
-void cudaLoad(physics::IForce* force, float * vars)
+void accelerationKernel(physics::IForce** force, int* nPart, int* boxSize, int* cellScale ,float* time, simulation::cell* cells, simulation::particle* items)
 {
-	((LennardJones*)force)->cudaLoad(vars);
-}
-
-__global__
-void runForce(int index, int nPart, int boxSize, float time, simulation::cell* itemCell, simulation::particle* items, physics::IForce* force)
-{
-	((LennardJones*)force)->getAcceleration(index,nPart,boxSize,time,itemCell,items);
+	(*force)->getAcceleration(nPart, boxSize, cellScale, time, cells, items);
 }
 
 extern "C" void showError(std::string name)
@@ -112,33 +101,29 @@ extern "C" physics::IForce* getForce(configReader::config* cfg)
 	return new LennardJones(cfg);
 }
 
-extern "C" void getCudaForce(physics::IForce* force)
+//Class factories.
+extern "C" void getCudaForce(physics::IForce** force, float* vars)
 {
-	cudaForce<<<1,1>>>(force);
-	cudaTest<<<1,1>>>(force);
+	buildKernel<<<1,1>>>(force,vars);
 	cudaDeviceSynchronize();
 	std::string err = cudaGetErrorString(cudaGetLastError());
-	showError("getCudaForce");
+	//showError("buildKernel");
 }
 
-extern "C" void getCudaTest(physics::IForce* force)
+//Class factories.
+extern "C" void runCudaTest(physics::IForce** force)
 {
-	cudaTest<<<1,1>>>(force);
+	testKernel<<<1,1>>>(force);
 	cudaDeviceSynchronize();
 	std::string err = cudaGetErrorString(cudaGetLastError());
-	showError("getCudaTest");
+	//showError("testKernel");
 }
 
-extern "C" void getCudaLoad(physics::IForce* force, float * vars)
+//Class factories.
+extern "C" void runAcceleration(physics::IForce** force, int* nPart, int* boxSize, int* cellScale ,float* time, simulation::cell* cells, simulation::particle* items, int numThreads)
 {
-	cudaLoad<<<1,1>>>(force,vars);
+	accelerationKernel<<<numThreads,1>>>(force, nPart, boxSize, cellScale, time, cells, items);
 	cudaDeviceSynchronize();
-	showError("getCudaLoad");
-}
-
-extern "C" void getRunForce(int index, int nPart, int boxSize, float time, simulation::cell* itemCell, simulation::particle* items, physics::IForce* force)
-{
-	runForce<<<nPart,1>>>(index, nPart, boxSize, time, itemCell, items, force);
-	cudaDeviceSynchronize();
-	showError("getRunForce");
+	std::string err = cudaGetErrorString(cudaGetLastError());
+	//showError("runAcceleration");
 }

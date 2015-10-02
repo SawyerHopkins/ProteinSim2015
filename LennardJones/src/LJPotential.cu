@@ -35,7 +35,7 @@ LennardJones::~LennardJones()
 }
 
 __device__
-void LennardJones::cudaLoad(float * vars)
+LennardJones::LennardJones(float * vars)
 {
 	kT = vars[0];
 
@@ -91,25 +91,26 @@ LennardJones::LennardJones(configReader::config* cfg)
 
 	output = true;
 
+	size = sizeof(*this);
+
 	utilities::util::writeTerminal("---Lennard Jones Potential successfully added.\n\n", utilities::Colour::Cyan);
 }
 
 __device__
-void LennardJones::iterCells(int boxSize, float time, particle* index, cell* itemCell)
+void LennardJones::iterCells(int* boxSize, particle* index, cell* itemCell)
 {
 	float pot = 0;
-	printf("LOOK");
 	int i = 0;
-	while (i < itemCell->gridCounter)
+	int max = itemCell->gridCounter;
+	while (i < max)
 	{
 		particle* it = itemCell->members[i];
 		if (it->getName() != index->getName())
 		{
-			printf("HIT");
 			//Distance between the two particles. 
 			float rSquared = utilities::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
 																it->getX(), it->getY(), it->getZ(),
-																boxSize);
+																*boxSize);
 
 			//If the particles are in the potential well.
 			if (rSquared < cutOffSquared)
@@ -173,7 +174,7 @@ void LennardJones::iterCells(int boxSize, float time, particle* index, cell* ite
 				float unitVec[3] {0.0,0.0,0.0};
 				utilities::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
 													it->getX(), it->getY(), it->getZ(),
-													unitVec, r, boxSize);
+													unitVec, r, *boxSize);
 
 				//Updates the acceleration.;
 				float fx = fNet*unitVec[0];
@@ -203,8 +204,19 @@ void LennardJones::iterCells(int boxSize, float time, particle* index, cell* ite
 }
 
 __device__
-void LennardJones::getAcceleration(int index, int nPart, int boxSize, float time, simulation::cell* itemCell, simulation::particle* item)
+void LennardJones::getAcceleration(int* nPart, int* boxSize, int* cellScale ,float* time, simulation::cell* cells, simulation::particle* items)
 {
+	int index = blockIdx.x;
+	int cellIndex = items[index].getX() + (items[index].getY() * (*cellScale)) + (items[index].getZ() * (*cellScale) * (*cellScale));
+
+	int i = 0;
+	while (i < 27)
+	{
+		iterCells(boxSize, &(items[index]), cells);
+		i++;
+	}
+
+	/*
 	printf("START");
 	int i = 0;
 	while (i < 27)
@@ -212,4 +224,5 @@ void LennardJones::getAcceleration(int index, int nPart, int boxSize, float time
 		iterCells(boxSize, time, item, itemCell->getNeighbor(i));
 		i++;
 	}
+	*/
 }

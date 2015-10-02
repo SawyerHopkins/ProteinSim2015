@@ -26,79 +26,6 @@ SOFTWARE.*/
 using namespace std;
 using namespace utilities;
 
-__global__
-void setupIntegrator(integrators::brownianIntegrator * difeq)
-{
-	difeq = new integrators::brownianIntegrator();
-}
-
-void initIntegrator(integrators::brownianIntegrator * difeq, configReader::config * cfg)
-{
-	//Allocate enough memory to hold this object in device memory.
-	integrators::brownianIntegrator * dummy = new integrators::brownianIntegrator(cfg);
-	cudaMalloc((void **)&difeq, sizeof(dummy));
-	//Setup the integrator.
-	setupIntegrator<<<1,1>>>(difeq);
-	cudaDeviceSynchronize();
-	
-	string err = cudaGetErrorString(cudaGetLastError());
-	if (err != "no error")
-	{
-		util::writeTerminal("CUDA KERNEL: setupIntegrator -" + err + "\n", Colour::Red);
-	}
-	else
-	{
-		util::writeTerminal("CUDA KERNEL: setupIntegrator -" + err + "\n", Colour::Green);
-	}
-	
-	//printf("CUDA KERNEL: setupIntegrator -\t%s\n\n", cudaGetErrorString(cudaGetLastError()));
-}
-
-void initForces(void* forceLib, physics::IForce * force, configReader::config * cfg)
-{
-	//Throw error if the library does not exist.
-	if (!forceLib)
-	{
-		util::writeTerminal("\n\nError loading in force library.\n\n", Colour::Red);
-		return;
-	}
-
-	dlerror();
-
-	//Make a factory to create the force instance.
-	physics::create_Force* factory = (physics::create_Force*) dlsym(forceLib,"getForce");
-	const char* err = dlerror();
-
-	//If the force is not properly implemented.
-	if (err)
-	{
-		util::writeTerminal("\n\nCould not find symbol: getForce\n\n", Colour::Red);
-		return;
-	}
-
-	//Create a new force instance from the factory.
-	physics::IForce* dummy = factory(cfg);
-	//Allocate enough memory to hold this object in device memory.
-	cudaMalloc((void **)&force, sizeof(dummy));
-
-	//Make a factory to create the force instance.
-	physics::create_cudaForce* cudaFactory = (physics::create_cudaForce*) dlsym(forceLib,"getCudaForce");
-	err = dlerror();
-
-	//If the force is not properly implemented.
-	if (err)
-	{
-		util::writeTerminal("\nCould not find symbol: getCudaForce", Colour::Red);
-		return;
-	}
-
-	cudaFactory(force);
-
-	physics::cuda_test* testFactory = (physics::cuda_test*) dlsym(forceLib,"getCudaTest");
-
-	testFactory(force);
-}
-
 /**
  * @brief Run a new simulation.
  */
@@ -114,8 +41,7 @@ void runScript()
 
 	//Create the integrator.
 	util::writeTerminal("Creating integrator.\n", Colour::Green);
-	integrators::brownianIntegrator * difeq;
-	initIntegrator(difeq, cfg);
+	integrators::brownianIntegrator * difeq = new integrators::brownianIntegrator(cfg);
 
 	/*---------------FORCES---------------*/
 
@@ -123,9 +49,74 @@ void runScript()
 	util::writeTerminal("Creating forces.\n", Colour::Green);
 	std::string forceName = cfg->getParam<std::string>("force","");
 	std::string fileName = "./" + forceName + ".so";
-	physics::IForce * loadForce;
 	void* forceLib = dlopen(fileName.c_str(), RTLD_LAZY);
-	//initForces(forceLib, loadForce, cfg);
+	
+	//Throw error if the library does not exist.
+	if (!forceLib)
+	{
+		util::writeTerminal("\n\nError loading in force library.\n\n", Colour::Red);
+		return;
+	}
+
+	dlerror();
+
+	//Make a factory to create the force instance.
+	physics::create_CudaForce* buildFactory = (physics::create_CudaForce*) dlsym(forceLib,"getCudaForce");
+	const char* err = dlerror();
+
+	//If the force is not properly implemented.
+	if (err)
+	{
+		util::writeTerminal("\n\nCould not find symbol: getForce\n\n", Colour::Red);
+		return;
+	}
+
+	//Setup variables to copy.
+	//This should be automated for a general number of inputs in future builds.
+	float* frcLocal = new float[7];
+	float* frcDevice;
+	int frcSize = 7 * sizeof(float);
+	cudaMalloc((void **)&frcDevice, frcSize);
+	frcLocal[0] = cfg->getParam<float>("kT", 10.0);
+	frcLocal[1] = cfg->getParam<float>("radius",0.5);
+	frcLocal[2] = cfg->getParam<float>("mass",1.0);
+	frcLocal[3] = cfg->getParam<float>("yukawaStrength",8.0);
+	frcLocal[4] = cfg->getParam<int>("ljNum",18.0);
+	frcLocal[5] = cfg->getParam<float>("cutOff",2.5);
+	frcLocal[6] = cfg->getParam<float>("debyeLength",0.5);
+	cudaMemcpy(frcDevice,frcLocal,frcSize,cudaMemcpyHostToDevice);
+
+	std::cout << "\n";
+
+	//Create a new force instance from the factory.
+	physics::IForce** loadForce;
+	cudaMalloc(&loadForce, sizeof(physics::IForce**));
+	buildFactory(loadForce, frcDevice);
+
+	//Run a test routine to ensure everything is loaded corrently.
+	physics::cuda_Test* testFactory = (physics::cuda_Test*) dlsym(forceLib,"runCudaTest");
+
+	err = dlerror();
+
+	//If the force is not properly implemented.
+	if (err)
+	{
+		util::writeTerminal("\n\nCould not find symbol: getForce\n\n", Colour::Red);
+		return;
+	}
+
+	testFactory(loadForce);
+
+	physics::cuda_Acceleration* accFactory = (physics::cuda_Acceleration*) dlsym(forceLib,"runAcceleration");
+
+	err = dlerror();
+
+	//If the force is not properly implemented.
+	if (err)
+	{
+		util::writeTerminal("\n\nCould not find symbol: getForce\n\n", Colour::Red);
+		return;
+	}
 
 	/*---------------SYSTEM---------------*/
 
@@ -140,7 +131,7 @@ void runScript()
 		return;
 	}
 	//Creates the particle system.
-	simulation::system * sys = new simulation::system(cfg, difeq, loadForce, forceLib, nParticles);
+	simulation::system * sys = new simulation::system(cfg, difeq, loadForce, accFactory, nParticles);
 
 	/*---------------RUNNING--------------*/
 

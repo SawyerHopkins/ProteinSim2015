@@ -1,7 +1,6 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 #include "integrator.h"
-#include <dlfcn.h>
 
 namespace simulation
 {
@@ -58,8 +57,8 @@ namespace simulation
 
 			//System integrator.
 			integrators::brownianIntegrator* integrator;
-			physics::IForce* sysForces;
-			void* forceLib;
+			physics::IForce** sysForces;
+			physics::cuda_Acceleration* forceFactory;
 
 			/********************************************//**
 			*-------------------SYSTEM INIT------------------
@@ -110,7 +109,7 @@ namespace simulation
 			 * @brief Constructs the particle system.
 			 * @return Nothing.
 			 */
-			system(configReader::config* cfg, integrators::brownianIntegrator* sysInt, physics::IForce* sysFcs, void* frcLib, int nParts);
+			system(configReader::config* cfg, integrators::brownianIntegrator* sysInt, physics::IForce** sysFcs, physics::cuda_Acceleration* acc, int nParts);
 			/**
 			 * @brief Destructs the particle system.
 			 * @return Nothing.

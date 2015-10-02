@@ -21,6 +21,8 @@ namespace physics
 	{
 		public:
 
+			int size;
+
 			//Header Version.
 			static const int version = 1;
 
@@ -34,33 +36,20 @@ namespace physics
 			 * @param items All particles in the system.
 			 */
 			__device__
-			virtual void getAcceleration(int index, int nPart, int boxSize, float time, simulation::cell* itemCell, simulation::particle* items)=0;
+			virtual void getAcceleration(int* nPart, int* boxSize, int* cellScale ,float* time, simulation::cell* cells, simulation::particle* items)=0;
 
 			/**
 			 * @brief Run any precalculation tests on the device to ensure it has properly loaded.
 			 */
 			__device__
 			virtual void cudaTest()=0;
-
-			/**
-			 * @brief Load any initial variables into the force object.
-			 * @param vars Initial variable array.
-			 */
-			__device__
-			virtual void cudaLoad(float* vars)=0;
 	};
 
 	/** Create the host force */
 	typedef IForce* create_Force(configReader::config*);
-	/** Create the Device force */
-	typedef void create_cudaForce(physics::IForce*);
-	/** Load variables into the device force */
-	typedef void cuda_load(physics::IForce*, float*);
-	/** Run tests on the device force */
-	typedef void cuda_test(physics::IForce*);
-	/** Run getAcceleration on device force */
-	typedef void run_force(int, int, int, float, simulation::cell*, simulation::particle*, physics::IForce*);
-
+	typedef void create_CudaForce(physics::IForce**, float *);
+	typedef void cuda_Test(physics::IForce**);
+	typedef void cuda_Acceleration(physics::IForce**, int*, int*, int*, float*, simulation::cell*, simulation::particle*, int numThreads);
 	/********************************************//**
 	*----------------FORCE MANAGEMENT----------------
 	 ***********************************************/
