@@ -199,7 +199,7 @@ void updateCells(int* scale, int* size, simulation::cell* cells, simulation::par
 			int j = atomicAdd( &(cells[cellIndex].gridCounter) , 1);
 
 			//If we have to many particles per cell we are having a bad day.
-			if (j >= 30)
+			if (j >= 300)
 			{
 				printf("Hello block %d, f=%d\n", blockIdx.x, j);
 			}

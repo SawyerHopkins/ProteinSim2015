@@ -116,7 +116,9 @@ namespace simulation
 		scale = cfg->getParam<int>("scale",4);
 
 		//Create a box based on desired concentration.
-		float vP = nParticles*(4.0/3.0)*atan(1.0)*4.0*r*r*r;
+		float particleVolume = (4.0/3.0)*atan(1.0)*4.0*r*r*r;
+		float adjustedVolume = particleVolume*pow(0.8,3.0);
+		float vP = nParticles*particleVolume;
 		boxSize = (int) cbrt(vP / conc);
 
 		//Calculates the number of cells needed.
@@ -127,7 +129,8 @@ namespace simulation
 
 		//Sets the actual concentration.
 		concentration = vP/pow(boxSize,3.0);
-		particlesPerCell = 30;
+		float linearConcentration = (boxSize/adjustedVolume);
+		particlesPerCell = pow(linearConcentration,3.0);
 
 		std::cout << "---System concentration: " << concentration << "\n";
 
