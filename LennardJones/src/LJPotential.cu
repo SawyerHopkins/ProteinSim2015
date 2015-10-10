@@ -161,10 +161,15 @@ void LennardJones::iterCells(int* boxSize, particle* index, cell* itemCell)
 
 				float fNet = -kT*(attract+repel);
 
+				/*
 				if ((fNet*fNet) > (80*80))
 				{
-					printf("%f %d %d %d %d %f %f\n", fNet, it->getName(), index->getName(), i, max, rSquared, cutOffSquared);
+					printf("%f %d %d %d %d %f %f --- i: %d, %d, %d --- j: %d, %d, %d\n",
+					 fNet, it->getName(), index->getName(), i, max, rSquared, cutOffSquared,
+					 index->getCX(), index->getCY(), index->getCZ(),
+					 it->getCX(), it->getCY(), it->getCZ());
 				}
+				*/
 
 				//Positive is attractive; Negative repulsive.
 				//fNet = -fNet;
@@ -229,6 +234,8 @@ void LennardJones::getAcceleration(int* nPart, int* boxSize, int* cellScale ,flo
 	if (index >= *nPart) return;
 
 	int cellIndex = items[index].getCX() + (items[index].getCY() * (*cellScale)) + (items[index].getCZ() * (*cellScale) * (*cellScale));
+
+	items[index].nextIter();
 
 	int i = 0;
 	while (i < 27)

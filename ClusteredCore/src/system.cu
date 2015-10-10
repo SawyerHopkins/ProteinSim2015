@@ -267,6 +267,8 @@ namespace simulation
 		{
 			utilities::util::writeTerminal("CUDA KERNEL: " + name + " - " + err + "\n", utilities::Colour::Green);
 		}
+		//int q = 0;
+		//std::cin >> q;
 	}
 
 	void system::run(float endTime)
@@ -295,18 +297,18 @@ namespace simulation
 			cudaDeviceSynchronize();
 			//Get the forces acting on the system.
 			forceFactory(sysForces, d_nParticles, d_boxSize, d_cellScale, d_currentTime, cells, d_particles, nParticles);
-			checkCuda("forceFactory");
+			//checkCuda("forceFactory");
 			//Get the next system.
 			nextSystem<<<nParticles,1>>>(d_currentTime, d_dTime, d_nParticles, d_boxSize, d_particles, integrator);
 			cudaDeviceSynchronize();
-			checkCuda("nextSystem");
+			//checkCuda("nextSystem");
 			//Call cell manager.
 			resetCells<<<numCells,1>>>(cells);
 			cudaDeviceSynchronize();
-			checkCuda("resetCells");
+			//checkCuda("resetCells");
 			updateCells<<<nParticles,1>>>(d_cellScale, d_cellSize, cells, d_particles);
 			cudaDeviceSynchronize();
-			checkCuda("updateCells");
+			//checkCuda("updateCells");
 			//Output a snapshot every second.
 			if ( (counter % outputFreq) == 0 )
 			{
@@ -326,7 +328,7 @@ namespace simulation
 			currentTime += dTime;
 			incrementTime<<<1,1>>>(d_dTime,d_currentTime);
 			cudaDeviceSynchronize();
-			checkCuda("incrementTime");
+			//checkCuda("incrementTime");
 			counter++;
 		}
 	}

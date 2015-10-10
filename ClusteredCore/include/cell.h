@@ -24,6 +24,7 @@ namespace simulation
 			static const int version = 1;
 			int maxMem;
 			int gridCounter;
+			int index;
 			particle** members;
 
 			//Constructor and Destructor

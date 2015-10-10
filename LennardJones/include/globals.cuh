@@ -137,8 +137,6 @@ void initCells(int numCells, int scale, simulation::cell* cells, int particlesPe
 
 	int index = getIndex(x,y,z,scale);
 
-	printf("%d\n", index);
-
 	cells[index].left = &(cells[getIndex(left,y,z,scale)]);
 	cells[index].right = &(cells[getIndex(right,y,z,scale)]);
 	cells[index].top = &(cells[getIndex(x,top,z,scale)]);
@@ -146,6 +144,7 @@ void initCells(int numCells, int scale, simulation::cell* cells, int particlesPe
 	cells[index].front = &(cells[getIndex(x,y,front,scale)]);
 	cells[index].back = &(cells[getIndex(x,y,back,scale)]);
 
+	cells[index].index = index;
 	cells[index].members = new particle*[particlesPerCell];
 }
 
@@ -171,55 +170,46 @@ void updateCells(int* scale, int* size, simulation::cell* cells, simulation::par
 		int cY = int( d_particles[index].getY() / float(*size) );
 		int cZ = int( d_particles[index].getZ() / float(*size) );
 
-		//Old cell
-		int cX0 = d_particles[index].getCX();
-		int cY0 = d_particles[index].getCY();
-		int cZ0 = d_particles[index].getCZ();
-
-		if ((cX != cX0) || (cY != cY0) || (cZ != cZ0))
+		if (cX > ((*scale)-1))
 		{
+			printf("Grid Size Overflow X --- particle: %d, cX: %d\n --- x: %f, x0: %f, fx: %f, fx0: %f\n", blockIdx.x, cX, d_particles[index].getX(), 
+				d_particles[index].getX0(), d_particles[index].getFX(), d_particles[index].getFX0());
+			debugging::error::throwCellBoundsError(cX,cY,cZ);
+		}
+		if (cY > ((*scale)-1))
+		{
+			printf("Grid Size Overflow Y --- particle: %d, cY: %d\n --- y: %f, y0: %f, fy: %f, fy0: %f\n", blockIdx.x, cY, d_particles[index].getY(), 
+				d_particles[index].getY0(), d_particles[index].getFY(), d_particles[index].getFY0());
+			debugging::error::throwCellBoundsError(cX,cY,cZ);
+		}
+		if (cZ > ((*scale)-1))
+		{
+			printf("Grid Size Overflow Z --- particle: %d, cZ: %d\n --- z: %f, z0: %f, fz: %f, fz0: %f\n", blockIdx.x, cZ, d_particles[index].getZ(), 
+				d_particles[index].getZ0(), d_particles[index].getFZ(), d_particles[index].getFZ0());
+			debugging::error::throwCellBoundsError(cX,cY,cZ);
+		}
 
-			if (cX > ((*scale)-1))
-			{
-				printf("Grid Size Overflow X --- particle: %d, cX: %d\n --- x: %f, x0: %f, fx: %f, fx0: %f\n", blockIdx.x, cX, d_particles[index].getX(), 
-					d_particles[index].getX0(), d_particles[index].getFX(), d_particles[index].getFX0());
-				debugging::error::throwCellBoundsError(cX,cY,cZ);
-			}
-			if (cY > ((*scale)-1))
-			{
-				printf("Grid Size Overflow Y --- particle: %d, cY: %d\n --- y: %f, y0: %f, fy: %f, fy0: %f\n", blockIdx.x, cY, d_particles[index].getY(), 
-					d_particles[index].getY0(), d_particles[index].getFY(), d_particles[index].getFY0());
-				debugging::error::throwCellBoundsError(cX,cY,cZ);
-			}
-			if (cZ > ((*scale)-1))
-			{
-				printf("Grid Size Overflow Z --- particle: %d, cZ: %d\n --- z: %f, z0: %f, fz: %f, fz0: %f\n", blockIdx.x, cZ, d_particles[index].getZ(), 
-					d_particles[index].getZ0(), d_particles[index].getFZ(), d_particles[index].getFZ0());
-				debugging::error::throwCellBoundsError(cX,cY,cZ);
-			}
+		d_particles[index].setCell(cX,cY,cZ);
 
-			d_particles[index].setCell(cX,cY,cZ);
+		int cellIndex = getIndex(cX,cY,cZ,(*scale));
 
-			int cellIndex = getIndex(cX,cY,cZ,(*scale));
+		//See cuda manual on particle simulations.
+		//Create a thread unique index and add particle there.
+		int j = atomicAdd( &(cells[cellIndex].gridCounter) , 1);
 
-			//See cuda manual on particle simulations.
-			//Create a thread unique index and add particle there.
-			int j = atomicAdd( &(cells[cellIndex].gridCounter) , 1);
-
-			//If we have to many particles per cell we are having a bad day.
-			if (j >= 300)
-			{
-				printf("Cell Member Overflow --- gridCounter: %d, thread: %d\n", blockIdx.x, j);
-			}
-			//If this happens we are really having a bad day.
-			else if (j < 0)
-			{
-				printf("Cell Member Underflow --- gridCounter: %d, thread: %d\n", blockIdx.x, j);
-			}
-			else
-			{
-				cells[cellIndex].members[j] = &(d_particles[index]);
-			}
+		//If we have to many particles per cell we are having a bad day.
+		if (j >= 300)
+		{
+			printf("Cell Member Overflow --- gridCounter: %d, thread: %d\n", blockIdx.x, j);
+		}
+		//If this happens we are really having a bad day.
+		else if (j < 0)
+		{
+			printf("Cell Member Underflow --- gridCounter: %d, thread: %d\n", blockIdx.x, j);
+		}
+		else
+		{
+			cells[cellIndex].members[j] = &(d_particles[index]);
 		}
 }
 
