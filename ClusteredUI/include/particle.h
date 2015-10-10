@@ -243,7 +243,7 @@ namespace simulation
 			 * @return  exposes private variable name.
 			 */
 			__device__ __host__
-			float getName() const { return name; }
+			int getName() const { return name; }
 			/**
 			 * @brief Returns the coordination number.
 			 * @return
@@ -255,7 +255,7 @@ namespace simulation
 			 * @return 
 			 */
 			 __device__ __host__ 
-			int getPotential() const { return potential; }
+			float getPotential() const { return potential; }
 
  			/********************************************//**
 			*-----------------SYSTEM SETTERS-----------------

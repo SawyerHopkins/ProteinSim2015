@@ -129,10 +129,10 @@ namespace simulation
 
 		//Sets the actual concentration.
 		concentration = vP/pow(boxSize,3.0);
-		float linearConcentration = (boxSize/adjustedVolume);
-		particlesPerCell = pow(linearConcentration,3.0);
+		particlesPerCell = (cellSize*cellSize*cellSize/adjustedVolume);
 
 		std::cout << "---System concentration: " << concentration << "\n";
+		std::cout << "---particlesPerCell: " << particlesPerCell << "\n";
 
 		/********************************************//**
 		*-----------------COPY VARIABLES-----------------
@@ -260,6 +260,8 @@ namespace simulation
 		if (err != "no error")
 		{
 			utilities::util::writeTerminal("CUDA KERNEL: " + name + " - " + err + "\n", utilities::Colour::Red);
+			int i = 0;
+			std::cin >> i;
 		}
 		else
 		{
@@ -290,24 +292,29 @@ namespace simulation
 		//Run system until end time.
 		while (currentTime < endTime)
 		{
+			cudaDeviceSynchronize();
 			//Get the forces acting on the system.
 			forceFactory(sysForces, d_nParticles, d_boxSize, d_cellScale, d_currentTime, cells, d_particles, nParticles);
+			checkCuda("forceFactory");
 			//Get the next system.
 			nextSystem<<<nParticles,1>>>(d_currentTime, d_dTime, d_nParticles, d_boxSize, d_particles, integrator);
 			cudaDeviceSynchronize();
+			checkCuda("nextSystem");
 			//Call cell manager.
-			resetCells<<<nParticles,1>>>(cells);
+			resetCells<<<numCells,1>>>(cells);
 			cudaDeviceSynchronize();
-			updateCells<<<numCells,1>>>(d_cellScale, d_cellSize, cells, d_particles);
+			checkCuda("resetCells");
+			updateCells<<<nParticles,1>>>(d_cellScale, d_cellSize, cells, d_particles);
 			cudaDeviceSynchronize();
+			checkCuda("updateCells");
 			//Output a snapshot every second.
 			if ( (counter % outputFreq) == 0 )
 			{
 				if (currentTime > 0)
 				{
 					cudaMemcpy(particles,d_particles, nParticles*sizeof(particle) ,cudaMemcpyDeviceToHost);
-					checkCuda("copyFromDevice");
 					utilities::util::clearLines(11);
+					checkCuda("copyFromDevice");
 				}
 				writeSystemState(tmr);
 			}
@@ -317,6 +324,9 @@ namespace simulation
 
 			//Increment counters.
 			currentTime += dTime;
+			incrementTime<<<1,1>>>(d_dTime,d_currentTime);
+			cudaDeviceSynchronize();
+			checkCuda("incrementTime");
 			counter++;
 		}
 	}

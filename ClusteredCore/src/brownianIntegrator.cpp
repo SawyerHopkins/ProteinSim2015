@@ -38,6 +38,7 @@ namespace integrators
 		memCorrX = new float[memSize];
 		memCorrY = new float[memSize];
 		memCorrZ = new float[memSize];
+		devStates = new curandStateXORWOW_t[memSize];
 
 		//Sets the system temperature.
 		temp = cfg->getParam<float>("temp",1.0);

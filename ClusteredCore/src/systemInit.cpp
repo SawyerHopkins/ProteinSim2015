@@ -51,7 +51,6 @@ namespace simulation
 
 			particles[i].setRadius(r);
 			particles[i].setMass(m);
-
 		}
 
 		std::cout << "---Added " << nParticles << " particles. Checking for overlap.\n\n";

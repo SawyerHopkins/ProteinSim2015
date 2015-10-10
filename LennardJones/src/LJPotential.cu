@@ -97,14 +97,28 @@ LennardJones::LennardJones(configReader::config* cfg)
 }
 
 __device__
+void LennardJones::cudaTest()
+{
+	printf("kT: %f\n",kT);
+	printf("radius: %f\n",radius);
+	printf("mass: %f\n",mass);
+	printf("yukStr: %f\n",yukStr);
+	printf("ljNum: %d\n",ljNum);
+	printf("cutoff: %f\n",cutOff);
+	printf("debyeLength: %f\n",debyeLength);
+}
+
+__device__
 void LennardJones::iterCells(int* boxSize, particle* index, cell* itemCell)
 {
 	float pot = 0;
 	int i = 0;
 	int max = itemCell->gridCounter;
+
 	while (i < max)
 	{
 		particle* it = itemCell->members[i];
+
 		if (it->getName() != index->getName())
 		{
 			//Distance between the two particles. 
@@ -146,6 +160,11 @@ void LennardJones::iterCells(int* boxSize, particle* index, cell* itemCell)
 				repel *= (rInv*rInv*DebyeShift*yukStr);
 
 				float fNet = -kT*(attract+repel);
+
+				if ((fNet*fNet) > (80*80))
+				{
+					printf("%f %d %d %d %d %f %f\n", fNet, it->getName(), index->getName(), i, max, rSquared, cutOffSquared);
+				}
 
 				//Positive is attractive; Negative repulsive.
 				//fNet = -fNet;
@@ -206,23 +225,15 @@ void LennardJones::iterCells(int* boxSize, particle* index, cell* itemCell)
 __device__
 void LennardJones::getAcceleration(int* nPart, int* boxSize, int* cellScale ,float* time, simulation::cell* cells, simulation::particle* items)
 {
-	int index = blockIdx.x;
-	int cellIndex = items[index].getX() + (items[index].getY() * (*cellScale)) + (items[index].getZ() * (*cellScale) * (*cellScale));
+	int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+	if (index >= *nPart) return;
+
+	int cellIndex = items[index].getCX() + (items[index].getCY() * (*cellScale)) + (items[index].getCZ() * (*cellScale) * (*cellScale));
 
 	int i = 0;
 	while (i < 27)
 	{
-		iterCells(boxSize, &(items[index]), cells);
+		iterCells(boxSize, &(items[index]), cells[cellIndex].getNeighbor(i));
 		i++;
 	}
-
-	/*
-	printf("START");
-	int i = 0;
-	while (i < 27)
-	{
-		iterCells(boxSize, time, item, itemCell->getNeighbor(i));
-		i++;
-	}
-	*/
 }

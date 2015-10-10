@@ -136,6 +136,9 @@ void initCells(int numCells, int scale, simulation::cell* cells, int particlesPe
 	}
 
 	int index = getIndex(x,y,z,scale);
+
+	printf("%d\n", index);
+
 	cells[index].left = &(cells[getIndex(left,y,z,scale)]);
 	cells[index].right = &(cells[getIndex(right,y,z,scale)]);
 	cells[index].top = &(cells[getIndex(x,top,z,scale)]);
@@ -160,7 +163,9 @@ void createNeighborhoods(simulation::cell* cells)
 __global__
 void updateCells(int* scale, int* size, simulation::cell* cells, simulation::particle* d_particles)
 {
-		int index = blockIdx.x;
+		int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+
+		//if (index >= nParticles) return;
 		//New cell
 		int cX = int( d_particles[index].getX() / float(*size) );
 		int cY = int( d_particles[index].getY() / float(*size) );
@@ -176,17 +181,20 @@ void updateCells(int* scale, int* size, simulation::cell* cells, simulation::par
 
 			if (cX > ((*scale)-1))
 			{
-				printf("Hello block %d, %d\n", blockIdx.x, cX);
+				printf("Grid Size Overflow X --- particle: %d, cX: %d\n --- x: %f, x0: %f, fx: %f, fx0: %f\n", blockIdx.x, cX, d_particles[index].getX(), 
+					d_particles[index].getX0(), d_particles[index].getFX(), d_particles[index].getFX0());
 				debugging::error::throwCellBoundsError(cX,cY,cZ);
 			}
 			if (cY > ((*scale)-1))
 			{
-				printf("Hello block %d, %d\n", blockIdx.x, cY);
+				printf("Grid Size Overflow Y --- particle: %d, cY: %d\n --- y: %f, y0: %f, fy: %f, fy0: %f\n", blockIdx.x, cY, d_particles[index].getY(), 
+					d_particles[index].getY0(), d_particles[index].getFY(), d_particles[index].getFY0());
 				debugging::error::throwCellBoundsError(cX,cY,cZ);
 			}
 			if (cZ > ((*scale)-1))
 			{
-				printf("Hello block %d, %d\n", blockIdx.x, cZ);
+				printf("Grid Size Overflow Z --- particle: %d, cZ: %d\n --- z: %f, z0: %f, fz: %f, fz0: %f\n", blockIdx.x, cZ, d_particles[index].getZ(), 
+					d_particles[index].getZ0(), d_particles[index].getFZ(), d_particles[index].getFZ0());
 				debugging::error::throwCellBoundsError(cX,cY,cZ);
 			}
 
@@ -201,16 +209,16 @@ void updateCells(int* scale, int* size, simulation::cell* cells, simulation::par
 			//If we have to many particles per cell we are having a bad day.
 			if (j >= 300)
 			{
-				printf("Hello block %d, f=%d\n", blockIdx.x, j);
+				printf("Cell Member Overflow --- gridCounter: %d, thread: %d\n", blockIdx.x, j);
 			}
 			//If this happens we are really having a bad day.
 			else if (j < 0)
 			{
-				printf("Hello block %d, f=%d\n", blockIdx.x, j);
+				printf("Cell Member Underflow --- gridCounter: %d, thread: %d\n", blockIdx.x, j);
 			}
 			else
 			{
-				cells[cellIndex].members[j] = &d_particles[index];
+				cells[cellIndex].members[j] = &(d_particles[index]);
 			}
 		}
 }
@@ -224,6 +232,13 @@ void resetCells(simulation::cell* cells)
 {
 	//Unlike Master branch, in cuda we clear cell members each time by doing this.
 	cells[blockIdx.x].gridCounter = 0;
+	//atomicInc(&(cells[blockIdx.x].gridCounter),0);
+}
+
+__global__
+void incrementTime(float* dt, float* currentTime)
+{
+	*currentTime = *currentTime + *dt;
 }
 
 

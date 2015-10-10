@@ -61,7 +61,7 @@ private:
 		void iterCells(int* boxSize, simulation::particle* index, simulation::cell* itemCell);
 
 		__device__
-		void cudaTest(){ printf("%f\n",kT); }
+		void cudaTest();
 };
 
 __global__

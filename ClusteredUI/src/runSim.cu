@@ -165,5 +165,5 @@ void runScript()
 
 	//Write the final system.
 	util::writeTerminal("\nIntegration complete.\n\n Writing final system to file.", Colour::Green);
-	sys->writeSystem("/finSys");
+	//sys->writeSystem("/finSys");
 }

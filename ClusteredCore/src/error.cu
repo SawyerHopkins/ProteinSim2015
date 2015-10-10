@@ -28,6 +28,7 @@ namespace debugging
 	void error::throwInitializationError()
 	{
 		#if __CUDA_ARCH__ > 0
+		printf("Could not create initial system.\nTry decreasing particle density");
 		#else
 		std::cout << "Could create initial system.\n";
 		std::cout << "Try decreasing particle density\n.";
@@ -39,6 +40,7 @@ namespace debugging
 	void error::throwCellBoundsError(int cx, int cy, int cz)
 	{
 		#if __CUDA_ARCH__ > 0
+		printf("Unable to find: cells[%d,%d,%d]\n",cx,cy,cz);
 		#else
 		std::cout << "Unable to find: cells[" << cx << "][" << cy << "][" << cz << "]";
 		exit(7702);
@@ -49,6 +51,7 @@ namespace debugging
 	void error::throwParticleBoundsError(int x, int y, int z)
 	{
 		#if __CUDA_ARCH__ > 0
+		printf("Particle out of bounds: %f, %f, %f\n", x, y, z);
 		#else
 		std::cout << "\nParticle out of bounds.\n";
 		std::cout << x << "," << y << "," << z << "\n";
@@ -60,6 +63,7 @@ namespace debugging
 	void error::throwParticleOverlapError(int nameI, int nameJ, float r)
 	{
 		#if __CUDA_ARCH__ > 0
+		printf("Significant particle overlap. Consider time-step reduction: %f, %d, %d\n", r, nameI, nameJ);
 		#else
 		std::cout << "\nSignificant particle overlap. Consider time-step reduction.\n";
 		std::cout << "\nR: " << r;
@@ -73,6 +77,7 @@ namespace debugging
 	void error::throwInfiniteForce()
 	{
 		#if __CUDA_ARCH__ > 0
+		printf("Bad news bears. Numerically unstable system.\n");
 		#else
 		std::cout << "\nBad news bears; Numerically unstable system.";
 		std::cout << "\nAttempt reduction of concentration or decreased time step.";
@@ -84,6 +89,7 @@ namespace debugging
 	void error::throwInputError()
 	{
 		#if __CUDA_ARCH__ > 0
+		printf("Invalid input file.\n");
 		#else
 		std::cout << "\n" << "Invalid input file." << "\n";
 		exit(7706);

@@ -1,7 +1,7 @@
 #ifndef INTEGRATOR_H
 #define INTEGRATOR_H
 #include "force.h"
-#include <omp.h>
+#include <curand_kernel.h>
 
 namespace integrators
 {
@@ -85,14 +85,18 @@ namespace integrators
 			float coEff3;
 
 			//The previous kick.
-			float * memX;
-			float * memY;
-			float * memZ;
+			float* memX;
+			float* memY;
+			float* memZ;
 
 			//The correlation to the previous kick.
-			float * memCorrX;
-			float * memCorrY;
-			float * memCorrZ;
+			float* memCorrX;
+			float* memCorrY;
+			float* memCorrZ;
+
+			//Random number generator.
+			curandStateXORWOW_t* devStates;
+			int rSeed;
 
 			//Gaussian width.
 			float sig1;

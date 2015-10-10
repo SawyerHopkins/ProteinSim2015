@@ -40,6 +40,7 @@ namespace integrators
 		memCorrX = new float[memSize];
 		memCorrY = new float[memSize];
 		memCorrZ = new float[memSize];
+		devStates = new curandStateXORWOW_t[memSize];
 
 		//Sets the system temperature.
 		temp = vars[2];
@@ -58,11 +59,11 @@ namespace integrators
 		y = gamma*dt;
 
 		setupHigh();
-		if (gamma < 0.05)
+		if (y < 0.05)
 		{
 			setupLow();
 		}
-		if (gamma == 0)
+		if (y == 0)
 		{
 			setupZero();
 		}
@@ -75,7 +76,6 @@ namespace integrators
 		dev = sqrt(1.0 - (corr*corr));
 
 		//Set the random number generator seed.
-		int rSeed = 0;
 		rSeed = vars[6];
 	}
 
@@ -176,51 +176,66 @@ namespace integrators
 		{
 			normalStep(*time, *dt, *nParticles, *boxSize, items);
 		}
-		*time = *time + *dt;
 	}
 
 	__device__
 	void brownianIntegrator::firstStep(float time, float dt, int nParticles, int boxSize, simulation::particle* items)
 	{
 		int i= (blockDim.x * blockIdx.x) + threadIdx.x;
+
+		if (i >= nParticles) return;
+
+		curand_init(rSeed, i, 0, &devStates[i]);
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 
-		//memCorrX[i] = 0.0;
-		//memCorrY[i] = 0.0;
-		//memCorrZ[i] = 0.0;
+		memCorrX[i] = 0.0;
+		memCorrY[i] = 0.0;
+		memCorrZ[i] = 0.0;
 
-		//memX[i] = (*Dist)(*gen);
-		//memY[i] = (*Dist)(*gen);
-		//memZ[i] = (*Dist)(*gen);
+		curandStateXORWOW_t localState = devStates[i];
+		memX[i] = curand_normal(&localState);
+		memY[i] = curand_normal(&localState);
+		memZ[i] = curand_normal(&localState);
+		devStates[i] = localState;
 
 		float m = 1.0/items[i].getMass();
-		float xNew = items[i].getX() + (items[i].getVX() * coEff1 * dt) + (items[i].getFX() * coEff3 * dt * dt * m); //+ (sig1 * memX[i]);
-		float yNew = items[i].getY() + (items[i].getVY() * coEff1 * dt) + (items[i].getFY() * coEff3 * dt * dt * m); //+ (sig1 * memY[i]);
-		float zNew = items[i].getZ() + (items[i].getVZ() * coEff1 * dt) + (items[i].getFZ() * coEff3 * dt * dt * m); //+ (sig1 * memZ[i]);
+		float xNew = items[i].getX() + (items[i].getVX() * coEff1 * dt) + (items[i].getFX() * coEff3 * dt * dt * m) + (sig1 * memX[i]);
+		float yNew = items[i].getY() + (items[i].getVY() * coEff1 * dt) + (items[i].getFY() * coEff3 * dt * dt * m) + (sig1 * memY[i]);
+		float zNew = items[i].getZ() + (items[i].getVZ() * coEff1 * dt) + (items[i].getFZ() * coEff3 * dt * dt * m) + (sig1 * memZ[i]);
 		items[i].setPos(xNew,yNew,zNew,boxSize);
 	}
 
 	__device__
 	void brownianIntegrator::normalStep(float time, float dt, int nParticles, int boxSize, simulation::particle* items)
 	{
+		int i= (blockDim.x * blockIdx.x) + threadIdx.x;
 
-		int i = blockIdx.x;
+		if (i >= nParticles) return;
 
 		float dt2 = dt * dt;
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 		//New random walk.
-		//memCorrX[i] = (*Dist)(*tgens[0]);
-		//memCorrY[i] = (*Dist)(*tgens[0]);
-		//memCorrZ[i] = (*Dist)(*tgens[0]);
+		curandStateXORWOW_t localState = devStates[i];
+		float rndX = curand_normal(&localState);
+		float rndY = curand_normal(&localState);
+		float rndZ = curand_normal(&localState);
+		float rndXC = curand_normal(&localState); 
+		float rndYC = curand_normal(&localState); 
+		float rndZC = curand_normal(&localState); 
+		devStates[i] = localState;
+
+		memCorrX[i] = rndXC;
+		memCorrY[i] = rndYC;
+		memCorrZ[i] = rndZC;
 
 		//Correlation to last random walk.
-		//memCorrX[i] = sig2 * ((corr * memX[i])+(dev * memCorrX[i]));
-		//memCorrY[i] = sig2 * ((corr * memY[i])+(dev * memCorrY[i]));
-		//memCorrZ[i] = sig2 * ((corr * memZ[i])+(dev * memCorrZ[i]));
+		memCorrX[i] = sig2 * ((corr * memX[i])+(dev * memCorrX[i]));
+		memCorrY[i] = sig2 * ((corr * memY[i])+(dev * memCorrY[i]));
+		memCorrZ[i] = sig2 * ((corr * memZ[i])+(dev * memCorrZ[i]));
 
-		//memX[i] = (*Dist)(*tgens[0]);
-		//memY[i] = (*Dist)(*tgens[0]);
-		//memZ[i] = (*Dist)(*tgens[0]);
+		memX[i] = rndX;
+		memY[i] = rndY;
+		memZ[i] = rndZ;
 
 		float m = 1.0/items[i].getMass();
 
@@ -233,19 +248,19 @@ namespace integrators
 		xNew -= (coEff0 * x0);
 		xNew += (m * dt2 * coEff1 * items[i].getFX());
 		xNew += (m * dt2 * coEff2 * (items[i].getFX() - items[i].getFX0()));
-		//xNew += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
+		xNew += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
 
 		float yNew = ((1.0+coEff0) * items[i].getY()) ;
 		yNew -= (coEff0 * y0);
 		yNew += (m * dt2 * coEff1 * items[i].getFY());
 		yNew += (m * dt2 * coEff2 * (items[i].getFY() - items[i].getFY0()));
-		//yNew += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
+		yNew += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
 
 		float zNew = ((1.0+coEff0) * items[i].getZ());
 		zNew -= (coEff0 * z0);
 		zNew += (m * dt2 * coEff1 * items[i].getFZ());
 		zNew += (m * dt2 * coEff2 * (items[i].getFZ() - items[i].getFZ0()));
-		//zNew += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
+		zNew += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
 
 		//Velocity is not needed for brownianIntegration.
 		//Run velocity integration at the same frequency as
@@ -259,6 +274,8 @@ namespace integrators
 		//-------------------------------------------------
 		//For all other cases do whatever.
 
+		
+		/*
 		if (velFreq == 0)
 		{
 			velocityStep(items, i, xNew, yNew, zNew, dt, boxSize);
@@ -267,10 +284,12 @@ namespace integrators
 		{
 			velocityStep(items, i, xNew, yNew, zNew, dt, boxSize);
 		}
+		*/
 
 		items[i].setPos(xNew,yNew,zNew,boxSize);
 
 		//Manage velocity output counter.
+		/*
 		if (velCounter == velFreq)
 		{
 			velCounter = 0;
@@ -279,6 +298,7 @@ namespace integrators
 		{
 			velCounter++;
 		}
+		*/
 	}
 
 	__device__
