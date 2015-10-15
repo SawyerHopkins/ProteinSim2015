@@ -170,6 +170,20 @@ void updateCells(int* scale, int* size, simulation::cell* cells, simulation::par
 		int cY = int( d_particles[index].getY() / float(*size) );
 		int cZ = int( d_particles[index].getZ() / float(*size) );
 
+		//Fix precision errors.
+		if (cX == *scale)
+		{
+			cX-= 1;
+		}
+		if (cY == *scale)
+		{
+			cY-= 1;
+		}
+		if (cZ == *scale)
+		{
+			cZ-= 1;
+		}
+
 		if (cX > ((*scale)-1))
 		{
 			printf("Grid Size Overflow X --- particle: %d, cX: %d\n --- x: %f, x0: %f, fx: %f, fx0: %f\n", blockIdx.x, cX, d_particles[index].getX(), 
