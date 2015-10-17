@@ -206,7 +206,7 @@ namespace integrators
 			 * @param boxSize The size of the system.
 			 */
 			__device__
-			void velocityStep(simulation::particle* items, int i, float xNew0, float yNew0, float zNew0, float dt, float boxSize);
+			void velocityStep(simulation::particle* items, int i, float xNew0, float yNew0, float zNew0, float dt, int boxSize);
 
 			/**
 			 * @brief Performs an intial test on the integrator.

@@ -56,7 +56,7 @@ namespace utilities
 			 * @return 
 			 */
 			__host__ __device__
-			static float safeMod(float val, float base);
+			static float safeMod(float val, int base);
 
 			/**
 			 * @brief Looks for PBC check on original position.
@@ -66,7 +66,7 @@ namespace utilities
 			 * @return The new old position.
 			 */
 			__host__ __device__
-			static float safeMod0(float val0, float val, float base);
+			static float safeMod0(float val0, float val, int base);
 
 			/**
 			 * @brief Method for getting distance between two points.
@@ -76,7 +76,7 @@ namespace utilities
 			 * @return The distance between the two particles.
 			 */
 			__device__ __host__
-			static float pbcDist(float X, float Y, float Z, float X1, float Y1, float Z1, float L);
+			static float pbcDist(float X, float Y, float Z, float X1, float Y1, float Z1, int L);
 
 			//
 			/**

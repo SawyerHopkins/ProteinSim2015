@@ -267,28 +267,28 @@ namespace simulation
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setX(float val, float boxSize);
+			void setX(float val, int boxSize);
 			/**
 			 * @brief Set the y position of the particle. Handles PBC and updates y0.
 			 * @param val The new y position. 
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setY(float val, float boxSize);
+			void setY(float val, int boxSize);
 			/**
 			 * @brief Set the z position of the particle. Handles PBC and updates z0.
 			 * @param val The new z position. 
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setZ(float val, float boxSize);
+			void setZ(float val, int boxSize);
 			/**
 			 * @brief Set the position of the particle. Handles PBC and updates the previous value.
 			 * @param xVal,yVal,zVal The new position. 
 			 * @param boxSize The size of the system box.
 			 */
 			__device__ __host__
-			void setPos(float xVal, float yVal, float zVal, float boxSize);
+			void setPos(float xVal, float yVal, float zVal, int boxSize);
 			/**
 			 * @brief Set the x velocity.
 			 * @param val The velocity to set.

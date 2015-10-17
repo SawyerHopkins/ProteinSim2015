@@ -302,7 +302,7 @@ namespace integrators
 	}
 
 	__device__
-	void brownianIntegrator::velocityStep(simulation::particle* items, int i, float xNew0, float yNew0, float zNew0, float dt, float boxSize)
+	void brownianIntegrator::velocityStep(simulation::particle* items, int i, float xNew0, float yNew0, float zNew0, float dt, int boxSize)
 	{
 		float m = 1.0/items[i].getMass();
 

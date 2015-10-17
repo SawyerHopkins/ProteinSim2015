@@ -36,7 +36,7 @@ namespace debugging
 			 * @param x,y,z The position of the particle.
 			 */
 			__device__ __host__
-			static void throwParticleBoundsError(int x, int y, int z);
+			static void throwParticleBoundsError(float x, float y, float z);
 			/**
 			 * @brief Throw when particles are closer than the accepted tolerance.
 			 * @param nameI Name of the index particle.

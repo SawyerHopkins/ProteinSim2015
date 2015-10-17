@@ -267,8 +267,6 @@ namespace simulation
 		{
 			//utilities::util::writeTerminal("CUDA KERNEL: " + name + " - " + err + "\n", utilities::Colour::Green);
 		}
-		//int q = 0;
-		//std::cin >> q;
 	}
 
 	void system::run(float endTime)
@@ -316,7 +314,7 @@ namespace simulation
 				if (currentTime > 0)
 				{
 					cudaMemcpy(particles,d_particles, nParticles*sizeof(particle) ,cudaMemcpyDeviceToHost);
-					utilities::util::clearLines(11);
+					utilities::util::clearLines(10);
 					checkCuda("copyFromDevice");
 				}
 				writeSystemState(tmr);

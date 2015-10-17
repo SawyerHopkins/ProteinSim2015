@@ -106,7 +106,7 @@ namespace simulation
 	************************************************/
 
 	__device__ __host__
-	void particle::setX(float val, float boxSize)
+	void particle::setX(float val, int boxSize)
 	{
 		float xTemp = x;
 		//Update current position.
@@ -120,7 +120,7 @@ namespace simulation
 	}
 
 	__device__ __host__
-	void particle::setY(float val, float boxSize)
+	void particle::setY(float val, int boxSize)
 	{
 		float yTemp = y;
 		//Update current position.
@@ -134,7 +134,7 @@ namespace simulation
 	}
 
 	__device__ __host__
-	void particle::setZ(float val, float boxSize)
+	void particle::setZ(float val, int boxSize)
 	{
 		float zTemp = z;
 		//Update current position.
@@ -148,7 +148,7 @@ namespace simulation
 	}
 
 	__device__ __host__
-	void particle::setPos(float xVal, float yVal, float zVal, float boxSize)
+	void particle::setPos(float xVal, float yVal, float zVal, int boxSize)
 	{
 		//Update all the positions.
 		setX(xVal,boxSize);

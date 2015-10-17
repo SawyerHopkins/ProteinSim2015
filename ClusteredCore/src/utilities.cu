@@ -25,7 +25,7 @@ SOFTWARE.*/
 namespace utilities
 {
 	__device__
-	float util::safeMod(float val, float base)
+	float util::safeMod(float val, int base)
 	{
 		//0 mod n is always zero
 		if (val == 0)
@@ -55,7 +55,7 @@ namespace utilities
 	}
 
 	__device__
-	float util::safeMod0(float val0, float val, float base)
+	float util::safeMod0(float val0, float val, int base)
 	{
 		//The difference between the two values.
 		float dx = val - val0;
@@ -79,7 +79,7 @@ namespace utilities
 	}
 
 	__host__ __device__
-	float util::pbcDist(float X,float Y, float Z,float X1, float Y1,float Z1,float L)
+	float util::pbcDist(float X, float Y, float Z, float X1, float Y1, float Z1, int L)
 	{
 
 		float dx = fabs(X-X1);

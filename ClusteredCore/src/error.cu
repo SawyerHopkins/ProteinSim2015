@@ -48,7 +48,7 @@ namespace debugging
 	}
 
 	__device__ __host__
-	void error::throwParticleBoundsError(int x, int y, int z)
+	void error::throwParticleBoundsError(float x, float y, float z)
 	{
 		#if __CUDA_ARCH__ > 0
 		printf("Particle out of bounds: %f, %f, %f\n", x, y, z);
