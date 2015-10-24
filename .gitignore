@@ -1,12 +1,13 @@
 # Ignore the build and lib dirs
 build
+linked
 
-# Ignore any executables
-bin/*
-.codelite/*
-*.workspace
-**/*.project
+# Ignore random project stuff
 .tern-port
 .tern-project
 clustered.sublime-project
 clustered.sublime-workspace
+
+# Ignore Doxygen and symlinks
+Doxyfile
+Website
