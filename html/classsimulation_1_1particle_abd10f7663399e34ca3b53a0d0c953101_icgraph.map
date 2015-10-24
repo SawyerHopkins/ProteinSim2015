@@ -1,6 +1,0 @@
-<map id="simulation::particle::setZ" name="simulation::particle::setZ">
-<area shape="rect" id="node2" href="$classsimulation_1_1particle.html#ad01fee28cf7ce6801b544d66d6169064" title="Set the position of the particle. Handles PBC and updates the previous value. " alt="" coords="184,39,315,80"/>
-<area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="363,5,561,47"/>
-<area shape="rect" id="node5" href="$classintegrators_1_1brownian_integrator.html#aa24eb1d9c1578b3cf0bb5af67e5bfc52" title="Integrates to the next system state. " alt="" coords="363,71,561,112"/>
-<area shape="rect" id="node4" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="609,39,808,80"/>
-</map>

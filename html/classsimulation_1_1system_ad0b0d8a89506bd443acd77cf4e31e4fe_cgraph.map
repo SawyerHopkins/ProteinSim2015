@@ -1,6 +1,0 @@
-<map id="simulation::system::numClusters" name="simulation::system::numClusters">
-<area shape="rect" id="node2" href="$classsimulation_1_1particle.html#af61f11e09ce474b5f66172628773ceae" title="Get the name of the particle. " alt="" coords="195,5,325,47"/>
-<area shape="rect" id="node3" href="$classsimulation_1_1particle.html#a17341ae7286b27a4b2721b6ea016dd2b" title="Get the interacting particles. " alt="" coords="195,71,325,112"/>
-<area shape="rect" id="node4" href="$classsimulation_1_1particle.html#adbb7b2f9cd98c57dcbf688f29edcb46f" title="The the beginning iterator of the interating particles. " alt="" coords="185,136,335,177"/>
-<area shape="rect" id="node5" href="$classsimulation_1_1particle.html#a023340abed6623f2801fe20e022fa8f8" title="Gets the end off the vector of interacting particles. " alt="" coords="191,201,329,243"/>
-</map>

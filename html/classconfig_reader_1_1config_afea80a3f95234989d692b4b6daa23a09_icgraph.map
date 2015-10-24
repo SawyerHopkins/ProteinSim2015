@@ -1,8 +1,0 @@
-<map id="configReader::config::getParam" name="configReader::config::getParam">
-<area shape="rect" id="node2" href="$class_a_o_potential.html#af4908175eaf851228d6c759e1bbc6830" title="Creates an new AO Potential. " alt="" coords="210,5,381,32"/>
-<area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#a29cd92b6fe568c451c032812817aec0f" title="Constructs the brownian motion integrator. " alt="" coords="196,57,395,98"/>
-<area shape="rect" id="node4" href="$classsimulation_1_1system.html#a88ebb2a955ce0704b28fe6a83945dd4f" title="Constructs the particle system. " alt="" coords="229,122,361,163"/>
-<area shape="rect" id="node5" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="258,188,333,215"/>
-<area shape="rect" id="node7" href="$class_lennard_jones.html#a973ce9e269492e19dd1d1dd1c2bde1fe" title="Creates an new AO Potential. " alt="" coords="199,239,391,265"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="443,188,493,215"/>
-</map>

@@ -1,0 +1,88 @@
+.cat-link {
+	text-decoration: none;
+	font-size:2.0em;
+	font-weight: bold;
+	margin-bottom:30px;
+	margin-top:30px;
+}
+
+.cat-link a {
+	text-decoration: none;
+}
+
+.cat-post {
+	margin-left:10%;
+	margin-right:10%;
+}
+
+.blog-header {
+text-align: center;
+margin-bottom:25px;
+}
+
+.post-header {
+
+text-align:left;
+font-size:2.0em;
+font-weight: bold;
+
+}
+
+.post-para {
+margin-bottom:25px;
+}
+
+.post-center-type
+{
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+/* Hack to get pagination to work proper. Fix this later */
+.post-preview {
+font-size: 0em;
+}
+
+.post-block {
+
+text-align: justify;
+
+}
+
+.social-sharing {
+	margin-top: 25px;
+	margin-bottom: 50px;
+}
+
+.share-button {
+	height: 50px;
+	margin-left: 25px;
+	text-align: center;
+	float: left;
+}
+
+.share-button.text {
+	margin-left: 0px;
+	line-height: 29px;
+	font-weight: bold;
+}
+
+.pagination {
+	display:block;
+	margin-top:50px;
+}
+
+/* Pagination items can be `span`s or `a`s */
+.pagination-button {
+	float: left;
+	height: 30px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	width:50%;
+	text-align: center;
+}
+
+.post-link a {
+	text-decoration: none;
+}

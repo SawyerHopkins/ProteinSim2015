@@ -1,0 +1,4 @@
+<map id="simulation::system::writeSystemInit" name="simulation::system::writeSystemInit">
+<area shape="rect" id="node2" href="$classsimulation_1_1system.html#a88ebb2a955ce0704b28fe6a83945dd4f" title="Constructs the particle system. " alt="" coords="185,5,317,47"/>
+<area shape="rect" id="node3" href="$classsimulation_1_1system.html#a352ecfe936534224c001c6462b19268e" title="Recover a system state from output files. " alt="" coords="185,71,317,112"/>
+</map>
