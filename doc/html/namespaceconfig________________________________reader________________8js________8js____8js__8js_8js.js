@@ -1,0 +1,4 @@
+var namespaceconfig________________________________reader________________8js________8js____8js__8js_8js =
+[
+    [ "namespaceconfig________________reader________8js____8js__8js_8js", "namespaceconfig________________________________reader________________8js________8js____8js__8js_8js.html#a8b2c18535abf70e2d4d9d6b4fa664394", null ]
+];

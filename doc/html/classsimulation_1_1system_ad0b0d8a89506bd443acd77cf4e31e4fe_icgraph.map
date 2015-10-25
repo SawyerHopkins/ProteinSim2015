@@ -1,6 +1,4 @@
 <map id="simulation::system::numClusters" name="simulation::system::numClusters">
 <area shape="rect" id="node2" href="$classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730" title="Writes the varies that define the system state. Average potential. Average coordination number..." alt="" coords="185,5,320,47"/>
 <area shape="rect" id="node3" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="368,13,527,39"/>
-<area shape="rect" id="node4" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="575,13,649,39"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="697,13,748,39"/>
 </map>

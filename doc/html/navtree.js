@@ -23,8 +23,9 @@ var NAVTREE =
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
+        [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", "globals_vars" ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -33,10 +34,18 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_a_o_potential_2include_2cell_8h.html",
-"_lennard_jones_2include_2utilities_8h.html#a7cfafc877bab992f354d1a13fb633ad9ae75f0dbabe761ebe5464d69ab6cd98bd",
-"classsimulation_1_1particle.html#a10f88bf88ccbb3de5807416513380c58",
-"classsimulation_1_1system.html#affce019ec2d44b13e9781868d318fbdd"
+"________________________________a________________________________o______________________________1f04e7046dd0cecf9f487272c8433b35.html",
+"_clustered_u_i_2include_2utilities_8h.html#a7cfafc877bab992f354d1a13fb633ad9ae75f0dbabe761ebe5464d69ab6cd98bd",
+"all________________19________8js____8js__8js_8js.html#abe0d66827fc995b8d151329d7c60f349",
+"classes__1_8js.html#ad01a7523f103d6242ef9b0451861231e",
+"classphysics____1____1forces__8js_8js.html#ac0c55ac8b8e51d767569621ce9e91e71",
+"classsimulation_1_1system.html#a449341562d0c6423421ec48ba8375c8d",
+"dir________________4e9205861584f172a27f7ec1a84c765f________8js____8js__8js_8js.html",
+"files__8_8js.html",
+"functions________11____8js__8js_8js.html",
+"globals_vars_g.html",
+"namespaceutilities.html",
+"variables____2__8js_8js.html#acc1bc6e425f054eeb848fed2c50a6dee"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

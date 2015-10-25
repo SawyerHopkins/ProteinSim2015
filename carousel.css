@@ -146,7 +146,7 @@ body {
 ------------------------- */
 
 .featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  margin: 50px 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -156,10 +156,34 @@ body {
   letter-spacing: -1px;
 }
 
+.featurette-maintainer {
+  width: 100%;
+  text-align: center;
+}
+
+.col-md-9 a {
+  text-decoration: none;
+}
+
+/* Description lists
+------------------------ */
+
+dd {
+  padding-bottom: 10px;
+}
+
 
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
+
+@media (max-width: 991px)
+{
+  .col-limiter {
+    width: 150px;
+    margin: 0 auto;
+  }
+}
 
 @media (max-width: 767px)
 {
@@ -238,6 +262,6 @@ body {
 
 @media (min-width: 992px) {
   .featurette-heading {
-    margin-top: 120px;
+    margin-top: 40px;
   }
 }

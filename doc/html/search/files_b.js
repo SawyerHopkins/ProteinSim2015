@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['timer_2ecpp',['timer.cpp',['../timer_8cpp.html',1,'']]],
-  ['timer_2eh',['timer.h',['../_clustered_core_2include_2timer_8h.html',1,'']]],
-  ['timer_2eh',['timer.h',['../_lennard_jones_2include_2timer_8h.html',1,'']]],
-  ['timer_2eh',['timer.h',['../_clustered_u_i_2include_2timer_8h.html',1,'']]],
-  ['timer_2eh',['timer.h',['../_a_o_potential_2include_2timer_8h.html',1,'']]]
+  ['ljpotential_2ecpp',['LJPotential.cpp',['../_l_j_potential_8cpp.html',1,'']]],
+  ['ljpotential_2eh',['LJPotential.h',['../_l_j_potential_8h.html',1,'']]]
 ];

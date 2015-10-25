@@ -1,10 +1,8 @@
 <map id="simulation::particle::getVZ" name="simulation::particle::getVZ">
 <area shape="rect" id="node2" href="$classintegrators_1_1brownian_integrator.html#ab38ab3e690a39b7afac2771941dbf450" title="Integrates to the next system state. " alt="" coords="184,5,383,47"/>
 <area shape="rect" id="node4" href="$classsimulation_1_1system.html#a4d217a56a2df53ad2f17082aca518592" title="Returns the temperature of the system. " alt="" coords="217,71,349,112"/>
-<area shape="rect" id="node9" href="$classsimulation_1_1system.html#ae9199baa3ab5c7853da0f20966352a27" title="Writes the temperature of the system. " alt="" coords="217,136,349,177"/>
+<area shape="rect" id="node7" href="$classsimulation_1_1system.html#ae9199baa3ab5c7853da0f20966352a27" title="Writes the temperature of the system. " alt="" coords="217,136,349,177"/>
 <area shape="rect" id="node3" href="$classintegrators_1_1brownian_integrator.html#a691e35a7d2a08146f9da9653f101282d" title="Integrates to the next system state. " alt="" coords="431,5,629,47"/>
 <area shape="rect" id="node5" href="$classsimulation_1_1system.html#ae38a14ff6f2f9996a3739f502980f730" title="Writes the varies that define the system state. Average potential. Average coordination number..." alt="" coords="463,71,597,112"/>
 <area shape="rect" id="node6" href="$classsimulation_1_1system.html#a768ca25aeeab13aeee72e637478b6720" title="Runs the system. " alt="" coords="677,78,836,105"/>
-<area shape="rect" id="node7" href="$run_sim_8cpp.html#acfae89e73bb2a49f76701c23f42ea05c" title="Run a new simulation. " alt="" coords="884,78,959,105"/>
-<area shape="rect" id="node8" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The program entry point. " alt="" coords="1007,78,1057,105"/>
 </map>

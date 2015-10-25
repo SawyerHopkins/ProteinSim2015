@@ -75,7 +75,7 @@
 							<span class="icon-bar"></span>
 						</button>
 						<a class="navbar-brand" href="/">
-						<img class="img-grav" src="/assets/img/profile.jpg" alt="A picture of me.">  
+						<img class="img-grav" src="/assets/img/psim2015.png" alt="A picture of me.">  
 						ProteinSim </a>
 					</div>
 					<div class="navbar-collapse collapse">
@@ -89,6 +89,7 @@
 									<li class="divider"></li>
 									<li><a href="/categories/">Categories</a></li>
 								</ul>
+								<li><a href="/doc/html/">Documentation</a></li>
 								</li>
 							
 						</ul>
@@ -116,21 +117,9 @@
 	
 	
 	
-
-	
-		<li data-target="#myCarousel" data-slide-to="1"></li>
-	
-	
-	
-
-	
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-	
-	
-	
 		
 	</ol>
-	<div class="carousel-inner" role="listbox" style="background: url(/assets/img/sawyerheader.jpg) no-repeat top center fixed">
+	<div class="carousel-inner" role="listbox" style="background: url(/assets/img/codefile.png) no-repeat top center fixed">
 	  	
 	
 		
@@ -141,41 +130,9 @@
 <!--<img src="/assets/img/sawyerheader.png" class="img-responsive">-->
 		<div class="container">
 			<div class="carousel-caption">
-				<h1><b><span class="carousel-text">NIntegrate Plots</span></b></h1>
-				<p><span class="carousel-text">Using ListPlot to create plots for non-analytic integrals.</span></p>
-				<p><a class="btn btn-lg btn-primary" href="/blog/NIntegrate-Plots" role="button">Read Now</a></p>
-			</div>
-		</div>
-	</div>		
-		
-
-		
-	
-	<div class="item">
-	
-		
-<!--<img src="/assets/img/sawyerheader.png" class="img-responsive">-->
-		<div class="container">
-			<div class="carousel-caption">
-				<h1><b><span class="carousel-text">Catination</span></b></h1>
-				<p><span class="carousel-text">Pagination for post categories in Jekyll.</span></p>
-				<p><a class="btn btn-lg btn-primary" href="/blog/Catination" role="button">Read Now</a></p>
-			</div>
-		</div>
-	</div>		
-		
-
-		
-	
-	<div class="item">
-	
-		
-<!--<img src="/assets/img/sawyerheader.png" class="img-responsive">-->
-		<div class="container">
-			<div class="carousel-caption">
-				<h1><b><span class="carousel-text">N-Space in F#</span></b></h1>
-				<p><span class="carousel-text">Creating N-Space grids for numerical evaluation of functions.</span></p>
-				<p><a class="btn btn-lg btn-primary" href="/blog/N-Space-In-FSharp" role="button">Read Now</a></p>
+				<h1><b><span class="carousel-text">Release 0.8.0</span></b></h1>
+				<p><span class="carousel-text">Release notes for 10/26/15 V0.8.0.</span></p>
+				<p><a class="btn btn-lg btn-primary" href="/blog/Release-0.8.0" role="button">Read Now</a></p>
 			</div>
 		</div>
 	</div>		
@@ -200,58 +157,18 @@
 	<h2 class="blog-header">Recent Posts</h2>
 
 	
-		<h3 class="post-link"><a href="/blog/NIntegrate-Plots">NIntegrate Plots</a></h3>
+		<h3 class="post-link"><a href="/blog/Release-0.8.0">Release 0.8.0</a></h3>
 		
 			<div class="post-block">
 
-<p class="post-preview">Wave Functions in Free Space</p>
-	
-<p class="post-para">Consider a Gaussian wave packet in free space. I will use this as a simple example to demonstrate the use of NIntegrate and ListPlot in Mathematica to create plots of wave functions that are non-analytic or take longer than desired to compute analytically. Since I am using a wave packet in free space I can project the packet onto the eigenstates with a Fourier Transform. This allows me to use Mathematica's existing functions to construct a time dependant wave function.</p>
-	
+<p class="post-preview">Features</p>
 
-
-
-			
-			</div>
-			
-	
-		<h3 class="post-link"><a href="/blog/Catination">Catination</a></h3>
-		
-			<div class="post-block">
-
-<p class="post-preview">Categories in Jekyll</p>
-	
-<p class="post-para">I realized that I would like to add the ability for users to search my blog by post category, however Jekyll does not provide a built in method for creating paginated lists of post by category. So I opened up the Jekyll source scripts to figure out what all makes pagination tick and modified it to create pages for categories. The Jekyll script for pagination is under the <i>jekyll-paginate</i> gem and uses two scripts: <i>pager.rb</i> and <i>pagination.rb</i>. After looking through these scripts, I figured that I could get away with leaving the pager class alone and simply making a few changes to the pagination class. This modified class I have dubbed to be <i>catination.rb</i>.</p>
-	
-
-
-
-			
-			</div>
-			
-	
-		<h3 class="post-link"><a href="/blog/N-Space-In-FSharp">N-Space in F#</a></h3>
-		
-			<div class="post-block">
-
-<p class="post-preview">SciLib Core</p>
-	
-<p class="post-para"> To iterate over the possible pairings of two variables, you would likely use a nested for loop. For each additional variable you would increase the nesting depth by one. This creates a problem when iterating over an unknown number of variables, as you do not know the depth of loop nesting you will need. At the base of my main pet project, SciLib, is a small bit of F# code that works through this problem by creating a grid for an N-Dimensional space. Well actually that might be a bit misleading as you will see later on. Really I flatten the space into one dimension so that I can iterate over the space like I would a single variable. I realized while drafting this post that I mention the word function quite frequently. For this post I will try to use the word function to refer to some sort of mathematical function of N variables, and refer to functions and methods within the code ambiguously as a method.</p>
-	
-
-
-
-			
-			</div>
-			
-	
-		<h3 class="post-link"><a href="/blog/Bootstrap-And-Jekyll">Bootstrap and Jekyll</a></h3>
-		
-			<div class="post-block">
-
-<p class="post-preview">Migration Summary</p>
-	
-<p> I have migrated my website from some rather old HTML5 template to a new sleek website built upon the Twitter Bootstrap Carousel example. This update should provide a much better presence across all platforms and also help facilitate my new programming and technology blog. I am using Jekyll for the blog as it is the content management system already being used on GitHub Pages. Since most of my work as of late has been with Visual Studio, I opted to install Jekyll on Windows. There are plenty of guides already floating about cyberspace detailing the installation and setup process for every operating system so I won't be writing a step by step tutorial. Instead I will just note a few "optional" steps not specifically mentioned most guides. </p>
+<p class="post-para">
+	<dl>
+		<dt>System Loading</dt>
+		<dd>Import a state from a previous run to pickup where you left off, decrease timesteps, or change the system forces all together.</dd>
+	</dl>
+</p>
 	
 
 

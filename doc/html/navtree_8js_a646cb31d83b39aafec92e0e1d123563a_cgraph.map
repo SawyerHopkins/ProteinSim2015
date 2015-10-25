@@ -1,0 +1,11 @@
+<map id="toggleSyncButton" name="toggleSyncButton">
+<area shape="rect" id="node2" href="$navtree_8js.html#a6522b3f540ead0febf12ccf5fc1f04c4" title="showSyncOff" alt="" coords="179,5,280,32"/>
+<area shape="rect" id="node3" href="$navtree_8js.html#ade730323aadb971c053136b7758c9dce" title="storeLink" alt="" coords="192,208,267,235"/>
+<area shape="rect" id="node5" href="$navtree_8js.html#a70bc36adda6141a703fc7ee2b772ec63" title="stripPath2" alt="" coords="189,107,270,133"/>
+<area shape="rect" id="node6" href="$navtree_8js.html#a364b3f4132309fa9aae78585cf2cb772" title="pathName" alt="" coords="188,157,271,184"/>
+<area shape="rect" id="node7" href="$navtree_8js.html#a20695277530a1a04eef8d289177a5e40" title="hashUrl" alt="" coords="196,309,263,336"/>
+<area shape="rect" id="node9" href="$navtree_8js.html#a84095390aca39b6cb693d3fb22d32dd0" title="showSyncOn" alt="" coords="179,259,279,285"/>
+<area shape="rect" id="node10" href="$navtree_8js.html#abdf8e0e69c89803c1b84784a13b7fd2e" title="deleteLink" alt="" coords="189,56,270,83"/>
+<area shape="rect" id="node4" href="$navtree_8js.html#ac49af616f532f2364be9f58280469d33" title="localStorageSupported" alt="" coords="328,132,481,159"/>
+<area shape="rect" id="node8" href="$navtree_8js.html#aaeb20639619e1371c030d36a7109b27b" title="hashValue" alt="" coords="363,309,446,336"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="pathName" name="pathName">
+<area shape="rect" id="node2" href="$navtree_8js.html#aa2418b16159e9502e990f97ea6ec26c8" title="newNode" alt="" coords="136,56,213,83"/>
+<area shape="rect" id="node9" href="$navtree_8js.html#aa7b3067e7ef0044572ba86240b1e58ce" title="initNavTree" alt="" coords="989,183,1079,209"/>
+<area shape="rect" id="node10" href="$navtree_8js.html#a0dbf0d5f6126afd88420745f7d3c202d" title="selectAndHighlight" alt="" coords="435,132,565,159"/>
+<area shape="rect" id="node11" href="$navtree_8js.html#a646cb31d83b39aafec92e0e1d123563a" title="toggleSyncButton" alt="" coords="261,233,387,260"/>
+<area shape="rect" id="node3" href="$navtree_8js.html#a256aa4fbee866e9227f78e82e9f258bb" title="getNode" alt="" coords="289,56,359,83"/>
+<area shape="rect" id="node4" href="$navtree_8js.html#a4eb1f166c9d93b198e1621a4c787a412" title="expandNode" alt="" coords="453,31,547,57"/>
+<area shape="rect" id="node6" href="$navtree_8js.html#a0238ad48be94f9f5fd305ea40b8f64ab" title="showNode" alt="" coords="619,95,703,121"/>
+<area shape="rect" id="node5" href="$navtree_8js.html#a4d8f406d49520a0cede2e48347a3d7aa" title="createIndent" alt="" coords="613,5,708,32"/>
+<area shape="rect" id="node7" href="$navtree_8js.html#a0e6a2d65190a43246d668bba554243e5" title="gotoNode" alt="" coords="756,120,835,147"/>
+<area shape="rect" id="node8" href="$navtree_8js.html#a21beb601032fff375100a907f32129a5" title="navTo" alt="" coords="883,120,941,147"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="gotoAnchor" name="gotoAnchor">
+<area shape="rect" id="node2" href="$navtree_8js.html#aa2418b16159e9502e990f97ea6ec26c8" title="newNode" alt="" coords="141,43,219,69"/>
+<area shape="rect" id="node10" href="$navtree_8js.html#a524fa9bfd80c70bf3a84696b2077eadb" title="highlightAnchor" alt="" coords="267,125,377,152"/>
+<area shape="rect" id="node3" href="$navtree_8js.html#a256aa4fbee866e9227f78e82e9f258bb" title="getNode" alt="" coords="287,43,357,69"/>
+<area shape="rect" id="node4" href="$navtree_8js.html#a4eb1f166c9d93b198e1621a4c787a412" title="expandNode" alt="" coords="443,31,538,57"/>
+<area shape="rect" id="node6" href="$navtree_8js.html#a0238ad48be94f9f5fd305ea40b8f64ab" title="showNode" alt="" coords="609,81,693,108"/>
+<area shape="rect" id="node5" href="$navtree_8js.html#a4d8f406d49520a0cede2e48347a3d7aa" title="createIndent" alt="" coords="604,5,699,32"/>
+<area shape="rect" id="node7" href="$navtree_8js.html#a0e6a2d65190a43246d668bba554243e5" title="gotoNode" alt="" coords="747,81,825,108"/>
+<area shape="rect" id="node8" href="$navtree_8js.html#a21beb601032fff375100a907f32129a5" title="navTo" alt="" coords="873,81,932,108"/>
+<area shape="rect" id="node9" href="$navtree_8js.html#aa7b3067e7ef0044572ba86240b1e58ce" title="initNavTree" alt="" coords="980,81,1069,108"/>
+<area shape="rect" id="node11" href="$navtree_8js.html#a0dbf0d5f6126afd88420745f7d3c202d" title="selectAndHighlight" alt="" coords="425,132,556,159"/>
+</map>
