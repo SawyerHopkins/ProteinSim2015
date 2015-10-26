@@ -29,7 +29,7 @@ using namespace utilities;
 /**
  * @brief Run a new simulation.
  */
-void runScript()
+void runScript(string aname)
 {
 	/*----------------CFG-----------------*/
 
@@ -94,20 +94,24 @@ void runScript()
 
 	/*---------------SYSTEM---------------*/
 
-	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
-	//Creates the particle system.
-	simulation::system * sys = new simulation::system(cfg, difeq, force);
+	simulation::sytem* sys;
 
-	/*---------------RUNNING--------------*/
+	if (aname != "") {
+		util::writeTerminal("\nCreating particle system.\n", Colour::Green);
+		//Creates the particle system.
+		simulation::system* sys = new simulation::system(cfg, difeq, force);
 
-	//Output the stats.
-	cout << "---Number of Particles: " << sys->getNParticles() << "\n";
-	cout << "---Box Size: " << sys->getBoxSize() << "\n";
-	cout << "---Cell Size: " << sys->getCellSize() << "\n\n";
- 
-	//Write the initial system.
-	cout << "Writing initial system to file.\n\n";
-	sys->writeSystem("/initSys");
+		//Output the stats.
+		cout << "---Number of Particles: " << sys->getNParticles() << "\n";
+		cout << "---Box Size: " << sys->getBoxSize() << "\n";
+		cout << "---Cell Size: " << sys->getCellSize() << "\n\n";
+	 
+		//Write the initial system.
+		cout << "Writing initial system to file.\n\n";
+		sys->writeSystem("/initSys");
+	} else {
+		sys = simulation::system::loadFromFile(cfg, aname, difeq, force);
+	}
 
 	/*-------------Iterator-------------*/
 

@@ -91,7 +91,7 @@ namespace simulation
 	void system::writeSystemInit()
 	{
 		std::ofstream myFile;
-		myFile.open(trialName + "/sysConfig.txt");
+		myFile.open(trialName + "/sysConfig.cfg");
 
 		//Writes the system configuration.
 		myFile << "trialName = " << trialName << "\n";

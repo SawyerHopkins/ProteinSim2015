@@ -79,15 +79,7 @@ int main(int argc, char **argv)
 		i++;
 	}
 
-	//Choose which mode to run.
-	if (a)
-	{
-		runAnalysis(aName);
-	}
-	else
-	{
-		runScript();
-	}
+	runScript();
 
 	//Debug code 0 -> No Error:
 	return 0;

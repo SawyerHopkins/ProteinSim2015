@@ -11,3 +11,8 @@ clustered.sublime-workspace
 # Ignore Doxygen and symlinks
 Doxyfile
 Website
+
+# Ignore Doxygen templates
+new_header.html
+new_footer.html
+new_stylesheet.css
