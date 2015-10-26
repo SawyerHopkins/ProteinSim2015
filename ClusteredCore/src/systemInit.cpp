@@ -357,7 +357,7 @@ namespace simulation
 		}
 
 		//Set the name of the trial.
-		string trialName = "";
+		string tName = "";
 		bool acceptName = 0;
 
 		//Check that no trials get overwritten by accident.
@@ -366,21 +366,21 @@ namespace simulation
 			validDir = 0;
 
 			cout << "\n" << "Trial Name: ";
-			cin >> trialName;
+			cin >> tName;
 
 			//Check input format.
 			if (outDir.back() == '/')
 			{
-				trialName = outDir + trialName;
+				tName = outDir + tName;
 			}
 			else
 			{
-				trialName = outDir + "/" + trialName;
+				tName = outDir + "/" + tName;
 			}
 
 			//Check that the directory exists.
 			struct stat fileCheck;
-			if (stat(trialName.c_str(), &fileCheck) != -1)
+			if (stat(tName.c_str(), &fileCheck) != -1)
 			{
 				if (S_ISDIR(fileCheck.st_mode))
 				{
@@ -409,10 +409,10 @@ namespace simulation
 		}
 
 		//Output the directory.
-		cout << "\n" << "Data will be saved in: " << trialName << "\n\n";
-		mkdir(trialName.c_str(),0777);
+		cout << "\n" << "Data will be saved in: " << tName << "\n\n";
+		mkdir(tName.c_str(),0777);
 
-		return trialName;
+		return tName;
 	}
 
 	bool system::checkDir(std::string path)

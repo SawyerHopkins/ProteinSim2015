@@ -29,12 +29,19 @@ using namespace utilities;
 /**
  * @brief Run a new simulation.
  */
-void runScript(string aname)
+void runScript(string aName, string timeStamp)
 {
+	std::string settingPath = "settings.cfg";
+
+	if (aName != "")
+	{
+		settingPath = aName + "/settings.cfg";
+	}
+
 	/*----------------CFG-----------------*/
 
 	util::writeTerminal("Looking for configuration file.\n\n", Colour::Green);
-	configReader::config * cfg =new configReader::config("settings.cfg");
+	configReader::config * cfg =new configReader::config(settingPath);
 	cfg->showOutput();
 
 	/*---------------FORCES---------------*/
@@ -94,12 +101,16 @@ void runScript(string aname)
 
 	/*---------------SYSTEM---------------*/
 
-	simulation::sytem* sys;
+	simulation::system* sys = NULL;
 
-	if (aname != "") {
+	if (aName != "") {
+		util::writeTerminal("\nLoading particle system.\n", Colour::Green);
+		configReader::config * sysCfg =new configReader::config(aName + "/sysConfig.cfg");
+		sys = simulation::system::loadFromFile(sysCfg, aName, timeStamp, difeq, force);
+	} else {
 		util::writeTerminal("\nCreating particle system.\n", Colour::Green);
 		//Creates the particle system.
-		simulation::system* sys = new simulation::system(cfg, difeq, force);
+		sys = new simulation::system(cfg, difeq, force);
 
 		//Output the stats.
 		cout << "---Number of Particles: " << sys->getNParticles() << "\n";
@@ -109,8 +120,6 @@ void runScript(string aname)
 		//Write the initial system.
 		cout << "Writing initial system to file.\n\n";
 		sys->writeSystem("/initSys");
-	} else {
-		sys = simulation::system::loadFromFile(cfg, aname, difeq, force);
 	}
 
 	/*-------------Iterator-------------*/

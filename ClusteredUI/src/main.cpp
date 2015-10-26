@@ -31,8 +31,7 @@ using namespace std;
 ************************************************/
 
 static inline void greeting();
-void runScript();
-void runAnalysis(string fileName);
+void runScript(string aName, string timeStamp);
 
 /********************************************//**
 *------------------MAIN PROGRAM------------------
@@ -53,6 +52,7 @@ int main(int argc, char **argv)
 	//Program flags.
 	bool a = false;
 	string aName = "";
+	string timeStamp = "";
 
 	int i = 0;
 	//Iterate across input arguments.
@@ -60,16 +60,19 @@ int main(int argc, char **argv)
 	{
 		//Flag for analysis mode.
 		string str(argv[i]);
-		if (str.compare("-a")==0)
+		if (str.compare("-r")==0)
 		{
 			a = true;
 			//Make sure the next argument exists.
-			if ((i+1) < argc)
+			if ((i+2) < argc)
 			{
 				//Name of file to analyze.
 				i++;
 				string file(argv[i]);
 				aName = file;
+				i++;
+				string stamp(argv[i]);
+				timeStamp = stamp;
 			}
 			else
 			{
@@ -79,7 +82,7 @@ int main(int argc, char **argv)
 		i++;
 	}
 
-	runScript();
+	runScript(aName, timeStamp);
 
 	//Debug code 0 -> No Error:
 	return 0;

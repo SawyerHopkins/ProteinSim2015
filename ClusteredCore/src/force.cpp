@@ -70,10 +70,8 @@ namespace physics
 			{
 				//Resets the force on the particle.
 				items[index]->nextIter();
-
 				simulation::particle* p = items[index];
 				simulation::cell* itemCell = cells[p->getCX()][p->getCY()][p->getCZ()];
-
 				//Iterates through all forces.
 				for (std::vector<IForce*>::iterator it = flist.begin(); it != flist.end(); ++it)
 				{

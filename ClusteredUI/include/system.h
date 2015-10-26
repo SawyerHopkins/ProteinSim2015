@@ -82,13 +82,13 @@ namespace simulation
 			 * @brief Get input for working directory. Create if needed.
 			 * @return The working directory 
 			 */
-			std::string runSetup();
+			static std::string runSetup();
 			/**
 			 * @brief Check that the provided path is a valid directory.
 			 * @param path Directory path
 			 * @return True is the path is valid.
 			 */
-			bool checkDir(std::string path);
+			static bool checkDir(std::string path);
 
 			/********************************************//**
 			*-----------------SYSTEM HANDLING----------------
@@ -195,7 +195,7 @@ namespace simulation
 			 * @param settings The location of the settings file.
 			 * @param sysState The location of the system file.
 			 */
-			static system* loadFromFile(configReader::config* cfg, std::string sysState, integrators::I_integrator* sysInt, physics::forces* sysFcs);
+			static system* loadFromFile(configReader::config* cfg, std::string sysState, std::string timeStamp, integrators::I_integrator* sysInt, physics::forces* sysFcs);
 
 			/********************************************//**
 			*-----------------SYSTEM ANALYSIS----------------

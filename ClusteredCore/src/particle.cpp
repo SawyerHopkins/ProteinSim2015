@@ -112,7 +112,7 @@ namespace simulation
 		x0 = utilities::util::safeMod0(xTemp,x,boxSize);
 		if ((x < 0.0) || (x >= boxSize))
 		{
-			debugging::error::throwParticleBoundsError(x,y,z);
+			debugging::error::throwParticleBoundsError(x,y,z, name);
 		}
 	}
 
@@ -125,7 +125,7 @@ namespace simulation
 		y0 = utilities::util::safeMod0(yTemp,y,boxSize);
 		if ((y < 0.0) || (y >= boxSize))
 		{
-			debugging::error::throwParticleBoundsError(x,y,z);
+			debugging::error::throwParticleBoundsError(x,y,z, name);
 		}
 	}
 
@@ -138,7 +138,7 @@ namespace simulation
 		z0 = utilities::util::safeMod0(zTemp,z,boxSize);
 		if ((z < 0.0) || (z >= boxSize))
 		{
-			debugging::error::throwParticleBoundsError(x,y,z);
+			debugging::error::throwParticleBoundsError(x,y,z, name);
 		}
 	}
 

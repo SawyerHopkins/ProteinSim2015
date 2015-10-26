@@ -61,7 +61,8 @@ namespace simulation
 			myFile << particles[i]->getX() << " " << particles[i]->getY() << " " << particles[i]->getZ() << " ";
 			myFile << particles[i]->getX0() << " " << particles[i]->getY0() << " " << particles[i]->getZ0() << " ";
 			myFile << particles[i]->getFX() << " " << particles[i]->getFY() << " " << particles[i]->getFZ() << " ";
-			myFile << particles[i]->getFX0() << " " << particles[i]->getFY0() << " " << particles[i]->getFZ0();
+			myFile << particles[i]->getFX0() << " " << particles[i]->getFY0() << " " << particles[i]->getFZ0() << " ";
+			myFile << particles[i]->getMass() << " " << particles[i]->getRadius();
 			if (i < (nParticles-1))
 			{
 				myFile << "\n";
@@ -90,7 +91,9 @@ namespace simulation
 
 	void system::writeSystemInit()
 	{
-		std::ofstream myFile;
+		using namespace std;
+
+		ofstream myFile;
 		myFile.open(trialName + "/sysConfig.cfg");
 
 		//Writes the system configuration.
@@ -109,6 +112,14 @@ namespace simulation
 
 		//Close the stream.
 		myFile.close();
+
+		writeSystem(trialName + "/initialState");
+
+		ifstream inCfg("settings.cfg", ios::binary);
+		ofstream outCfg(trialName + "/settings.cfg", ios::binary);
+
+		outCfg << inCfg.rdbuf();
+
 	}
 
 	void system::writeSystemState(debugging::timer* tmr)

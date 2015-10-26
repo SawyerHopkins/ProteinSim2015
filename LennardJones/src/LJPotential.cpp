@@ -181,7 +181,6 @@ void LennardJones::quench()
 
 void LennardJones::getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items)
 {
-
 	for(auto it = itemCell->getFirstNeighbor(); it != itemCell->getLastNeighbor(); ++it)
 	{
 		iterCells(boxSize,time,items[index],*it);

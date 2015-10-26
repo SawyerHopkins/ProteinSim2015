@@ -53,7 +53,7 @@ namespace simulation
 
 				if (cont != "Y" && cont != "y")
 				{
-					runSetup();
+					trialName = runSetup();
 				}
 			}
 			else
@@ -65,7 +65,7 @@ namespace simulation
 				validDir = checkDir(trialName);
 				if (validDir == false)
 				{
-					runSetup();
+					trialName = runSetup();
 				}
 			}
 		}
@@ -131,7 +131,6 @@ namespace simulation
 		std::cout << "Created: " << numCells << " cells from scale: " <<  cellScale << "\n";
 
 		writeSystemInit();
-
 	}
 
 	system::~system()

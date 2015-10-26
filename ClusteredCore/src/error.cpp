@@ -38,10 +38,10 @@ namespace debugging
 		exit(7702);
 	}
 
-	void error::throwParticleBoundsError(int x, int y, int z)
+	void error::throwParticleBoundsError(float x, float y, float z, int name)
 	{
 		std::cout << "\nParticle out of bounds.\n";
-		std::cout << x << "," << y << "," << z << "\n";
+		std::cout << "Particle: " << name << " : " << x << "," << y << "," << z << "\n";
 		exit(7703);
 	}
 

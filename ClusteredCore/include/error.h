@@ -34,7 +34,7 @@ namespace debugging
 			 * @brief Throw when the particle is outside the box after PBC check.
 			 * @param x,y,z The position of the particle.
 			 */
-			static void throwParticleBoundsError(int x, int y, int z);
+			static void throwParticleBoundsError(float x, float y, float z, int name);
 			/**
 			 * @brief Throw when particles are closer than the accepted tolerance.
 			 * @param nameI Name of the index particle.
