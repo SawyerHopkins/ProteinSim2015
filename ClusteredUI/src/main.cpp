@@ -32,6 +32,7 @@ using namespace std;
 
 static inline void greeting();
 void runScript(string aName, string timeStamp);
+void runAnalysis(std::queue<std::string>* analysisArgs);
 
 /********************************************//**
 *------------------MAIN PROGRAM------------------
@@ -50,8 +51,10 @@ int main(int argc, char **argv)
 	greeting();
 
 	//Program flags.
-	bool a = false;
-	string aName = "";
+	bool isAnalysis = false;
+	std::queue<std::string> analysisArgs;
+	bool isRewind = false;
+	string rewindName = "";
 	string timeStamp = "";
 
 	int i = 0;
@@ -62,27 +65,44 @@ int main(int argc, char **argv)
 		string str(argv[i]);
 		if (str.compare("-r")==0)
 		{
-			a = true;
+			isRewind = true;
 			//Make sure the next argument exists.
-			if ((i+2) < argc)
-			{
+			if ((i+2) < argc) {
 				//Name of file to analyze.
 				i++;
 				string file(argv[i]);
-				aName = file;
+				rewindName = file;
 				i++;
 				string stamp(argv[i]);
 				timeStamp = stamp;
-			}
-			else
-			{
+			} else {
 				debugging::error::throwInputError();
 			}
+		}
+		if (str.compare("-a")==0)
+		{
+			isAnalysis = true;
+			int j = i + 1;
+			while (j < argc)
+			{
+				string stArg(argv[j]);
+				if (stArg.compare("-r")==0){ break; }
+				analysisArgs.push(stArg);
+				j++;
+			}
+			i = (j-1);
 		}
 		i++;
 	}
 
-	runScript(aName, timeStamp);
+	if (isAnalysis)
+	{
+		runAnalysis(&analysisArgs);
+	}
+	else
+	{
+		runScript(rewindName, timeStamp);
+	}
 
 	//Debug code 0 -> No Error:
 	return 0;

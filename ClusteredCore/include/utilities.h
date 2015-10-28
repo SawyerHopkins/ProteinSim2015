@@ -12,6 +12,7 @@
 #include <sys/sendfile.h>
 #include <unistd.h>
 #include <map>
+#include <queue>
 #include "error.h"
 #include "timer.h"
 
@@ -140,8 +141,15 @@ namespace utilities
 			 * @return
 			 */
 			static double psdrand(int iseed);
-	};
 
+			/**
+			 *
+			 * @brief Attempts to pop an element of an input queue.
+			 * @returns the popped element. Returns null if failed.
+			 *
+			 */
+			static std::string tryPop(std::queue<std::string>* queue);
+	};
 }
 
 #endif // UTILITIES_H

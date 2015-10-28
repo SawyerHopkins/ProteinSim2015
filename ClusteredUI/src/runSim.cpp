@@ -26,26 +26,8 @@ SOFTWARE.*/
 using namespace std;
 using namespace utilities;
 
-/**
- * @brief Run a new simulation.
- */
-void runScript(string aName, string timeStamp)
+physics::forces* loadForces(configReader::config* cfg)
 {
-	std::string settingPath = "settings.cfg";
-
-	if (aName != "")
-	{
-		settingPath = aName + "/settings.cfg";
-	}
-
-	/*----------------CFG-----------------*/
-
-	util::writeTerminal("Looking for configuration file.\n\n", Colour::Green);
-	configReader::config * cfg =new configReader::config(settingPath);
-	cfg->showOutput();
-
-	/*---------------FORCES---------------*/
-
 	//Creates a force manager.
 	util::writeTerminal("Adding required forces.\n", Colour::Green);
 
@@ -59,7 +41,7 @@ void runScript(string aName, string timeStamp)
 	if (!forceLib)
 	{
 		util::writeTerminal("\n\nError loading in force library.\n\n", Colour::Red);
-		return;
+		exit(100);
 	}
 
 	dlerror();
@@ -72,14 +54,14 @@ void runScript(string aName, string timeStamp)
 	if (err)
 	{
 		util::writeTerminal("\n\nCould not find symbol: getForce\n\n", Colour::Red);
-		return;
+		exit(100);
 	}
 
 	//Create a new force instance from the factory.
 	physics::IForce* loadForce = factory(cfg);
 
 	//Add the force to the force manager.
-	physics::forces * force = new physics::forces();
+	physics::forces* force = new physics::forces();
 	force->addForce(loadForce);
 
 	util::writeTerminal("Creating force manager.\n", Colour::Green);
@@ -93,6 +75,61 @@ void runScript(string aName, string timeStamp)
 	int num_dev = cfg->getParam<double>("omp_device",0);
 	force->setDevice(num_dev);
 
+	return force;
+}
+
+simulation::system* loadSystem(configReader::config* cfg, std::string aName, std::string timeStamp, integrators::brownianIntegrator* difeq, physics::forces* force)
+{
+	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
+	configReader::config* sysCfg =new configReader::config(aName + "/sysConfig.cfg");
+	simulation::system* sys = simulation::system::loadFromFile(sysCfg, aName, timeStamp, difeq, force);
+
+	double newTimeStep = cfg->getParam<double>("timeStep",0);
+	double newTemp = cfg->getParam<double>("temp",0);
+
+	if (newTimeStep > 0) { 
+		util::writeTerminal("\nReloading timestep: " + std::to_string(sys->setdTime(newTimeStep)) + " -> " + std::to_string(newTimeStep) + "\n", Colour::Magenta);
+	}
+	if (newTemp > 0) {
+		util::writeTerminal("\nReloading system temperature: " + std::to_string(sys->setdTime(newTemp)) + " -> " + std::to_string(newTemp) + "\n", Colour::Magenta);
+	}
+	return sys;
+}
+
+simulation::system* buildSystem(configReader::config* cfg, integrators::brownianIntegrator* difeq, physics::forces* force)
+{
+	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
+	//Creates the particle system.
+	simulation::system* sys = new simulation::system(cfg, difeq, force);
+
+	//Output the stats.
+	cout << "---Number of Particles: " << sys->getNParticles() << "\n";
+	cout << "---Box Size: " << sys->getBoxSize() << "\n";
+	cout << "---Cell Size: " << sys->getCellSize() << "\n\n";
+ 
+	//Write the initial system.
+	cout << "Writing initial system to file.\n\n";
+	sys->writeSystem("/initSys");
+	return sys;
+}
+
+/**
+ * @brief Run a new simulation.
+ */
+void runScript(string aName, string timeStamp)
+{
+	std::string settingPath = "settings.cfg";
+
+	/*----------------CFG-----------------*/
+
+	util::writeTerminal("Looking for configuration file.\n\n", Colour::Green);
+	configReader::config* cfg =new configReader::config(settingPath);
+	cfg->showOutput();
+
+	/*---------------FORCES---------------*/
+
+	physics::forces* force = loadForces(cfg);
+
 	/*-------------INTEGRATOR-------------*/
 
 	//Create the integrator.
@@ -104,22 +141,9 @@ void runScript(string aName, string timeStamp)
 	simulation::system* sys = NULL;
 
 	if (aName != "") {
-		util::writeTerminal("\nLoading particle system.\n", Colour::Green);
-		configReader::config * sysCfg =new configReader::config(aName + "/sysConfig.cfg");
-		sys = simulation::system::loadFromFile(sysCfg, aName, timeStamp, difeq, force);
+		sys = loadSystem(cfg, aName, timeStamp, difeq, force);
 	} else {
-		util::writeTerminal("\nCreating particle system.\n", Colour::Green);
-		//Creates the particle system.
-		sys = new simulation::system(cfg, difeq, force);
-
-		//Output the stats.
-		cout << "---Number of Particles: " << sys->getNParticles() << "\n";
-		cout << "---Box Size: " << sys->getBoxSize() << "\n";
-		cout << "---Cell Size: " << sys->getCellSize() << "\n\n";
-	 
-		//Write the initial system.
-		cout << "Writing initial system to file.\n\n";
-		sys->writeSystem("/initSys");
+		sys = buildSystem(cfg, difeq, force);
 	}
 
 	/*-------------Iterator-------------*/

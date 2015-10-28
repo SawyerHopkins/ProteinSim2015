@@ -23,30 +23,32 @@ SOFTWARE.*/
 
 namespace simulation
 {
+	using namespace std;
 
 	/********************************************//**
 	*-----------------SYSTEM RECOVERY----------------
 	 ***********************************************/
 
-	system* system::loadFromFile(configReader::config* cfg, std::string sysState, std::string timeStamp, integrators::I_integrator* sysInt, physics::forces* sysFcs)
+	int system::particlesInFile(std::string sysState, std::string timeStamp)
 	{
-		using namespace std;
+		std::string fullPath = sysState + "/snapshots/time-" + timeStamp + "/recovery.txt";
+		ifstream state;
+		state.open(fullPath, ios_base::in);
 
-		system* oldSys = new system();
+		int count = 0;
+		for(std::string line; std::getline(state, line);)
+		{
+			count++;
+		}
+		return count;
+	}
 
-		utilities::util::writeTerminal("\n\nLoading recovery state...\n", utilities::Colour::Green);
-
-		cfg->showOutput();
-		int bsize = cfg->getParam<int>("boxSize",0);
-		int nParts = cfg->getParam<int>("nParticles",0);
-
-		oldSys->particles = new particle*[nParts];
-
+	int system::readParticles(system* oldSys, std::string sysState, std::string timeStamp, int bsize)
+	{
 		std::string fullPath = sysState + "/snapshots/time-" + timeStamp + "/recovery.txt";
 		cout << "-Reading: " << fullPath << "\n";
 		ifstream state;
 		state.open(fullPath, ios_base::in);
-
 		// Read in each particle.
 		int count = 0;
 		for(std::string line; std::getline(state, line);)
@@ -77,15 +79,13 @@ namespace simulation
 
 			count++;
 		}
+		return count;
+	}
 
-		// Maybe this should throw an error for count != nParts?
-		std::cout << "-Found " << count << " / " << nParts << " particles.\n";
-
-		// Pulls in the old system configuration. Don't recalculate it incase the settings.cfg gets changed incorrectly.
-		oldSys->trialName = sysState + "/-rewind-" + timeStamp;
-		oldSys->nParticles = count;
+	void system::readSettings(system* oldSys, configReader::config* cfg)
+	{
+		cfg->showOutput();
 		oldSys->concentration = cfg->getParam<double>("Concentration",0);
-		oldSys->boxSize = bsize;
 		oldSys->cellSize = cfg->getParam<int>("cellSize",0);
 		oldSys->cellScale = cfg->getParam<int>("cellScale",0);
 		oldSys->temp = cfg->getParam<double>("temp",0);
@@ -95,13 +95,12 @@ namespace simulation
 		oldSys->outXYZ = cfg->getParam<int>("outXYZ",0);
 		oldSys->cycleHour = cfg->getParam<double>("cycleHour",0);
 		oldSys->seed = cfg->getParam<int>("seed",0);
-
-		oldSys->integrator = sysInt;
-		oldSys->sysForces = sysFcs;
-
-		oldSys->initCells(oldSys->cellScale);
+		oldSys->boxSize = cfg->getParam<int>("boxSize",0);
 		cfg->hideOutput();
+	}
 
+	void system::createRewindDir(system* oldSys)
+	{
 		//Check that the provided directory exists.
 		bool validDir = checkDir(oldSys->trialName);
 		if (validDir == true)
@@ -129,10 +128,55 @@ namespace simulation
 				oldSys->trialName = runSetup();
 			}
 		}
+	}
 
+	system* system::loadFromFile(configReader::config* cfg, std::string sysState, std::string timeStamp, integrators::I_integrator* sysInt, physics::forces* sysFcs)
+	{
+		utilities::util::writeTerminal("\n\nLoading recovery state...\n", utilities::Colour::Green);
+
+		system* oldSys = new system();
+
+		int bsize = cfg->getParam<int>("boxSize",0);
+		int nParts = cfg->getParam<int>("nParticles",0);
+
+		// Load in the particles.
+		oldSys->particles = new particle*[nParts];
+		int count = readParticles(oldSys, sysState, timeStamp, bsize);
+
+		// Maybe this should throw an error for count != nParts?
+		std::cout << "-Found " << count << " / " << nParts << " particles.\n";
+
+		// Pulls in the old system configuration. Don't recalculate it incase the settings.cfg gets changed incorrectly.
+		readSettings(oldSys, cfg);
+		oldSys->trialName = sysState + "/-rewind-" + timeStamp;
+		oldSys->nParticles = count;
+		oldSys->integrator = sysInt;
+		oldSys->sysForces = sysFcs;
+
+		oldSys->initCells(oldSys->cellScale);
+		createRewindDir(oldSys);
 		oldSys->writeSystemInit();
-
 		return oldSys;
 	}
 
+	system* system::loadAnalysis(configReader::config* cfg, std::string sysState, std::string timeStamp)
+	{
+		system* oldSys = new system();
+
+		// Read in each particle.
+		int nParts = particlesInFile(sysState, timeStamp);
+		oldSys->particles = new particle*[nParts];
+
+		int bsize = cfg->getParam<int>("boxSize",0);
+		int count = readParticles(oldSys, sysState, timeStamp, bsize);
+		std::cout << "-Found " << count << " / " << nParts << " particles.\n";
+
+		readSettings(oldSys, cfg);
+		oldSys->nParticles = count;
+		oldSys->trialName = sysState + "/-analysis-" + timeStamp;
+
+		oldSys->initCells(oldSys->cellScale);
+		createRewindDir(oldSys);
+		return oldSys;
+	}
 }

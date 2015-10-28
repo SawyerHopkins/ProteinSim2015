@@ -159,7 +159,7 @@ namespace simulation
 		}
 
 		double eap = (totEAP / double(nParticles));
-		double nClust = numClusters(outXYZ);
+		double nClust = avgClusterSize(outXYZ);
 		double avgCoor = double(totCoor) / double(nParticles);
 
 		//Output the current system statistics.

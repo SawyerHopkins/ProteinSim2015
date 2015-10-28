@@ -314,8 +314,10 @@ namespace simulation
 			 * @param val Mass value.
 			 */
 			void setMass(double val) { m = val; }
-
-
+			/**
+			 * @brief For setting up interaction table.
+			 */
+			void addInteraction(particle* p) { coorNumber++; interactions.push_back(p); }
 			/********************************************//**
 			*------------------SYSTEM OUTPUT-----------------
 			************************************************/

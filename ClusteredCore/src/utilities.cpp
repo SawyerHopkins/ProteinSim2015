@@ -26,7 +26,6 @@ using namespace std;
 
 namespace utilities
 {
-
 	double util::safeMod(double val, double base)
 	{
 		//0 mod n is always zero
@@ -361,6 +360,17 @@ namespace utilities
 		ran_num = ((double)istack[jrand]) / base;
 
 		return ran_num;
+	}
+
+	std::string util::tryPop(std::queue<std::string>* queue)
+	{
+		if (queue->size() > 0)
+		{
+			std::string frontMan = queue->front();
+			queue->pop();
+			return frontMan;
+		}
+		return NULL;
 	}
 }
 

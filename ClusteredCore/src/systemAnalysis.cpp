@@ -20,140 +20,33 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include <stack>
 #include "system.h"
 
 namespace simulation
 {
-
-	int system::numClusters(int xyz)
+	void system::analysisManager(std::queue<std::string>* tests)
 	{
-		//A map of all the particles in the system by name.
-		std::map<int,particle*> selectionPool;
-
-		//Add all the particles to the map.
-		for (int i=0; i<nParticles; i++)
+		std::cout << "\nSetting up interaction table\n";
+		createInteractionsTable();
+		std::cout << "\nBuilding cluster table.\n";
+		std::vector<std::vector<particle*>> clusterPool = findClusters();
+		std::cout << "\n Loaded " << clusterPool.size() << " clusters.\n";
+		while (tests->size() > 0)
 		{
-			selectionPool[particles[i]->getName()] = particles[i];
-		}
+			std::string soda = utilities::util::tryPop(tests);
 
-		//Create a vector of clusters.
-		int totalSize = 0;
-		std::vector<std::vector<particle*>> clusterPool;
-
-		//While we still have particles in pList look for clusters.
-		while(!selectionPool.empty())
-		{
-			//The cluster candidate.
-			std::vector<particle*> candidate;
-
-			//Get the base particle.
-			particle* p = selectionPool.begin()->second;
-
-			//Recreate a searching pool
-			std::vector<particle*> recursionPool;
-			//Add the base particle to the recursive search.
-			recursionPool.push_back(p);
-
-			//Recurse.
-			while(!recursionPool.empty())
+			if ((soda == "--coorhist") || (soda == "-CH"))
 			{
-				//Grab a particle to recurse through.
-				particle* r = recursionPool.back();
-				//Remove the particle from the recurse pool.
-				recursionPool.pop_back();
-
-				//If the particle is still in the selection pool.
-				if (selectionPool.count(r->getName()))
-				{
-
-					//Remove the particle from the selection pool.
-					selectionPool.erase(r->getName());
-					//Add the particle to the cluster candidate
-					candidate.push_back(r);
-
-					//If the particle has interacting particles, add those to the recurse pool.
-					if (!(r->getInteractions().empty()))
-					{
-						recursionPool.insert(recursionPool.end(), r->getInteractionsBegin(), r->getInteractionsEnd());
-					}
-				}
+				utilities::util::writeTerminal("\nRunning structural histrogram analysis.\n", utilities::Colour::Green);
+				coordinationHistogram();
 			}
-
-			//If the candidate is larger than 4 elements, add it to the cluster pool.
-			if(candidate.size() > 4)
+			if ((soda == "--clusthist") || (soda == "-CLH"))
 			{
-				totalSize += candidate.size();
-				clusterPool.push_back(candidate);
+				utilities::util::writeTerminal("\nRunning cluster histrogram analysis.\n", utilities::Colour::Green);
+				clusterSizeHistogram(clusterPool);
 			}
 
 		}
-
-		int avgSize = 0;
-
-		if (clusterPool.size() > 0)
-		{
-			avgSize = totalSize / clusterPool.size();
-		}
-
-		if (xyz > 0)
-		{
-			//Create the file name.
-			std::string outName = std::to_string(int(std::round(currentTime)));
-			std::string dirName = trialName + "/snapshots/time-" + outName; 
-			mkdir(dirName.c_str(),0777);
-
-			int clustName = 0;
-			for(auto clustIT = clusterPool.begin(); clustIT != clusterPool.end(); ++clustIT)
-			{
-				//Open the file steam.
-				std::ofstream myFile;
-				std::string fileName = trialName + "/snapshots/time-" + outName + "/clust" + std::to_string(clustName) + ".xyz";
-				myFile.open(fileName);
-
-				//Number line.
-				myFile << clustIT->size() << "\n";
-				//Comment line.
-				myFile << "Cluster: " << clustName << "\n";
-				//Position lines.
-				for (auto partIT = clustIT->begin(); partIT != clustIT->end(); ++partIT)
-				{
-					myFile << "H " << (*partIT)->getX() << " " << (*partIT)->getY() << " " << (*partIT)->getZ() << "\n";
-				}
-				myFile.close();
-				clustName++;
-			}
-
-		}
-
-		std::cout << "\n" << "#Clusters: " << clusterPool.size() << "\n";
-
-		return avgSize;
-
-		//return clusterPool.size();
 	}
-
-	double system::getTemperature()
-	{
-		double vtot = 0;
-
-		for (int i = 0; i < nParticles; i++)
-		{
-			//Add the totat velocity squares.
-			double vx = particles[i]->getVX();
-			double vy = particles[i]->getVY();
-			double vz = particles[i]->getVZ();
-			vtot += (vx*vx);
-			vtot += (vy*vy);
-			vtot += (vz*vz);
-		}
-
-		//Important physics
-		vtot = vtot / 3.0;
-		vtot = vtot / nParticles;
-		//Average
-		return vtot;
-	}
-
 }
 

@@ -191,27 +191,84 @@ namespace simulation
 			 ***********************************************/
 
 			/**
+			 * @brief Find the number of line in a file.
+			 */
+			static int particlesInFile(std::string sysState, std::string timeStamp);
+			/**
+			 * @brief Read in the sysConfig file.
+			 */
+			static void readSettings(system* oldSys, configReader::config* cfg);
+			/**
+			 * @brief Load a system with particle data from file.
+			 */
+			static int readParticles(system* oldSys, std::string sysState, std::string timeStamp, int bsize);
+			/**
+			 * @brief Attempt to create the correct directory for rewind.
+			 */
+			static void createRewindDir(system* oldSys);
+			/**
 			 * @brief Recover a system state from output files.
-			 * @param settings The location of the settings file.
-			 * @param sysState The location of the system file.
 			 */
 			static system* loadFromFile(configReader::config* cfg, std::string sysState, std::string timeStamp, integrators::I_integrator* sysInt, physics::forces* sysFcs);
+			/**
+			 * @brief Recover to a hulk state (only particle system initialized).
+			 */
+			static system* loadAnalysis(configReader::config* cfg, std::string sysState, std::string timeStamp);
 
 			/********************************************//**
 			*-----------------SYSTEM ANALYSIS----------------
 			 ***********************************************/
 
+			void createInteractionsTable();
+			void analysisManager(std::queue<std::string>* tests);
+			/**
+			 *
+			 *@brief gets an array of clusters.
+			 *
+			 */
+			std::vector<std::vector<particle*>> findClusters();
 			/**
 			 * @brief Get the number of clusters in the system.
 			 * @return Return the number of clusters
 			 */
-			int numClusters(int xyz);
+			int avgClusterSize(std::vector<std::vector<particle*>> clusterPool, int xyz);
+			int avgClusterSize(int xyz) { return avgClusterSize(findClusters(), xyz); }
+			/**
+			 *
+			 * @brief Outputs a coordination number histogram of a specific snapshot.
+			 *
+			 */
+			void coordinationHistogram();
+			/**
+			 *
+			 * @brief Outputs a cluster size histogram of a specific snapshot.
+			 *
+			 */
+			void clusterSizeHistogram(std::vector<std::vector<particle*>> clusterPool);
+			void clusterSizeHistogram() { clusterSizeHistogram(findClusters() ); }
 			/**
 			 * @brief Returns the temperature of the system.
 			 * @return 
 			 */
 			double getTemperature();
-
+			/**
+			 *
+			 * @brief Sets a new time step. Use with caution.
+			 *
+			 */
+			double setdTime(double dt) { 
+				double old = dTime;
+				dTime = dt;
+				return old; }
+			/**
+			 *
+			 * @brief Sets a new temperature parameter. Use with caution.
+			 *
+			 */
+			double setSysTemp(double val) { 
+				double old = temp;
+				temp = val;
+				return old; }
 			/********************************************//**
 			 *---------------VERSION CONTROL-----------------
 			 ***********************************************/

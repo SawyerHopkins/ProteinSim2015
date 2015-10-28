@@ -42,7 +42,7 @@ namespace simulation
 				cells[i][j] = new cell*[scale];
 				for(int k=0; k < scale; k++)
 				{
-					cells[i][j][k] = new cell;
+					cells[i][j][k] = new cell();
 				}
 			}
 		}
