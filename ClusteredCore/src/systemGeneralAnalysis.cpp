@@ -46,4 +46,18 @@ namespace simulation
 		//Average
 		return vtot;
 	}
+
+	double system::MeanDisplacement() 
+	{
+		double disp = 0;
+
+		for (int i = 0; i < nParticles; i++)
+		{
+		 	double dx = particles[i]->getX() - particles[i]->getX0();
+		 	double dy = particles[i]->getY() - particles[i]->getY0();
+		 	double dz = particles[i]->getZ() - particles[i]->getZ0();
+		 	disp += (dx*dx + dy*dy + dz*dz);
+		}
+		return (disp / double(nParticles));
+	}
 }

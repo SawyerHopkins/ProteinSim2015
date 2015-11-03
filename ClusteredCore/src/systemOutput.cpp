@@ -161,11 +161,13 @@ namespace simulation
 		double eap = (totEAP / double(nParticles));
 		double nClust = avgClusterSize(outXYZ);
 		double avgCoor = double(totCoor) / double(nParticles);
+		double meanR2 = MeanDisplacement();
 
 		//Output the current system statistics.
-		std::cout <<"\n<R>: " << avgCoor << " - Rt: " << totCoor << "\n";
+		std::cout <<"\n<Coor>: " << avgCoor << " - Total Coor: " << totCoor << "\n";
 		std::cout <<"<EAP>: " << eap << "\n";
 		std::cout <<"<N>/Nc: " << nClust << "\n";
+		std::cout <<"<R^2>: " << meanR2 << "\n";
 		std::cout <<"Temperature: " << getTemperature() << "\n";
 
 		//Output the number of clusters with time.
@@ -182,6 +184,11 @@ namespace simulation
 		std::ofstream myFileCoor(trialName + "/coorGraph.txt", std::ios_base::app | std::ios_base::out);
 		myFileCoor << currentTime << " " << avgCoor << "\n";
 		myFileCoor.clear();
+
+		//Output the coordination number with time
+		std::ofstream myFileR2(trialName + "/meanR2.txt", std::ios_base::app | std::ios_base::out);
+		myFileR2 << currentTime << " " << meanR2 << "\n";
+		myFileR2.clear();
 	}
 
 }

@@ -44,6 +44,20 @@ cd ../
 
 echo
 tput setaf 2
+echo Making Calibration Test
+tput setaf 7
+echo
+
+cd Calibration
+make clean
+echo
+./Calibration.sh
+cd ../
+
+#----------
+
+echo
+tput setaf 2
 echo Making user interface
 tput setaf 7
 echo 
@@ -64,3 +78,4 @@ echo
 
 cp AOPotential/bin/AOPot.so ClusteredUI/bin/AOPot.so
 cp LennardJones/bin/LJ.so ClusteredUI/bin/LJ.so
+cp Calibration/bin/Calibration.so ClusteredUI/bin/Calibration.so

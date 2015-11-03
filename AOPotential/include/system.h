@@ -269,6 +269,10 @@ namespace simulation
 				double old = temp;
 				temp = val;
 				return old; }
+			/**
+			 * Returns the mean r^2 displacement.
+			 */
+			double MeanDisplacement();
 			/********************************************//**
 			 *---------------VERSION CONTROL-----------------
 			 ***********************************************/

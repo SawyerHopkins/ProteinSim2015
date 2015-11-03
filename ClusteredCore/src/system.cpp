@@ -199,7 +199,7 @@ namespace simulation
 			{
 				if (currentTime > 0)
 				{
-					utilities::util::clearLines(13);
+					utilities::util::clearLines(14);
 				}
 				writeSystemState(tmr);
 			}
