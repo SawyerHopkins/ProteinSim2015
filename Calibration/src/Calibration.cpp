@@ -21,7 +21,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #include "Calibration.h"
-using namespace simulation;
 
 Calibration::~Calibration()
 {
@@ -36,10 +35,10 @@ Calibration::Calibration(configReader::config* cfg)
 	//Get force range cutoff.
 	cutOff = cfg->getParam<double>("cutOff",1.1);
 
-	utilities::util::writeTerminal("---Calibration Force successfully added.\n\n", utilities::Colour::Cyan);
+	PSim::util::writeTerminal("---Calibration Force successfully added.\n\n", PSim::Colour::Cyan);
 }
 
-void Calibration::iterCells(int boxSize, double time, particle* index, cell* itemCell)
+void Calibration::iterCells(int boxSize, double time, particle* index, PeriodicGrid* itemCell)
 {
 	double pot = 0;
 
@@ -48,7 +47,7 @@ void Calibration::iterCells(int boxSize, double time, particle* index, cell* ite
 		if (it->second->getName() != index->getName())
 		{
 			//Distance between the two particles.
-			double rSquared = utilities::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
+			double rSquared = PSim::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
 																it->second->getX(), it->second->getY(), it->second->getZ(),
 																boxSize);
 
@@ -63,7 +62,7 @@ void Calibration::iterCells(int boxSize, double time, particle* index, cell* ite
 				double size = (index->getRadius() + it->second->getRadius());
 				if(r< (0.8*size) )
 				{
-					debugging::error::throwParticleOverlapError(index->getName(), it->second->getName(), r);
+					PSim::error::throwParticleOverlapError(index->getName(), it->second->getName(), r);
 				}
 
 				//Math
@@ -81,7 +80,7 @@ void Calibration::iterCells(int boxSize, double time, particle* index, cell* ite
 
 				//Normalize the force.
 				double unitVec[3] {0.0,0.0,0.0};
-				utilities::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
+				PSim::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
 													it->second->getX(), it->second->getY(), it->second->getZ(),
 													unitVec, r, boxSize);
 
@@ -91,10 +90,10 @@ void Calibration::iterCells(int boxSize, double time, particle* index, cell* ite
 				double fz = fNet*unitVec[2];
 
 				//If the force is infinite then there are worse problems.
-				if (isnan(fNet))
+				if (std::isnan(fNet))
 				{
 					//This error should only get thrown in the case of numerical instability.
-					debugging::error::throwInfiniteForce();
+					PSim::error::throwInfiniteForce();
 				}
 
 				//Add to the net force on the particle.
@@ -104,7 +103,7 @@ void Calibration::iterCells(int boxSize, double time, particle* index, cell* ite
 	}
 }
 
-void Calibration::getAcceleration(int index, int nPart, int boxSize, double time, cell* itemCell, particle** items)
+void Calibration::getAcceleration(int index, int nPart, int boxSize, double time, PeriodicGrid* itemCell, particle** items)
 {
 	//Iter across all neighboring cells.
 	for(auto it = itemCell->getFirstNeighbor(); it != itemCell->getLastNeighbor(); ++it)

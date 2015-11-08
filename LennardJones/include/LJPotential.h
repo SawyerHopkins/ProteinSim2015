@@ -1,5 +1,8 @@
-#include "force.h"
+#include "forceManager.h"
 #include "utilities.h"
+
+using namespace PSim;
+using namespace std;
 
 /**
  * @class Yukawa
@@ -8,7 +11,7 @@
  * @file force.h
  * @brief Yukawa Potential
  */
-class LennardJones : public physics::IForce
+class LennardJones : public PSim::IForce
 {
 
 private:
@@ -22,10 +25,8 @@ private:
 		double debyeLength; //k
 		double debyeInv;
 		double mass; // m
-		double gamma; // g^2
 		double radius; // r
 		bool output;
-		bool quenched;
 
 	public:
 
@@ -48,7 +49,7 @@ private:
 		 * @param itemCell The cell containing the index particle.
 		 * @param items All particles in the system.
 		 */
-		void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items);
+		void getAcceleration(int index, int nPart, int boxSize, double time, PeriodicGrid* itemCell, PSim::particle** items);
 		/**
 		 * @brief Flag for a force dependent time.
 		 * @return True for time dependent. False otherwise. 
@@ -61,14 +62,14 @@ private:
 		 * @param index The particle to find the force on.
 		 * @param itemCell The cell to check for interactions in.
 		 */
-		void iterCells(int boxSize, double time, simulation::particle* index, simulation::cell* itemCell);
+		void iterCells(int boxSize, double time, PSim::particle* index, PeriodicGrid* itemCell);
 		
 		void quench();
 
 };
 
 //Class factories.
-extern "C" physics::IForce* getForce(configReader::config* cfg)
+extern "C" PSim::IForce* getForce(configReader::config* cfg)
 {
 	return new LennardJones(cfg);
 }

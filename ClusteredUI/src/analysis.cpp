@@ -24,7 +24,7 @@ SOFTWARE.*/
 #include <dlfcn.h>
 
 using namespace std;
-using namespace utilities;
+using namespace PSim;
 
 void runAnalysis(std::queue<std::string>* analysisArgs)
 {
@@ -39,12 +39,12 @@ void runAnalysis(std::queue<std::string>* analysisArgs)
 		return;
 	}
 
-	string analysisName = utilities::util::tryPop(analysisArgs);
-	string timeStamp = utilities::util::tryPop(analysisArgs);
+	string analysisName = PSim::util::tryPop(analysisArgs);
+	string timeStamp = PSim::util::tryPop(analysisArgs);
 
 	configReader::config* cfg =new configReader::config(analysisName + "/sysConfig.cfg");
 
 	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
-	simulation::system* sys = simulation::system::loadAnalysis(cfg, analysisName, timeStamp);
+	PSim::system* sys = PSim::system::loadAnalysis(cfg, analysisName, timeStamp);
 	sys->analysisManager(analysisArgs);
 }

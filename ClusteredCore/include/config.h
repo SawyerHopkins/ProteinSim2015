@@ -7,53 +7,59 @@
 #include <map>
 #include <regex>
 
-namespace configReader
-{
+namespace configReader {
 
-	using namespace std;
+using namespace std;
 
-	class config
-	{
+class config {
 
-		private:
+private:
 
-			map<string, string> options;
-			bool suppressOutput;
+	map<string, string> options;
+	bool suppressOutput;
 
-		public:
+	void parseLine(std::string& line);
 
-			//Header Version.
-			static const int version = 1;
+public:
 
-			config(string fileName);
-			~config();
+	//Header Version.
+	static const int version = 1;
 
-			/**
-			 * @brief Get a option from the configuration file.
-			 * @param key The keyword to option the setting for.
-			 * @param def The default value if the keyword is missing.
-			 * @return Returns the associated value of the given key.
-			 */
-			template<typename T> T getParam(string key, T def);
+	config(string fileName);
+	~config();
 
-			/**
-			 * @brief Check that the key is in the configuration file.
-			 * @param key The keyword to search.
-			 * @return True if exists, false if missing.
-			 */
-			bool containsKey(string key) { return options.count(key); }
+	/**
+	 * @brief Get a option from the configuration file.
+	 * @param key The keyword to option the setting for.
+	 * @param def The default value if the keyword is missing.
+	 * @return Returns the associated value of the given key.
+	 */
+	template<typename T> T getParam(string key, T def);
 
-			/**
-			 * @brief Show configuration output.
-			 */
-			void showOutput() { suppressOutput = false; }
+	/**
+	 * @brief Check that the key is in the configuration file.
+	 * @param key The keyword to search.
+	 * @return True if exists, false if missing.
+	 */
+	bool containsKey(string key) {
+		return options.count(key);
+	}
 
-			/**
-			 * @brief Hide configuration output.
-			 */
-			void hideOutput() { suppressOutput = true; }
- 
-	};
+	/**
+	 * @brief Show configuration output.
+	 */
+	void showOutput() {
+		suppressOutput = false;
+	}
+
+	/**
+	 * @brief Hide configuration output.
+	 */
+	void hideOutput() {
+		suppressOutput = true;
+	}
+
+};
 
 }
 

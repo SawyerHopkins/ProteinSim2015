@@ -53,8 +53,8 @@ int main(int argc, char **argv)
 	//Program flags.
 	bool isAnalysis = false;
 	std::queue<std::string> analysisArgs;
-	bool isRewind = false;
 	string rewindName = "";
+	bool isRewind = false;
 	string timeStamp = "";
 
 	int i = 0;
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 				string stamp(argv[i]);
 				timeStamp = stamp;
 			} else {
-				debugging::error::throwInputError();
+				PSim::error::throwInputError();
 			}
 		}
 		if (str.compare("-a")==0)

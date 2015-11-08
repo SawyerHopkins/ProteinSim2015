@@ -21,7 +21,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #include "LJPotential.h"
-using namespace simulation;
 
 LennardJones::~LennardJones()
 {
@@ -63,10 +62,10 @@ LennardJones::LennardJones(configReader::config* cfg)
 
 	output = true;
 
-	utilities::util::writeTerminal("---Lennard Jones Potential successfully added.\n\n", utilities::Colour::Cyan);
+	PSim::util::writeTerminal("---Lennard Jones Potential successfully added.\n\n", PSim::Colour::Cyan);
 }
 
-void LennardJones::iterCells(int boxSize, double time, particle* index, cell* itemCell)
+void LennardJones::iterCells(int boxSize, double time, particle* index, PeriodicGrid* itemCell)
 {
 	double pot = 0;
 
@@ -75,7 +74,7 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 		if (it->second->getName() != index->getName())
 		{
 			//Distance between the two particles.
-			double rSquared = utilities::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
+			double rSquared = PSim::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
 																it->second->getX(), it->second->getY(), it->second->getZ(),
 																boxSize);
 
@@ -88,7 +87,7 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 				double size = (index->getRadius() + it->second->getRadius());
 				if(r< (0.8*size) )
 				{
-					debugging::error::throwParticleOverlapError(index->getName(), it->second->getName(), r);
+					PSim::error::throwParticleOverlapError(index->getName(), it->second->getName(), r);
 				}
 
 				//-------------------------------------
@@ -102,7 +101,7 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 				double DebyeShift = (debyeLength + r);
 				double yukExp = std::exp(-rOverDebye);
 				//double LJ = std::pow(RadiusOverR,ljNum);
-				double LJ = utilities::util::powBinaryDecomp(RadiusOverR,ljNum);
+				double LJ = PSim::util::powBinaryDecomp(RadiusOverR,ljNum);
 
 				//Attractive LJ.
 				double attract = ((2.0*LJ) - 1.0);
@@ -139,7 +138,7 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 
 				//Normalize the force.
 				double unitVec[3] {0.0,0.0,0.0};
-				utilities::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
+				PSim::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
 													it->second->getX(), it->second->getY(), it->second->getZ(),
 													unitVec, r, boxSize);
 
@@ -149,10 +148,10 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, cell* it
 				double fz = fNet*unitVec[2];
 
 				//If the force is infinite then there are worse problems.
-				if (isnan(fNet))
+				if (std::isnan(fNet))
 				{
 					//This error should only get thrown in the case of numerical instability.
-					debugging::error::throwInfiniteForce();
+					::error::throwInfiniteForce();
 				}
 
 				//Add to the net force on the particle.
@@ -176,10 +175,9 @@ void LennardJones::quench()
 	cutOffSquared = cutOff*cutOff;
 	debyeLength = 1.0/6.0;
 	debyeInv = 1.0 / debyeLength;
-	quenched=true;
 }
 
-void LennardJones::getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items)
+void LennardJones::getAcceleration(int index, int nPart, int boxSize, double time, PSim::PeriodicGrid* itemCell, PSim::particle** items)
 {
 	for(auto it = itemCell->getFirstNeighbor(); it != itemCell->getLastNeighbor(); ++it)
 	{

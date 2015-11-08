@@ -1,8 +1,11 @@
 /********************************************//**
 *------------------AO POTENTIAL------------------
 ************************************************/
- #include "force.h"
+ #include "forceManager.h"
  #include "utilities.h"
+
+using namespace PSim;
+using namespace std;
 
 /**
  * @class Calibration
@@ -11,7 +14,7 @@
  * @file force.h
  * @brief AO Potential.
  */
-class Calibration : public physics::IForce
+class Calibration : public PSim::IForce
 {
 
 private:
@@ -40,7 +43,7 @@ private:
 		 * @param itemCell The cell containing the index particle.
 		 * @param items All particles in the system.
 		 */
-		void getAcceleration(int index, int nPart, int boxSize, double time, simulation::cell* itemCell, simulation::particle** items);
+		void getAcceleration(int index, int nPart, int boxSize, double time, PSim::PeriodicGrid* itemCell, PSim::particle** items);
 		/**
 		 * @brief Flag for a force dependent time.
 		 * @return True for time dependent. False otherwise. 
@@ -53,14 +56,14 @@ private:
 		 * @param index The particle to find the force on.
 		 * @param itemCell The cell to check for interactions in.
 		 */
-		void iterCells(int boxSize, double time, simulation::particle* index, simulation::cell* itemCell);
+		void iterCells(int boxSize, double time, PSim::particle* index, PSim::PeriodicGrid* itemCell);
 
 		void quench(){};
 
 };
 
 //Class factories.
-extern "C" physics::IForce* getForce(configReader::config* cfg)
+extern "C" PSim::IForce* getForce(configReader::config* cfg)
 {
 	return new Calibration(cfg);
 }

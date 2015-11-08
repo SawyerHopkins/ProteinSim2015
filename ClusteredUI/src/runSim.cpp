@@ -24,9 +24,9 @@ SOFTWARE.*/
 #include <dlfcn.h>
 
 using namespace std;
-using namespace utilities;
+using namespace PSim;
 
-physics::forces* loadForces(configReader::config* cfg)
+PSim::defaultForceManager* loadForces(configReader::config* cfg)
 {
 	//Creates a force manager.
 	util::writeTerminal("Adding required forces.\n", Colour::Green);
@@ -47,7 +47,7 @@ physics::forces* loadForces(configReader::config* cfg)
 	dlerror();
 
 	//Make a factory to create the force instance.
-	physics::create_Force* factory = (physics::create_Force*) dlsym(forceLib,"getForce");
+	PSim::create_Force* factory = (PSim::create_Force*) dlsym(forceLib,"getForce");
 	const char* err = dlerror();
 
 	//If the force is not properly implemented.
@@ -58,10 +58,10 @@ physics::forces* loadForces(configReader::config* cfg)
 	}
 
 	//Create a new force instance from the factory.
-	physics::IForce* loadForce = factory(cfg);
+	PSim::IForce* loadForce = factory(cfg);
 
 	//Add the force to the force manager.
-	physics::forces* force = new physics::forces();
+	PSim::defaultForceManager* force = new PSim::defaultForceManager();
 	force->addForce(loadForce);
 
 	util::writeTerminal("Creating force manager.\n", Colour::Green);
@@ -78,11 +78,11 @@ physics::forces* loadForces(configReader::config* cfg)
 	return force;
 }
 
-simulation::system* loadSystem(configReader::config* cfg, std::string aName, std::string timeStamp, integrators::brownianIntegrator* difeq, physics::forces* force)
+PSim::system* loadSystem(configReader::config* cfg, std::string aName, std::string timeStamp, PSim::brownianIntegrator* difeq, PSim::defaultForceManager* force)
 {
 	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
 	configReader::config* sysCfg =new configReader::config(aName + "/sysConfig.cfg");
-	simulation::system* sys = simulation::system::loadFromFile(sysCfg, aName, timeStamp, difeq, force);
+	PSim::system* sys = PSim::system::loadFromFile(sysCfg, aName, timeStamp, difeq, force);
 
 	double newTimeStep = cfg->getParam<double>("timeStep",0);
 	double newTemp = cfg->getParam<double>("temp",0);
@@ -96,11 +96,11 @@ simulation::system* loadSystem(configReader::config* cfg, std::string aName, std
 	return sys;
 }
 
-simulation::system* buildSystem(configReader::config* cfg, integrators::brownianIntegrator* difeq, physics::forces* force)
+PSim::system* buildSystem(configReader::config* cfg, PSim::brownianIntegrator* difeq, PSim::defaultForceManager* force)
 {
 	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
 	//Creates the particle system.
-	simulation::system* sys = new simulation::system(cfg, difeq, force);
+	PSim::system* sys = new PSim::system(cfg, difeq, force);
 
 	//Output the stats.
 	cout << "---Number of Particles: " << sys->getNParticles() << "\n";
@@ -128,17 +128,17 @@ void runScript(string aName, string timeStamp)
 
 	/*---------------FORCES---------------*/
 
-	physics::forces* force = loadForces(cfg);
+	PSim::defaultForceManager* force = loadForces(cfg);
 
 	/*-------------INTEGRATOR-------------*/
 
 	//Create the integrator.
 	util::writeTerminal("Creating integrator.\n", Colour::Green);
-	integrators::brownianIntegrator * difeq = new integrators::brownianIntegrator(cfg);
+	PSim::brownianIntegrator * difeq = new PSim::brownianIntegrator(cfg);
 
 	/*---------------SYSTEM---------------*/
 
-	simulation::system* sys = NULL;
+	PSim::system* sys = NULL;
 
 	if (aName != "") {
 		sys = loadSystem(cfg, aName, timeStamp, difeq, force);
