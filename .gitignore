@@ -16,3 +16,7 @@ Website
 new_header.html
 new_footer.html
 new_stylesheet.css
+
+# Ignore Eclipse
+*.cproject
+*.project
