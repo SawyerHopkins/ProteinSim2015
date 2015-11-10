@@ -8,35 +8,14 @@ cd ClusteredCore/$1
 make
 cd ../../
 
-#FORCE
-
-echo
-echo Making LennardJones
-echo
-
-cd LennardJones/$1
-make
-cd ../../
-
 #END
 #FORCE
 
 echo
-echo Making AOPotential
+echo Making %NAME%
 echo
 
-cd AOPotential/$1
-make
-cd ../../
-
-#END
-#FORCE
-
-echo
-echo Making Calibration
-echo
-
-cd Calibration/$1
+cd %NAME%/$1
 make
 cd ../../
 
