@@ -9,13 +9,13 @@ function remove {
 function build {
     readarray -t forces < .automation/forceList
     #Write the core complier from template
-    sed -n -e "1,10w buildAll.sh" .automation/buildAll.template
+    sed -n -e "/#CORE/,/#END/w buildAll.sh" .automation/buildAll.template
     #Write the force compilers from template
     for var in "${forces[@]}"
     do
 	echo "Writing ${var}"
         echo "$(sed -n '/#FORCE/,/#END/p' .automation/buildAll.template)" >> buildAll.sh
-        sed -i -e "s;%NAME%;${var};g" buildAll.sh 
+        sed -i -e "s;%NAME%;${var};g" buildAll.sh
     done
     #Write the UI compile from template
     echo "$(sed -n '/#UI/,/#END/p' .automation/buildAll.template)" >> buildAll.sh

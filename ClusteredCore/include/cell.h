@@ -1,6 +1,5 @@
 #ifndef CELL_H
 #define CELL_H
-#include "particle.h"
 #include "interfaces/IGrid.h"
 
 namespace PSim {

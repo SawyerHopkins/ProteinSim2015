@@ -8,6 +8,7 @@ cd ClusteredCore/$1
 make
 cd ../../
 
+#END
 #FORCE
 
 echo
