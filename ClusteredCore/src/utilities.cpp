@@ -96,19 +96,20 @@ double util::pbcDist(double X, double Y, double Z, double X1, double Y1,
 	double dx = fabs(X - X1);
 	double dy = fabs(Y - Y1);
 	double dz = fabs(Z - Z1);
+	double half = L / 2.0;
 
 	//Check X direction.
-	if (dx > L / 2) {
+	if (dx > half) {
 		dx -= L;
 	}
 
 	//Check Y direction.
-	if (dy > L / 2) {
+	if (dy > half) {
 		dy -= L;
 	}
 
 	//Check Z direction.
-	if (dz > L / 2) {
+	if (dz > half) {
 		dz -= L;
 	}
 	//Pythag for the distance.

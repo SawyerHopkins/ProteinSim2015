@@ -121,7 +121,7 @@ brownianIntegrator::~brownianIntegrator() {
 }
 
 void brownianIntegrator::setupHigh(configReader::config* cfg) {
-	//Coefficents for High Gamma.
+	//Coefficients for High Gamma.
 	//SEE GUNSTEREN AND BERENDSEN 1981
 	double ty = 2.0 * y;
 
@@ -145,7 +145,7 @@ void brownianIntegrator::setupHigh(configReader::config* cfg) {
 }
 
 void brownianIntegrator::setupLow(configReader::config* cfg) {
-	//Coefficents for Low Gamma (from series expansion).
+	//Coefficients for Low Gamma (from series expansion).
 	//SEE GUNSTEREN AND BERENDSEN 1981
 	double y1 = y;
 	double y2 = y1 * y1;
@@ -178,7 +178,7 @@ void brownianIntegrator::setupLow(configReader::config* cfg) {
 }
 
 void brownianIntegrator::setupZero(configReader::config* cfg) {
-	//Special case coefficents.
+	//Special case coefficients.
 	//SEE GUNSTEREN AND BERENDSEN 1981
 	coEff0 = 1.0;
 	coEff1 = 1.0;
@@ -234,6 +234,7 @@ int brownianIntegrator::normalStep(double time, double dt, int nParticles,
 		int boxSize, PSim::particle** items, PSim::defaultForceManager* f) {
 
 	double dt2 = dt * dt;
+	double c0 = 1.0 + coEff0;
 	for (int i = 0; i < nParticles; i++) {
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 		//New random walk.
@@ -251,57 +252,44 @@ int brownianIntegrator::normalStep(double time, double dt, int nParticles,
 		memZ[i] = PSim::util::g250(seed);
 
 		double m = 1.0 / items[i]->getMass();
-
-		double x0 = items[i]->getX0();
-		double y0 = items[i]->getY0();
-		double z0 = items[i]->getZ0();
+		double c1 = m * dt2 * coEff1;
+		double c2 = m * dt2 * coEff2;
 
 		//Run the integration routine.
-		double xNew = ((1.0 + coEff0) * items[i]->getX());
-		xNew -= (coEff0 * x0);
-		xNew += (m * dt2 * coEff1 * items[i]->getFX());
-		xNew += (m * dt2 * coEff2 * (items[i]->getFX() - items[i]->getFX0()));
+		double xNew = (c0 * items[i]->getX());
+		xNew -= (coEff0 * items[i]->getX0());
+		xNew += (c1 * items[i]->getFX());
+		xNew += (c2 * (items[i]->getFX() - items[i]->getFX0()));
 		xNew += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
 
-		double yNew = ((1.0 + coEff0) * items[i]->getY());
-		yNew -= (coEff0 * y0);
-		yNew += (m * dt2 * coEff1 * items[i]->getFY());
-		yNew += (m * dt2 * coEff2 * (items[i]->getFY() - items[i]->getFY0()));
+		double yNew = (c0 * items[i]->getY());
+		yNew -= (coEff0 * items[i]->getY0());
+		yNew += (c1 * items[i]->getFY());
+		yNew += (c2 * (items[i]->getFY() - items[i]->getFY0()));
 		yNew += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
 
-		double zNew = ((1.0 + coEff0) * items[i]->getZ());
-		zNew -= (coEff0 * z0);
-		zNew += (m * dt2 * coEff1 * items[i]->getFZ());
-		zNew += (m * dt2 * coEff2 * (items[i]->getFZ() - items[i]->getFZ0()));
+		double zNew = (c0 * items[i]->getZ());
+		zNew -= (coEff0 * items[i]->getZ0());
+		zNew += (c1 * items[i]->getFZ());
+		zNew += (c2 * (items[i]->getFZ() - items[i]->getFZ0()));
 		zNew += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
 
 		//Velocity is not needed for brownianIntegration.
 		//Run velocity integration at the same frequency as
 		//the temperature/energy analysis routine.
 		//-------------------------------------------------
-		//For best perfomance use
+		//For best performance use
 		//velFreq = outputFreq.
 		//-------------------------------------------------
-		//If using a velocity dependant force use
+		//If using a velocity dependent force use
 		//velFreq = 0.
 		//-------------------------------------------------
 		//For all other cases do whatever.
-		if (velFreq == 0) {
-			velocityStep(items, i, xNew, yNew, zNew, dt, boxSize);
-		} else if (velCounter == velFreq) {
-			velocityStep(items, i, xNew, yNew, zNew, dt, boxSize);
-		}
-
-		items[i]->setPos(xNew, yNew, zNew, boxSize);
-
+		(velFreq == 0 || velCounter == velFreq) ? velocityStep(items, i, xNew, yNew, zNew, dt, boxSize) :items[i]->setPos(xNew, yNew, zNew, boxSize);
 	}
 
 	//Manage velocity output counter.
-	if (velCounter == velFreq) {
-		velCounter = 0;
-	} else {
-		velCounter++;
-	}
+	(velCounter == velFreq) ? velCounter = 0 : velCounter++;
 
 	return 0;
 
@@ -333,34 +321,38 @@ void brownianIntegrator::velocityStep(PSim::particle** items, int i,
 	double dy = yNew - y0;
 	double dz = zNew - z0;
 
-	//Precompute.
+	//Pre-compute.
 	double dt2 = dt * dt;
 	double dt3 = dt * dt2;
 
+	double g2 = m * dt2 * goy2;
+	double g3 = m * dt3 * goy3;
+	double g4 = hn * dtInv;
+
 	//Run the integration routine.
 	double vxNew = dx + dx0;
-	vxNew += (m * dt2 * goy2 * items[i]->getFX());
-	vxNew -= (m * dt3 * goy3 * (items[i]->getFX() - items[i]->getFX0()));
+	vxNew += (g2 * items[i]->getFX());
+	vxNew -= (g3 * (items[i]->getFX() - items[i]->getFX0()));
 	vxNew += (memCorrX[i] - sig1 * memX[i]);
-	vxNew *= (hn * dtInv);
+	vxNew *= g4;
 
 	double vyNew = dy + dy0;
-	vyNew += (m * dt2 * goy2 * items[i]->getFY());
-	vyNew -= (m * dt3 * goy3 * (items[i]->getFY() - items[i]->getFY0()));
+	vyNew += (g2 * items[i]->getFY());
+	vyNew -= (g3 * (items[i]->getFY() - items[i]->getFY0()));
 	vyNew += (memCorrY[i] - sig1 * memY[i]);
-	vyNew *= (hn * dtInv);
+	vyNew *= g4;
 
 	double vzNew = dz + dz0;
-	vzNew += (m * dt2 * goy2 * items[i]->getFZ());
-	vzNew -= (m * dt3 * goy3 * (items[i]->getFZ() - items[i]->getFZ0()));
+	vzNew += (g2 * items[i]->getFZ());
+	vzNew -= (g3 * (items[i]->getFZ() - items[i]->getFZ0()));
 	vzNew += (memCorrZ[i] - sig1 * memZ[i]);
-	vzNew *= (hn * dtInv);
+	vzNew *= g4;
 
 	//Set the velocities.
 	items[i]->setVX(vxNew);
 	items[i]->setVY(vyNew);
 	items[i]->setVZ(vzNew);
-
+	items[i]->setPos(xNew, yNew, zNew, boxSize);
 }
 
 }

@@ -82,7 +82,6 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, Periodic
 			if (rSquared < cutOffSquared)
 			{
 				double r = sqrt(rSquared);
-
 				//If the particles overlap there are problems.
 				double size = (index->getRadius() + it->second->getRadius());
 				if(r< (0.8*size) )
@@ -95,13 +94,10 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, Periodic
 				//-------------------------------------
 
 				//Predefinitions.
-				double RadiusOverR = (size / r);
-				double rOverDebye = (r * debyeInv);
 				double rInv = (1.0  / r);
-				double DebyeShift = (debyeLength + r);
-				double yukExp = std::exp(-rOverDebye);
+				double yukExp = std::exp(-1.0 * (r * debyeInv));
 				//double LJ = std::pow(RadiusOverR,ljNum);
-				double LJ = PSim::util::powBinaryDecomp(RadiusOverR,ljNum);
+				double LJ = PSim::util::powBinaryDecomp((size / r),ljNum);
 
 				//Attractive LJ.
 				double attract = ((2.0*LJ) - 1.0);
@@ -109,7 +105,7 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, Periodic
 
 				//Repulsive Yukawa.
 				double repel = yukExp;
-				repel *= (rInv*rInv*DebyeShift*yukStr);
+				repel *= (rInv*rInv*(debyeLength + r)*yukStr);
 
 				double fNet = -kT*(attract+repel);
 
@@ -147,22 +143,8 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, Periodic
 				double fy = fNet*unitVec[1];
 				double fz = fNet*unitVec[2];
 
-				//If the force is infinite then there are worse problems.
-				if (std::isnan(fNet))
-				{
-					//This error should only get thrown in the case of numerical instability.
-					::error::throwInfiniteForce();
-				}
-
 				//Add to the net force on the particle.
-				if (r < 1.1)
-				{
-					index->updateForce(fx,fy,fz,pot,it->second);
-				}
-				else
-				{
-					index->updateForce(fx,fy,fz,pot,it->second,false);
-				}
+				index->updateForce(fx,fy,fz,pot,it->second, (r < 1.1) ? true : false);
 			}
 		}
 	}

@@ -33,9 +33,9 @@ void system::updateCells() {
 	for (int index = 0; index < nParticles; index++) {
 
 		//New cell
-		int cX = int(particles[index]->getX() / double(cellSize));
-		int cY = int(particles[index]->getY() / double(cellSize));
-		int cZ = int(particles[index]->getZ() / double(cellSize));
+		int cX = particles[index]->getX() / cellSize;
+		int cY = particles[index]->getY() / cellSize;
+		int cZ = particles[index]->getZ() / cellSize;
 
 		//Old cell
 		int cX0 = particles[index]->getCX();

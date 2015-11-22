@@ -58,21 +58,17 @@ void defaultForceManager::addForce(IForce* f) {
 
 void defaultForceManager::getAcceleration(int nPart, int boxSize, double time,
 		PSim::PeriodicGrid**** cells, PSim::particle** items) {
+	IForce* currentForce = flist[0];
 #pragma omp parallel
 	{
 #pragma omp for
 		for (int index = 0; index < nPart; index++) {
 			//Resets the force on the particle.
 			items[index]->nextIter();
-			PSim::particle* p = items[index];
-			PSim::PeriodicGrid* itemCell =
-					cells[p->getCX()][p->getCY()][p->getCZ()];
 			//Iterates through all forces.
-			for (std::vector<IForce*>::iterator it = flist.begin();
-					it != flist.end(); ++it) {
-				(*it)->getAcceleration(index, nPart, boxSize, time, itemCell,
-						items);
-			}
+			currentForce->getAcceleration(index, nPart, boxSize, time,
+					cells[items[index]->getCX()][items[index]->getCY()][items[index]->getCZ()],
+					items);
 		}
 	}
 }
