@@ -20,38 +20,10 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.*/
 
-#include <stack>
-#include "system.h"
+#include "analysisManager.h"
 
 namespace PSim {
-void system::createInteractionsTable() {
-	double cutOffSquared = 1.1 * 1.1;
-	for (int i = 0; i < nParticles; i++) {
-		PSim::particle* base = particles[i];
-		PSim::PeriodicGrid* itemCell =
-				cells[base->getCX()][base->getCY()][base->getCZ()];
-		for (auto currentCell = itemCell->getFirstNeighbor();
-				currentCell != itemCell->getLastNeighbor(); ++currentCell) {
-			for (auto member = (*currentCell)->getBegin();
-					member != (*currentCell)->getEnd(); ++member) {
-				if (member->second->getName() != base->getName()) {
-					//Distance between the two particles.
-					double rSquared = PSim::util::pbcDist(base->getX(),
-							base->getY(), base->getZ(), member->second->getX(),
-							member->second->getY(), member->second->getZ(),
-							boxSize);
-
-					//If the particles are in the potential well.
-					if (rSquared < cutOffSquared) {
-						base->addInteraction(member->second);
-					}
-				}
-			}
-		}
-	}
-}
-
-std::vector<std::vector<particle*>> system::findClusters() {
+std::vector<std::vector<particle*>> analysisManager::findClusters(particle** particles, int nParticles) {
 	//A map of all the particles in the system by name.
 	std::map<int, particle*> selectionPool;
 
@@ -108,5 +80,99 @@ std::vector<std::vector<particle*>> system::findClusters() {
 
 	}
 	return clusterPool;
+}
+
+int analysisManager::writeClusters(std::vector<std::vector<particle*>> clusterPool, double currentTime,
+		int xyz) {
+	int totalSize = 0;
+	int avgSize = 0;
+
+	for (auto clustIT = clusterPool.begin(); clustIT != clusterPool.end();
+			++clustIT) {
+		totalSize += clustIT->size();
+	}
+
+	if (clusterPool.size() > 0) {
+		avgSize = totalSize / clusterPool.size();
+	}
+
+	if (xyz > 0) {
+		//Create the file name.
+		std::string outName = std::to_string(int(std::round(currentTime)));
+		std::string dirName = trialName + "/snapshots/time-" + outName;
+		mkdir(dirName.c_str(), 0777);
+
+		int clustName = 0;
+		for (auto clustIT = clusterPool.begin(); clustIT != clusterPool.end();
+				++clustIT) {
+			//Open the file steam.
+			std::ofstream myFile;
+			std::string fileName = trialName + "/snapshots/time-" + outName
+					+ "/clust" + std::to_string(clustName) + ".xyz";
+			myFile.open(fileName);
+
+			//Number line.
+			myFile << clustIT->size() << "\n";
+			//Comment line.
+			myFile << "Cluster: " << clustName << "\n";
+			//Position lines.
+			for (auto partIT = clustIT->begin(); partIT != clustIT->end();
+					++partIT) {
+				myFile << "H " << (*partIT)->getX() << " " << (*partIT)->getY()
+						<< " " << (*partIT)->getZ() << "\n";
+			}
+			myFile.close();
+			clustName++;
+		}
+
+	}
+
+	std::cout << "\n" << "#Clusters: " << clusterPool.size() << "\n";
+
+	return avgSize;
+}
+
+void analysisManager::clusterSizeHistogram(
+		std::vector<std::vector<particle*>> clusterPool) {
+	std::map<int, int> histo;
+
+	for (auto clustIT = clusterPool.begin(); clustIT != clusterPool.end();
+			++clustIT) {
+		int key = clustIT->size();
+		if (histo.count(key)) {
+			histo[key] = histo[key] + 1;
+		} else {
+			histo[key] = 1;
+		}
+	}
+
+	std::ofstream myFile;
+	std::string fileName = trialName + "/clusterHistogram.txt";
+	myFile.open(fileName);
+
+	for (auto it = histo.begin(); it != histo.end(); ++it) {
+		myFile << it->first << " " << it->second << "\n";
+	}
+}
+
+void analysisManager::coordinationHistogram(particle** particles, int nParticles) {
+	std::map<int, int> histo;
+
+	for (int index = 0; index < nParticles; index++) {
+		int key = particles[index]->getCoorNumber();
+		if (histo.count(key)) {
+			histo[key] = histo[key] + 1;
+		} else {
+			histo[key] = 1;
+		}
+	}
+
+	std::ofstream myFile;
+	std::string fileName = trialName + "/coordinationHistogram.txt";
+	myFile.open(fileName);
+
+	for (auto it = histo.begin(); it != histo.end(); ++it) {
+		myFile << it->first << " " << it->second << "\n";
+	}
 }
 }

@@ -157,6 +157,7 @@ public:
 
 private:
 	static void clearLine(int i, int numLines);
+	static double safeMod0PBC(double dx, double val, double base);
 };
 }
 

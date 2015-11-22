@@ -4,7 +4,6 @@
 #include "cell.h"
 #include "config.h"
 #include "interfaces/IForce.h"
-#include "interfaces/IForceManager.h"
 
 namespace PSim {
 

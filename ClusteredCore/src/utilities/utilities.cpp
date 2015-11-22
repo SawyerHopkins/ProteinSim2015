@@ -24,21 +24,13 @@
 
 namespace PSim {
 double util::safeMod(double val, double base) {
-	//0 mod n is always zero
-	if (val == 0) {
-		return 0.0;
-	}
-	//if the particle is on the edge of the system.
-	else if (val == base) {
-		return 0.0;
+	//if the particle is outside the lower bounds.
+	if (val < 0) {
+		return (val + base);
 	}
 	//if the particle is outside the upper bounds.
-	else if (val > base) {
+	else if (val >= base) {
 		return (val - base);
-	}
-	//if the particle is outside the lower bounds.
-	else if (val < 0) {
-		return (val + base);
 	}
 	//No problems return value.
 	else {
@@ -46,21 +38,15 @@ double util::safeMod(double val, double base) {
 	}
 }
 
+double util::safeMod0PBC(double dx, double val0, double base) {
+	return (dx < 0) ? val0 - base : val0 + base;
+}
+
 double util::safeMod0(double val0, double val, double base) {
 	//The difference between the two values.
 	double dx = val - val0;
 	//If the values are further apart than half the system, use PBC.
-	if (fabs(dx) > base / 2) {
-		//Check which direction to implement PBC.
-		if (dx < 0) {
-			return val0 - base;
-		} else {
-			return val0 + base;
-		}
-	} else {
-		return val0;
-	}
-	return 0.0;
+	return (fabs(dx) > (base / 2)) ? safeMod0PBC(dx, val0, base) : val0;
 }
 
 void util::loadBar(double x0, int n, long counter, int w) {
@@ -127,46 +113,32 @@ void util::unitVectorSimple(double dX, double dY, double dZ, double r,
 
 void util::unitVectorAdv(double X, double Y, double Z, double X1, double Y1,
 		double Z1, double (&acc)[3], double r, int L) {
-	double dx, dy, dz;
+	double dx, dy, dz, oneOver;
 
 	dx = X1 - X;
 	dy = Y1 - Y;
 	dz = Z1 - Z;
+	oneOver = 1.0 / r;
 
 	//Check X PBC.
 	if (fabs(dx) > L / 2) {
-		if (dx < 0) {
-			dx = dx + L;
-		} else {
-			dx = dx - L;
-		}
+		(dx < 0) ? dx += L : dx -= L;
 	}
 
 	//Check Y PBC.
 	if (fabs(dy) > L / 2) {
-		if (dy < 0) {
-			dy = dy + L;
-		} else {
-			dy = dy - L;
-		}
+		(dy < 0) ? dy += L : dy -= L;
 	}
 
 	//Check Z PBC.
 	if (fabs(dz) > L / 2) {
-		if (dz < 0) {
-			dz = dz + L;
-		} else {
-			dz = dz - L;
-		}
+		(dz < 0) ? dz += L : dz -= L;
 	}
 
 	//Normalize by distance.
-	dx = dx / r;
-	dy = dy / r;
-	dz = dz / r;
-	acc[0] = dx;
-	acc[1] = dy;
-	acc[2] = dz;
+	acc[0] = dx * oneOver;
+	acc[1] = dy * oneOver;
+	acc[2] = dz * oneOver;
 }
 
 double util::powBinaryDecomp(double base, int exp) {

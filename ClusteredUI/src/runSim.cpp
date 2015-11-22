@@ -109,7 +109,6 @@ PSim::system* buildSystem(configReader::config* cfg, PSim::brownianIntegrator* d
  
 	//Write the initial system.
 	cout << "Writing initial system to file.\n\n";
-	sys->writeSystem("/initSys");
 	return sys;
 }
 
@@ -167,5 +166,4 @@ void runScript(string aName, string timeStamp)
 
 	//Write the final system.
 	util::writeTerminal("\nIntegration complete.\n\n Writing final system to file.", Colour::Green);
-	sys->writeSystem("/finSys");
 }

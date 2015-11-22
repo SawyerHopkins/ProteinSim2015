@@ -1,6 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 #include "integrator.h"
+#include "analysisManager.h"
 
 using namespace std;
 
@@ -49,6 +50,7 @@ private:
 	//System integrator.
 	PSim::IIntegrator* integrator;
 	PSim::defaultForceManager* sysForces;
+	PSim::IAnalysisManager* analysis;
 
 	/********************************************//**
 	 *-------------------SYSTEM INIT------------------
@@ -84,7 +86,7 @@ private:
 	 * @brief Get input for working directory. Create if needed.
 	 * @return The working directory
 	 */
-	static std::string runSetup();
+	static std::string dirPrompt();
 	/**
 	 * @brief Check that the provided path is a valid directory.
 	 * @param path Directory path
@@ -185,10 +187,6 @@ public:
 	 ***********************************************/
 
 	/**
-	 * @brief Writes the temperature of the system.
-	 */
-	void writeInitTemp();
-	/**
 	 * @brief Writes the position of a particle.
 	 * @param index The index of the particle to write.
 	 */
@@ -196,23 +194,9 @@ public:
 		particles[index]->writePosition();
 	}
 	/**
-	 * @brief Writes the system to file.
-	 * @param name The name of the file to write to.
-	 */
-	void writeSystem(std::string name);
-	/**
 	 * @brief Write the initial system parameters.
 	 */
 	void writeSystemInit();
-	/**
-	 * @brief Writes the varies that define the system state. Average potential. Average coordination number. Temperature. Cluster size.
-	 */
-	void writeSystemState(PSim::timer* tmr);
-	/**
-	 * @brief Outputs the system as XYZ for visualization purposes.
-	 * @param name File name
-	 */
-	void writeSystemXYZ(std::string name);
 
 	/********************************************//**
 	 *-----------------SYSTEM RECOVERY----------------
@@ -245,49 +229,25 @@ public:
 	 * @brief Recover to a hulk state (only particle system initialized).
 	 */
 	static system* loadAnalysis(configReader::config* cfg, std::string sysState,
-			std::string timeStamp);
+			std::string timeStamp, IAnalysisManager* analysisInterface);
 
 	/********************************************//**
 	 *-----------------SYSTEM ANALYSIS----------------
 	 ***********************************************/
 
+	/**
+	 * @return Gets the default analysis interface for the system.
+	 */
+	PSim::IAnalysisManager* defaultAnalysisInterface() { return new PSim::analysisManager(trialName); }
+	/**
+	 * @brief Runs the tests and analysis provided in the input string.
+	 * @param tests
+	 */
+	void analysisManager(std::queue<std::string>* tests) { analysis->postAnalysis(tests, particles, nParticles); }
+	/**
+	 * Return the interactions list for each particle.
+	 */
 	void createInteractionsTable();
-	void analysisManager(std::queue<std::string>* tests);
-	/**
-	 *
-	 *@brief gets an array of clusters.
-	 *
-	 */
-	std::vector<std::vector<particle*>> findClusters();
-	/**
-	 * @brief Get the number of clusters in the system.
-	 * @return Return the number of clusters
-	 */
-	int avgClusterSize(std::vector<std::vector<particle*>> clusterPool,
-			int xyz);
-	int avgClusterSize(int xyz) {
-		return avgClusterSize(findClusters(), xyz);
-	}
-	/**
-	 *
-	 * @brief Outputs a coordination number histogram of a specific snapshot.
-	 *
-	 */
-	void coordinationHistogram();
-	/**
-	 *
-	 * @brief Outputs a cluster size histogram of a specific snapshot.
-	 *
-	 */
-	void clusterSizeHistogram(std::vector<std::vector<particle*>> clusterPool);
-	void clusterSizeHistogram() {
-		clusterSizeHistogram(findClusters());
-	}
-	/**
-	 * @brief Returns the temperature of the system.
-	 * @return
-	 */
-	double getTemperature();
 	/**
 	 *
 	 * @brief Sets a new time step. Use with caution.
@@ -308,10 +268,6 @@ public:
 		temp = val;
 		return old;
 	}
-	/**
-	 * Returns the mean r^2 displacement.
-	 */
-	double meanDisplacement();
 	/********************************************//**
 	 *---------------VERSION CONTROL-----------------
 	 ***********************************************/

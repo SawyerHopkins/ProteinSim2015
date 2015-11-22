@@ -20,32 +20,24 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.*/
 
-#include "system.h"
+#include "analysisManager.h"
 
 namespace PSim {
-void system::analysisManager(std::queue<std::string>* tests) {
-	std::cout << "\nSetting up interaction table\n";
-	createInteractionsTable();
-	std::cout << "\nBuilding cluster table.\n";
-	std::vector<std::vector<particle*>> clusterPool = findClusters();
-	std::cout << "\n Loaded " << clusterPool.size() << " clusters.\n";
-	while (tests->size() > 0) {
-		std::string soda = PSim::util::tryPop(tests);
 
-		if ((soda == "--coorhist") || (soda == "-CH")) {
-			PSim::util::writeTerminal(
-					"\nRunning structural histrogram analysis.\n",
-					PSim::Colour::Green);
-			coordinationHistogram();
-		}
-		if ((soda == "--clusthist") || (soda == "-CLH")) {
-			PSim::util::writeTerminal(
-					"\nRunning cluster histrogram analysis.\n",
-					PSim::Colour::Green);
-			clusterSizeHistogram(clusterPool);
-		}
+void analysisManager::writeInitialState(particle** particles, int nParticles) {
+	writeInitTemp(particles, nParticles);
+	writeSystem(particles, nParticles, trialName + "/initialState");
+}
 
-	}
+void analysisManager::writeRunTimeState(particle** particles, int nParticles, int outXYZ, double currentTime) {
+	writeSystemState(particles, nParticles, outXYZ, currentTime);
 }
+
+void analysisManager::writeFinalState(particle** particles, int nParticles) {
+	writeSystem(particles, nParticles, trialName + "/finalState");
 }
+
+}
+
+
 

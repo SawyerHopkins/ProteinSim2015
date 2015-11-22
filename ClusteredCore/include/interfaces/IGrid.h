@@ -9,8 +9,8 @@ public:
 	virtual ~IGrid();
 	virtual void initCell() = 0;
 	// Manage members
-	virtual void addMember(particle* p) = 0;
-	virtual void removeMember(particle* p) = 0;
+	//virtual void addMember(particle* p) = 0;
+	//virtual void removeMember(particle* p) = 0;
 	// Expose members
 	virtual void getBegin() = 0;
 	virtual void getEnd() = 0;

@@ -23,40 +23,25 @@ private:
 	int name;
 
 	//Contains the current spacial information for x,y,z cordinates.
-	double x;
-	double y;
-	double z;
+	double x,y,z;
 
 	//Contains the previous spacial information for x,y,z cordinates.
-	double x0;
-	double y0;
-	double z0;
+	double x0,y0,z0;
 
 	//Contains the velocity information for x,y,z cordinates.
-	double vx;
-	double vy;
-	double vz;
+	double vx,vy,vz;
 
 	//Contains the current force information for the x,y,z cordinates.
-	double fx;
-	double fy;
-	double fz;
+	double fx,fy,fz;
 
 	//Contains the previous force information for the x,y,z cordinates.
-	double fx0;
-	double fy0;
-	double fz0;
+	double fx0,fy0,fz0;
 
-	//Contains the radius of each particle.
-	double r;
-
-	//Contains the mass of each particle.
-	double m;
+	//Contains the radius and mass of each particle.
+	double r,m;
 
 	//Contains the current cell identification.
-	int cx;
-	int cy;
-	int cz;
+	int cx,cy,cz;
 
 	//Coordination number.
 	int coorNumber;

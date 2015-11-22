@@ -27,6 +27,33 @@ namespace PSim {
  *-----------------SYSTEM RECOVERY----------------
  ***********************************************/
 
+void system::createInteractionsTable() {
+	double cutOffSquared = 1.1 * 1.1;
+	for (int i = 0; i < nParticles; i++) {
+		PSim::particle* base = particles[i];
+		PSim::PeriodicGrid* itemCell =
+				cells[base->getCX()][base->getCY()][base->getCZ()];
+		for (auto currentCell = itemCell->getFirstNeighbor();
+				currentCell != itemCell->getLastNeighbor(); ++currentCell) {
+			for (auto member = (*currentCell)->getBegin();
+					member != (*currentCell)->getEnd(); ++member) {
+				if (member->second->getName() != base->getName()) {
+					//Distance between the two particles.
+					double rSquared = PSim::util::pbcDist(base->getX(),
+							base->getY(), base->getZ(), member->second->getX(),
+							member->second->getY(), member->second->getZ(),
+							boxSize);
+
+					//If the particles are in the potential well.
+					if (rSquared < cutOffSquared) {
+						base->addInteraction(member->second);
+					}
+				}
+			}
+		}
+	}
+}
+
 int system::particlesInFile(std::string sysState, std::string timeStamp) {
 	std::string fullPath = sysState + "/snapshots/time-" + timeStamp
 			+ "/recovery.txt";
@@ -108,7 +135,7 @@ void system::createRewindDir(system* oldSys) {
 		std::cin >> cont;
 
 		if (cont != "Y" && cont != "y") {
-			oldSys->trialName = runSetup();
+			oldSys->trialName = dirPrompt();
 		}
 	} else {
 		//Attempt to make the directory.
@@ -117,7 +144,7 @@ void system::createRewindDir(system* oldSys) {
 		//Check that we were able to make the desired directory.
 		validDir = checkDir(oldSys->trialName);
 		if (validDir == false) {
-			oldSys->trialName = runSetup();
+			oldSys->trialName = dirPrompt();
 		}
 	}
 }
@@ -143,6 +170,7 @@ system* system::loadFromFile(configReader::config* cfg, std::string sysState,
 	// Pulls in the old system configuration. Don't recalculate it incase the settings.cfg gets changed incorrectly.
 	readSettings(oldSys, cfg);
 	oldSys->trialName = sysState + "/-rewind-" + timeStamp;
+	oldSys->analysis = oldSys->defaultAnalysisInterface();
 	oldSys->nParticles = count;
 	oldSys->integrator = sysInt;
 	oldSys->sysForces = sysFcs;
@@ -154,7 +182,7 @@ system* system::loadFromFile(configReader::config* cfg, std::string sysState,
 }
 
 system* system::loadAnalysis(configReader::config* cfg, std::string sysState,
-		std::string timeStamp) {
+		std::string timeStamp, IAnalysisManager* analysisInterface) {
 	system* oldSys = new system();
 
 	// Read in each particle.
@@ -168,9 +196,11 @@ system* system::loadAnalysis(configReader::config* cfg, std::string sysState,
 	readSettings(oldSys, cfg);
 	oldSys->nParticles = count;
 	oldSys->trialName = sysState + "/-analysis-" + timeStamp;
+	oldSys->analysis = (analysisInterface == NULL) ? oldSys->defaultAnalysisInterface() : analysisInterface;
 
 	oldSys->initCells(oldSys->cellScale);
 	createRewindDir(oldSys);
+	oldSys->createInteractionsTable();
 	return oldSys;
 }
 }

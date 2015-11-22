@@ -296,13 +296,9 @@ void system::maxwellVelocityInit(std::mt19937* gen,
 	for (i = 0; i < nParticles; i++) {
 		particles[i]->setVZ(ratio * (particles[i]->getVZ() - vsum));
 	}
-
-	//Write the system temp to verify.
-	writeInitTemp();
 }
 
-std::string system::runSetup() {
-	using namespace std;
+std::string system::dirPrompt() {
 	//Set the output directory.
 	string outDir = "";
 	bool validDir = 0;
@@ -400,7 +396,7 @@ void system::verifyPath() {
 		std::string cont;
 		std::cin >> cont;
 		if (cont != "Y" && cont != "y") {
-			trialName = runSetup();
+			trialName = dirPrompt();
 		}
 	} else {
 		//Attempt to make the directory.
@@ -408,7 +404,7 @@ void system::verifyPath() {
 		//Check that we were able to make the desired directory.
 		validDir = checkDir(trialName);
 		if (validDir == false) {
-			trialName = runSetup();
+			trialName = dirPrompt();
 		}
 	}
 }

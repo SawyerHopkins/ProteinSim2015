@@ -45,6 +45,6 @@ void runAnalysis(std::queue<std::string>* analysisArgs)
 	configReader::config* cfg =new configReader::config(analysisName + "/sysConfig.cfg");
 
 	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
-	PSim::system* sys = PSim::system::loadAnalysis(cfg, analysisName, timeStamp);
+	PSim::system* sys = PSim::system::loadAnalysis(cfg, analysisName, timeStamp,NULL);
 	sys->analysisManager(analysisArgs);
 }

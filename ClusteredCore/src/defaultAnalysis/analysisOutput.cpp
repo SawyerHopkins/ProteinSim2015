@@ -20,7 +20,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.*/
 
-#include "system.h"
+#include "analysisManager.h"
 
 namespace PSim {
 
@@ -28,7 +28,7 @@ namespace PSim {
  *-----------------SYSTEM OUTPUT------------------
  ************************************************/
 
-void system::writeSystemXYZ(std::string name) {
+void analysisManager::writeSystemXYZ(particle** particles, int nParticles, int outXYZ, double currentTime, std::string name) {
 	//Check if XYZ output is enabled.
 	if (outXYZ > 0) {
 		//Create a stream to the desired file.
@@ -49,7 +49,7 @@ void system::writeSystemXYZ(std::string name) {
 	}
 }
 
-void system::writeSystem(std::string name) {
+void analysisManager::writeSystem(particle** particles, int nParticles, std::string name) {
 	//Create a stream to the desired file.
 	std::ofstream myFile;
 	myFile.open(name + ".txt");
@@ -72,7 +72,7 @@ void system::writeSystem(std::string name) {
 	myFile.close();
 }
 
-void system::writeInitTemp() {
+void analysisManager::writeInitTemp(particle** particles, int nParticles) {
 	double v2 = 0.0;
 	//Get V^2 for each particle.
 	for (int i = 0; i < nParticles; i++) {
@@ -87,52 +87,7 @@ void system::writeInitTemp() {
 	std::cout << "---Temp: " << temp << " m/k" << "\n";
 }
 
-void system::writeSystemInit() {
-	using namespace std;
-
-	ofstream myFile;
-	myFile.open(trialName + "/sysConfig.cfg");
-
-	//Writes the system configuration.
-	myFile << "trialName = " << trialName << "\n";
-	myFile << "nParticles = " << nParticles << "\n";
-	myFile << "Concentration = " << concentration << "\n";
-	myFile << "boxSize = " << boxSize << "\n";
-	myFile << "cellSize = " << cellSize << "\n";
-	myFile << "cellScale = " << cellScale << "\n";
-	myFile << "temp = " << temp << "\n";
-	myFile << "dTime = " << dTime << "\n";
-	myFile << "outputFreq = " << outputFreq << "\n";
-	myFile << "outXYZ = " << outXYZ << "\n";
-	myFile << "cycleHour = " << cycleHour << "\n";
-	myFile << "seed = " << seed;
-
-	//Close the stream.
-	myFile.close();
-
-	writeSystem(trialName + "/initialState");
-
-	ifstream inCfg("settings.cfg", ios::binary);
-	ofstream outCfg(trialName + "/settings.cfg", ios::binary);
-
-	outCfg << inCfg.rdbuf();
-
-}
-
-void system::estimateCompletion(PSim::timer* tmr) {
-	tmr->stop();
-	double timePerCycle = tmr->getElapsedSeconds() / double(outputFreq);
-	std::setprecision(4);
-	std::cout << "\n" << "Average Cycle Time: " << timePerCycle
-			<< " seconds.\n";
-	double totalTime = (cycleHour * timePerCycle);
-	double finishedTime = ((currentTime / dTime) / 3600) * timePerCycle;
-	std::cout << "Time for completion: " << (totalTime - finishedTime)
-			<< " hours.\n";
-	tmr->start();
-}
-
-void system::writeToStream(string path, double value) {
+void analysisManager::writeToStream(double currentTime, string path, double value) {
 	//Output the number of clusters with time.
 	std::ofstream myFile(path,
 			std::ios_base::app | std::ios_base::out);
@@ -140,7 +95,7 @@ void system::writeToStream(string path, double value) {
 	myFile.close();
 }
 
-void system::writeSystemState(PSim::timer* tmr) {
+void analysisManager::writeSystemState(particle** particles, int nParticles, int outXYZ, double currentTime) {
 	//Update the console.
 	std::string outName = std::to_string(int(std::round(currentTime)));
 	PSim::util::setTerminalColour(PSim::Colour::Cyan);
@@ -150,14 +105,11 @@ void system::writeSystemState(PSim::timer* tmr) {
 	//Write the recovery image.
 	std::string dirName = trialName + "/snapshots/time-" + outName;
 	mkdir(dirName.c_str(), 0777);
-	writeSystem(dirName + "/recovery");
+	writeSystem(particles, nParticles, dirName + "/recovery");
 
 	//Write the XYZ image.
 	std::string movName = trialName + "/movie/system-" + outName;
-	writeSystemXYZ(movName);
-
-	//Calculate the perfomance.
-	estimateCompletion(tmr);
+	writeSystemXYZ(particles, nParticles, outXYZ, currentTime, movName);
 
 	//Average coordination number and potential.
 	int totCoor = 0;
@@ -168,9 +120,9 @@ void system::writeSystemState(PSim::timer* tmr) {
 	}
 
 	double eap = (totEAP / double(nParticles));
-	double nClust = avgClusterSize(outXYZ);
+	double nClust = writeClusters(particles, nParticles, currentTime, outXYZ);
 	double avgCoor = double(totCoor) / double(nParticles);
-	double meanR2 = meanDisplacement();
+	double meanR2 = meanDisplacement(particles, nParticles);
 
 	//Output the current system statistics.
 	std::cout << "\n<Coor>: " << avgCoor << " - Total Coor: " << totCoor
@@ -178,12 +130,12 @@ void system::writeSystemState(PSim::timer* tmr) {
 	std::cout << "<EAP>: " << eap << "\n";
 	std::cout << "<N>/Nc: " << nClust << "\n";
 	std::cout << "<R^2>: " << meanR2 << "\n";
-	std::cout << "Temperature: " << getTemperature() << "\n";
+	std::cout << "Temperature: " << getTemperature(particles, nParticles) << "\n";
 
-	writeToStream(trialName + "/clustGraph.txt", nClust);
-	writeToStream(trialName + "/potGraph.txt", eap);
-	writeToStream(trialName + "/coorGraph.txt", avgCoor);
-	writeToStream(trialName + "/meanR2Graph.txt", meanR2);
+	writeToStream(currentTime, trialName + "/clustGraph.txt", nClust);
+	writeToStream(currentTime, trialName + "/potGraph.txt", eap);
+	writeToStream(currentTime, trialName + "/coorGraph.txt", avgCoor);
+	writeToStream(currentTime, trialName + "/meanR2Graph.txt", meanR2);
 }
 
 }

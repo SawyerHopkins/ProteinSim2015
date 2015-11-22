@@ -20,15 +20,14 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.*/
 
-#include <stack>
-#include "system.h"
+#include "analysisManager.h"
 
 namespace PSim {
-double system::getTemperature() {
+double analysisManager::getTemperature(particle** particles, int nParticles) {
 	double vtot = 0;
 
 	for (int i = 0; i < nParticles; i++) {
-		//Add the totat velocity squares.
+		//Add the total velocity squares.
 		double vx = particles[i]->getVX();
 		double vy = particles[i]->getVY();
 		double vz = particles[i]->getVZ();
@@ -44,7 +43,7 @@ double system::getTemperature() {
 	return vtot;
 }
 
-double system::meanDisplacement() {
+double analysisManager::meanDisplacement(particle** particles, int nParticles) {
 	double disp = 0;
 
 	for (int i = 0; i < nParticles; i++) {

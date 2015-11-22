@@ -27,6 +27,7 @@ namespace PSim {
 void system::setSystemConstants(configReader::config* cfg,
 		PSim::IIntegrator* sysInt, PSim::defaultForceManager* sysFcs) {
 	//Set time information
+	analysis = new PSim::analysisManager(trialName);
 	currentTime = 0;
 	dTime = cfg->getParam<double>("timeStep", 0.001);
 	//Set the random number generator seed.
@@ -68,7 +69,7 @@ system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
 	trialName = cfg->getParam<std::string>("trialName", "");
 
 	if (trialName == "") {
-		runSetup();
+		dirPrompt();
 	} else {
 		//Check that the provided directory exists.
 		verifyPath();
@@ -93,6 +94,38 @@ system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
 	writeSystemInit();
 }
 
+void system::writeSystemInit() {
+	using namespace std;
+
+	ofstream myFile;
+	myFile.open(trialName + "/sysConfig.cfg");
+
+	//Writes the system configuration.
+	myFile << "trialName = " << trialName << "\n";
+	myFile << "nParticles = " << nParticles << "\n";
+	myFile << "Concentration = " << concentration << "\n";
+	myFile << "boxSize = " << boxSize << "\n";
+	myFile << "cellSize = " << cellSize << "\n";
+	myFile << "cellScale = " << cellScale << "\n";
+	myFile << "temp = " << temp << "\n";
+	myFile << "dTime = " << dTime << "\n";
+	myFile << "outputFreq = " << outputFreq << "\n";
+	myFile << "outXYZ = " << outXYZ << "\n";
+	myFile << "cycleHour = " << cycleHour << "\n";
+	myFile << "seed = " << seed;
+
+	//Close the stream.
+	myFile.close();
+
+	analysis->writeInitialState(particles, nParticles);
+
+	ifstream inCfg("settings.cfg", ios::binary);
+	ofstream outCfg(trialName + "/settings.cfg", ios::binary);
+
+	outCfg << inCfg.rdbuf();
+
+}
+
 system::~system() {
 	//Deletes the particles
 	for (int i = 0; i < nParticles; i++) {
@@ -113,13 +146,27 @@ system::~system() {
 	delete[] sysForces;
 }
 
+void system::estimateCompletion(PSim::timer* tmr) {
+	tmr->stop();
+	double timePerCycle = tmr->getElapsedSeconds() / double(outputFreq);
+	std::setprecision(4);
+	std::cout << "\n" << "Average Cycle Time: " << timePerCycle
+			<< " seconds.\n";
+	double totalTime = (cycleHour * timePerCycle);
+	double finishedTime = ((currentTime / dTime) / 3600) * timePerCycle;
+	std::cout << "Time for completion: " << (totalTime - finishedTime)
+			<< " hours.\n";
+	tmr->start();
+}
+
 void system::checkOutputStatus(int counter, PSim::timer* tmr) {
 	//Output a snapshot every second.
 	if ((counter % outputFreq) == 0) {
 		if (currentTime > 0) {
 			PSim::util::clearLines(14);
 		}
-		writeSystemState(tmr);
+		estimateCompletion(tmr);
+		analysis->writeRunTimeState(particles, nParticles, outXYZ, currentTime);
 	}
 }
 
@@ -153,7 +200,6 @@ void system::run(double endTime) {
 
 		//Output a snapshot every second.
 		checkOutputStatus(counter, tmr);
-
 		//Update loading bar.
 		PSim::util::loadBar(currentTime, endTime, counter);
 
