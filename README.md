@@ -11,7 +11,7 @@ Keep update with the project at [www.psim.xyz](http://www.psim.xyz)
 
 ### 1. Configuration File
 
-The config file is used to specific the output path of a simulation, the parameters of the simulation, and the parameters of the input forces. See the wiki page [Settings.cfg](wiki/Settings.cfg)
+The config file is used to specific the output path of a simulation, the parameters of the simulation, and the parameters of the input forces. See the wiki page [Settings.cfg](../../wiki/Settings.cfg)
 
 ### 2. Running Simulations
 
