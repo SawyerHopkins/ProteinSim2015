@@ -81,7 +81,7 @@ void analysisManager::writeInitTemp(particle** particles, int nParticles) {
 		v2 += particles[i]->getVZ() * particles[i]->getVZ();
 	}
 	//Average v2.
-	double vAvg = v2 / float(nParticles);
+	double vAvg = v2 / ceil(float(nParticles));
 	double temp = (vAvg / 3.0);
 	//
 	std::cout << "---Temp: " << temp << " m/k" << "\n";

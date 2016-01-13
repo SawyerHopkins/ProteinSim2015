@@ -217,6 +217,22 @@ void system::maxwellVelocityInit(std::mt19937* gen,
 	double sigold, vsig, ratio;
 	int i;
 
+	//For single particle case
+	if (nParticles == 1) {
+		i = 0;
+		//Set Direction
+		int dir = ((*distribution)(*gen) < 0.5) ? -1 : 1;
+		particles[i]->setVX(dir*sqrt(temp));
+
+		dir = ((*distribution)(*gen) < 0.5) ? -1 : 1;
+		particles[i]->setVY(dir*sqrt(temp));
+
+		dir = ((*distribution)(*gen) < 0.5) ? -1 : 1;
+		particles[i]->setVZ(dir*sqrt(temp));
+
+		return;
+	}
+
 	//Set the initial velocities.
 	for (i = 0; i < nParticles; i++) {
 		r1 = (*distribution)(*gen);
