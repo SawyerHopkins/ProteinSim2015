@@ -108,6 +108,7 @@ body {
   color: #fff;
   border-color: rgba(47,62,74,.25);
   background-color: #428BCA;
+  border-style:groove;
 }
 
 /* Bump up size of carousel content */
