@@ -94,10 +94,10 @@ int system::readParticles(system* oldSys, std::string sysState,
 		// Set each particle to the oldest know position and advance to the newest known position.
 		oldSys->particles[count] = new particle(count);
 		oldSys->particles[count]->setPos(x0, y0, z0, bsize);
-		oldSys->particles[count]->updateForce(fx0, fy0, fz0, 0, NULL, false);
+		oldSys->particles[count]->updateForce(fx0, fy0, fz0, NULL, false);
 		oldSys->particles[count]->nextIter();
 		oldSys->particles[count]->setPos(x, y, z, bsize);
-		oldSys->particles[count]->updateForce(fx, fy, fz, 0, NULL, false);
+		oldSys->particles[count]->updateForce(fx, fy, fz, NULL, false);
 		oldSys->particles[count]->setMass(m);
 		oldSys->particles[count]->setRadius(r);
 
@@ -170,7 +170,7 @@ system* system::loadFromFile(configReader::config* cfg, std::string sysState,
 	// Pulls in the old system configuration. Don't recalculate it incase the settings.cfg gets changed incorrectly.
 	readSettings(oldSys, cfg);
 	oldSys->trialName = sysState + "/-rewind-" + timeStamp;
-	oldSys->analysis = oldSys->defaultAnalysisInterface();
+	oldSys->analysis = oldSys->defaultAnalysisInterface(count, bsize);
 	oldSys->nParticles = count;
 	oldSys->integrator = sysInt;
 	oldSys->sysForces = sysFcs;
@@ -196,7 +196,7 @@ system* system::loadAnalysis(configReader::config* cfg, std::string sysState,
 	readSettings(oldSys, cfg);
 	oldSys->nParticles = count;
 	oldSys->trialName = sysState + "/-analysis-" + timeStamp;
-	oldSys->analysis = (analysisInterface == NULL) ? oldSys->defaultAnalysisInterface() : analysisInterface;
+	oldSys->analysis = (analysisInterface == NULL) ? oldSys->defaultAnalysisInterface(count, bsize) : analysisInterface;
 
 	oldSys->initCells(oldSys->cellScale);
 	createRewindDir(oldSys);

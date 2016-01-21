@@ -45,8 +45,6 @@ private:
 
 	//Coordination number.
 	int coorNumber;
-	//Effective average potenital.
-	double potential;
 	//The particles the base particle interacts with.
 	std::vector<particle*> interactions;
 
@@ -250,13 +248,6 @@ public:
 		return coorNumber;
 	}
 	/**
-	 * @brief Gets average potential.
-	 * @return
-	 */
-	const int getPotential() const {
-		return potential;
-	}
-	/**
 	 * @brief Get the interacting particles.
 	 * @return
 	 */
@@ -333,9 +324,13 @@ public:
 	 * @param pot The potential of the force interaction.
 	 * @param p The particle providing the force.
 	 */
-	void updateForce(double xVal, double yVal, double zVal, double pot,
+	void updateForce(double xVal, double yVal, double zVal,
 			particle* p, bool countPair = true);
 
+	/**
+	 * @brief Calculates the potential via force integration.
+	 */
+	float calculatePotential();
 	/**
 	 * @brief Clears the current force and updates previous force. Resets potential, neighbors, and coordination number.
 	 */

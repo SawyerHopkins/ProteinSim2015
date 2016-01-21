@@ -67,8 +67,6 @@ LennardJones::LennardJones(configReader::config* cfg)
 
 void LennardJones::iterCells(int boxSize, double time, particle* index, PeriodicGrid* itemCell)
 {
-	double pot = 0;
-
 	for(std::map<int,particle*>::iterator it=itemCell->getBegin(); it != itemCell->getEnd(); ++it)
 	{
 		if (it->second->getName() != index->getName())
@@ -113,22 +111,6 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, Periodic
 				//fNet = -fNet;
 
 				//-------------------------------------
-				//---------POTENTIAL CALCULATION-------
-				//-------------------------------------
-
-				if (r < 1.1)
-				{
-					double ljPot = (LJ - 1.0);
-					ljPot *= (4.0*LJ);
-
-					double yukPot = yukExp;
-					yukPot *= (debyeLength*yukStr*rInv);
-
-					pot += (kT*yukPot);
-					pot += (kT*ljPot);
-				}
-
-				//-------------------------------------
 				//------NORMALIZATION AND SETTING------
 				//-------------------------------------
 
@@ -144,7 +126,7 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, Periodic
 				double fz = fNet*unitVec[2];
 
 				//Add to the net force on the particle.
-				index->updateForce(fx,fy,fz,pot,it->second, (r < 1.1) ? true : false);
+				index->updateForce(fx,fy,fz,it->second, (r < 1.1) ? true : false);
 			}
 		}
 	}

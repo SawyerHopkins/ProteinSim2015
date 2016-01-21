@@ -63,7 +63,6 @@ particle::particle(int pid) {
 	m = 0.0;
 
 	coorNumber = 0;
-	potential = 0;
 
 	//Make sure interactions is clear.
 	//std::vector<particle*>().swap(interactions);
@@ -93,7 +92,6 @@ particle::~particle() {
 	delete &cz;
 	delete &name;
 	delete &coorNumber;
-	delete &potential;
 }
 
 /********************************************//**
@@ -140,11 +138,8 @@ void particle::setPos(double xVal, double yVal, double zVal, double boxSize) {
 	setZ(zVal, boxSize);
 }
 
-void particle::updateForce(double xVal, double yVal, double zVal, double pot,
+void particle::updateForce(double xVal, double yVal, double zVal,
 		particle* p, bool countPair) {
-	//Add to potential.
-	potential += pot;
-
 	//Add to coordination number.
 	if (countPair == true) {
 		coorNumber++;
@@ -157,6 +152,18 @@ void particle::updateForce(double xVal, double yVal, double zVal, double pot,
 	fz += zVal;
 }
 
+float particle::calculatePotential() {
+	float dx = x-x0;
+	float dy = y-y0;
+	float dz = z-z0;
+
+	float px = (x0*dx) + (0.5*dx*(fx-fx0));
+	float py = (y0*dy) + (0.5*dy*(fy-fy0));
+	float pz = (z0*dz) + (0.5*dz*(fz-fz0));
+
+	return px+py+pz;
+}
+
 void particle::nextIter() {
 
 	//Reset interacting particles.
@@ -167,9 +174,6 @@ void particle::nextIter() {
 
 	//Reset coordination number;
 	coorNumber = 0;
-
-	//Reset potential;
-	potential = 0;
 
 	//Set the old force before clearing the current force.
 	fx0 = fx;

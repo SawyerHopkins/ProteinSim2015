@@ -109,7 +109,6 @@ private:
 	 *----------------REFACTORING DUMP---------------
 	 ***********************************************/
 
-	void checkOutputStatus(int counter, PSim::timer* tmr);
 	void verifyPath();
 	void estimateCompletion(PSim::timer* tmr);
 	void writeToStream(string path, double value);
@@ -238,7 +237,7 @@ public:
 	/**
 	 * @return Gets the default analysis interface for the system.
 	 */
-	PSim::IAnalysisManager* defaultAnalysisInterface() { return new PSim::analysisManager(trialName); }
+	PSim::IAnalysisManager* defaultAnalysisInterface(int nParticles, int boxSize) { return new PSim::analysisManager(trialName, nParticles, boxSize); }
 	/**
 	 * @brief Runs the tests and analysis provided in the input string.
 	 * @param tests

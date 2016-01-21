@@ -84,7 +84,7 @@ public:
 	 * @param counter A logic counter.
 	 * @param w The width of the progress bar. Default 50.
 	 */
-	static void loadBar(double x0, int n, long counter, int w = 50);
+	static void loadBar(double x0, int n, int w = 50);
 
 	/**
 	 * @brief Normalizes the distances to create a unit vector in &acc[3].

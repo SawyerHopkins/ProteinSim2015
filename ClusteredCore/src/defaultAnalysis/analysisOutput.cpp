@@ -112,30 +112,31 @@ void analysisManager::writeSystemState(particle** particles, int nParticles, int
 	writeSystemXYZ(particles, nParticles, outXYZ, currentTime, movName);
 
 	//Average coordination number and potential.
-	int totCoor = 0;
-	int totEAP = 0;
+	int totalCoor = 0;
+	float totalPot = 0;
 	for (int i = 0; i < nParticles; i++) {
-		totCoor += particles[i]->getCoorNumber();
-		totEAP += particles[i]->getPotential();
+		totalCoor += particles[i]->getCoorNumber();
+		totalPot += particles[i]->calculatePotential();
 	}
 
-	double eap = (totEAP / double(nParticles));
+	double pot = totalPot/double(nParticles);
 	double nClust = writeClusters(particles, nParticles, currentTime, outXYZ);
-	double avgCoor = double(totCoor) / double(nParticles);
+	double avgCoor = double(totalCoor) / double(nParticles);
 	double meanR2 = meanDisplacement(particles, nParticles);
+	double trackedMeanR2 = trackedDisplacement(particles, nParticles);
 
 	//Output the current system statistics.
-	std::cout << "\n<Coor>: " << avgCoor << " - Total Coor: " << totCoor
+	std::cout << "\n<Coor>: " << avgCoor << " - Total Coor: " << totalCoor
 			<< "\n";
-	std::cout << "<EAP>: " << eap << "\n";
+	std::cout << "<EAP>: " << pot << "\n";
 	std::cout << "<N>/Nc: " << nClust << "\n";
 	std::cout << "<R^2>: " << meanR2 << "\n";
 	std::cout << "Temperature: " << getTemperature(particles, nParticles) << "\n";
 
 	writeToStream(currentTime, trialName + "/clustGraph.txt", nClust);
-	writeToStream(currentTime, trialName + "/potGraph.txt", eap);
 	writeToStream(currentTime, trialName + "/coorGraph.txt", avgCoor);
 	writeToStream(currentTime, trialName + "/meanR2Graph.txt", meanR2);
+	writeToStream(currentTime, trialName + "/trackedMeanR2Graph.txt", trackedMeanR2);
 }
 
 }

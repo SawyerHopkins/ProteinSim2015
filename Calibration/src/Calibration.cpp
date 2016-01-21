@@ -40,8 +40,6 @@ Calibration::Calibration(configReader::config* cfg)
 
 void Calibration::iterCells(int boxSize, double time, particle* index, PeriodicGrid* itemCell)
 {
-	double pot = 0;
-
 	for(std::map<int,particle*>::iterator it=itemCell->getBegin(); it != itemCell->getEnd(); ++it)
 	{
 		if (it->second->getName() != index->getName())
@@ -75,8 +73,6 @@ void Calibration::iterCells(int boxSize, double time, particle* index, PeriodicG
 				//Positive for attractive; negative for repulsive.
 				fNet=-fNet;
 
-				//Update net potential.
-				pot += r_36;
 
 				//Normalize the force.
 				double unitVec[3] {0.0,0.0,0.0};
@@ -97,7 +93,7 @@ void Calibration::iterCells(int boxSize, double time, particle* index, PeriodicG
 				}
 
 				//Add to the net force on the particle.
-				index->updateForce(fx,fy,fz,pot,it->second);
+				index->updateForce(fx,fy,fz,it->second);
 			}
 		}
 	}

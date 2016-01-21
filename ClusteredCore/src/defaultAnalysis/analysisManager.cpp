@@ -24,13 +24,44 @@
 
 namespace PSim {
 
+analysisManager::analysisManager(string tName, int nParticles, int size) {
+	trialName = tName;
+	xStart = new float [nParticles];
+	yStart = new float [nParticles];
+	zStart = new float [nParticles];
+	xPBC = new float[nParticles];
+	yPBC = new float[nParticles];
+	zPBC = new float[nParticles];
+	counter = 0;
+
+	for (int i = 0; i < nParticles; i++)
+	{
+		xStart[i] = 0;
+		yStart[i] = 0;
+		zStart[i] = 0;
+		xPBC[i] = 0;
+		yPBC[i] = 0;
+		zPBC[i] = 0;
+	}
+}
+
 void analysisManager::writeInitialState(particle** particles, int nParticles) {
+	initDisplacementTracker(particles, nParticles);
 	writeInitTemp(particles, nParticles);
 	writeSystem(particles, nParticles, trialName + "/initialState");
 }
 
-void analysisManager::writeRunTimeState(particle** particles, int nParticles, int outXYZ, double currentTime) {
-	writeSystemState(particles, nParticles, outXYZ, currentTime);
+void analysisManager::writeRunTimeState(particle** particles, int nParticles, int outXYZ, int outputFreq, double currentTime) {
+	//Output a snapshot every second.
+	if ((counter % outputFreq) == 0) {
+		if (currentTime > 0) {
+			PSim::util::clearLines(14);
+		}
+		writeSystemState(particles, nParticles, outXYZ, currentTime);
+	} else {
+		updateTracker(particles, nParticles);
+	}
+	counter++;
 }
 
 void analysisManager::writeFinalState(particle** particles, int nParticles) {

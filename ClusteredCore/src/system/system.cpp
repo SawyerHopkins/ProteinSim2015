@@ -27,7 +27,6 @@ namespace PSim {
 void system::setSystemConstants(configReader::config* cfg,
 		PSim::IIntegrator* sysInt, PSim::defaultForceManager* sysFcs) {
 	//Set time information
-	analysis = new PSim::analysisManager(trialName);
 	currentTime = 0;
 	dTime = cfg->getParam<double>("timeStep", 0.001);
 	//Set the random number generator seed.
@@ -60,6 +59,8 @@ void system::setSystemConstants(configReader::config* cfg,
 	cellScale = scale;
 	//Sets the actual concentration.
 	concentration = vP / pow(boxSize, 3.0);
+
+	analysis = new PSim::analysisManager(trialName, nParticles, boxSize);
 }
 
 system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
@@ -159,17 +160,6 @@ void system::estimateCompletion(PSim::timer* tmr) {
 	tmr->start();
 }
 
-void system::checkOutputStatus(int counter, PSim::timer* tmr) {
-	//Output a snapshot every second.
-	if ((counter % outputFreq) == 0) {
-		if (currentTime > 0) {
-			PSim::util::clearLines(14);
-		}
-		estimateCompletion(tmr);
-		analysis->writeRunTimeState(particles, nParticles, outXYZ, currentTime);
-	}
-}
-
 void system::run(double endTime) {
 	cycleHour = (endTime / dTime) / 3600.0;
 	//Create the snapshot name.
@@ -179,9 +169,6 @@ void system::run(double endTime) {
 	//Create the movie folder
 	std::string mov = trialName + "/movie";
 	mkdir(mov.c_str(), 0777);
-
-	//Debugging counter.
-	int counter = 0;
 
 	//Diagnostics timer.
 	PSim::timer* tmr = new PSim::timer();
@@ -198,14 +185,14 @@ void system::run(double endTime) {
 		//Call cell manager.
 		updateCells();
 
-		//Output a snapshot every second.
-		checkOutputStatus(counter, tmr);
+		//runAnalysis;
+		analysis->writeRunTimeState(particles, nParticles, outXYZ, outputFreq, currentTime);
+		estimateCompletion(tmr);
 		//Update loading bar.
-		PSim::util::loadBar(currentTime, endTime, counter);
+		PSim::util::loadBar(currentTime, endTime);
 
 		//Increment counters.
 		currentTime += dTime;
-		counter++;
 	}
 }
 }

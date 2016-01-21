@@ -60,8 +60,6 @@ AOPotential::AOPotential(configReader::config* cfg)
 
 void AOPotential::iterCells(int boxSize, double time, particle* index, PeriodicGrid* itemCell)
 {
-	double pot = 0;
-
 	for(std::map<int,particle*>::iterator it=itemCell->getBegin(); it != itemCell->getEnd(); ++it)
 	{
 		if (it->second->getName() != index->getName())
@@ -95,9 +93,6 @@ void AOPotential::iterCells(int boxSize, double time, particle* index, PeriodicG
 				//Positive for attractive; negative for repulsive.
 				fNet=-fNet;
 
-				//Update net potential.
-				pot += r_36+a1*(1.0+a2*r+a3*r*rSquared);
-
 				//Normalize the force.
 				double unitVec[3] {0.0,0.0,0.0};
 				PSim::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
@@ -117,7 +112,7 @@ void AOPotential::iterCells(int boxSize, double time, particle* index, PeriodicG
 				}
 
 				//Add to the net force on the particle.
-				index->updateForce(fx,fy,fz,pot,it->second);
+				index->updateForce(fx,fy,fz,it->second);
 			}
 		}
 	}

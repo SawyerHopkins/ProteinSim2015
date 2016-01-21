@@ -49,7 +49,7 @@ double util::safeMod0(double val0, double val, double base) {
 	return (fabs(dx) > (base / 2)) ? safeMod0PBC(dx, val0, base) : val0;
 }
 
-void util::loadBar(double x0, int n, long counter, int w) {
+void util::loadBar(double x0, int n, int w) {
 	/**************************************************************************************//**
 	 *----------------------------------------SOURCE FROM---------------------------------------
 	 *------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ void util::loadBar(double x0, int n, long counter, int w) {
 	int x = (int) x0;
 
 	//Choose when to update console.
-	if ((x != n) && (counter % 100 != 0))
+	if (x != n)
 		return;
 
 	double ratio = x / (double) n;
