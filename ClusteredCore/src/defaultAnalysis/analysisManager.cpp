@@ -33,6 +33,7 @@ analysisManager::analysisManager(string tName, int nParticles, int size) {
 	yPBC = new float[nParticles];
 	zPBC = new float[nParticles];
 	counter = 0;
+	boxSize = size;
 
 	for (int i = 0; i < nParticles; i++)
 	{
