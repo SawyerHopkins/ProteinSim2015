@@ -148,16 +148,19 @@ system::~system() {
 }
 
 void system::estimateCompletion(PSim::timer* tmr) {
-	tmr->stop();
-	double timePerCycle = tmr->getElapsedSeconds() / double(outputFreq);
-	std::setprecision(4);
-	std::cout << "\n" << "Average Cycle Time: " << timePerCycle
-			<< " seconds.\n";
-	double totalTime = (cycleHour * timePerCycle);
-	double finishedTime = ((currentTime / dTime) / 3600) * timePerCycle;
-	std::cout << "Time for completion: " << (totalTime - finishedTime)
-			<< " hours.\n";
-	tmr->start();
+	int cycleCount = (currentTime/dTime);
+	if ((cycleCount % outputFreq) == 0 && cycleCount > 0) {
+		tmr->stop();
+		double timePerCycle = tmr->getElapsedSeconds() / double(outputFreq);
+		std::setprecision(4);
+		std::cout << "\n" << "Average Cycle Time: " << timePerCycle
+				<< " seconds.\n";
+		double totalTime = (cycleHour * timePerCycle);
+		double finishedTime = ((currentTime / dTime) / 3600) * timePerCycle;
+		std::cout << "Time for completion: " << (totalTime - finishedTime)
+				<< " hours.\n";
+		tmr->start();
+	}
 }
 
 void system::run(double endTime) {
@@ -177,8 +180,8 @@ void system::run(double endTime) {
 	//Run system until end time.
 	while (currentTime < endTime) {
 		//Get the forces acting on the system.
-		sysForces->getAcceleration(nParticles, boxSize, currentTime, cells,
-				particles);
+		//sysForces->getAcceleration(nParticles, boxSize, currentTime, cells,
+		//		particles);
 		//Get the next system.
 		integrator->nextSystem(currentTime, dTime, nParticles, boxSize, cells,
 				particles, sysForces);

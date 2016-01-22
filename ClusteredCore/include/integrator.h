@@ -2,6 +2,7 @@
 #define INTEGRATOR_H
 #include "forceManager.h"
 #include "interfaces/IIntegrator.h"
+#include "fastRandom.h"
 #include <omp.h>
 
 namespace PSim {
@@ -47,6 +48,9 @@ private:
 	double * memCorrX;
 	double * memCorrY;
 	double * memCorrZ;
+
+	//Random number storage for parallel compute
+	fastRandom** rndGens;
 
 	//Gaussian width.
 	double sig1;

@@ -42,6 +42,13 @@ brownianIntegrator::brownianIntegrator(configReader::config* cfg) {
 	memCorrY = new double[memSize];
 	memCorrZ = new double[memSize];
 
+	//Setup the particle random number generators.
+	rndGens = new fastRandom*[memSize];
+
+	for (int i=0; i<memSize; i++) {
+		rndGens[i] = new fastRandom();
+	}
+
 	//Sets the system temperature.
 	temp = cfg->getParam<double>("temp", 1.0);
 
@@ -205,6 +212,9 @@ int brownianIntegrator::nextSystem(double time, double dt, int nParticles,
 int brownianIntegrator::firstStep(double time, double dt, int nParticles,
 		int boxSize, PSim::particle** items, PSim::defaultForceManager* f) {
 	//Add 4 threads to the team.
+#pragma omp parallel
+{
+#pragma omp for
 	for (int i = 0; i < nParticles; i++) {
 
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
@@ -213,9 +223,11 @@ int brownianIntegrator::firstStep(double time, double dt, int nParticles,
 		memCorrY[i] = 0.0;
 		memCorrZ[i] = 0.0;
 
-		memX[i] = PSim::util::g250(seed);
-		memY[i] = PSim::util::g250(seed);
-		memZ[i] = PSim::util::g250(seed);
+		int threadSeed = seed*(i+1);
+
+		memX[i] = rndGens[i]->g250(threadSeed);
+		memY[i] = rndGens[i]->g250(threadSeed);
+		memZ[i] = rndGens[i]->g250(threadSeed);
 
 		double m = 1.0 / items[i]->getMass();
 		double xNew = items[i]->getX() + (items[i]->getVX() * coEff1 * dt)
@@ -227,6 +239,7 @@ int brownianIntegrator::firstStep(double time, double dt, int nParticles,
 		items[i]->setPos(xNew, yNew, zNew, boxSize);
 
 	}
+}
 	return 0;
 }
 
@@ -235,21 +248,27 @@ int brownianIntegrator::normalStep(double time, double dt, int nParticles,
 
 	double dt2 = dt * dt;
 	double c0 = 1.0 + coEff0;
+#pragma omp parallel
+{
+#pragma omp for
 	for (int i = 0; i < nParticles; i++) {
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 		//New random walk.
-		memCorrX[i] = PSim::util::g250(seed);
-		memCorrY[i] = PSim::util::g250(seed);
-		memCorrZ[i] = PSim::util::g250(seed);
+
+		int threadSeed = seed*(i+1);
+
+		memCorrX[i] = rndGens[i]->g250(threadSeed);
+		memCorrY[i] = rndGens[i]->g250(threadSeed);
+		memCorrZ[i] = rndGens[i]->g250(threadSeed);
 
 		//Correlation to last random walk.
 		memCorrX[i] = sig2 * ((corr * memX[i]) + (dev * memCorrX[i]));
 		memCorrY[i] = sig2 * ((corr * memY[i]) + (dev * memCorrY[i]));
 		memCorrZ[i] = sig2 * ((corr * memZ[i]) + (dev * memCorrZ[i]));
 
-		memX[i] = PSim::util::g250(seed);
-		memY[i] = PSim::util::g250(seed);
-		memZ[i] = PSim::util::g250(seed);
+		memX[i] = rndGens[i]->g250(threadSeed);
+		memY[i] = rndGens[i]->g250(threadSeed);
+		memZ[i] = rndGens[i]->g250(threadSeed);
 
 		double m = 1.0 / items[i]->getMass();
 		double c1 = m * dt2 * coEff1;
@@ -287,7 +306,7 @@ int brownianIntegrator::normalStep(double time, double dt, int nParticles,
 		//For all other cases do whatever.
 		(velFreq == 0 || velCounter == velFreq) ? velocityStep(items, i, xNew, yNew, zNew, dt, boxSize) :items[i]->setPos(xNew, yNew, zNew, boxSize);
 	}
-
+}
 	//Manage velocity output counter.
 	(velCounter == velFreq) ? velCounter = 0 : velCounter++;
 

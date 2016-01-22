@@ -65,7 +65,6 @@ void Calibration::iterCells(int boxSize, double time, particle* index, PeriodicG
 
 				//Math
 				double rInv=1.0/r; 
-				double r_36=pow(rInv,36);
 				double r_37=36.0*pow(rInv,37);
 				double fNet=r_37;
 
