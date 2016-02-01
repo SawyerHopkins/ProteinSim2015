@@ -8,10 +8,10 @@ class IAnalysisManager {
 public:
 
 	virtual ~IAnalysisManager() {};
-	virtual void postAnalysis(std::queue<std::string>* tests, particle** particles, int nParticles) = 0;
-	virtual void writeInitialState(particle** particles, int nParticles) = 0;
-	virtual void writeFinalState(particle** particles, int nParticles) = 0;
-	virtual void writeRunTimeState(particle** particles, int nParticles, int outXYZ, int outputFreq, double currentTime) = 0;
+	virtual void postAnalysis(std::queue<std::string>* tests, particle** particles, systemState* state) = 0;
+	virtual void writeInitialState(particle** particles, systemState* state) = 0;
+	virtual void writeFinalState(particle** particles, systemState* state) = 0;
+	virtual void writeRunTimeState(particle** particles, systemState* state) = 0;
 
 };
 

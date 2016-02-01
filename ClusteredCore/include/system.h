@@ -26,22 +26,10 @@ private:
 	std::string trialName;
 
 	//Information about the system.
-	int nParticles;
-	double concentration;
-	int boxSize;
-	int cellSize;
-	int cellScale;
-	double temp;
-	double currentTime;
-	double dTime;
+	systemState state;
 
 	//Settings flags
-	int outputFreq;
-	int outXYZ;
 	double cycleHour;
-
-	//Random number seed.
-	int seed;
 
 	//System entities.
 	particle** particles;
@@ -154,21 +142,21 @@ public:
 	 * @return Number of particles.
 	 */
 	const int getNParticles() const {
-		return nParticles;
+		return state.nParticles;
 	}
 	/**
 	 * @brief Gets the length of the system box.
 	 * @return length of the system box.
 	 */
 	const int getBoxSize() const {
-		return boxSize;
+		return state.boxSize;
 	}
 	/**
 	 * @brief Gets the length of a system cell.
 	 * @return cellSize.
 	 */
 	const int getCellSize() const {
-		return cellSize;
+		return state.cellSize;
 	}
 
 	/********************************************//**
@@ -237,12 +225,12 @@ public:
 	/**
 	 * @return Gets the default analysis interface for the system.
 	 */
-	PSim::IAnalysisManager* defaultAnalysisInterface(int nParticles, int boxSize) { return new PSim::analysisManager(trialName, nParticles, boxSize); }
+	PSim::IAnalysisManager* defaultAnalysisInterface(int nParticles, int boxSize) { return new PSim::analysisManager(trialName, &state); }
 	/**
 	 * @brief Runs the tests and analysis provided in the input string.
 	 * @param tests
 	 */
-	void analysisManager(std::queue<std::string>* tests) { analysis->postAnalysis(tests, particles, nParticles); }
+	void analysisManager(std::queue<std::string>* tests) { analysis->postAnalysis(tests, particles, &state); }
 	/**
 	 * Return the interactions list for each particle.
 	 */
@@ -253,8 +241,8 @@ public:
 	 *
 	 */
 	double setdTime(double dt) {
-		double old = dTime;
-		dTime = dt;
+		double old = state.dTime;
+		state.dTime = dt;
 		return old;
 	}
 	/**
@@ -263,8 +251,8 @@ public:
 	 *
 	 */
 	double setSysTemp(double val) {
-		double old = temp;
-		temp = val;
+		double old = state.temp;
+		state.temp = val;
 		return old;
 	}
 	/********************************************//**

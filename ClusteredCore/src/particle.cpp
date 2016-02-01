@@ -34,30 +34,12 @@ particle::particle(int pid) {
 
 	coorNumber = 0;
 
-	x = 0.0;
-	y = 0.0;
-	z = 0.0;
-
-	x0 = 0.0;
-	y0 = 0.0;
-	z0 = 0.0;
-
-	fx = 0.0;
-	fy = 0.0;
-	fz = 0.0;
-
-	fx0 = 0.0;
-	fy0 = 0.0;
-	fz0 = 0.0;
-
-	vx = 0.0;
-	vy = 0.0;
-	vz = 0.0;
-
-	//For debugging.
-	cx = -1;
-	cy = -1;
-	cz = -1;
+	pos = type3<double>();
+	pos0 = type3<double>();
+	vel = type3<double>();
+	frc = type3<double>();
+	frc0 = type3<double>();
+	cll = type3<int>(-1,-1,-1);
 
 	r = 0.0;
 	m = 0.0;
@@ -70,26 +52,14 @@ particle::particle(int pid) {
 }
 
 particle::~particle() {
-	delete &x;
-	delete &y;
-	delete &z;
-	delete &x0;
-	delete &y0;
-	delete &z0;
-	delete &fx;
-	delete &fy;
-	delete &fz;
-	delete &fx0;
-	delete &fy0;
-	delete &fz0;
-	delete &vx;
-	delete &vy;
-	delete &vz;
+	delete &pos;
+	delete &pos0;
+	delete &vel;
+	delete &frc;
+	delete &frc0;
+	delete &cll;
 	delete &m;
 	delete &r;
-	delete &cx;
-	delete &cy;
-	delete &cz;
 	delete &name;
 	delete &coorNumber;
 }
@@ -99,46 +69,46 @@ particle::~particle() {
  ************************************************/
 
 void particle::setX(double val, double boxSize) {
-	double xTemp = x;
+	double xTemp = pos.x;
 	//Update current position.
-	x = PSim::util::safeMod(val, boxSize);
+	pos.x = PSim::util::safeMod(val, boxSize);
 	//Set lat position.
-	x0 = PSim::util::safeMod0(xTemp, x, boxSize);
-	if ((x < 0.0) || (x >= boxSize)) {
-		PSim::error::throwParticleBoundsError(x, y, z, name);
+	pos0.x = PSim::util::safeMod0(xTemp, pos.x, boxSize);
+	if ((pos.x < 0.0) || (pos.x >= boxSize)){
+		PSim::error::throwParticleBoundsError(&pos, name);
 	}
 }
 
 void particle::setY(double val, double boxSize) {
-	double yTemp = y;
+	double yTemp = pos.y;
 	//Update current position.
-	y = PSim::util::safeMod(val, boxSize);
+	pos.y = PSim::util::safeMod(val, boxSize);
 	//Set lat position.
-	y0 = PSim::util::safeMod0(yTemp, y, boxSize);
-	if ((y < 0.0) || (y >= boxSize)) {
-		PSim::error::throwParticleBoundsError(x, y, z, name);
+	pos0.y = PSim::util::safeMod0(yTemp, pos.y, boxSize);
+	if ((pos.y < 0.0) || (pos.y >= boxSize)) {
+		PSim::error::throwParticleBoundsError(&pos, name);
 	}
 }
 
 void particle::setZ(double val, double boxSize) {
-	double zTemp = z;
+	double zTemp = pos.z;
 	//Update current position.
-	z = PSim::util::safeMod(val, boxSize);
+	pos.z = PSim::util::safeMod(val, boxSize);
 	//Set lat position.
-	z0 = PSim::util::safeMod0(zTemp, z, boxSize);
-	if ((z < 0.0) || (z >= boxSize)) {
-		PSim::error::throwParticleBoundsError(x, y, z, name);
+	pos0.z = PSim::util::safeMod0(zTemp, pos.z, boxSize);
+	if ((pos.z < 0.0) || (pos.z >= boxSize)) {
+		PSim::error::throwParticleBoundsError(&pos, name);
 	}
 }
 
-void particle::setPos(double xVal, double yVal, double zVal, double boxSize) {
+void particle::setPos(type3<double>* pos, int boxSize) {
 	//Update all the positions.
-	setX(xVal, boxSize);
-	setY(yVal, boxSize);
-	setZ(zVal, boxSize);
+	setX(pos->x, boxSize);
+	setY(pos->y, boxSize);
+	setZ(pos->z, boxSize);
 }
 
-void particle::updateForce(double xVal, double yVal, double zVal,
+void particle::updateForce(type3<double>* pos,
 		particle* p, bool countPair) {
 	//Add to coordination number.
 	if (countPair == true) {
@@ -147,19 +117,19 @@ void particle::updateForce(double xVal, double yVal, double zVal,
 	}
 
 	//Increment the existing value of force.
-	fx += xVal;
-	fy += yVal;
-	fz += zVal;
+	frc.x += pos->x;
+	frc.y += pos->y;
+	frc.z += pos->z;
 }
 
 float particle::calculatePotential() {
-	float dx = x-x0;
-	float dy = y-y0;
-	float dz = z-z0;
+	float dx = pos.x-pos0.x;
+	float dy = pos.y-pos0.y;
+	float dz = pos.z-pos0.z;
 
-	float px = (x0*dx) + (0.5*dx*(fx-fx0));
-	float py = (y0*dy) + (0.5*dy*(fy-fy0));
-	float pz = (z0*dz) + (0.5*dz*(fz-fz0));
+	float px = (pos0.x*dx) + (0.5*dx*(frc.x-frc0.x));
+	float py = (pos0.y*dy) + (0.5*dy*(frc.y-frc0.y));
+	float pz = (pos0.z*dz) + (0.5*dz*(frc.z-frc0.z));
 
 	return px+py+pz;
 }
@@ -176,12 +146,12 @@ void particle::nextIter() {
 	coorNumber = 0;
 
 	//Set the old force before clearing the current force.
-	fx0 = fx;
-	fy0 = fy;
-	fz0 = fz;
-	fx = 0.0;
-	fy = 0.0;
-	fz = 0.0;
+	frc0.x = frc.x;
+	frc0.y = frc.y;
+	frc0.z = frc.z;
+	frc.x = 0.0;
+	frc.y = 0.0;
+	frc.z = 0.0;
 }
 }
 

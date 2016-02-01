@@ -23,25 +23,25 @@ private:
 	int name;
 
 	//Contains the current spacial information for x,y,z cordinates.
-	double x,y,z;
+	type3<double> pos;
 
 	//Contains the previous spacial information for x,y,z cordinates.
-	double x0,y0,z0;
+	type3<double> pos0;
 
 	//Contains the velocity information for x,y,z cordinates.
-	double vx,vy,vz;
+	type3<double> vel;
 
 	//Contains the current force information for the x,y,z cordinates.
-	double fx,fy,fz;
+	type3<double> frc;
 
 	//Contains the previous force information for the x,y,z cordinates.
-	double fx0,fy0,fz0;
+	type3<double> frc0;
 
 	//Contains the radius and mass of each particle.
 	double r,m;
 
 	//Contains the current cell identification.
-	int cx,cy,cz;
+	type3<int> cll;
 
 	//Coordination number.
 	int coorNumber;
@@ -80,21 +80,21 @@ public:
 	 * @return  exposes private variable x.
 	 */
 	const double getX() const {
-		return x;
+		return pos.x;
 	}
 	/**
 	 * @brief Get the Y position
 	 * @return  exposes private variable y.
 	 */
 	const double getY() const {
-		return y;
+		return pos.y;
 	}
 	/**
 	 * @brief Get the Z position
 	 * @return  exposes private variable z.
 	 */
 	const double getZ() const {
-		return z;
+		return pos.z;
 	}
 
 	//Getters for previous position.
@@ -104,21 +104,21 @@ public:
 	 * @return  exposes private variable x0.
 	 */
 	const double getX0() const {
-		return x0;
+		return pos0.x;
 	}
 	/**
 	 * @brief Get the previous Y position
 	 * @return  exposes private variable y0.
 	 */
 	const double getY0() const {
-		return y0;
+		return pos0.y;
 	}
 	/**
 	 * @brief Get the previous X position
 	 * @return  exposes private variable z0.
 	 */
 	const double getZ0() const {
-		return z0;
+		return pos0.z;
 	}
 
 	//Getters for velocity.
@@ -128,21 +128,21 @@ public:
 	 * @return  exposes private variable x.
 	 */
 	const double getVX() const {
-		return vx;
+		return vel.x;
 	}
 	/**
 	 * @brief Get the y velocity.
 	 * @return  exposes private variable y.
 	 */
 	const double getVY() const {
-		return vy;
+		return vel.y;
 	}
 	/**
 	 * @brief Get the z velocity.
 	 * @return  exposes private variable z.
 	 */
 	const double getVZ() const {
-		return vz;
+		return vel.z;
 	}
 
 	//Getters for current force.
@@ -152,21 +152,21 @@ public:
 	 * @return  exposes private variable fx.
 	 */
 	const double getFX() const {
-		return fx;
+		return frc.x;
 	}
 	/**
 	 * @brief Get the current y force.
 	 * @return  exposes private variable fy.
 	 */
 	const double getFY() const {
-		return fy;
+		return frc.y;
 	}
 	/**
 	 * @brief Get the current z force.
 	 * @return  exposes private variable fz.
 	 */
 	const double getFZ() const {
-		return fz;
+		return frc.z;
 	}
 
 	//Getters for previous force.
@@ -176,21 +176,21 @@ public:
 	 * @return  exposes private variable fx0.
 	 */
 	const double getFX0() const {
-		return fx0;
+		return frc0.x;
 	}
 	/**
 	 * @brief Get the previous y force.
 	 * @return  exposes private variable fy0.
 	 */
 	const double getFY0() const {
-		return fy0;
+		return frc0.y;
 	}
 	/**
 	 * @brief Get the previous z force.
 	 * @return  exposes private variable fz0.
 	 */
 	const double getFZ0() const {
-		return fz0;
+		return frc0.z;
 	}
 
 	//Getters for containing cell.
@@ -200,21 +200,21 @@ public:
 	 * @return  exposes private variable cx.
 	 */
 	const int getCX() const {
-		return cx;
+		return cll.x;
 	}
 	/**
 	 * @brief Get the y value of the containing cell.
 	 * @return  exposes private variable cy.
 	 */
 	const int getCY() const {
-		return cy;
+		return cll.y;
 	}
 	/**
 	 * @brief Get the z value of the containing cell.
 	 * @return  exposes private variable cz.
 	 */
 	const int getCZ() const {
-		return cz;
+		return cll.z;
 	}
 
 	//Getters for particle properties
@@ -296,27 +296,27 @@ public:
 	 * @param xVal,yVal,zVal The new position.
 	 * @param boxSize The size of the system box.
 	 */
-	void setPos(double xVal, double yVal, double zVal, double boxSize);
+	void setPos(type3<double>* pos, int boxSize);
 	/**
 	 * @brief Set the x velocity.
 	 * @param val The velocity to set.
 	 */
 	void setVX(double val) {
-		vx = val;
+		vel.x = val;
 	}
 	/**
 	 * @brief Set the y velocity.
 	 * @param val The velocity to set.
 	 */
 	void setVY(double val) {
-		vy = val;
+		vel.y = val;
 	}
 	/**
 	 * @brief Set the z velocity.
 	 * @param val The velocity to set.
 	 */
 	void setVZ(double val) {
-		vz = val;
+		vel.z = val;
 	}
 	/**
 	 * @brief Adds the the current value of force.
@@ -324,8 +324,7 @@ public:
 	 * @param pot The potential of the force interaction.
 	 * @param p The particle providing the force.
 	 */
-	void updateForce(double xVal, double yVal, double zVal,
-			particle* p, bool countPair = true);
+	void updateForce(type3<double>* frc, particle* p, bool countPair = true);
 
 	/**
 	 * @brief Calculates the potential via force integration.
@@ -340,9 +339,9 @@ public:
 	 * @param x,y,z The position variables of the containing cell.
 	 */
 	void setCell(int x, int y, int z) {
-		cx = x;
-		cy = y;
-		cz = z;
+		cll.x = x;
+		cll.y = y;
+		cll.z = z;
 	}
 	/**
 	 * @brief Sets the radius of the particle.
@@ -373,7 +372,7 @@ public:
 	 * @brief Writes the position of the particle to the console.
 	 */
 	void writePosition() {
-		std::cout << x << ", " << y << ", " << z << "\n";
+		std::cout << pos.x << ", " << pos.y << ", " << pos.z << "\n";
 	}
 
 };

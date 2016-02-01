@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include src/utilities/subdir.mk
 -include src/system/subdir.mk
+-include src/integrators/subdir.mk
 -include src/forceManagers/subdir.mk
 -include src/defaultAnalysis/subdir.mk
 -include src/subdir.mk

@@ -41,8 +41,7 @@ public:
 	 * @param f The force acting on the system.
 	 * @return Return 0 for no error.
 	 */
-	virtual int nextSystem(double time, double dt, int nParticles, int boxSize,
-			PSim::PeriodicGrid**** cells, PSim::particle** items, PSim::defaultForceManager* f)=0;
+	virtual int nextSystem(PSim::particle** items, systemState* state)=0;
 
 	/**
 	 * @brief Get the name of the integrator for logging purposes.

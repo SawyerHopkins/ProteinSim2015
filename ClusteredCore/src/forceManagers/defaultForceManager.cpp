@@ -56,19 +56,16 @@ void defaultForceManager::addForce(IForce* f) {
 	}
 }
 
-void defaultForceManager::getAcceleration(int nPart, int boxSize, double time,
-		PSim::PeriodicGrid**** cells, PSim::particle** items) {
+void defaultForceManager::getAcceleration(PSim::PeriodicGrid**** cells, PSim::particle** items, systemState* state) {
 	IForce* currentForce = flist[0];
 #pragma omp parallel
 	{
 #pragma omp for
-		for (int index = 0; index < nPart; index++) {
+		for (int index = 0; index < state->nParticles; index++) {
 			//Resets the force on the particle.
 			items[index]->nextIter();
 			//Iterates through all forces.
-			currentForce->getAcceleration(index, nPart, boxSize, time,
-					cells[items[index]->getCX()][items[index]->getCY()][items[index]->getCZ()],
-					items);
+			currentForce->getAcceleration(index, cells[items[index]->getCX()][items[index]->getCY()][items[index]->getCZ()],items, state);
 		}
 	}
 }

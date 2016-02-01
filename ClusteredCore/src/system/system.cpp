@@ -26,19 +26,20 @@ namespace PSim {
 
 void system::setSystemConstants(configReader::config* cfg,
 		PSim::IIntegrator* sysInt, PSim::defaultForceManager* sysFcs) {
+
+	state = systemState();
+
 	//Set time information
-	currentTime = 0;
-	dTime = cfg->getParam<double>("timeStep", 0.001);
+	state.currentTime = 0;
+	state.dTime = cfg->getParam<double>("timeStep", 0.001);
 	//Set the random number generator seed.
-	seed = cfg->getParam<int>("seed", 90210);
+	state.seed = cfg->getParam<int>("seed", 90210);
 	//Sets the system temperature.
-	temp = cfg->getParam<double>("temp", 1.0);
+	state.temp = cfg->getParam<double>("temp", 1.0);
 	//Set the number of particles.
-	nParticles = cfg->getParam<int>("nParticles", 1000);
+	state.nParticles = cfg->getParam<int>("nParticles", 1000);
 	//How often to output snapshots.
-	outputFreq = cfg->getParam<int>("outputFreq", int(1.0 / dTime));
-	//Option to output XYZ format for clusters
-	outXYZ = cfg->getParam<int>("XYZ", 0);
+	state.outputFreq = cfg->getParam<int>("outputFreq", int(1.0 / state.dTime));
 	//Set the integration method.
 	integrator = sysInt;
 	//Set the internal forces.
@@ -51,16 +52,16 @@ void system::setSystemConstants(configReader::config* cfg,
 	//Set the radius.
 	double r = cfg->getParam<double>("radius", 0.5);
 	//Create a box based on desired concentration.
-	double vP = nParticles * (4.0 / 3.0) * atan(1.0) * 4.0 * r * r * r;
-	boxSize = (int) (cbrt(vP / conc));
+	double vP = state.nParticles * (4.0 / 3.0) * atan(1.0) * 4.0 * r * r * r;
+	state.boxSize = (int) (cbrt(vP / conc));
 	//Calculates the number of cells needed.
-	cellSize = boxSize / scale;
-	boxSize = cellSize * scale;
-	cellScale = scale;
+	state.cellSize = state.boxSize / scale;
+	state.boxSize = state.cellSize * scale;
+	state.cellScale = scale;
 	//Sets the actual concentration.
-	concentration = vP / pow(boxSize, 3.0);
+	state.concentration = vP / pow(state.boxSize, 3.0);
 
-	analysis = new PSim::analysisManager(trialName, nParticles, boxSize);
+	analysis = new PSim::analysisManager(trialName, &state);
 }
 
 system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
@@ -78,7 +79,7 @@ system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
 
 	//Set time information
 	setSystemConstants(cfg, sysInt, sysFcs);
-	std::cout << "---System concentration: " << concentration << "\n";
+	std::cout << "---System concentration: " << state.concentration << "\n";
 
 	//Set the radius.
 	double r = cfg->getParam<double>("radius", 0.5);
@@ -87,9 +88,9 @@ system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
 	//Create particles.
 	initParticles(r, m);
 	//Create cells.
-	int numCells = pow(cellScale, 3.0);
-	initCells(cellScale);
-	std::cout << "Created: " << numCells << " cells from scale: " << cellScale
+	int numCells = pow(state.cellScale, 3.0);
+	initCells(state.cellScale);
+	std::cout << "Created: " << numCells << " cells from scale: " << state.cellScale
 			<< "\n";
 
 	writeSystemInit();
@@ -103,22 +104,21 @@ void system::writeSystemInit() {
 
 	//Writes the system configuration.
 	myFile << "trialName = " << trialName << "\n";
-	myFile << "nParticles = " << nParticles << "\n";
-	myFile << "Concentration = " << concentration << "\n";
-	myFile << "boxSize = " << boxSize << "\n";
-	myFile << "cellSize = " << cellSize << "\n";
-	myFile << "cellScale = " << cellScale << "\n";
-	myFile << "temp = " << temp << "\n";
-	myFile << "dTime = " << dTime << "\n";
-	myFile << "outputFreq = " << outputFreq << "\n";
-	myFile << "outXYZ = " << outXYZ << "\n";
+	myFile << "nParticles = " << state.nParticles << "\n";
+	myFile << "Concentration = " << state.concentration << "\n";
+	myFile << "boxSize = " << state.boxSize << "\n";
+	myFile << "cellSize = " << state.cellSize << "\n";
+	myFile << "cellScale = " << state.cellScale << "\n";
+	myFile << "temp = " << state.temp << "\n";
+	myFile << "dTime = " << state.dTime << "\n";
+	myFile << "outputFreq = " << state.outputFreq << "\n";
 	myFile << "cycleHour = " << cycleHour << "\n";
-	myFile << "seed = " << seed;
+	myFile << "seed = " << state.seed;
 
 	//Close the stream.
 	myFile.close();
 
-	analysis->writeInitialState(particles, nParticles);
+	analysis->writeInitialState(particles, &state);
 
 	ifstream inCfg("settings.cfg", ios::binary);
 	ofstream outCfg(trialName + "/settings.cfg", ios::binary);
@@ -129,34 +129,27 @@ void system::writeSystemInit() {
 
 system::~system() {
 	//Deletes the particles
-	for (int i = 0; i < nParticles; i++) {
+	for (int i = 0; i < state.nParticles; i++) {
 		delete particles[i];
 	}
 	delete[] particles;
 
 	//Delete the constants.
-	delete &nParticles;
-	delete &concentration;
-	delete &boxSize;
-	delete &cellSize;
-	delete &temp;
-	delete &currentTime;
-	delete &dTime;
-	delete &seed;
+	delete &state;
 	delete[] integrator;
 	delete[] sysForces;
 }
 
 void system::estimateCompletion(PSim::timer* tmr) {
-	int cycleCount = (currentTime/dTime);
-	if ((cycleCount % outputFreq) == 0 && cycleCount > 0) {
+	int cycleCount = (state.currentTime/state.dTime);
+	if ((cycleCount % state.outputFreq) == 0 && cycleCount > 0) {
 		tmr->stop();
-		double timePerCycle = tmr->getElapsedSeconds() / double(outputFreq);
+		double timePerCycle = tmr->getElapsedSeconds() / double(state.outputFreq);
 		std::setprecision(4);
 		std::cout << "\n" << "Average Cycle Time: " << timePerCycle
 				<< " seconds.\n";
 		double totalTime = (cycleHour * timePerCycle);
-		double finishedTime = ((currentTime / dTime) / 3600) * timePerCycle;
+		double finishedTime = ((state.currentTime / state.dTime) / 3600) * timePerCycle;
 		std::cout << "Time for completion: " << (totalTime - finishedTime)
 				<< " hours.\n";
 		tmr->start();
@@ -164,7 +157,8 @@ void system::estimateCompletion(PSim::timer* tmr) {
 }
 
 void system::run(double endTime) {
-	cycleHour = (endTime / dTime) / 3600.0;
+	state.endTime = endTime;
+	cycleHour = (state.endTime / state.dTime) / 3600.0;
 	//Create the snapshot name.
 	std::string snap = trialName + "/snapshots";
 	mkdir(snap.c_str(), 0777);
@@ -178,24 +172,22 @@ void system::run(double endTime) {
 	tmr->start();
 
 	//Run system until end time.
-	while (currentTime < endTime) {
+	while (state.currentTime < state.endTime) {
 		//Get the forces acting on the system.
-		//sysForces->getAcceleration(nParticles, boxSize, currentTime, cells,
-		//		particles);
+		sysForces->getAcceleration(cells, particles, &state);
 		//Get the next system.
-		integrator->nextSystem(currentTime, dTime, nParticles, boxSize, cells,
-				particles, sysForces);
+		integrator->nextSystem(particles, &state);
 		//Call cell manager.
 		updateCells();
 
 		//runAnalysis;
-		analysis->writeRunTimeState(particles, nParticles, outXYZ, outputFreq, currentTime);
+		analysis->writeRunTimeState(particles, &state);
 		estimateCompletion(tmr);
 		//Update loading bar.
-		PSim::util::loadBar(currentTime, endTime);
+		PSim::util::loadBar(state.currentTime, state.endTime);
 
 		//Increment counters.
-		currentTime += dTime;
+		state.currentTime += state.dTime;
 	}
 }
 }

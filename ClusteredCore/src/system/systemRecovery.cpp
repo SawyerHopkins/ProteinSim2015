@@ -29,7 +29,8 @@ namespace PSim {
 
 void system::createInteractionsTable() {
 	double cutOffSquared = 1.1 * 1.1;
-	for (int i = 0; i < nParticles; i++) {
+	int boxSize = state.boxSize;
+	for (int i = 0; i < state.nParticles; i++) {
 		PSim::particle* base = particles[i];
 		PSim::PeriodicGrid* itemCell =
 				cells[base->getCX()][base->getCY()][base->getCZ()];
@@ -79,25 +80,26 @@ int system::readParticles(system* oldSys, std::string sysState,
 	for (std::string line; std::getline(state, line);) {
 		istringstream data(line);
 
-		float x, y, z;
-		float x0, y0, z0;
-		float fx, fy, fz;
-		float fx0, fy0, fz0;
+		type3<double>* pos = new type3<double>();
+		type3<double>* pos0 = new type3<double>();
+		type3<double>* frc = new type3<double>();
+		type3<double>* frc0 = new type3<double>();
+
 		float m, r;
 
-		data >> x >> y >> z;
-		data >> x0 >> y0 >> z0;
-		data >> fx >> fy >> fz;
-		data >> fx0 >> fy0 >> fz0;
+		data >> pos->x >> pos->y >> pos->z;
+		data >> pos0->x >> pos0->y >> pos0->z;
+		data >> frc->x >> frc->y >> frc->z;
+		data >> frc0->x >> frc0->y >> frc0->z;
 		data >> m >> r;
 
 		// Set each particle to the oldest know position and advance to the newest known position.
 		oldSys->particles[count] = new particle(count);
-		oldSys->particles[count]->setPos(x0, y0, z0, bsize);
-		oldSys->particles[count]->updateForce(fx0, fy0, fz0, NULL, false);
+		oldSys->particles[count]->setPos(pos0, bsize);
+		oldSys->particles[count]->updateForce(frc0, NULL, false);
 		oldSys->particles[count]->nextIter();
-		oldSys->particles[count]->setPos(x, y, z, bsize);
-		oldSys->particles[count]->updateForce(fx, fy, fz, NULL, false);
+		oldSys->particles[count]->setPos(pos, bsize);
+		oldSys->particles[count]->updateForce(frc, NULL, false);
 		oldSys->particles[count]->setMass(m);
 		oldSys->particles[count]->setRadius(r);
 
@@ -108,17 +110,16 @@ int system::readParticles(system* oldSys, std::string sysState,
 
 void system::readSettings(system* oldSys, configReader::config* cfg) {
 	cfg->showOutput();
-	oldSys->concentration = cfg->getParam<double>("Concentration", 0);
-	oldSys->cellSize = cfg->getParam<int>("cellSize", 0);
-	oldSys->cellScale = cfg->getParam<int>("cellScale", 0);
-	oldSys->temp = cfg->getParam<double>("temp", 0);
-	oldSys->currentTime = 0;
-	oldSys->dTime = cfg->getParam<double>("dTime", 0);
-	oldSys->outputFreq = cfg->getParam<int>("outputFreq", 0);
-	oldSys->outXYZ = cfg->getParam<int>("outXYZ", 0);
+	oldSys->state.concentration = cfg->getParam<double>("Concentration", 0);
+	oldSys->state.cellSize = cfg->getParam<int>("cellSize", 0);
+	oldSys->state.cellScale = cfg->getParam<int>("cellScale", 0);
+	oldSys->state.temp = cfg->getParam<double>("temp", 0);
+	oldSys->state.currentTime = 0;
+	oldSys->state.dTime = cfg->getParam<double>("dTime", 0);
+	oldSys->state.outputFreq = cfg->getParam<int>("outputFreq", 0);
 	oldSys->cycleHour = cfg->getParam<double>("cycleHour", 0);
-	oldSys->seed = cfg->getParam<int>("seed", 0);
-	oldSys->boxSize = cfg->getParam<int>("boxSize", 0);
+	oldSys->state.seed = cfg->getParam<int>("seed", 0);
+	oldSys->state.boxSize = cfg->getParam<int>("boxSize", 0);
 	cfg->hideOutput();
 }
 
@@ -171,11 +172,11 @@ system* system::loadFromFile(configReader::config* cfg, std::string sysState,
 	readSettings(oldSys, cfg);
 	oldSys->trialName = sysState + "/-rewind-" + timeStamp;
 	oldSys->analysis = oldSys->defaultAnalysisInterface(count, bsize);
-	oldSys->nParticles = count;
+	oldSys->state.nParticles = count;
 	oldSys->integrator = sysInt;
 	oldSys->sysForces = sysFcs;
 
-	oldSys->initCells(oldSys->cellScale);
+	oldSys->initCells(oldSys->state.cellScale);
 	createRewindDir(oldSys);
 	oldSys->writeSystemInit();
 	return oldSys;
@@ -194,11 +195,11 @@ system* system::loadAnalysis(configReader::config* cfg, std::string sysState,
 	std::cout << "-Found " << count << " / " << nParts << " particles.\n";
 
 	readSettings(oldSys, cfg);
-	oldSys->nParticles = count;
+	oldSys->state.nParticles = count;
 	oldSys->trialName = sysState + "/-analysis-" + timeStamp;
 	oldSys->analysis = (analysisInterface == NULL) ? oldSys->defaultAnalysisInterface(count, bsize) : analysisInterface;
 
-	oldSys->initCells(oldSys->cellScale);
+	oldSys->initCells(oldSys->state.cellScale);
 	createRewindDir(oldSys);
 	oldSys->createInteractionsTable();
 	return oldSys;

@@ -26,6 +26,7 @@ SUBDIRS := \
 src/utilities \
 src/system \
 src \
+src/integrators \
 src/forceManagers \
 src/defaultAnalysis \
 

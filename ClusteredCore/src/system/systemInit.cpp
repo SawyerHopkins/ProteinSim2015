@@ -90,10 +90,10 @@ void system::setCellNeighbors(int scale) {
 
 void system::assignCellParticles() {
 	//Assign the particle to their starting cell.
-	for (int i = 0; i < nParticles; i++) {
-		int cx = particles[i]->getX() / cellSize;
-		int cy = particles[i]->getY() / cellSize;
-		int cz = particles[i]->getZ() / cellSize;
+	for (int i = 0; i < state.nParticles; i++) {
+		int cx = particles[i]->getX() / state.cellSize;
+		int cy = particles[i]->getY() / state.cellSize;
+		int cz = particles[i]->getZ() / state.cellSize;
 		//Tell the particle what cell its in, then add to cell.
 		particles[i]->setCell(cx, cy, cz);
 		cells[cx][cy][cz]->addMember(particles[i]);
@@ -114,19 +114,21 @@ void system::initCells(int scale) {
 }
 
 void system::initParticles(double r, double m) {
-	particles = new particle*[nParticles];
+	particles = new particle*[state.nParticles];
 
 	//If there is no inital seed create one.
-	if (seed == 0) {
+	if (state.seed == 0) {
 		std::random_device rd;
-		seed = rd();
+		state.seed = rd();
 	}
 	//Setup random uniform distribution generator.
-	std::mt19937 gen(seed);
+	std::mt19937 gen(state.seed);
 	std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
+	int boxSize = state.boxSize;
+
 	//Iterates through all points.
-	for (int i = 0; i < nParticles; i++) {
+	for (int i = 0; i < state.nParticles; i++) {
 		particles[i] = new particle(i);
 
 		particles[i]->setX(distribution(gen) * boxSize, boxSize);
@@ -138,7 +140,7 @@ void system::initParticles(double r, double m) {
 
 	}
 
-	std::cout << "---Added " << nParticles
+	std::cout << "---Added " << state.nParticles
 			<< " particles. Checking for overlap.\n\n";
 
 	//Checks the system for overlap.
@@ -159,16 +161,18 @@ void system::initCheck(std::mt19937* gen,
 	//Keeps track of how many resolutions we have attempted.
 	int counter = 0;
 
+	int boxSize = state.boxSize;
+
 	//Search each particle for overlap.
-	for (int i = 0; i < nParticles; i++) {
-		PSim::util::loadBar(i, nParticles, i);
+	for (int i = 0; i < state.nParticles; i++) {
+		PSim::util::loadBar(i, state.nParticles, i);
 		//Is the problem resolved?
 		bool resolution = false;
 		//If not loop.
 		while (resolution == false) {
 			//Assume resolution.
 			resolution = true;
-			for (int j = 0; j < nParticles; j++) {
+			for (int j = 0; j < state.nParticles; j++) {
 				//Exclude self interation.
 				if (i != j) {
 					//Gets the distance between the two particles.
@@ -188,7 +192,7 @@ void system::initCheck(std::mt19937* gen,
 						counter++;
 
 						//Throw warnings if stuck in resolution loop.
-						if (counter > 10 * nParticles) {
+						if (counter > 10 * state.nParticles) {
 							PSim::error::throwInitializationError();
 						}
 
@@ -216,6 +220,9 @@ void system::maxwellVelocityInit(std::mt19937* gen,
 	double vsum, vsum2;
 	double sigold, vsig, ratio;
 	int i;
+
+	int nParticles = state.nParticles;
+	int temp = state.temp;
 
 	//For single particle case
 	if (nParticles == 1) {

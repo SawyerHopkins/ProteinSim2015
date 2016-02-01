@@ -23,9 +23,9 @@
 #include "analysisManager.h"
 
 namespace PSim {
-void analysisManager::postAnalysis(std::queue<std::string>* tests, particle** particles, int nParticles) {
+void analysisManager::postAnalysis(std::queue<std::string>* tests, particle** particles, systemState* state) {
 	std::cout << "\nBuilding cluster table.\n";
-	std::vector<std::vector<particle*>> clusterPool = findClusters(particles, nParticles);
+	std::vector<std::vector<particle*>> clusterPool = findClusters(particles, state->nParticles);
 	std::cout << "\n Loaded " << clusterPool.size() << " clusters.\n";
 	while (tests->size() > 0) {
 		std::string soda = PSim::util::tryPop(tests);
@@ -34,7 +34,7 @@ void analysisManager::postAnalysis(std::queue<std::string>* tests, particle** pa
 			PSim::util::writeTerminal(
 					"\nRunning structural histrogram analysis.\n",
 					PSim::Colour::Green);
-			coordinationHistogram(particles, nParticles);
+			coordinationHistogram(particles, state->nParticles);
 		}
 		if ((soda == "--clusthist") || (soda == "-CLH")) {
 			PSim::util::writeTerminal(

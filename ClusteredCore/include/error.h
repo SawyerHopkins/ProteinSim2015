@@ -2,6 +2,7 @@
 #define ERROR_H
 #include <iostream>
 #include <exception>
+#include "structs/type3.h"
 
 namespace PSim {
 
@@ -32,7 +33,7 @@ public:
 	 * @brief Throw when the particle is outside the box after PBC check.
 	 * @param x,y,z The position of the particle.
 	 */
-	static void throwParticleBoundsError(float x, float y, float z, int name);
+	static void throwParticleBoundsError(type3<double>* pos, int name);
 	/**
 	 * @brief Throw when particles are closer than the accepted tolerance.
 	 * @param nameI Name of the index particle.

@@ -37,14 +37,14 @@ private:
 	void writeSystem(particle** particles, int nParticles, std::string name);
 	void writeInitTemp(particle** particles, int nParticles);
 	void writeToStream(double currentTime, string path, double value);
-	void writeSystemState(particle** particles, int nParticles, int outXYZ, double currentTime);
+	void writeSystemState(particle** particles, int nParticles, double currentTime);
 
 public:
-	analysisManager(string tName, int nParticles, int size);
-	void postAnalysis(std::queue<std::string>* tests, particle** particles, int nParticles);
-	void writeInitialState(particle** particles, int nParticles);
-	void writeFinalState(particle** particles, int nParticles);
-	void writeRunTimeState(particle** particles, int nParticles, int outXYZ, int outputFreq, double currentTime);
+	analysisManager(string tName, systemState* state);
+	void postAnalysis(std::queue<std::string>* tests, particle** particles, systemState* state);
+	void writeInitialState(particle** particles, systemState* state);
+	void writeFinalState(particle** particles, systemState* state);
+	void writeRunTimeState(particle** particles, systemState* state);
 };
 }
 

@@ -79,10 +79,8 @@ void Calibration::iterCells(int boxSize, double time, particle* index, PeriodicG
 													it->second->getX(), it->second->getY(), it->second->getZ(),
 													unitVec, r, boxSize);
 
-				//Updates the acceleration.;
-				double fx = fNet*unitVec[0];
-				double fy = fNet*unitVec[1];
-				double fz = fNet*unitVec[2];
+
+				type3<double>* frc = new type3<double>(fNet*unitVec[0],fNet*unitVec[1],fNet*unitVec[2]);
 
 				//If the force is infinite then there are worse problems.
 				if (std::isnan(fNet))
@@ -92,17 +90,17 @@ void Calibration::iterCells(int boxSize, double time, particle* index, PeriodicG
 				}
 
 				//Add to the net force on the particle.
-				index->updateForce(fx,fy,fz,it->second);
+				index->updateForce(frc,it->second);
 			}
 		}
 	}
 }
 
-void Calibration::getAcceleration(int index, int nPart, int boxSize, double time, PeriodicGrid* itemCell, particle** items)
+void Calibration::getAcceleration(int index, PSim::PeriodicGrid* itemCell, PSim::particle** items, systemState* state)
 {
 	//Iter across all neighboring cells.
 	for(auto it = itemCell->getFirstNeighbor(); it != itemCell->getLastNeighbor(); ++it)
 	{
-		iterCells(boxSize,time,items[index],*it);
+		iterCells(state->boxSize, state->currentTime ,items[index],*it);
 	}
 }

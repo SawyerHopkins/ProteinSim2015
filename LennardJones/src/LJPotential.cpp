@@ -121,12 +121,10 @@ void LennardJones::iterCells(int boxSize, double time, particle* index, Periodic
 													unitVec, r, boxSize);
 
 				//Updates the acceleration.;
-				double fx = fNet*unitVec[0];
-				double fy = fNet*unitVec[1];
-				double fz = fNet*unitVec[2];
+				type3<double>* frc = new type3<double>(fNet*unitVec[0],fNet*unitVec[1],fNet*unitVec[2]);
 
 				//Add to the net force on the particle.
-				index->updateForce(fx,fy,fz,it->second, (r < 1.1) ? true : false);
+				index->updateForce(frc,it->second, (r < 1.1) ? true : false);
 			}
 		}
 	}
@@ -141,11 +139,11 @@ void LennardJones::quench()
 	debyeInv = 1.0 / debyeLength;
 }
 
-void LennardJones::getAcceleration(int index, int nPart, int boxSize, double time, PSim::PeriodicGrid* itemCell, PSim::particle** items)
+void LennardJones::getAcceleration(int index, PSim::PeriodicGrid* itemCell, PSim::particle** items, systemState* state)
 {
 	for(auto it = itemCell->getFirstNeighbor(); it != itemCell->getLastNeighbor(); ++it)
 	{
-		iterCells(boxSize,time,items[index],*it);
+		iterCells(state->boxSize,state->currentTime,items[index],*it);
 	}
 }
 

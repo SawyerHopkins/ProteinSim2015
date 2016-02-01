@@ -52,8 +52,7 @@ public:
 	 * @param cells The system cell manager.
 	 * @param items The particles in the system.
 	 */
-	void getAcceleration(int nPart, int boxSize, double time,
-			PSim::PeriodicGrid**** cells, PSim::particle** items);
+	void getAcceleration(PSim::PeriodicGrid**** cells, PSim::particle** items, systemState* state);
 
 	/**
 	 * @brief Checks if the system contains a time dependent force.

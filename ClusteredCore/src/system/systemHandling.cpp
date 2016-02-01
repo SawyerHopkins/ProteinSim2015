@@ -30,7 +30,10 @@ namespace PSim {
 
 void system::updateCells() {
 
-	for (int index = 0; index < nParticles; index++) {
+	int cellSize = state.cellSize;
+	int cellScale = state.cellScale;
+
+	for (int index = 0; index < state.nParticles; index++) {
 
 		//New cell
 		int cX = particles[index]->getX() / cellSize;

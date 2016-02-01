@@ -119,8 +119,7 @@ public:
 	 * @param f The force acting on the system.
 	 * @return Return 0 for no error.
 	 */
-	int nextSystem(double time, double dt, int nParticles, int boxSize,
-			PSim::PeriodicGrid**** cells, PSim::particle** items, PSim::defaultForceManager* f);
+	int nextSystem(PSim::particle** items, systemState* state);
 
 	/**
 	 * @brief Integrates to the next system state.
@@ -132,8 +131,7 @@ public:
 	 * @param f The force acting on the system.
 	 * @return Return 0 for no error.
 	 */
-	int firstStep(double time, double dt, int nParticles, int boxSize,
-			PSim::particle** items, PSim::defaultForceManager* f);
+	int firstStep(PSim::particle** items, systemState* state);
 
 	/**
 	 * @brief Integrates to the next system state.
@@ -145,8 +143,7 @@ public:
 	 * @param f The force acting on the system.
 	 * @return Return 0 for no error.
 	 */
-	int normalStep(double time, double dt, int nParticles, int boxSize,
-			PSim::particle** items, PSim::defaultForceManager* f);
+	int normalStep(PSim::particle** items, systemState* state);
 
 	/**
 	 * @brief Integrates the velocity when desired.
@@ -156,8 +153,7 @@ public:
 	 * @param dt The amount of time to advance.
 	 * @param boxSize The size of the system.
 	 */
-	void velocityStep(PSim::particle** items, int i, double xNew0, double yNew0,
-			double zNew0, double dt, double boxSize);
+	void velocityStep(PSim::particle** items, int i, type3<double>* newPos0, double dt, double boxSize);
 
 };
 

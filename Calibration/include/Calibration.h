@@ -43,7 +43,7 @@ private:
 		 * @param itemCell The cell containing the index particle.
 		 * @param items All particles in the system.
 		 */
-		void getAcceleration(int index, int nPart, int boxSize, double time, PSim::PeriodicGrid* itemCell, PSim::particle** items);
+		void getAcceleration(int index, PSim::PeriodicGrid* itemCell, PSim::particle** items, systemState* state);
 		/**
 		 * @brief Flag for a force dependent time.
 		 * @return True for time dependent. False otherwise. 

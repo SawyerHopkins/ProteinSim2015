@@ -24,8 +24,9 @@
 
 namespace PSim {
 
-analysisManager::analysisManager(string tName, int nParticles, int size) {
+analysisManager::analysisManager(string tName, systemState* state) {
 	trialName = tName;
+	int nParticles = state->nParticles;
 	xStart = new float [nParticles];
 	yStart = new float [nParticles];
 	zStart = new float [nParticles];
@@ -33,7 +34,7 @@ analysisManager::analysisManager(string tName, int nParticles, int size) {
 	yPBC = new float[nParticles];
 	zPBC = new float[nParticles];
 	counter = 0;
-	boxSize = size;
+	boxSize = state->boxSize;
 
 	for (int i = 0; i < nParticles; i++)
 	{
@@ -46,27 +47,28 @@ analysisManager::analysisManager(string tName, int nParticles, int size) {
 	}
 }
 
-void analysisManager::writeInitialState(particle** particles, int nParticles) {
+void analysisManager::writeInitialState(particle** particles, systemState* state) {
+	int nParticles = state->nParticles;
 	initDisplacementTracker(particles, nParticles);
 	writeInitTemp(particles, nParticles);
 	writeSystem(particles, nParticles, trialName + "/initialState");
 }
 
-void analysisManager::writeRunTimeState(particle** particles, int nParticles, int outXYZ, int outputFreq, double currentTime) {
+void analysisManager::writeRunTimeState(particle** particles, systemState* state) {
 	//Output a snapshot every second.
-	if ((counter % outputFreq) == 0) {
-		if (currentTime > 0) {
+	if ((counter % state->outputFreq) == 0) {
+		if (state->currentTime > 0) {
 			PSim::util::clearLines(14);
 		}
-		writeSystemState(particles, nParticles, outXYZ, currentTime);
+		writeSystemState(particles, state->nParticles, state->currentTime);
 	} else {
-		updateTracker(particles, nParticles);
+		updateTracker(particles, state->nParticles);
 	}
 	counter++;
 }
 
-void analysisManager::writeFinalState(particle** particles, int nParticles) {
-	writeSystem(particles, nParticles, trialName + "/finalState");
+void analysisManager::writeFinalState(particle** particles, systemState* state) {
+	writeSystem(particles, state->nParticles, trialName + "/finalState");
 }
 
 }

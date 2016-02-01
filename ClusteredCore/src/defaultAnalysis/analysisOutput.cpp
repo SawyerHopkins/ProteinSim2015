@@ -95,8 +95,10 @@ void analysisManager::writeToStream(double currentTime, string path, double valu
 	myFile.close();
 }
 
-void analysisManager::writeSystemState(particle** particles, int nParticles, int outXYZ, double currentTime) {
+void analysisManager::writeSystemState(particle** particles, int nParticles, double currentTime) {
 	//Update the console.
+	bool outXYZ = true;
+
 	std::string outName = std::to_string(int(std::round(currentTime)));
 	PSim::util::setTerminalColour(PSim::Colour::Cyan);
 	std::cout << "\n\n" << "Writing: " << outName << ".txt";

@@ -15,6 +15,8 @@
 #include <queue>
 #include "error.h"
 #include "timer.h"
+#include "structs/type3.h"
+#include "structs/systemState.h"
 
 using namespace std;
 

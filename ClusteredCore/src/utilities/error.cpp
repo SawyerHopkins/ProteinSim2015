@@ -36,9 +36,9 @@ void error::throwCellBoundsError(int cx, int cy, int cz) {
 	exit(7702);
 }
 
-void error::throwParticleBoundsError(float x, float y, float z, int name) {
+void error::throwParticleBoundsError(type3<double>* pos, int name) {
 	std::cout << "\nParticle out of bounds.\n";
-	std::cout << "Particle: " << name << " : " << x << "," << y << "," << z
+	std::cout << "Particle: " << name << " : " << pos->x << "," << pos->y << "," << pos->z
 			<< "\n";
 	exit(7703);
 }

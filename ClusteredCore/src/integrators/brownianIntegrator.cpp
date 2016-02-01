@@ -197,25 +197,22 @@ double brownianIntegrator::getWidth(double y) {
 	return (2 * y) - 3.0 + (4.0 * exp(-y)) - exp(-2.0 * y);
 }
 
-int brownianIntegrator::nextSystem(double time, double dt, int nParticles,
-		int boxSize, PSim::PeriodicGrid**** cells, PSim::particle** items,
-		PSim::defaultForceManager* f) {
+int brownianIntegrator::nextSystem(PSim::particle** items, systemState* state) {
 	//Checks what method is needed.
-	if (time == 0) {
-		firstStep(time, dt, nParticles, boxSize, items, f);
+	if (state->currentTime == 0) {
+		firstStep(items, state);
 	} else {
-		normalStep(time, dt, nParticles, boxSize, items, f);
+		normalStep(items, state);
 	}
 	return 0;
 }
 
-int brownianIntegrator::firstStep(double time, double dt, int nParticles,
-		int boxSize, PSim::particle** items, PSim::defaultForceManager* f) {
+int brownianIntegrator::firstStep(PSim::particle** items, systemState* state) {
 	//Add 4 threads to the team.
 #pragma omp parallel
 {
 #pragma omp for
-	for (int i = 0; i < nParticles; i++) {
+	for (int i = 0; i < state->nParticles; i++) {
 
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 
@@ -229,29 +226,29 @@ int brownianIntegrator::firstStep(double time, double dt, int nParticles,
 		memY[i] = rndGens[i]->g250(threadSeed);
 		memZ[i] = rndGens[i]->g250(threadSeed);
 
+		type3<double>* posNew = new type3<double>();
 		double m = 1.0 / items[i]->getMass();
-		double xNew = items[i]->getX() + (items[i]->getVX() * coEff1 * dt)
+		posNew->x = items[i]->getX() + (items[i]->getVX() * coEff1 * dt)
 				+ (items[i]->getFX() * coEff3 * dt * dt * m) + (sig1 * memX[i]);
-		double yNew = items[i]->getY() + (items[i]->getVY() * coEff1 * dt)
+		posNew->y = items[i]->getY() + (items[i]->getVY() * coEff1 * dt)
 				+ (items[i]->getFY() * coEff3 * dt * dt * m) + (sig1 * memY[i]);
-		double zNew = items[i]->getZ() + (items[i]->getVZ() * coEff1 * dt)
+		posNew->z = items[i]->getZ() + (items[i]->getVZ() * coEff1 * dt)
 				+ (items[i]->getFZ() * coEff3 * dt * dt * m) + (sig1 * memZ[i]);
-		items[i]->setPos(xNew, yNew, zNew, boxSize);
+		items[i]->setPos(posNew, state->boxSize);
 
 	}
 }
 	return 0;
 }
 
-int brownianIntegrator::normalStep(double time, double dt, int nParticles,
-		int boxSize, PSim::particle** items, PSim::defaultForceManager* f) {
+int brownianIntegrator::normalStep(PSim::particle** items, systemState* state) {
 
 	double dt2 = dt * dt;
 	double c0 = 1.0 + coEff0;
 #pragma omp parallel
 {
 #pragma omp for
-	for (int i = 0; i < nParticles; i++) {
+	for (int i = 0; i < state->nParticles; i++) {
 		//SEE GUNSTEREN AND BERENDSEN 1981 EQ 2.26
 		//New random walk.
 
@@ -274,24 +271,26 @@ int brownianIntegrator::normalStep(double time, double dt, int nParticles,
 		double c1 = m * dt2 * coEff1;
 		double c2 = m * dt2 * coEff2;
 
+		type3<double>* posNew = new type3<double>();
+
 		//Run the integration routine.
-		double xNew = (c0 * items[i]->getX());
-		xNew -= (coEff0 * items[i]->getX0());
-		xNew += (c1 * items[i]->getFX());
-		xNew += (c2 * (items[i]->getFX() - items[i]->getFX0()));
-		xNew += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
+		posNew->x = (c0 * items[i]->getX());
+		posNew->x -= (coEff0 * items[i]->getX0());
+		posNew->x += (c1 * items[i]->getFX());
+		posNew->x += (c2 * (items[i]->getFX() - items[i]->getFX0()));
+		posNew->x += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
 
-		double yNew = (c0 * items[i]->getY());
-		yNew -= (coEff0 * items[i]->getY0());
-		yNew += (c1 * items[i]->getFY());
-		yNew += (c2 * (items[i]->getFY() - items[i]->getFY0()));
-		yNew += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
+		posNew->y = (c0 * items[i]->getY());
+		posNew->y -= (coEff0 * items[i]->getY0());
+		posNew->y += (c1 * items[i]->getFY());
+		posNew->y += (c2 * (items[i]->getFY() - items[i]->getFY0()));
+		posNew->y += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
 
-		double zNew = (c0 * items[i]->getZ());
-		zNew -= (coEff0 * items[i]->getZ0());
-		zNew += (c1 * items[i]->getFZ());
-		zNew += (c2 * (items[i]->getFZ() - items[i]->getFZ0()));
-		zNew += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
+		posNew->z = (c0 * items[i]->getZ());
+		posNew->z -= (coEff0 * items[i]->getZ0());
+		posNew->z += (c1 * items[i]->getFZ());
+		posNew->z += (c2 * (items[i]->getFZ() - items[i]->getFZ0()));
+		posNew->z += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
 
 		//Velocity is not needed for brownianIntegration.
 		//Run velocity integration at the same frequency as
@@ -304,7 +303,8 @@ int brownianIntegrator::normalStep(double time, double dt, int nParticles,
 		//velFreq = 0.
 		//-------------------------------------------------
 		//For all other cases do whatever.
-		(velFreq == 0 || velCounter == velFreq) ? velocityStep(items, i, xNew, yNew, zNew, dt, boxSize) :items[i]->setPos(xNew, yNew, zNew, boxSize);
+
+		(velFreq == 0 || velCounter == velFreq) ? velocityStep(items, i, posNew, dt, state->boxSize) :items[i]->setPos(posNew, state->boxSize);
 	}
 }
 	//Manage velocity output counter.
@@ -315,7 +315,7 @@ int brownianIntegrator::normalStep(double time, double dt, int nParticles,
 }
 
 void brownianIntegrator::velocityStep(PSim::particle** items, int i,
-		double xNew0, double yNew0, double zNew0, double dt, double boxSize) {
+		type3<double>* posNew0, double dt, double boxSize) {
 
 	double m = 1.0 / items[i]->getMass();
 
@@ -326,9 +326,9 @@ void brownianIntegrator::velocityStep(PSim::particle** items, int i,
 	double dz0 = items[i]->getZ() - items[i]->getZ0();
 
 	//Make the new position PBC safe.
-	double xNew = PSim::util::safeMod(xNew0, boxSize);
-	double yNew = PSim::util::safeMod(yNew0, boxSize);
-	double zNew = PSim::util::safeMod(zNew0, boxSize);
+	double xNew = PSim::util::safeMod(posNew0->x, boxSize);
+	double yNew = PSim::util::safeMod(posNew0->y, boxSize);
+	double zNew = PSim::util::safeMod(posNew0->z, boxSize);
 
 	//Make the difference between the new position and the current position PBC safe.
 	double x0 = PSim::util::safeMod0(items[i]->getX(), xNew, boxSize);
@@ -371,7 +371,7 @@ void brownianIntegrator::velocityStep(PSim::particle** items, int i,
 	items[i]->setVX(vxNew);
 	items[i]->setVY(vyNew);
 	items[i]->setVZ(vzNew);
-	items[i]->setPos(xNew, yNew, zNew, boxSize);
+	items[i]->setPos(posNew0, boxSize);
 }
 
 }
