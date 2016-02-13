@@ -1,13 +1,14 @@
 #ifndef CONFIG_H
 #define CONFIG_H
+#include <map>
+#include <regex>
+#include "defs.h"
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <map>
-#include <regex>
 
-namespace configReader {
+namespace PSim {
 
 using namespace std;
 

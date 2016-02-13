@@ -24,7 +24,7 @@
 
 namespace PSim {
 
-void system::setSystemConstants(configReader::config* cfg,
+void system::setSystemConstants(config* cfg,
 		PSim::IIntegrator* sysInt, PSim::defaultForceManager* sysFcs) {
 
 	state = systemState();
@@ -64,7 +64,7 @@ void system::setSystemConstants(configReader::config* cfg,
 	analysis = new PSim::analysisManager(trialName, &state);
 }
 
-system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
+system::system(config* cfg, PSim::IIntegrator* sysInt,
 		PSim::defaultForceManager* sysFcs) {
 
 	//Sets the trial name
@@ -79,7 +79,7 @@ system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
 
 	//Set time information
 	setSystemConstants(cfg, sysInt, sysFcs);
-	std::cout << "---System concentration: " << state.concentration << "\n";
+	chatterBox.consoleMessage("System concentration: " + tos(state.concentration), 3);
 
 	//Set the radius.
 	double r = cfg->getParam<double>("radius", 0.5);
@@ -90,9 +90,7 @@ system::system(configReader::config* cfg, PSim::IIntegrator* sysInt,
 	//Create cells.
 	int numCells = pow(state.cellScale, 3.0);
 	initCells(state.cellScale);
-	std::cout << "Created: " << numCells << " cells from scale: " << state.cellScale
-			<< "\n";
-
+	chatterBox.consoleMessage("Created: " + tos(numCells) + " cells from scale: " + tos(state.cellScale));
 	writeSystemInit();
 }
 
@@ -146,12 +144,11 @@ void system::estimateCompletion(PSim::timer* tmr) {
 		tmr->stop();
 		double timePerCycle = tmr->getElapsedSeconds() / double(state.outputFreq);
 		std::setprecision(4);
-		std::cout << "\n" << "Average Cycle Time: " << timePerCycle
-				<< " seconds.\n";
+		chatterBox.consoleMessage("Average Cycle Time: " + tos(timePerCycle));
 		double totalTime = (cycleHour * timePerCycle);
 		double finishedTime = ((state.currentTime / state.dTime) / 3600) * timePerCycle;
-		std::cout << "Time for completion: " << (totalTime - finishedTime)
-				<< " hours.\n";
+		double dif = totalTime - finishedTime;
+		chatterBox.consoleMessage("Time until completion: " + tos(dif) + " hours.");
 		tmr->start();
 	}
 }
@@ -170,6 +167,8 @@ void system::run(double endTime) {
 	//Diagnostics timer.
 	PSim::timer* tmr = new PSim::timer();
 	tmr->start();
+
+	chatterBox.resetChatterCount();
 
 	//Run system until end time.
 	while (state.currentTime < state.endTime) {

@@ -24,7 +24,7 @@
 
 namespace PSim {
 
-brownianIntegrator::brownianIntegrator(configReader::config* cfg) {
+brownianIntegrator::brownianIntegrator(config* cfg) {
 
 	//Sets the name
 	name = "brownianIntegrator";
@@ -84,19 +84,18 @@ brownianIntegrator::brownianIntegrator(configReader::config* cfg) {
 
 	std::cout.precision(7);
 
-	std::cout << "\n---y: " << y;
-	std::cout << "\n---sig1: " << sig1;
-	std::cout << "\n---sig2: " << sig2;
-	std::cout << "\n---coor: " << corr;
-	std::cout << "\n---dev: " << dev;
-	std::cout << "\n---c0: " << coEff0;
-	std::cout << "\n---c1: " << coEff1;
-	std::cout << "\n---c2: " << coEff2;
-	std::cout << "\n---c3: " << coEff3;
-	std::cout << "\n---goy2: " << goy2;
-	std::cout << "\n---goy3: " << goy3;
-	std::cout << "\n---Brownian integrator successfully added.\n\n";
-
+	chatterBox.consoleMessage("y: " + tos(y), 3);
+	chatterBox.consoleMessage("sig1: " + tos(sig1), 3);
+	chatterBox.consoleMessage("sig2: " + tos(sig2), 3);
+	chatterBox.consoleMessage("corr: " + tos(corr), 3);
+	chatterBox.consoleMessage("dev: " + tos(dev), 3);
+	chatterBox.consoleMessage("coEff0: " + tos(coEff0), 3);
+	chatterBox.consoleMessage("coEff1: " + tos(coEff1), 3);
+	chatterBox.consoleMessage("coEff2: " + tos(coEff2), 3);
+	chatterBox.consoleMessage("coEff3: " + tos(coEff3), 3);
+	chatterBox.consoleMessage("goy2: " + tos(goy2), 3);
+	chatterBox.consoleMessage("goy3: " + tos(goy3), 3);
+	chatterBox.consoleMessage("Brownian integrator successfuly added.", 3);
 }
 
 brownianIntegrator::~brownianIntegrator() {
@@ -127,7 +126,7 @@ brownianIntegrator::~brownianIntegrator() {
 	delete &dev;
 }
 
-void brownianIntegrator::setupHigh(configReader::config* cfg) {
+void brownianIntegrator::setupHigh(config* cfg) {
 	//Coefficients for High Gamma.
 	//SEE GUNSTEREN AND BERENDSEN 1981
 	double ty = 2.0 * y;
@@ -151,7 +150,7 @@ void brownianIntegrator::setupHigh(configReader::config* cfg) {
 	hn = y / (exp(y) - exp(-y));
 }
 
-void brownianIntegrator::setupLow(configReader::config* cfg) {
+void brownianIntegrator::setupLow(config* cfg) {
 	//Coefficients for Low Gamma (from series expansion).
 	//SEE GUNSTEREN AND BERENDSEN 1981
 	double y1 = y;
@@ -184,7 +183,7 @@ void brownianIntegrator::setupLow(configReader::config* cfg) {
 	gn = (1.0 / 3.0) * y3 + (1.0 / 60.0) * y5;
 }
 
-void brownianIntegrator::setupZero(configReader::config* cfg) {
+void brownianIntegrator::setupZero(config* cfg) {
 	//Special case coefficients.
 	//SEE GUNSTEREN AND BERENDSEN 1981
 	coEff0 = 1.0;

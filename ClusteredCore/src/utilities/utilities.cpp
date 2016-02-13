@@ -188,7 +188,7 @@ void util::setTerminalColour(Colour c) {
 void util::writeTerminal(std::string text, PSim::Colour c = Normal) {
 	//Change colour, write text, reset colour.
 	setTerminalColour(c);
-	std::cout << text;
+	chatterBox.consoleMessage(text);
 	setTerminalColour(Normal);
 }
 
@@ -200,16 +200,7 @@ void util::clearLine(int i, int numLines) {
 }
 
 void util::clearLines(int numLines) {
-	if (numLines > 0) {
-		for (int i = 0; i < (numLines); i++) {
-			//beginning of line.
-			std::cout << "\r";
-			//clear line.
-			std::cout << "\033[K";
-			//up one line
-			clearLine(i, numLines);
-		}
-	}
+	chatterBox.clearChatter(-1);
 }
 
 //"Polar" version without trigonometric calls, 1 at a time

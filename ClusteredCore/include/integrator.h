@@ -85,7 +85,7 @@ public:
 	 * @param cfg The address of the configuration file reader.
 	 * @return Nothing
 	 */
-	brownianIntegrator(configReader::config* cfg);
+	brownianIntegrator(config* cfg);
 	/**
 	 * @brief Deconstructs the integrator.
 	 * @return Nothing.
@@ -96,17 +96,17 @@ public:
 	 * @brief Normal coefficents for high gamma.
 	 * @param cfg Config file reader.
 	 */
-	void setupHigh(configReader::config* cfg);
+	void setupHigh(config* cfg);
 	/**
 	 * @brief Series expanded coefficents for low gamma.
 	 * @param cfg Config file reader.
 	 */
-	void setupLow(configReader::config* cfg);
+	void setupLow(config* cfg);
 	/**
 	 * @brief Special case coefficents.
 	 * @param cfg Config file reader.
 	 */
-	void setupZero(configReader::config* cfg);
+	void setupZero(config* cfg);
 
 	/**
 	 * @brief Integrates to the next system state.

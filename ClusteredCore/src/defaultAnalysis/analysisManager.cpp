@@ -58,7 +58,7 @@ void analysisManager::writeRunTimeState(particle** particles, systemState* state
 	//Output a snapshot every second.
 	if ((counter % state->outputFreq) == 0) {
 		if (state->currentTime > 0) {
-			PSim::util::clearLines(14);
+			PSim::util::clearLines(-1);
 		}
 		writeSystemState(particles, state->nParticles, state->currentTime);
 	} else {

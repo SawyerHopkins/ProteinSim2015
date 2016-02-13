@@ -20,30 +20,50 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.*/
 
-#include "analysisManager.h"
+#include "diagnostics.h"
 
-namespace PSim {
-void analysisManager::postAnalysis(std::queue<std::string>* tests, particle** particles, systemState* state) {
-	chatterBox.consoleMessage("Building cluster table.");
-	std::vector<std::vector<particle*>> clusterPool = findClusters(particles, state->nParticles);
-	chatterBox.consoleMessage("Loaded " + tos(clusterPool.size()) + " clusters.");
-	while (tests->size() > 0) {
-		std::string soda = PSim::util::tryPop(tests);
+using namespace std;
 
-		if ((soda == "--coorhist") || (soda == "-CH")) {
-			PSim::util::writeTerminal(
-					"\nRunning structural histrogram analysis.\n",
-					PSim::Colour::Green);
-			coordinationHistogram(particles, state->nParticles);
+namespace PSim
+{
+void Diagnostics::startErrorLog(int _code, string _name) {
+	cout << "Error " << _code << ": " << _name << "\n";
+	addToChatter();
+}
+void Diagnostics::logErrorMessage(string _message) {
+	cout << "---" << _message << "\n";
+	addToChatter();
+}
+
+void Diagnostics::endErrorLog() {
+	cout << "-------END ERROR-------";
+	addToChatter();
+}
+void Diagnostics::consoleMessage(string _message, int level) {
+	string spacer = "";
+	for (int i = 0; i < level; i++) spacer = spacer + "-";
+	cout << spacer << _message << "\n";
+	addToChatter();
+}
+
+void Diagnostics::consolePrompt(string _message) {
+	cout << _message;
+}
+
+void Diagnostics::clearChatter(int count) {
+	int numLines = (count < 0) ? chatter : count;
+	if (numLines > 0) {
+		for (int i = 0; i < (numLines+1); i++) {
+			//beginning of line.
+			std::cout << "\r";
+			//clear line.
+			std::cout << "\033[K";
+			if (i < (numLines))
+			{
+				std::cout << "\033[A";
+			}
 		}
-		if ((soda == "--clusthist") || (soda == "-CLH")) {
-			PSim::util::writeTerminal(
-					"\nRunning cluster histrogram analysis.\n",
-					PSim::Colour::Green);
-			clusterSizeHistogram(clusterPool);
-		}
-
 	}
+	resetChatterCount();
 }
 }
-

@@ -84,7 +84,7 @@ void analysisManager::writeInitTemp(particle** particles, int nParticles) {
 	double vAvg = v2 / ceil(float(nParticles));
 	double temp = (vAvg / 3.0);
 	//
-	std::cout << "---Temp: " << temp << " m/k" << "\n";
+	chatterBox.consoleMessage("Temp: " + tos(temp) + " m/k",3);
 }
 
 void analysisManager::writeToStream(double currentTime, string path, double value) {
@@ -100,9 +100,8 @@ void analysisManager::writeSystemState(particle** particles, int nParticles, dou
 	bool outXYZ = true;
 
 	std::string outName = std::to_string(int(std::round(currentTime)));
-	PSim::util::setTerminalColour(PSim::Colour::Cyan);
-	std::cout << "\n\n" << "Writing: " << outName << ".txt";
-	PSim::util::setTerminalColour(PSim::Colour::Normal);
+
+	util::writeTerminal("Writing: " + outName + ".txt", Colour::Cyan);
 
 	//Write the recovery image.
 	std::string dirName = trialName + "/snapshots/time-" + outName;
@@ -128,12 +127,11 @@ void analysisManager::writeSystemState(particle** particles, int nParticles, dou
 	double trackedMeanR2 = trackedDisplacement(particles, nParticles);
 
 	//Output the current system statistics.
-	std::cout << "\n<Coor>: " << avgCoor << " - Total Coor: " << totalCoor
-			<< "\n";
-	std::cout << "<EAP>: " << pot << "\n";
-	std::cout << "<N>/Nc: " << nClust << "\n";
-	std::cout << "<R^2>: " << meanR2 << "\n";
-	std::cout << "Temperature: " << getTemperature(particles, nParticles) << "\n";
+	chatterBox.consoleMessage("<Coor>: " + tos(avgCoor) + " - Total Coor: " + tos(totalCoor));
+	chatterBox.consoleMessage("<EAP>: " + tos(pot));
+	chatterBox.consoleMessage("<N>/Nc: " + tos(nClust));
+	chatterBox.consoleMessage("<R^2>: " + tos(meanR2));
+	chatterBox.consoleMessage("Temperature: " + tos(getTemperature(particles, nParticles)));
 
 	writeToStream(currentTime, trialName + "/clustGraph.txt", nClust);
 	writeToStream(currentTime, trialName + "/coorGraph.txt", avgCoor);

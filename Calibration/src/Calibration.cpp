@@ -27,7 +27,7 @@ Calibration::~Calibration()
 	delete &cutOff;
 }
 
-Calibration::Calibration(configReader::config* cfg)
+Calibration::Calibration(config* cfg)
 {
 	//Sets the name
 	name = "Calibration";

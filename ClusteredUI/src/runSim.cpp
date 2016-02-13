@@ -26,7 +26,7 @@ SOFTWARE.*/
 using namespace std;
 using namespace PSim;
 
-PSim::defaultForceManager* loadForces(configReader::config* cfg)
+PSim::defaultForceManager* loadForces(config* cfg)
 {
 	//Creates a force manager.
 	util::writeTerminal("Adding required forces.\n", Colour::Green);
@@ -78,10 +78,10 @@ PSim::defaultForceManager* loadForces(configReader::config* cfg)
 	return force;
 }
 
-PSim::system* loadSystem(configReader::config* cfg, std::string aName, std::string timeStamp, PSim::brownianIntegrator* difeq, PSim::defaultForceManager* force)
+PSim::system* loadSystem(config* cfg, std::string aName, std::string timeStamp, PSim::brownianIntegrator* difeq, PSim::defaultForceManager* force)
 {
 	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
-	configReader::config* sysCfg =new configReader::config(aName + "/sysConfig.cfg");
+	config* sysCfg =new config(aName + "/sysConfig.cfg");
 	PSim::system* sys = PSim::system::loadFromFile(sysCfg, aName, timeStamp, difeq, force);
 
 	double newTimeStep = cfg->getParam<double>("timeStep",0);
@@ -96,7 +96,7 @@ PSim::system* loadSystem(configReader::config* cfg, std::string aName, std::stri
 	return sys;
 }
 
-PSim::system* buildSystem(configReader::config* cfg, PSim::brownianIntegrator* difeq, PSim::defaultForceManager* force)
+PSim::system* buildSystem(config* cfg, PSim::brownianIntegrator* difeq, PSim::defaultForceManager* force)
 {
 	util::writeTerminal("\nCreating particle system.\n", Colour::Green);
 	//Creates the particle system.
@@ -122,7 +122,7 @@ void runScript(string aName, string timeStamp)
 	/*----------------CFG-----------------*/
 
 	util::writeTerminal("Looking for configuration file.\n\n", Colour::Green);
-	configReader::config* cfg =new configReader::config(settingPath);
+	config* cfg =new config(settingPath);
 	cfg->showOutput();
 
 	/*---------------FORCES---------------*/

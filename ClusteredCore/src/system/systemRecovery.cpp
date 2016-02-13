@@ -72,7 +72,7 @@ int system::readParticles(system* oldSys, std::string sysState,
 		std::string timeStamp, int bsize) {
 	std::string fullPath = sysState + "/snapshots/time-" + timeStamp
 			+ "/recovery.txt";
-	cout << "-Reading: " << fullPath << "\n";
+	chatterBox.consoleMessage("Reading: " + fullPath, 1);
 	ifstream state;
 	state.open(fullPath, ios_base::in);
 	// Read in each particle.
@@ -108,7 +108,7 @@ int system::readParticles(system* oldSys, std::string sysState,
 	return count;
 }
 
-void system::readSettings(system* oldSys, configReader::config* cfg) {
+void system::readSettings(system* oldSys, config* cfg) {
 	cfg->showOutput();
 	oldSys->state.concentration = cfg->getParam<double>("Concentration", 0);
 	oldSys->state.cellSize = cfg->getParam<int>("cellSize", 0);
@@ -150,7 +150,7 @@ void system::createRewindDir(system* oldSys) {
 	}
 }
 
-system* system::loadFromFile(configReader::config* cfg, std::string sysState,
+system* system::loadFromFile(config* cfg, std::string sysState,
 		std::string timeStamp, PSim::IIntegrator* sysInt,
 		PSim::defaultForceManager* sysFcs) {
 	PSim::util::writeTerminal("\n\nLoading recovery state...\n",
@@ -166,7 +166,7 @@ system* system::loadFromFile(configReader::config* cfg, std::string sysState,
 	int count = readParticles(oldSys, sysState, timeStamp, bsize);
 
 	// Maybe this should throw an error for count != nParts?
-	std::cout << "-Found " << count << " / " << nParts << " particles.\n";
+	chatterBox.consoleMessage("Found " + tos(count) + " / " + tos(nParts) + " particles", 1);
 
 	// Pulls in the old system configuration. Don't recalculate it incase the settings.cfg gets changed incorrectly.
 	readSettings(oldSys, cfg);
@@ -182,7 +182,7 @@ system* system::loadFromFile(configReader::config* cfg, std::string sysState,
 	return oldSys;
 }
 
-system* system::loadAnalysis(configReader::config* cfg, std::string sysState,
+system* system::loadAnalysis(config* cfg, std::string sysState,
 		std::string timeStamp, IAnalysisManager* analysisInterface) {
 	system* oldSys = new system();
 
@@ -192,7 +192,8 @@ system* system::loadAnalysis(configReader::config* cfg, std::string sysState,
 
 	int bsize = cfg->getParam<int>("boxSize", 0);
 	int count = readParticles(oldSys, sysState, timeStamp, bsize);
-	std::cout << "-Found " << count << " / " << nParts << " particles.\n";
+	chatterBox.consoleMessage("Found " + tos(count) + " / " + tos(nParts) + " particles", 1);
+
 
 	readSettings(oldSys, cfg);
 	oldSys->state.nParticles = count;

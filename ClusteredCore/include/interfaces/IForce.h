@@ -50,7 +50,7 @@ public:
 
 };
 
-typedef IForce* create_Force(configReader::config*);
+typedef IForce* create_Force(config*);
 
 }
 

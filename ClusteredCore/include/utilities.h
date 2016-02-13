@@ -1,20 +1,22 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include <fstream>
-#include <sstream>
-#include <iomanip>
+#include <map>
+#include <queue>
+#include "defs.h"
 #include <string>
 #include <random>
 #include <vector>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/sendfile.h>
-#include <unistd.h>
-#include <map>
-#include <queue>
-#include "error.h"
 #include "timer.h"
+#include "error.h"
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include "diagnostics.h"
+#include <sys/sendfile.h>
 #include "structs/type3.h"
 #include "structs/systemState.h"
 

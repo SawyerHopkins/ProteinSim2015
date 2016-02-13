@@ -30,7 +30,7 @@ AOPotential::~AOPotential()
 	delete &coEff2;
 }
 
-AOPotential::AOPotential(configReader::config* cfg)
+AOPotential::AOPotential(config* cfg)
 {
 	//Sets the name
 	name = "AOPotential";

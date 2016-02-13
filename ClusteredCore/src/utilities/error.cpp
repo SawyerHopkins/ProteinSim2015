@@ -25,41 +25,44 @@
 namespace PSim {
 
 void error::throwInitializationError() {
-	std::cout << "Could create initial system.\n";
-	std::cout << "Try decreasing particle density\n.";
+	chatterBox.startErrorLog(7701, "Could not create initial system.");
+	chatterBox.logErrorMessage("Try decreasing particle density.");
+	chatterBox.endErrorLog();
 	exit(7701);
 }
 
 void error::throwCellBoundsError(int cx, int cy, int cz) {
-	std::cout << "Unable to find: cells[" << cx << "][" << cy << "][" << cz
-			<< "]";
+	chatterBox.startErrorLog(7702, "Unable to find: cells[" + tos(cx) + "][" + tos(cy) + "][" + tos(cz) + "].");
+	chatterBox.endErrorLog();
 	exit(7702);
 }
 
 void error::throwParticleBoundsError(type3<double>* pos, int name) {
-	std::cout << "\nParticle out of bounds.\n";
-	std::cout << "Particle: " << name << " : " << pos->x << "," << pos->y << "," << pos->z
-			<< "\n";
+	chatterBox.startErrorLog(7703, "Particle out of bounds.");
+	chatterBox.logErrorMessage("Particle: " + tos(name) + " : " + tos(pos->x) + "," + tos(pos->y) + "," + tos(pos->z));
+	chatterBox.endErrorLog();
 	exit(7703);
 }
 
 void error::throwParticleOverlapError(int nameI, int nameJ, double r) {
-	std::cout
-			<< "\nSignificant particle overlap. Consider time-step reduction.\n";
-	std::cout << "\nR: " << r;
-	std::cout << "\n" << "I-Name:" << nameI;
-	std::cout << "\n" << "J-Name:" << nameJ;
+	chatterBox.startErrorLog(7704, "Significant particle overlap. Consider time-step reduction");
+	chatterBox.logErrorMessage("First offender: " + tos(nameI));
+	chatterBox.logErrorMessage("Second offender: " + tos(nameJ));
+	chatterBox.logErrorMessage("Distance: " + tos(r));
+	chatterBox.endErrorLog();
 	exit(7704);
 }
 
 void error::throwInfiniteForce() {
-	std::cout << "\nBad news bears; Numerically unstable system.";
-	std::cout << "\nAttempt reduction of concentration or decreased time step.";
+	chatterBox.startErrorLog(7705, "Bad news bears; Numerically unstable system");
+	chatterBox.logErrorMessage("Attempt reduction of concentration or decreased time step.");
+	chatterBox.endErrorLog();
 	exit(7705);
 }
 
 void error::throwInputError() {
-	std::cout << "\n" << "Invalid input file." << "\n";
+	chatterBox.startErrorLog(7706, "Invalid input file");
+	chatterBox.endErrorLog();
 	exit(7706);
 }
 

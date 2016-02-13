@@ -103,7 +103,7 @@ private:
 	void allocateCells(int scale);
 	void setCellNeighbors(int scale);
 	void assignCellParticles();
-	void setSystemConstants(configReader::config* cfg,
+	void setSystemConstants(config* cfg,
 			PSim::IIntegrator* sysInt, PSim::defaultForceManager* sysFcs);
 
 public:
@@ -119,13 +119,19 @@ public:
 	 * @brief Default constructor used for loading system from recovery file.
 	 */
 	system() {
+		analysis = NULL;
+		cells = NULL;
+		cycleHour = 0;
+		integrator = NULL;
+		particles = NULL;
+		sysForces = NULL;
 	}
 	;
 	/**
 	 * @brief Constructs the particle system.
 	 * @return Nothing.
 	 */
-	system(configReader::config* cfg, PSim::IIntegrator* sysInt,
+	system(config* cfg, PSim::IIntegrator* sysInt,
 			PSim::defaultForceManager* sysFcs);
 	/**
 	 * @brief Destructs the particle system.
@@ -196,7 +202,7 @@ public:
 	/**
 	 * @brief Read in the sysConfig file.
 	 */
-	static void readSettings(system* oldSys, configReader::config* cfg);
+	static void readSettings(system* oldSys, config* cfg);
 	/**
 	 * @brief Load a system with particle data from file.
 	 */
@@ -209,13 +215,13 @@ public:
 	/**
 	 * @brief Recover a system state from output files.
 	 */
-	static system* loadFromFile(configReader::config* cfg, std::string sysState,
+	static system* loadFromFile(config* cfg, std::string sysState,
 			std::string timeStamp, PSim::IIntegrator* sysInt,
 			PSim::defaultForceManager* sysFcs);
 	/**
 	 * @brief Recover to a hulk state (only particle system initialized).
 	 */
-	static system* loadAnalysis(configReader::config* cfg, std::string sysState,
+	static system* loadAnalysis(config* cfg, std::string sysState,
 			std::string timeStamp, IAnalysisManager* analysisInterface);
 
 	/********************************************//**
@@ -271,7 +277,7 @@ public:
 	 * @return
 	 */
 	int getConfigVersion() {
-		return configReader::config::version;
+		return config::version;
 	}
 	/**
 	 * @brief Gets the flagged version of error.h for debugging.

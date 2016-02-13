@@ -39,7 +39,7 @@ private:
 		 * @brief Creates an new AO Potential.
 		 * @param cfg The address of the configuration file reader.
 		 */
-		AOPotential(configReader::config* cfg);
+		AOPotential(config* cfg);
 		/**
 		 * @brief Releases the force from memory.
 		 */
@@ -74,7 +74,7 @@ private:
 };
 
 //Class factories.
-extern "C" PSim::IForce* getForce(configReader::config* cfg)
+extern "C" PSim::IForce* getForce(config* cfg)
 {
 	return new AOPotential(cfg);
 }

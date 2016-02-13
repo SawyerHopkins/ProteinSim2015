@@ -1,6 +1,6 @@
 #ifndef ERROR_H
 #define ERROR_H
-#include <iostream>
+#include "defs.h"
 #include <exception>
 #include "structs/type3.h"
 

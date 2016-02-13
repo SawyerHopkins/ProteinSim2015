@@ -372,7 +372,7 @@ public:
 	 * @brief Writes the position of the particle to the console.
 	 */
 	void writePosition() {
-		std::cout << pos.x << ", " << pos.y << ", " << pos.z << "\n";
+		chatterBox.consoleMessage(tos(pos.x) + ", " + tos(pos.y) + ", " + tos(pos.z));
 	}
 
 };

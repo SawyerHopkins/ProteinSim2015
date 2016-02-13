@@ -22,7 +22,7 @@
 
 #include "config.h"
 
-namespace configReader {
+namespace PSim {
 
 void config::parseLine(std::string& line) {
 	if (line.at(0) != '#') {
@@ -84,10 +84,10 @@ template<typename T> T config::getParam(string key, T def) {
 	//If we want output then write what happened.
 	if (suppressOutput == false) {
 		if (exists == false) {
-			std::cout << "-Option: '" << key << "' missing\n";
-			std::cout << "-Using default.\n";
+			chatterBox.consoleMessage("Option: '" + key  + "' missing", 1);
+			chatterBox.consoleMessage("Using default", 1);
 		}
-		std::cout << "---" << key << ": " << val << "\n";
+		chatterBox.consoleMessage(key + ": " + val, 3);
 	}
 
 	return val;
@@ -104,10 +104,10 @@ template<> int config::getParam<int>(string key, int def) {
 
 	if (suppressOutput == false) {
 		if (exists == false) {
-			std::cout << "-Option: '" << key << "' missing\n";
-			std::cout << "-Using default.\n";
+			chatterBox.consoleMessage("Option: '" + key  + "' missing", 1);
+			chatterBox.consoleMessage("Using default", 1);
 		}
-		std::cout << "---" << key << ": " << val << "\n";
+		chatterBox.consoleMessage(key + ": " + to_string(val), 3);
 	}
 
 	return val;
@@ -124,10 +124,10 @@ template<> float config::getParam<float>(string key, float def) {
 
 	if (suppressOutput == false) {
 		if (exists == false) {
-			std::cout << "-Option: '" << key << "' missing\n";
-			std::cout << "-Using default.\n";
+			chatterBox.consoleMessage("Option: '" + key  + "' missing", 1);
+			chatterBox.consoleMessage("Using default", 1);
 		}
-		std::cout << "---" << key << ": " << val << "\n";
+		chatterBox.consoleMessage(key + ": " + to_string(val), 3);
 	}
 
 	return val;
@@ -144,10 +144,10 @@ template<> double config::getParam<double>(string key, double def) {
 
 	if (suppressOutput == false) {
 		if (exists == false) {
-			std::cout << "-Option: '" << key << "' missing\n";
-			std::cout << "-Using default.\n";
+			chatterBox.consoleMessage("Option: '" + key  + "' missing", 1);
+			chatterBox.consoleMessage("Using default", 1);
 		}
-		std::cout << "---" << key << ": " << val << "\n";
+		chatterBox.consoleMessage(key + ": " + to_string(val), 3);
 	}
 
 	return val;
@@ -164,10 +164,10 @@ template<> string config::getParam<string>(string key, string def) {
 
 	if (suppressOutput == false) {
 		if (exists == false) {
-			std::cout << "-Option: '" << key << "' missing\n";
-			std::cout << "-Using default.\n";
+			chatterBox.consoleMessage("Option: '" + key  + "' missing", 1);
+			chatterBox.consoleMessage("Using default", 1);
 		}
-		std::cout << "---" << key << ": " << val << "\n";
+		chatterBox.consoleMessage(key + ": " + val, 3);
 	}
 
 	return val;

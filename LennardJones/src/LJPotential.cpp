@@ -33,7 +33,7 @@ LennardJones::~LennardJones()
 	delete[] &ljNum;
 }
 
-LennardJones::LennardJones(configReader::config* cfg)
+LennardJones::LennardJones(config* cfg)
 {
 	//Sets the name
 	name = "Lennard Jones";

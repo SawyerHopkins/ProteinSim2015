@@ -127,7 +127,7 @@ int analysisManager::writeClusters(std::vector<std::vector<particle*>> clusterPo
 
 	}
 
-	std::cout << "\n" << "#Clusters: " << clusterPool.size() << "\n";
+	chatterBox.consoleMessage("#Clusters: " + tos(clusterPool.size()));
 
 	return avgSize;
 }

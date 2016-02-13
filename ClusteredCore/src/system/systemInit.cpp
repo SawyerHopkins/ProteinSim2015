@@ -140,20 +140,17 @@ void system::initParticles(double r, double m) {
 
 	}
 
-	std::cout << "---Added " << state.nParticles
-			<< " particles. Checking for overlap.\n\n";
+	chatterBox.consoleMessage("Added " + tos(state.nParticles) + " particles.", 3);
 
 	//Checks the system for overlap.
 	initCheck(&gen, &distribution);
 
-	std::cout << "\n\n---Overlap resolved. Creating Maxwell distribution.\n";
+	chatterBox.consoleMessage("Overlap resolved. Creating Maxwell distribution", 3);
 
 	//Set initial velocity.
 	maxwellVelocityInit(&gen, &distribution);
 
-	std::cout
-			<< "---Maxwell distribution created. Creating cell assignment.\n\n";
-
+	chatterBox.consoleMessage("Maxwell distribution created. Created cell assignment.", 3);
 }
 
 void system::initCheck(std::mt19937* gen,
@@ -328,7 +325,7 @@ std::string system::dirPrompt() {
 
 	//Check that we get a real directory.
 	while (!validDir) {
-		cout << "Working directory: ";
+		chatterBox.consolePrompt("Working directory: ");
 		cin >> outDir;
 
 		//Check that the directory exists.
@@ -354,7 +351,7 @@ std::string system::dirPrompt() {
 	while (!acceptName) {
 		validDir = 0;
 
-		cout << "\n" << "Trial Name: ";
+		chatterBox.consolePrompt("Trial Name: ");
 		cin >> tName;
 
 		//Check input format.
@@ -391,7 +388,7 @@ std::string system::dirPrompt() {
 	}
 
 	//Output the directory.
-	cout << "\n" << "Data will be saved in: " << tName << "\n\n";
+	chatterBox.consoleMessage("Data will be saved in: " + tName);
 	mkdir(tName.c_str(), 0777);
 
 	return tName;

@@ -42,7 +42,7 @@ void runAnalysis(std::queue<std::string>* analysisArgs)
 	string analysisName = PSim::util::tryPop(analysisArgs);
 	string timeStamp = PSim::util::tryPop(analysisArgs);
 
-	configReader::config* cfg =new configReader::config(analysisName + "/sysConfig.cfg");
+	config* cfg =new config(analysisName + "/sysConfig.cfg");
 
 	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
 	PSim::system* sys = PSim::system::loadAnalysis(cfg, analysisName, timeStamp,NULL);
