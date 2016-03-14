@@ -32,7 +32,7 @@ public:
 	 * @param itemCell The cell containing the index particle.
 	 * @param items All particles in the system.
 	 */
-	virtual void getAcceleration(int index, PSim::PeriodicGrid* itemCell, PSim::particle** items, systemState* state)=0;
+	virtual void getAcceleration(int index, double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state)=0;
 
 	/**
 	 * @brief Flag for a force dependent time.

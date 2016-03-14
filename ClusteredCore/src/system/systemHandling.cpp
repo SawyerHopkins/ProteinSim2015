@@ -22,50 +22,73 @@
 
 #include "system.h"
 
+using namespace std;
+
 namespace PSim {
 
 /********************************************//**
  *---------------PARTICLE HANDLING----------------
  ************************************************/
 
-void system::updateCells() {
+void system::hashParticles() {
+	int cellScaleSq = state.cellScale * state.cellScale;
+#pragma omp parallel for
+	for (int i = 0; i < state.nParticles; i++) {
+		type3<int> itemCell;
 
-	int cellSize = state.cellSize;
-	int cellScale = state.cellScale;
+		itemCell.x = floor(particles[i]->getX() / state.cellSize);
+		itemCell.y = floor(particles[i]->getY() / state.cellSize);
+		itemCell.z = floor(particles[i]->getZ() / state.cellSize);
 
-	for (int index = 0; index < state.nParticles; index++) {
+		int hash = itemCell.x + (state.cellScale * itemCell.y) + (cellScaleSq * itemCell.z);
 
-		//New cell
-		int cX = particles[index]->getX() / cellSize;
-		int cY = particles[index]->getY() / cellSize;
-		int cZ = particles[index]->getZ() / cellSize;
+		get<0>(particleHashIndex[i]) = hash;
+		get<1>(particleHashIndex[i]) = i;
+	}
+}
 
-		//Old cell
-		int cX0 = particles[index]->getCX();
-		int cY0 = particles[index]->getCY();
-		int cZ0 = particles[index]->getCZ();
+void system::sortParticles() {
+	__gnu_parallel::sort(particleHashIndex.begin(), particleHashIndex.end(), util::sortParticleTuple);
+}
 
-		//If cell has changed
-		if ((cX != cX0) || (cY != cY0) || (cZ != cZ0)) {
+void system::reorderParticles() {
+#pragma omp parallel for
+	for (int i = 0; i < state.nParticles; i++) {
+		// Set Cell Data.
+		int currentHash = get<0>(particleHashIndex[i]);
 
-			if (cX > (cellScale - 1)) {
-				PSim::error::throwCellBoundsError(cX, cY, cZ);
-			}
-			if (cY > (cellScale - 1)) {
-				PSim::error::throwCellBoundsError(cX, cY, cZ);
-			}
-			if (cZ > (cellScale - 1)) {
-				PSim::error::throwCellBoundsError(cX, cY, cZ);
-			}
-
-			//Remove from old. Add to new. Update particle address.
-			cells[cX0][cY0][cZ0]->removeMember(particles[index]);
-			cells[cX][cY][cZ]->addMember(particles[index]);
-			particles[index]->setCell(cX, cY, cZ);
+		if (i == 0) {
+			get<0>(cellStartEnd[currentHash]) = 0;
 		}
 
-	}
+		if (i > 0) {
+			int prevHash = get<0>(particleHashIndex[i-1]);
 
+			if (prevHash != currentHash) {
+				get<0>(cellStartEnd[currentHash]) = i;
+				get<1>(cellStartEnd[prevHash]) = i;
+			}
+		}
+
+		if (i == state.nParticles - 1) {
+			get<1>(cellStartEnd[currentHash]) = state.nParticles;
+		}
+
+		// Copy Particle Data.
+		int index = get<1>(particleHashIndex[i]);
+		int offset = 4*i;
+		sortedParticles[offset] = particles[index]->getX();
+		sortedParticles[offset+1] = particles[index]->getY();
+		sortedParticles[offset+2] = particles[index]->getZ();
+		sortedParticles[offset+3] = particles[index]->getRadius();
+	}
+}
+
+void system::pushParticleForce() {
+#pragma omp parallel for
+	for (int i =0; i < state.nParticles; i++) {
+		particles[i]->setForce(&(particleForce[3*i]));
+	}
 }
 
 }

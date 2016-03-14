@@ -44,10 +44,11 @@ void error::throwParticleBoundsError(type3<double>* pos, int name) {
 	exit(7703);
 }
 
-void error::throwParticleOverlapError(int nameI, int nameJ, double r) {
+void error::throwParticleOverlapError(int hash, int nameI, int nameJ, double r) {
 	chatterBox.startErrorLog(7704, "Significant particle overlap. Consider time-step reduction");
-	chatterBox.logErrorMessage("First offender: " + tos(nameI));
-	chatterBox.logErrorMessage("Second offender: " + tos(nameJ));
+	chatterBox.logErrorMessage("Cell Hash: " + tos(hash));
+	chatterBox.logErrorMessage("1st Particle Index: " + tos(nameI));
+	chatterBox.logErrorMessage("2nd Particle Index: " + tos(nameJ));
 	chatterBox.logErrorMessage("Distance: " + tos(r));
 	chatterBox.endErrorLog();
 	exit(7704);

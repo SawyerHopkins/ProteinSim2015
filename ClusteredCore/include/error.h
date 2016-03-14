@@ -40,7 +40,7 @@ public:
 	 * @param nameJ Name of the force particle.
 	 * @param r The distance between the particles.
 	 */
-	static void throwParticleOverlapError(int nameI, int nameJ, double r);
+	static void throwParticleOverlapError(int hash, int nameI, int nameJ, double r);
 	/**
 	 * @brief Throw when force is given value NaN.
 	 */

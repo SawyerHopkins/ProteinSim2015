@@ -2,6 +2,7 @@
 #define UTILITIES_H
 
 #include <map>
+#include <tuple>
 #include <queue>
 #include "defs.h"
 #include <string>
@@ -13,12 +14,15 @@
 #include <sstream>
 #include <iomanip>
 #include <unistd.h>
+#include <algorithm>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include "diagnostics.h"
 #include <sys/sendfile.h>
 #include "structs/type3.h"
+#include <parallel/algorithm>
 #include "structs/systemState.h"
+
 
 using namespace std;
 
@@ -135,6 +139,8 @@ public:
 	 * @return
 	 */
 	static double powBinaryDecomp(double base, int exp);
+
+	static double sortParticleTuple(tuple<double,double> i, tuple<double,double> j) { return get<0>(i) < get<0>(j); }
 
 	/**
 	 * @brief A fast method for generating a normal distribution.

@@ -58,10 +58,6 @@ particle::~particle() {
 	delete &frc;
 	delete &frc0;
 	delete &cll;
-	delete &m;
-	delete &r;
-	delete &name;
-	delete &coorNumber;
 }
 
 /********************************************//**
@@ -120,6 +116,16 @@ void particle::updateForce(type3<double>* pos,
 	frc.x += pos->x;
 	frc.y += pos->y;
 	frc.z += pos->z;
+}
+
+void particle::setForce(double* val) {
+	frc0.x = frc.x;
+	frc0.y = frc.y;
+	frc0.z = frc.z;
+
+	frc.x = *(val);
+	frc.y = *(val+1);
+	frc.z = *(val+2);
 }
 
 float particle::calculatePotential() {

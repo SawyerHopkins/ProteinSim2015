@@ -1,8 +1,8 @@
 #ifndef FORCE_H
 #define FORCE_H
 #include <omp.h>
-#include "cell.h"
 #include "config.h"
+#include "particle.h"
 #include "interfaces/IForce.h"
 
 namespace PSim {
@@ -52,7 +52,7 @@ public:
 	 * @param cells The system cell manager.
 	 * @param items The particles in the system.
 	 */
-	void getAcceleration(PSim::PeriodicGrid**** cells, PSim::particle** items, systemState* state);
+	void getAcceleration(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 
 	/**
 	 * @brief Checks if the system contains a time dependent force.

@@ -1,0 +1,1480 @@
+desc: I1 cache:         65536 B, 64 B, 2-way associative
+desc: D1 cache:         16384 B, 64 B, 4-way associative
+desc: LL cache:         8388608 B, 64 B, 64-way associative
+cmd: ./PSim
+events: Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw 
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../include/list.h
+fn=__pthread_initialize_minimal
+60 2 0 0 0 0 0 1 0 0
+61 1 0 0 0 0 0 1 0 0
+62 1 0 0 0 0 0 1 0 0
+64 1 0 0 0 0 0 1 0 0
+fn=pthread_create@@GLIBC_2.2.5
+60 14 0 0 7 2 0 7 0 0
+61 14 1 1 0 0 0 7 0 0
+62 7 0 0 0 0 0 7 0 0
+64 7 0 0 0 0 0 7 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../nptl/pthread_mutex_lock.c
+fn=pthread_mutex_lock
+64 4 1 1 0 0 0 0 0 0
+67 12 0 0 4 1 0 0 0 0
+71 12 0 0 0 0 0 0 0 0
+75 12 1 1 0 0 0 0 0 0
+84 8 2 1 0 0 0 0 0 0
+95 16 0 0 0 0 0 0 0 0
+99 4 0 0 4 1 0 0 0 0
+102 8 0 0 4 0 0 0 0 0
+115 16 2 1 4 0 0 0 0 0
+117 12 0 0 4 0 0 0 0 0
+118 8 0 0 0 0 0 4 0 0
+159 4 1 1 4 0 0 0 0 0
+162 4 0 0 0 0 0 4 0 0
+164 4 0 0 4 0 0 0 0 0
+169 4 0 0 0 0 0 0 0 0
+170 8 0 0 4 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../sysdeps/unix/sysv/linux/bits/sigset.h
+fn=__pthread_initialize_minimal
+117 2 0 0 1 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../sysdeps/unix/sysv/linux/createthread.c
+fn=create_thread
+50 70 1 1 0 0 0 28 0 0
+54 14 0 0 0 0 0 0 0 0
+55 14 0 0 7 0 0 0 0 0
+56 14 1 1 7 0 0 0 0 0
+59 7 0 0 0 0 0 7 0 0
+60 14 0 0 0 0 0 0 0 0
+102 98 1 1 14 0 0 14 0 0
+109 7 0 0 0 0 0 7 0 0
+112 14 0 0 0 0 0 0 0 0
+118 21 0 0 7 0 0 0 0 0
+141 14 1 1 7 0 0 0 0 0
+153 7 0 0 0 0 0 0 0 0
+154 42 0 0 35 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../sysdeps/unix/sysv/linux/pthread_getaffinity.c
+fn=pthread_getaffinity_np@@GLIBC_2.3.4
+31 3 1 1 0 0 0 0 0 0
+35 6 0 0 1 1 0 0 0 0
+37 2 0 0 0 0 0 0 0 0
+41 6 1 1 0 0 0 1 0 0
+43 1 0 0 0 0 0 0 0 0
+44 2 0 0 1 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../sysdeps/unix/sysv/linux/x86/elision-conf.c
+fn=elision_init
+64 1 1 1 0 0 0 0 0 0
+65 6 0 0 1 0 0 2 0 0
+67 6 0 0 2 1 0 1 0 0
+69 2 1 1 0 0 0 0 0 0
+71 2 0 0 1 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../sysdeps/unix/sysv/linux/x86_64/sigaction.c
+fn=__libc_sigaction
+47 4 1 1 0 0 0 0 0 0
+51 4 0 0 0 0 0 0 0 0
+53 4 0 0 2 0 0 2 0 0
+54 66 2 2 32 0 0 32 1 0
+55 8 0 0 2 0 0 2 0 0
+57 4 0 0 0 0 0 2 0 0
+62 26 1 1 0 0 0 0 0 0
+65 8 1 1 0 0 0 0 0 0
+73 4 1 1 2 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/../sysdeps/x86_64/multiarch/init-arch.c
+fn=__get_cpu_features
+222 3 1 1 1 1 1 0 0 0
+223 1 0 0 0 0 0 1 0 0
+226 2 0 0 1 0 0 0 0 0
+fn=__init_cpu_features
+31 6 2 2 0 0 0 4 0 0
+37 3 0 0 0 0 0 0 0 0
+38 3 0 0 0 0 0 0 0 0
+39 2 0 0 0 0 0 0 0 0
+45 1 0 0 0 0 0 1 0 0
+54 3 1 1 0 0 0 1 0 0
+57 9 0 0 0 0 0 0 0 0
+59 2 0 0 0 0 0 0 0 0
+65 3 0 0 0 0 0 0 0 0
+66 3 0 0 0 0 0 0 0 0
+71 2 0 0 0 0 0 0 0 0
+74 1 0 0 0 0 0 0 0 0
+75 7 0 0 1 1 1 0 0 0
+105 2 1 1 0 0 0 0 0 0
+127 1 1 1 1 1 1 0 0 0
+131 2 0 0 0 0 0 0 0 0
+156 2 1 1 1 0 0 0 0 0
+157 7 1 1 0 0 0 4 0 0
+164 3 0 0 1 0 0 0 0 0
+168 2 0 0 0 0 0 0 0 0
+170 3 0 0 0 0 0 0 0 0
+174 2 1 1 0 0 0 0 0 0
+175 1 0 0 1 0 0 0 0 0
+181 2 0 0 1 0 0 0 0 0
+185 2 0 0 0 0 0 0 0 0
+188 2 1 1 1 0 0 0 0 0
+204 4 0 0 0 0 0 0 0 0
+205 4 0 0 0 0 0 0 0 0
+206 4 1 1 0 0 0 0 0 0
+207 2 0 0 0 0 0 0 0 0
+208 2 0 0 0 0 0 0 0 0
+211 1 0 0 0 0 0 1 0 0
+212 1 0 0 0 0 0 1 0 0
+214 1 0 0 0 0 0 1 0 0
+215 2 0 0 2 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/allocatestack.c
+fn=pthread_create@@GLIBC_2.2.5
+155 14 0 0 0 0 0 7 0 0
+163 7 0 0 0 0 0 7 0 0
+180 28 0 0 7 0 0 0 0 0
+188 28 1 1 7 2 0 0 0 0
+213 14 1 1 14 0 0 0 0 0
+354 21 0 0 0 0 0 7 0 0
+356 21 0 0 0 0 0 0 0 0
+361 21 0 0 7 0 0 0 0 0
+365 28 1 1 7 1 0 0 0 0
+366 7 0 0 7 1 0 0 0 0
+367 14 0 0 14 0 0 0 0 0
+371 14 1 1 7 0 0 0 0 0
+474 56 0 0 14 2 0 7 0 0
+485 14 0 0 7 2 0 0 0 0
+486 14 1 1 0 0 0 0 0 0
+490 63 0 0 14 1 0 7 0 0
+491 14 1 1 0 0 0 0 0 0
+492 7 0 0 0 0 0 0 0 0
+493 7 0 0 0 0 0 0 0 0
+508 35 1 1 0 0 0 7 0 0
+512 49 0 0 0 0 0 14 0 0
+515 14 0 0 0 0 0 0 0 0
+520 14 0 0 7 0 0 0 0 0
+547 21 1 1 14 0 0 0 0 0
+556 7 0 0 0 0 0 7 7 7
+557 7 0 0 0 0 0 7 0 0
+562 14 0 0 0 0 0 7 7 7
+565 7 0 0 0 0 0 7 7 7
+567 21 1 1 7 0 0 14 0 0
+581 7 0 0 0 0 0 7 7 7
+584 14 0 0 7 1 0 7 7 7
+587 28 0 0 0 0 0 7 0 0
+600 28 0 0 7 1 0 0 0 0
+603 21 1 1 0 0 0 7 0 0
+605 14 0 0 14 0 0 0 0 0
+612 21 1 1 14 0 0 0 0 0
+639 21 2 2 14 0 0 0 0 0
+648 42 1 1 14 0 0 7 0 0
+704 21 1 1 7 0 0 7 0 0
+709 14 0 0 7 0 0 7 0 0
+714 7 0 0 0 0 0 7 0 0
+719 7 1 1 0 0 0 7 0 0
+722 7 0 0 0 0 0 7 0 0
+724 14 0 0 0 0 0 7 0 0
+726 7 0 0 0 0 0 7 0 0
+736 14 1 1 7 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/cleanup_compat.c
+fn=_pthread_cleanup_pop
+47 6 2 1 3 1 0 3 1 0
+51 9 0 0 3 0 0 0 0 0
+fn=_pthread_cleanup_push
+31 3 2 1 0 0 0 3 0 0
+32 3 0 0 0 0 0 3 0 0
+33 6 0 0 3 2 0 3 0 0
+35 6 0 0 3 0 0 3 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/cleanup_defer_compat.c
+fn=_pthread_cleanup_pop_restore
+68 44 11 1 22 0 0 22 0 0
+71 66 0 0 22 0 0 0 0 0
+94 66 0 0 22 0 0 0 0 0
+fn=_pthread_cleanup_push_defer
+30 22 12 0 0 0 0 22 0 0
+31 22 0 0 0 0 0 22 0 0
+32 44 3 1 22 13 0 22 0 0
+34 22 0 0 22 7 0 0 0 0
+37 66 0 0 0 0 0 0 0 0
+52 22 0 0 0 0 0 22 0 0
+54 66 0 0 0 0 0 0 0 0
+56 44 0 0 22 0 0 22 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/nptl-init.c
+fn=__pthread_initialize_minimal
+299 4 1 1 0 0 0 3 0 0
+313 1 0 0 1 0 0 0 0 0
+316 5 1 1 0 0 0 2 1 0
+318 2 0 0 0 0 0 1 1 0
+319 1 0 0 0 0 0 1 1 0
+323 3 0 0 2 1 0 1 0 0
+328 2 1 1 0 0 0 1 0 0
+330 1 0 0 0 0 0 1 0 0
+332 1 0 0 0 0 0 1 0 0
+335 3 0 0 0 0 0 0 0 0
+380 3 0 0 2 1 0 1 1 0
+383 2 1 1 0 0 0 1 1 1
+384 1 0 0 0 0 0 0 0 0
+388 2 1 1 1 1 0 1 0 0
+392 22 0 0 0 0 0 16 1 0
+398 2 0 0 0 0 0 1 0 0
+399 1 0 0 0 0 0 1 0 0
+400 4 1 1 0 0 0 1 0 0
+405 2 0 0 0 0 0 1 0 0
+406 1 0 0 0 0 0 1 0 0
+407 4 0 0 0 0 0 1 0 0
+419 6 1 1 0 0 0 0 0 0
+426 3 0 0 0 0 0 1 0 0
+429 3 0 0 1 0 0 0 0 0
+431 3 1 1 0 0 0 1 1 1
+433 6 1 1 1 0 0 1 0 0
+438 5 0 0 0 0 0 1 0 0
+439 3 1 1 1 0 0 0 0 0
+443 1 0 0 0 0 0 0 0 0
+446 3 0 0 0 0 0 0 0 0
+450 2 1 1 2 1 0 0 0 0
+451 5 0 0 1 0 0 0 0 0
+456 5 0 0 0 0 0 1 0 0
+457 4 1 1 1 1 0 0 0 0
+458 2 0 0 1 0 0 1 0 0
+459 1 0 0 0 0 0 1 1 1
+460 2 0 0 2 0 0 0 0 0
+464 5 1 1 2 1 0 3 1 0
+465 2 0 0 1 0 0 1 0 0
+469 2 0 0 0 0 0 1 0 0
+470 2 0 0 0 0 0 1 0 0
+471 1 0 0 1 1 0 0 0 0
+472 1 1 1 0 0 0 1 0 0
+473 2 0 0 0 0 0 0 0 0
+474 1 0 0 0 0 0 0 0 0
+476 2 1 1 0 0 0 1 0 0
+479 2 0 0 0 0 0 1 0 0
+481 2 0 0 0 0 0 1 0 0
+485 1 0 0 0 0 0 1 0 0
+487 4 0 0 0 0 0 1 0 0
+491 1 0 0 0 0 0 1 0 0
+492 5 0 0 4 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_attr_init.c
+fn=pthread_attr_init@@GLIBC_2.2.5
+35 2 0 0 0 0 0 1 0 0
+41 17 2 2 0 0 0 8 1 0
+47 3 0 0 0 0 0 2 0 0
+50 3 0 0 2 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_attr_setdetachstate.c
+fn=pthread_attr_setdetachstate
+35 2 1 1 0 0 0 0 0 0
+41 1 0 0 1 0 0 0 0 0
+45 2 0 0 1 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_create.c
+fn=pthread_create@@GLIBC_2.2.5
+483 28 0 0 7 0 0 0 0 0
+503 84 1 1 0 0 0 63 0 0
+508 7 1 1 0 0 0 7 0 0
+509 14 0 0 0 0 0 0 0 0
+556 7 0 0 0 0 0 7 0 0
+559 7 0 0 0 0 0 7 0 0
+565 14 0 0 7 0 0 7 7 7
+566 14 0 0 7 0 0 7 0 0
+569 7 0 0 7 0 0 0 0 0
+570 28 0 0 7 0 0 7 7 7
+571 21 0 0 7 1 0 0 0 0
+576 28 1 1 0 0 0 7 0 0
+579 42 0 0 21 1 0 21 0 0
+584 14 1 1 7 1 0 7 0 0
+585 14 0 0 7 0 0 7 0 0
+589 14 0 0 7 0 0 7 0 0
+594 14 0 0 7 0 0 7 0 0
+604 14 0 0 7 0 0 7 0 0
+607 21 1 1 7 0 0 0 0 0
+629 14 0 0 7 0 0 7 0 0
+641 7 0 0 14 0 0 0 0 0
+643 7 0 0 0 0 0 7 1 0
+650 14 0 0 0 0 0 0 0 0
+677 35 1 1 0 0 0 7 0 0
+680 14 0 0 0 0 0 0 0 0
+711 14 0 0 7 0 0 0 0 0
+720 14 0 0 0 0 0 7 0 0
+724 14 0 0 7 1 0 0 0 0
+728 63 1 1 49 1 0 0 0 0
+fn=start_thread
+254 28 1 1 0 0 0 14 7 7
+260 28 0 0 0 0 0 0 0 0
+261 7 0 0 0 0 0 7 6 0
+265 21 0 0 7 1 0 7 7 0
+268 7 0 0 0 0 0 7 0 0
+271 28 1 1 14 0 0 0 0 0
+282 35 0 0 7 0 0 0 0 0
+291 14 0 0 7 0 0 0 0 0
+307 7 0 0 0 0 0 7 7 7
+308 7 1 1 0 0 0 7 0 0
+311 21 0 0 0 0 0 7 0 0
+312 14 0 0 0 0 0 0 0 0
+315 14 0 0 0 0 0 7 6 0
+317 21 0 0 14 0 0 0 0 0
+333 14 1 1 14 6 0 7 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_getspecific.c
+fn=pthread_getspecific
+31 8 1 1 0 0 0 0 0 0
+32 20 0 0 4 0 0 0 0 0
+38 1 1 1 0 0 0 0 0 0
+56 4 0 0 4 1 0 0 0 0
+57 8 0 0 0 0 0 0 0 0
+61 18 0 0 6 1 0 0 0 0
+66 4 0 0 4 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_key_create.c
+fn=pthread_key_create
+28 3 2 1 0 0 0 0 0 0
+30 21 0 0 0 0 0 0 0 0
+32 6 1 1 6 2 0 0 0 0
+34 21 0 0 0 0 0 0 0 0
+36 9 0 0 3 0 0 0 0 0
+40 9 0 0 0 0 0 3 0 0
+43 3 0 0 0 0 0 3 0 0
+46 6 0 0 3 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_mutex_unlock.c
+fn=__pthread_mutex_unlock_usercnt
+40 4 0 0 0 0 0 0 0 0
+41 12 2 2 4 2 0 0 0 0
+42 12 0 0 0 0 0 0 0 0
+46 8 0 0 0 0 0 0 0 0
+51 4 0 0 0 0 0 4 0 0
+52 8 0 0 0 0 0 0 0 0
+54 8 0 0 4 0 0 0 0 0
+57 16 0 0 8 0 0 0 0 0
+63 8 1 1 0 0 0 0 0 0
+69 16 0 0 0 0 0 0 0 0
+73 12 1 1 8 2 0 0 0 0
+76 8 0 0 4 0 0 0 0 0
+93 8 0 0 4 0 0 0 0 0
+fn=pthread_mutex_unlock
+315 8 2 1 0 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_once.c
+fn=__pthread_once_slow
+68 18 2 2 0 0 0 9 0 0
+76 6 0 0 3 0 0 3 0 0
+80 6 0 0 0 0 0 0 0 0
+88 6 0 0 3 2 1 0 0 0
+92 9 0 0 6 0 0 0 0 0
+96 3 1 1 3 0 0 0 0 0
+101 6 0 0 0 0 0 0 0 0
+104 3 0 0 0 0 0 0 0 0
+112 21 0 0 0 0 0 3 0 0
+114 3 0 0 0 0 0 3 0 0
+116 9 0 0 0 0 0 3 0 0
+122 3 0 0 0 0 0 3 0 0
+125 18 1 1 0 0 0 0 0 0
+129 3 0 0 0 0 0 0 0 0
+130 18 0 0 12 1 0 0 0 0
+fn=pthread_once
+137 77596 59247 1 77596 36225 1 0 0 0
+138 155192 0 0 0 0 0 0 0 0
+141 3 0 0 0 0 0 0 0 0
+142 155186 0 0 77593 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_self.c
+fn=pthread_self
+26 1 1 1 1 0 0 0 0 0
+27 1 0 0 1 0 0 0 0 0
+fl=/build/glibc-COCyUY/glibc-2.21/nptl/pthread_setspecific.c
+fn=pthread_setspecific
+28 18 2 1 0 0 0 12 0 0
+35 3 0 0 3 0 0 0 0 0
+39 6 0 0 0 0 0 0 0 0
+42 24 3 1 3 2 0 0 0 0
+44 3 0 0 0 0 0 0 0 0
+46 9 0 0 0 0 0 0 0 0
+49 6 3 1 0 0 0 0 0 0
+84 3 0 0 0 0 0 3 3 0
+89 6 0 0 0 0 0 3 0 0
+90 3 0 0 0 0 0 3 2 0
+92 3 0 0 0 0 0 0 0 0
+93 18 0 0 15 0 0 0 0 0
+fl=???
+fn=(below main)
+0 56 4 4 16 10 0 16 2 0
+fn=???
+0 449047664 60524 438 404567670 4464685 12 2311117 8114 23
+fn=GOMP_parallel
+0 3772 4 2 536 134 0 1079 0 0
+fn=GOMP_parallel_end
+0 2010 4 2 670 402 0 268 0 0
+fn=LennardJones::LennardJones(PSim::config*)
+0 179 15 15 24 4 1 76 0 0
+fn=LennardJones::getAcceleration(int, PSim::PeriodicGrid*, PSim::particle**, PSim::systemState*)
+0 88332225 4 2 48028526 3329683 0 10747660 31 0
+fn=LennardJones::isTimeDependent()
+0 2 1 1 1 0 0 0 0 0
+fn=LennardJones::iterCells(int, double, PSim::particle*, PSim::PeriodicGrid*)
+0 4996450830 11 10 1986462251 204720607 2 463643014 3379 6
+fn=PSim::Diagnostics::consoleMessage(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int)
+0 8759 91 19 1903 23 0 2079 0 0
+fn=PSim::PeriodicGrid::PeriodicGrid()
+0 2000 3 3 125 0 0 1750 125 125
+fn=PSim::PeriodicGrid::addMember(PSim::particle*)
+0 176550 3 3 50620 10434 0 30000 0 0
+fn=PSim::PeriodicGrid::createNeighborhood()
+0 37000 23 23 13250 236 0 6375 125 125
+fn=PSim::analysisManager::analysisManager(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, PSim::systemState*)
+0 22558 5 5 13 1 0 15024 937 934
+fn=PSim::analysisManager::findClusters(PSim::particle**, int)
+0 870624 23 23 278003 28830 0 55274 6 0
+fn=PSim::analysisManager::getTemperature(PSim::particle**, int)
+0 37512 2 2 10002 2815 0 0 0 0
+fn=PSim::analysisManager::initDisplacementTracker(PSim::particle**, int)
+0 40013 3 3 10008 2816 0 15001 941 0
+fn=PSim::analysisManager::meanDisplacement(PSim::particle**, int)
+0 40011 2 1 17501 5315 0 0 0 0
+fn=PSim::analysisManager::trackedDisplacement(PSim::particle**, int)
+0 122529 5 4 45006 3411 0 5005 1 0
+fn=PSim::analysisManager::updateParticlePBC(int, PSim::particle**)
+0 8623838 6 5 2866528 417278 1 74638 0 0
+fn=PSim::analysisManager::updateTracker(PSim::particle**, int)
+0 2329894 0 0 665 133 0 333032 0 0
+fn=PSim::analysisManager::writeClusters(std::vector<std::vector<PSim::particle*, std::allocator<PSim::particle*> >, std::allocator<std::vector<PSim::particle*, std::allocator<PSim::particle*> > > >, double, int)
+0 176 19 19 42 3 0 43 6 0
+fn=PSim::analysisManager::writeInitTemp(PSim::particle**, int)
+0 32597 8 8 10019 2816 0 25 2 0
+fn=PSim::analysisManager::writeInitialState(PSim::particle**, PSim::systemState*)
+0 71 6 6 15 3 0 19 1 0
+fn=PSim::analysisManager::writeRunTimeState(PSim::particle**, PSim::systemState*)
+0 2282 5 3 940 404 0 402 0 0
+fn=PSim::analysisManager::writeSystem(PSim::particle**, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+0 685276 31 24 140064 18542 0 185092 0 0
+fn=PSim::analysisManager::writeSystemState(PSim::particle**, int, double)
+0 20835 79 75 7663 2833 0 5217 20 0
+fn=PSim::analysisManager::writeSystemXYZ(PSim::particle**, int, int, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+0 92673 16 16 17537 2998 0 25054 0 0
+fn=PSim::analysisManager::writeToStream(double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, double)
+0 408 15 9 84 11 0 164 0 0
+fn=PSim::brownianIntegrator::brownianIntegrator(PSim::config*)
+0 28236 67 64 5117 5 2 7710 318 314
+fn=PSim::brownianIntegrator::setupHigh(PSim::config*)
+0 95 9 9 31 2 2 28 2 0
+fn=PSim::config::config(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+0 505 11 11 202 14 0 89 0 0
+fn=PSim::config::parseLine(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+0 5079 18 18 1226 0 0 770 0 0
+fn=PSim::defaultForceManager::addForce(PSim::IForce*)
+0 18 2 2 7 2 0 4 0 0
+fn=PSim::defaultForceManager::defaultForceManager()
+0 10 2 2 0 0 0 5 0 0
+fn=PSim::defaultForceManager::getAcceleration(PSim::PeriodicGrid****, PSim::particle**, PSim::systemState*)
+0 1888 1 1 404 404 0 675 0 0
+fn=PSim::defaultForceManager::getAcceleration(PSim::PeriodicGrid****, PSim::particle**, PSim::systemState*) [clone ._omp_fn.0]
+0 7087694 5 2 5045533 1763873 0 678208 914 6
+fn=PSim::fastRandom::fastRandom()
+0 37500 2 2 10000 2 2 22500 0 0
+fn=PSim::particle::calculatePotential()
+0 115000 4 3 35000 5000 0 0 0 0
+fn=PSim::particle::nextIter()
+0 15565562 9 6 5121211 995970 0 5034962 950 6
+fn=PSim::particle::particle(int)
+0 67500 3 3 2500 0 0 62500 5000 5000
+fn=PSim::particle::setX(double, double)
+0 97934 4 2 29806 0 0 29806 1720 0
+fn=PSim::particle::setY(double, double)
+0 97934 3 2 29806 0 0 29806 0 0
+fn=PSim::particle::setZ(double, double)
+0 97934 2 2 29806 0 0 29806 0 0
+fn=PSim::particle::updateForce(PSim::type3<double>*, PSim::particle*, bool)
+0 69598920 6 3 29796728 745972 0 19835000 37580 0
+fn=PSim::system::allocateCells(int)
+0 1860 5 5 471 1 0 445 2 0
+fn=PSim::system::assignCellParticles()
+0 70014 2 2 27505 4447 0 10003 2500 0
+fn=PSim::system::checkDir(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+0 13 1 1 3 0 0 1 0 0
+fn=PSim::system::estimateCompletion(PSim::timer*)
+0 1208 2 2 536 134 0 0 0 0
+fn=PSim::system::initCells(int)
+0 14 1 1 2 0 0 4 0 0
+fn=PSim::system::initCheck(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>*, std::uniform_real_distribution<double>*)
+0 273822235 9 9 160458737 20057160 0 18893539 0 0
+fn=PSim::system::initParticles(double, double)
+0 158305 21 21 52532 3 0 30692 358 338
+fn=PSim::system::maxwellVelocityInit(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>*, std::uniform_real_distribution<double>*)
+0 382595 17 17 112513 17841 0 67507 7500 0
+fn=PSim::system::run(double)
+0 3460 12 12 1629 672 0 837 1 0
+fn=PSim::system::setCellNeighbors(int)
+0 8941 9 9 5024 43 0 925 102 0
+fn=PSim::system::setSystemConstants(PSim::config*, PSim::IIntegrator*, PSim::defaultForceManager*)
+0 227 20 18 34 4 0 86 4 1
+fn=PSim::system::system(PSim::config*, PSim::IIntegrator*, PSim::defaultForceManager*)
+0 272 27 25 53 8 0 80 4 1
+fn=PSim::system::updateCells()
+0 9048752 9 5 2681474 712166 0 1072 0 0
+fn=PSim::system::verifyPath()
+0 109 10 10 18 2 0 37 0 0
+fn=PSim::system::writeSystemInit()
+0 453 41 39 91 15 1 159 11 0
+fn=PSim::timer::timer()
+0 9 1 1 2 0 0 6 0 0
+fn=PSim::util::loadBar(double, int, int)
+0 10536 2 1 2634 0 0 0 0 0
+fn=PSim::util::pbcDist(double, double, double, double, double, double, double)
+0 4080514673 6 4 571331355 4818 0 0 0 0
+fn=PSim::util::powBinaryDecomp(double, int)
+0 105318425 2 0 6582401 97 0 0 0 0
+fn=PSim::util::safeMod(double, double)
+0 76644 1 1 12774 0 0 0 0 0
+fn=PSim::util::safeMod0(double, double, double)
+0 125086 1 1 33262 0 0 0 0 0
+fn=PSim::util::safeMod0PBC(double, double, double)
+0 30360 1 1 5060 0 0 0 0 0
+fn=PSim::util::setTerminalColour(PSim::Colour)
+0 220 17 9 40 16 3 0 0 0
+fn=PSim::util::unitVectorAdv(double, double, double, double, double, double, double (&) [3], double, int)
+0 104690488 8 4 9873600 0 0 9873600 68 0
+fn=PSim::util::writeTerminal(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, PSim::Colour)
+0 519 22 9 100 0 0 146 0 0
+fn=_GLOBAL__sub_I_LJPotential.cpp
+0 8 2 2 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_analysis.cpp
+0 8 2 2 1 1 0 1 0 0
+fn=_GLOBAL__sub_I_analysisCluster.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_analysisGeneral.cpp
+0 8 0 0 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_analysisManager.cpp
+0 8 0 0 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_analysisOutput.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_analysisPost.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_analysisTracker.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_brownianIntegrator.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_cell.cpp
+0 8 0 0 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_config.cpp
+0 16 1 1 2 0 0 2 0 0
+fn=_GLOBAL__sub_I_defaultForceManager.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_defs.cpp
+0 26 3 3 4 1 0 6 2 1
+fn=_GLOBAL__sub_I_diagnostics.cpp
+0 16 2 2 2 0 0 2 0 0
+fn=_GLOBAL__sub_I_error.cpp
+0 16 1 1 2 0 0 2 0 0
+fn=_GLOBAL__sub_I_fastRandom.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_main.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_particle.cpp
+0 16 1 1 2 0 0 2 0 0
+fn=_GLOBAL__sub_I_runSim.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_system.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_systemHandling.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_systemInit.cpp
+0 8 0 0 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_systemRecovery.cpp
+0 8 1 1 1 0 0 1 0 0
+fn=_GLOBAL__sub_I_utilities.cpp
+0 16 2 2 2 0 0 2 0 0
+fn=_IO_default_finish
+0 165 4 2 66 0 0 11 0 0
+fn=_IO_default_uflow
+0 24 1 1 12 0 0 6 0 0
+fn=_IO_default_xsputn
+0 2329078 7 4 931350 0 0 775884 12 0
+fn=_IO_do_write@@GLIBC_2.2.5
+0 1044 14 1 175 0 0 172 0 0
+fn=_IO_doallocbuf
+0 26 2 1 12 1 0 4 0 0
+fn=_IO_file_close
+0 22 3 1 11 0 0 0 0 0
+fn=_IO_file_close_it@@GLIBC_2.2.5
+0 528 30 4 110 11 0 176 0 0
+fn=_IO_file_doallocate
+0 108 9 5 22 3 0 12 0 0
+fn=_IO_file_finish@@GLIBC_2.2.5
+0 88 17 2 22 0 0 11 0 0
+fn=_IO_file_fopen@@GLIBC_2.2.5
+0 652 31 8 112 11 4 88 0 0
+fn=_IO_file_init@@GLIBC_2.2.5
+0 143 3 1 44 0 0 55 0 0
+fn=_IO_file_open
+0 391 19 3 74 1 0 81 0 0
+fn=_IO_file_overflow@@GLIBC_2.2.5
+0 4149 23 6 1274 0 0 640 4 0
+fn=_IO_file_read
+0 8 2 1 4 0 0 0 0 0
+fn=_IO_file_seek
+0 8 1 1 4 0 0 0 0 0
+fn=_IO_file_stat
+0 8 1 1 2 0 0 0 0 0
+fn=_IO_file_sync@@GLIBC_2.2.5
+0 46 6 3 14 0 0 6 0 0
+fn=_IO_file_underflow@@GLIBC_2.2.5
+0 163 14 8 70 2 1 27 0 0
+fn=_IO_file_write@@GLIBC_2.2.5
+0 3096 51 2 688 0 0 430 4 0
+fn=_IO_file_xsputn@@GLIBC_2.2.5
+0 20394 124 7 3985 41 4 1659 3 0
+fn=_IO_link_in
+0 1102 65 11 397 19 0 176 0 0
+fn=_IO_no_init
+0 1706815 15 4 387885 0 0 620748 57 12
+fn=_IO_old_init
+0 1706727 5 3 155154 0 0 1241265 28 11
+fn=_IO_setb
+0 1474001 3 2 387895 0 0 387895 4 0
+fn=_IO_sputbackc
+0 98 4 2 42 0 0 14 0 0
+fn=_IO_str_init_static_internal
+0 2714810 7 3 387830 0 0 930792 3 0
+fn=_IO_switch_to_get_mode
+0 40 2 2 14 0 0 12 0 0
+fn=_IO_un_link
+0 66 0 0 33 0 0 0 0 0
+fn=_IO_unsave_markers
+0 55 4 1 33 5 0 0 0 0
+fn=__GI__IO_un_link.part.1
+0 1102 46 12 386 32 0 165 0 0
+fn=__GI_memcmp
+0 1012 5 5 169 0 0 0 0 0
+fn=__GI_memcpy
+0 1139751 29 3 148659 999 1 99102 12 1
+fn=__GI_memmove
+0 1297 3 3 255 0 0 233 0 0
+fn=__GI_mempcpy
+0 717448 30 5 79840 0 0 40043 23 0
+fn=__GI_memset
+0 648 9 5 11 0 0 308 62 24
+fn=__GI_strstr
+0 264 21 5 99 8 1 66 0 0
+fn=____strtod_l_internal
+0 5604 285 58 880 50 3 515 14 0
+fn=____strtol_l_internal
+0 1136 37 13 157 16 0 77 0 0
+fn=____strtoul_l_internal
+0 1038 14 14 172 7 5 110 0 0
+fn=__acos_finite
+0 7 1 1 2 0 0 1 0 0
+fn=__alloc_dir
+0 27 3 3 4 1 0 11 0 0
+fn=__asin_finite
+0 7 1 1 2 0 0 1 0 0
+fn=__atan2_finite
+0 10 2 2 2 0 0 1 0 0
+fn=__ceilf_sse41
+0 2 0 0 1 0 0 0 0 0
+fn=__close_nocancel
+0 60 6 2 12 0 0 0 0 0
+fn=__cos_avx
+0 722877 40 40 154109 299 7 94068 0 0
+fn=__cpu_indicator_init
+0 88 8 8 19 2 1 13 0 0
+fn=__ctype_init
+0 128 4 2 80 11 0 24 8 0
+fn=__cxa_atexit
+0 836 4 2 190 0 0 304 15 7
+fn=__cxa_guard_acquire
+0 30 2 2 9 1 0 6 0 0
+fn=__cxa_guard_release
+0 7 2 2 4 0 0 0 0 0
+fn=__cxxabiv1::__si_class_type_info::__do_dyncast(long, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+0 5100 9 3 1650 10 0 1350 0 0
+fn=__cxxabiv1::__vmi_class_type_info::__do_dyncast(long, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+0 4498828 18 6 1706452 2229 1 1241056 5 0
+fn=__default_morecore
+0 553 4 2 79 0 0 79 0 0
+fn=__docos
+0 60 3 3 18 0 0 12 2 0
+fn=__dubcos
+0 1668 51 51 164 9 3 36 2 0
+fn=__dubsin
+0 1629 50 50 119 9 0 21 0 0
+fn=__dynamic_cast
+0 3652652 7755 3 1243456 38559 0 932592 0 0
+fn=__errno_location
+0 108 21 0 108 11 0 0 0 0
+fn=__exp1
+0 170 11 7 30 6 4 2 0 0
+fn=__exp_finite
+0 10 2 2 2 1 0 1 0 0
+fn=__fopen_internal
+0 429 32 3 44 0 0 110 7 5
+fn=__fopen_maybe_mmap
+0 44 10 1 22 0 0 0 0 0
+fn=__gconv_btwoc_ascii
+0 640 1 1 128 0 0 0 0 0
+fn=__get_cpu_features
+0 80 5 2 32 3 0 0 0 0
+fn=__getdents
+0 353 3 3 78 8 8 76 0 0
+fn=__gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::sync()
+0 4 2 1 2 1 0 0 0 0
+fn=__gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::uflow()
+0 21 0 0 9 0 0 9 0 0
+fn=__gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow()
+0 56 2 1 21 3 0 14 0 0
+fn=__gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::xsputn(char const*, long)
+0 1210 4 1 242 23 0 0 0 0
+fn=__ieee754_exp_avx
+0 332412210 17 7 55950570 7905769 219 16456050 573094 6
+fn=__ieee754_log_avx
+0 1136507 46 45 223184 11040 212 52272 1 0
+fn=__ieee754_pow_sse2
+0 418 25 21 74 16 7 36 1 0
+fn=__init_cpu_features
+0 97 10 10 9 2 2 13 0 0
+fn=__init_misc
+0 24 2 2 7 2 0 5 1 0
+fn=__libc_csu_init
+0 195 4 3 31 6 3 31 0 0
+fn=__libc_disable_asynccancel
+0 624 2 2 156 0 0 0 0 0
+fn=__libc_dl_error_tsd
+0 45 2 0 45 1 0 0 0 0
+fn=__libc_enable_asynccancel
+0 572 1 1 156 39 0 0 0 0
+fn=__libc_memalign
+0 1657 4 4 326 2 0 320 1 0
+fn=__libc_pthread_init
+0 393 2 2 110 7 0 58 7 7
+fn=__linkin_atfork
+0 9 1 1 4 2 0 1 0 0
+fn=__log_finite
+0 10 2 2 2 0 0 1 0 0
+fn=__memcmp_sse4_1
+0 10005 66 22 1994 40 3 0 0 0
+fn=__memcpy_sse2_unaligned
+0 4687940 28 9 563735 75 13 328251 10982 259
+fn=__memmove_ssse3_back
+0 22465 29 18 5776 360 7 2856 156 156
+fn=__mpn_cmp
+0 293841 6 2 80242 0 0 0 0 0
+fn=__mpn_construct_double
+0 252 5 2 54 0 0 18 0 0
+fn=__mpn_divrem
+0 5659532 25 5 1407001 0 0 1119431 402 0
+fn=__mpn_extract_double
+0 1551000 7759 3 77550 0 0 310200 0 0
+fn=__mpn_lshift
+0 1163670 5 2 155156 0 0 77578 10 1
+fn=__mpn_mul
+0 16188 32 3 4686 28 0 4260 14 1
+fn=__mpn_mul_1
+0 10474120 46 3 1564810 0 0 1045835 7 0
+fn=__mpn_rshift
+0 933708 4 3 164772 0 0 109848 0 0
+fn=__new_exitfn
+0 1712 7 7 418 20 2 156 2 0
+fn=__open_nocancel
+0 25 0 0 5 0 0 0 0 0
+fn=__openat_nocancel
+0 8 1 1 1 0 0 0 0 0
+fn=__opendirat
+0 14 1 1 1 1 1 1 0 0
+fn=__pow_finite
+0 7 2 2 2 0 0 1 0 0
+fn=__printf_fp
+0 52319603 8483 106 12307265 1324 6 7474400 1323 3
+fn=__read_nocancel
+0 30 0 0 6 0 0 0 0 0
+fn=__register_atfork
+0 53 5 5 12 3 3 10 0 0
+fn=__sched_cpucount
+0 10 1 1 3 0 0 0 0 0
+fn=__sigjmp_save
+0 72 0 0 16 0 0 16 0 0
+fn=__sigsetjmp
+0 828 6 4 212 8 0 352 3 1
+fn=__strcmp_sse2_unaligned
+0 1628886 19 2 387830 31 0 0 0 0
+fn=__syscall_clock_gettime
+0 6 1 1 2 0 0 0 0 0
+fn=__uflow
+0 45 4 4 20 5 1 3 0 0
+fn=__write_nocancel
+0 410 2 1 82 0 0 0 0 0
+fn=__writev_nocancel
+0 80 0 0 16 0 0 0 0 0
+fn=_dl_add_to_namespace_list
+0 498 4 2 134 2 0 79 0 0
+fn=_dl_add_to_slotinfo
+0 60 2 2 24 8 0 15 2 0
+fn=_dl_addr
+0 56045 9 9 13650 1039 835 17 2 0
+fn=_dl_addr_inside_object
+0 116 1 1 38 14 0 0 0 0
+fn=_dl_allocate_tls
+0 49 1 1 0 0 0 7 0 0
+fn=_dl_allocate_tls_init
+0 1472 17 8 464 16 0 192 1 1
+fn=_dl_allocate_tls_storage
+0 317 3 3 5 0 0 293 36 36
+fn=_dl_cache_libcmp
+0 5259 3 3 820 53 48 0 0 0
+fn=_dl_catch_error
+0 1440 9 4 396 7 0 720 11 3
+fn=_dl_check_all_versions
+0 159 3 3 25 6 0 14 0 0
+fn=_dl_check_caller
+0 137 8 8 59 4 2 8 0 0
+fn=_dl_check_map_versions
+0 8512 25 14 2663 77 35 1008 74 64
+fn=_dl_count_modids
+0 4 1 1 3 0 0 0 0 0
+fn=_dl_debug_initialize
+0 121 6 3 43 7 0 4 0 0
+fn=_dl_debug_state
+0 4 0 0 4 0 0 0 0 0
+fn=_dl_determine_tlsoffset
+0 134 6 6 23 1 0 12 0 0
+fn=_dl_discover_osversion
+0 80 4 4 14 1 1 7 1 1
+fn=_dl_find_dso_for_object
+0 141 6 3 51 7 0 17 0 0
+fn=_dl_fixup
+0 20632 82 8 7746 1174 122 2441 12 1
+fn=_dl_get_tls_static_info
+0 5 1 1 3 1 0 2 1 1
+fn=_dl_higher_prime_number
+0 144 1 1 14 2 1 0 0 0
+fn=_dl_important_hwcaps
+0 263 20 20 48 0 0 44 2 2
+fn=_dl_init
+0 246 5 5 71 11 0 24 0 0
+fn=_dl_init_paths
+0 653 14 14 82 2 2 64 6 6
+fn=_dl_initial_error_catch_tsd
+0 48 0 0 24 0 0 0 0 0
+fn=_dl_load_cache_lookup
+0 1925 17 17 391 39 36 202 0 0
+fn=_dl_lookup_symbol_x
+0 862904 41 14 144107 2420 1727 50829 66 8
+fn=_dl_map_object
+0 6979 31 22 1625 122 0 808 11 6
+fn=_dl_map_object_deps
+0 7264 64 40 1560 127 2 569 14 4
+fn=_dl_map_object_from_fd
+0 8149 83 48 1838 94 76 907 74 72
+fn=_dl_mcount_wrapper_check
+0 512 2 2 384 0 0 0 0 0
+fn=_dl_name_match_p
+0 33619 14 3 8703 357 0 4997 15 6
+fn=_dl_new_object
+0 1917 26 15 371 10 10 354 59 59
+fn=_dl_next_ld_env_entry
+0 311 2 2 108 25 25 2 0 0
+fn=_dl_next_tls_modid
+0 24 1 1 9 0 0 3 0 0
+fn=_dl_open
+0 64 5 5 17 4 0 22 0 0
+fn=_dl_protect_relro
+0 160 2 2 48 2 0 16 1 0
+fn=_dl_receive_error
+0 28 2 2 10 1 0 12 0 0
+fn=_dl_relocate_object
+0 305787 62 41 76786 6041 4199 26697 1759 900
+fn=_dl_runtime_resolve
+0 6989 35 3 2169 8 0 1928 12 2
+fn=_dl_setup_hash
+0 253 4 2 77 14 14 66 0 0
+fn=_dl_start
+0 626 18 18 139 24 22 52 18 17
+fn=_dl_sym
+0 3 0 0 0 0 0 0 0 0
+fn=_dl_sysdep_read_whole_file
+0 41 3 3 6 0 0 9 0 0
+fn=_dl_sysdep_start
+0 421 13 11 115 16 15 29 5 5
+fn=_dl_sysdep_start_cleanup
+0 1 1 1 1 0 0 0 0 0
+fn=_dl_unload_cache
+0 15 2 1 5 2 0 2 0 0
+fn=_dl_vdso_vsym
+0 24 3 3 12 3 0 0 0 0
+fn=_dlerror_run
+0 97 5 5 26 3 0 18 0 0
+fn=_fxstat
+0 120 6 3 12 0 0 0 0 0
+fn=_init
+0 103 7 7 17 5 0 18 4 3
+fn=_int_free
+0 3535514 102 23 955348 64802 0 403192 441 0
+fn=_int_malloc
+0 494576735 394 66 67473041 4872212 20 76668292 3132853 1655985
+fn=_itoa_word
+0 688 15 3 60 10 1 44 0 0
+fn=_setjmp
+0 16 2 1 0 0 0 0 0 0
+fn=_start
+0 11 1 1 1 0 0 3 0 0
+fn=_wordcopy_fwd_aligned
+0 44 4 4 12 1 1 8 0 0
+fn=_xstat
+0 157 2 2 13 0 0 9 0 0
+fn=access
+0 81 2 2 9 0 0 9 1 1
+fn=allocate_dtv
+0 152 4 2 32 0 0 40 1 1
+fn=arena_get2.isra.3
+0 616 12 12 154 46 0 91 7 7
+fn=bcmp
+0 3566 22 14 853 14 10 260 6 6
+fn=bool std::has_facet<std::codecvt<char, char, __mbstate_t> >(std::locale const&)
+0 231 9 1 99 8 0 33 0 0
+fn=bool std::has_facet<std::ctype<char> >(std::locale const&)
+0 546 15 2 234 20 0 78 0 0
+fn=bool std::has_facet<std::ctype<wchar_t> >(std::locale const&)
+0 84 2 2 36 4 0 12 0 0
+fn=bool std::has_facet<std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > > >(std::locale const&)
+0 546 9 1 234 10 0 78 0 0
+fn=bool std::has_facet<std::num_get<wchar_t, std::istreambuf_iterator<wchar_t, std::char_traits<wchar_t> > > >(std::locale const&)
+0 84 1 1 36 1 0 12 0 0
+fn=bool std::has_facet<std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > > >(std::locale const&)
+0 546 6 2 234 29 0 78 0 0
+fn=bool std::has_facet<std::num_put<wchar_t, std::ostreambuf_iterator<wchar_t, std::char_traits<wchar_t> > > >(std::locale const&)
+0 84 2 2 36 2 0 12 0 0
+fn=brk
+0 982 69 9 154 7 6 81 8 1
+fn=btowc
+0 7552 4 4 2176 4 0 1024 1 0
+fn=buildSystem(PSim::config*, PSim::brownianIntegrator*, PSim::defaultForceManager*)
+0 98 9 8 14 3 0 31 0 0
+fn=call_init.part.0
+0 696 6 3 214 51 0 107 0 0
+fn=calloc
+0 1045 21 12 195 12 0 60 1 1
+fn=cbrt
+0 57 5 5 14 4 4 4 0 0
+fn=ceil
+0 6 1 1 2 0 0 1 0 0
+fn=ceilf
+0 12 2 1 4 0 0 2 0 0
+fn=check_match
+0 108665 18 6 36118 770 261 12138 119 6
+fn=clock_gettime
+0 20 2 2 8 2 0 2 0 0
+fn=clone
+0 189 3 3 28 7 0 21 7 7
+fn=close
+0 50 0 0 10 0 0 0 0 0
+fn=closedir
+0 8 0 0 2 0 0 2 0 0
+fn=cos
+0 20 4 2 4 1 0 2 0 0
+fn=csloww
+0 549 7 7 96 4 0 8 0 0
+fn=csloww1
+0 5108 6 6 1084 0 0 639 102 0
+fn=dl_main
+0 1423 76 76 314 81 19 153 21 16
+fn=dl_open_worker
+0 346 20 20 123 10 0 32 2 0
+fn=dlerror
+0 60 3 3 20 3 0 10 0 0
+fn=dlinit_alt
+0 4 1 1 3 0 0 0 0 0
+fn=dlopen@@GLIBC_2.2.5
+0 17 3 2 4 1 0 4 0 0
+fn=dlopen_doit
+0 29 3 2 15 3 0 6 1 0
+fn=dlsym
+0 25 2 2 9 0 0 8 0 0
+fn=dlsym_doit
+0 9 1 1 5 0 0 3 0 0
+fn=do_cos.isra.2
+0 150640 4 4 37660 1820 29 3766 0 0
+fn=do_cos_slow.isra.3
+0 5494 4 4 1066 47 0 82 0 0
+fn=do_lookup_x
+0 666162 100 33 240494 7319 829 88741 148 43
+fn=do_preload
+0 28 2 2 7 0 0 8 0 0
+fn=do_sin.isra.4
+0 130704 4 4 31120 1391 27 3112 0 0
+fn=do_sin_slow.isra.5
+0 8946 5 5 1638 65 1 126 0 0
+fn=do_sym
+0 62 4 4 17 1 0 12 0 0
+fn=double PSim::config::getParam<double>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, double)
+0 5707 94 50 1272 17 0 932 2 0
+fn=double std::generate_canonical<double, 53ul, std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul> >(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>&)
+0 3037428 7 7 418014 13855 1 250578 0 0
+fn=exp
+0 65824200 8 3 6582420 135 0 6582420 669518 7
+fn=expand_dynamic_string_token
+0 120 3 2 30 0 0 36 1 1
+fn=fclose@@GLIBC_2.2.5
+0 760 39 8 303 20 0 99 0 0
+fn=fflush
+0 84 8 4 36 5 0 8 0 0
+fn=fileno
+0 348 3 1 174 102 0 0 0 0
+fn=fillin_rpath
+0 549 15 15 121 1 1 114 4 4
+fn=floor
+0 6 1 1 2 0 0 1 0 0
+fn=floorf
+0 6 2 2 2 0 0 1 0 0
+fn=fopen@@GLIBC_2.2.5
+0 22 10 1 0 0 0 0 0 0
+fn=free
+0 860591 42 3 186647 125563 0 0 0 0
+fn=frexp
+0 23 2 2 1 0 0 1 0 0
+fn=fwrite
+0 14945 259 7 5293 171 2 1886 2 0
+fn=getForce
+0 15 1 1 3 0 0 4 0 0
+fn=get_nprocs_conf
+0 374 4 4 113 2 0 39 0 0
+fn=getc
+0 372 8 4 188 6 1 40 0 0
+fn=getcwd
+0 26 2 2 7 0 0 6 0 0
+fn=getenv
+0 6004 3 3 2033 65 0 133 0 0
+fn=getpagesize
+0 40 2 1 24 2 0 0 0 0
+fn=getrlimit
+0 5 1 1 1 0 0 0 0 0
+fn=gettimeofday
+0 60 3 3 5 0 0 5 0 0
+fn=hack_digit
+0 17273909 59255 6 5657731 0 0 2663390 11 2
+fn=handle_intel
+0 98 5 5 14 0 0 26 0 0
+fn=index
+0 1455 14 7 192 18 14 0 0 0
+fn=init
+0 13 3 3 3 1 0 3 1 0
+fn=init_cacheinfo
+0 145 8 8 9 1 0 13 2 2
+fn=init_tls
+0 114 6 5 27 13 2 15 1 1
+fn=int PSim::config::getParam<int>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int)
+0 2315 51 51 492 6 0 359 0 0
+fn=intel_check_word
+0 868 10 10 74 6 6 16 0 0
+fn=isinf
+0 1008176 23 3 77552 0 0 0 0 0
+fn=isnan
+0 542850 19 1 77550 0 0 0 0 0
+fn=isspace
+0 882 1 1 504 4 1 0 0 0
+fn=ldexp
+0 34 3 3 4 0 0 4 0 0
+fn=loadForces(PSim::config*)
+0 239 23 20 34 1 0 83 4 0
+fn=log
+0 30000 1 1 0 0 0 0 0 0
+fn=long std::__copy_streambufs_eof<char, std::char_traits<char> >(std::basic_streambuf<char, std::char_traits<char> >*, std::basic_streambuf<char, std::char_traits<char> >*, bool&)
+0 45 4 4 17 1 0 9 0 0
+fn=lseek
+0 8 4 0 4 0 0 0 0 0
+fn=main
+0 187 22 22 36 2 0 78 3 0
+fn=malloc
+0 152870162 46 5 46483623 4031907 1 10056042 7 1
+fn=malloc_consolidate
+0 2296017 61 9 811037 21588 0 155800 19087 8
+fn=malloc_hook_ini
+0 11 2 2 3 1 1 3 0 0
+fn=malloc_init_state
+0 5184 5 3 16 0 0 2049 264 263
+fn=map_doit
+0 14 1 1 5 0 0 3 0 0
+fn=match_symbol
+0 7052 10 5 2697 116 52 540 0 0
+fn=memchr
+0 1524791 27 8 155079 4 4 0 0 0
+fn=memcpy
+0 1915 12 6 301 0 0 251 23 22
+fn=memcpy@@GLIBC_2.14
+0 30 5 2 12 6 0 0 0 0
+fn=memcpy@GLIBC_2.2.5
+0 68 6 2 16 4 0 0 0 0
+fn=memmove
+0 230 4 4 36 0 0 34 0 0
+fn=mempcpy
+0 4221 12 6 565 5 1 382 16 16
+fn=memset
+0 10440 1 1 50 2 0 10152 164 164
+fn=mkdir
+0 36 5 2 8 1 0 4 0 0
+fn=mmap
+0 312 14 9 52 0 0 0 0 0
+fn=mprotect
+0 111640 4 2 22328 0 0 0 0 0
+fn=munmap
+0 30 0 0 6 0 0 0 0 0
+fn=new_do_write
+0 3440 83 3 1118 24 0 860 5 0
+fn=new_heap
+0 329 6 6 49 14 0 60 7 7
+fn=newlocale
+0 40 4 4 12 0 0 9 0 0
+fn=omp_get_num_threads
+0 6474 2 1 4316 1981 0 0 0 0
+fn=omp_get_thread_num
+0 3237 2 1 3237 118 0 0 0 0
+fn=omp_set_dynamic
+0 20 2 2 7 2 0 4 0 0
+fn=omp_set_num_threads
+0 22 1 1 6 1 0 2 0 0
+fn=open
+0 594 12 2 79 0 0 58 0 0
+fn=open_path
+0 4167 14 14 1478 5 0 480 1 1
+fn=open_verify
+0 3818 25 14 951 16 8 700 4 3
+fn=openaux
+0 544 2 1 256 0 0 96 2 1
+fn=opendir
+0 3 1 1 0 0 0 0 0 0
+fn=operator delete(void*)
+0 50011 12 1 0 0 0 0 0 0
+fn=operator delete[](void*)
+0 11 5 1 0 0 0 0 0 0
+fn=operator new(unsigned long)
+0 36870416 1 1 6703712 54 0 6703712 156 0
+fn=operator new[](unsigned long)
+0 10224 2 1 2556 1 0 2556 1 1
+fn=popcount_cpucount
+0 13 1 1 2 1 0 0 0 0
+fn=pow
+0 40 6 3 6 0 0 6 0 0
+fn=pthread_attr_init@@GLIBC_2.2.5
+0 7 1 1 3 1 0 0 0 0
+fn=pthread_attr_setdetachstate
+0 7 2 2 3 0 0 0 0 0
+fn=pthread_self
+0 7 2 2 3 2 0 0 0 0
+fn=ptmalloc_init.part.8
+0 341 7 7 110 40 1 15 4 2
+fn=read
+0 57 2 1 15 0 0 0 0 0
+fn=readdir
+0 884 4 4 369 1 0 140 0 0
+fn=realloc
+0 72 6 4 25 2 0 18 0 0
+fn=realloc_hook_ini
+0 8 2 1 3 1 0 2 0 0
+fn=rindex
+0 24 2 2 2 1 0 0 0 0
+fn=rint
+0 6 1 1 2 0 0 1 0 0
+fn=rintf
+0 6 1 1 2 0 0 1 0 0
+fn=round
+0 54 9 3 6 3 1 0 0 0
+fn=round_and_return
+0 1134 17 7 162 0 0 165 0 0
+fn=round_away
+0 234 36 2 18 0 0 0 0 0
+fn=rtld_lock_default_lock_recursive
+0 182 1 1 182 9 1 0 0 0
+fn=rtld_lock_default_unlock_recursive
+0 182 1 1 182 0 0 0 0 0
+fn=runScript(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+0 246 23 23 25 2 0 97 5 0
+fn=sbrk
+0 1962 72 12 558 138 12 312 11 1
+fn=scalbn
+0 24 3 3 1 0 0 0 0 0
+fn=sin
+0 10 1 1 2 0 0 1 0 0
+fn=std::_Deque_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_initialize_map(unsigned long)
+0 110 4 4 18 0 0 36 1 1
+fn=std::_Rb_tree<int, std::pair<int const, PSim::particle*>, std::_Select1st<std::pair<int const, PSim::particle*> >, std::less<int>, std::allocator<std::pair<int const, PSim::particle*> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, PSim::particle*> >*)
+0 36 3 3 14 0 0 14 0 0
+fn=std::_Rb_tree<int, std::pair<int const, PSim::particle*>, std::_Select1st<std::pair<int const, PSim::particle*> >, std::less<int>, std::allocator<std::pair<int const, PSim::particle*> > >::_M_get_insert_hint_unique_pos(std::_Rb_tree_const_iterator<std::pair<int const, PSim::particle*> >, int const&)
+0 140756 7 6 54874 421 0 30126 0 0
+fn=std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_M_get_insert_unique_pos(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+0 27 4 4 10 0 0 8 0 0
+fn=std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::find(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+0 3801 19 10 774 101 0 348 0 0
+fn=std::_Rb_tree_decrement(std::_Rb_tree_node_base*)
+0 15 1 1 0 0 0 0 0 0
+fn=std::_Rb_tree_increment(std::_Rb_tree_node_base const*)
+0 2095642240 4 0 914336028 343927540 0 0 0 0
+fn=std::_Rb_tree_increment(std::_Rb_tree_node_base*)
+0 181343421 2 1 0 0 0 0 0 0
+fn=std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+0 324679 24 12 95516 4964 0 78486 4413 0
+fn=std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::piecewise_construct_t const&, std::tuple<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>&&, std::tuple<>&&)
+0 2586 19 18 579 0 0 590 15 15
+fn=std::_Rb_tree_rebalance_for_erase(std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+0 200225 22 21 65645 3843 0 22613 263 0
+fn=std::__basic_file<char>::__basic_file(pthread_mutex_t*)
+0 33 4 1 11 0 0 22 0 0
+fn=std::__basic_file<char>::close()
+0 385 14 2 88 0 0 110 1 0
+fn=std::__basic_file<char>::fd()
+0 116 4 0 58 1 0 0 0 0
+fn=std::__basic_file<char>::is_open() const
+0 219 2 0 146 2 0 0 0 0
+fn=std::__basic_file<char>::open(char const*, std::_Ios_Openmode, int)
+0 286 10 2 44 0 0 88 0 0
+fn=std::__basic_file<char>::xsgetn(char*, long)
+0 100 4 2 20 0 0 24 0 0
+fn=std::__basic_file<char>::xsputn(char const*, long)
+0 117 5 0 18 0 0 27 0 0
+fn=std::__basic_file<char>::xsputn_2(char const*, long, char const*, long)
+0 1845 4 3 360 0 0 630 0 0
+fn=std::__basic_file<char>::~__basic_file()
+0 11 0 0 0 0 0 0 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > PSim::config::getParam<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+0 552 31 22 123 1 0 99 1 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > __gnu_cxx::__to_xstring<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...)
+0 57 5 5 7 0 0 16 2 1
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > __gnu_cxx::__to_xstring<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [clone .constprop.129]
+0 98 5 5 12 0 0 32 4 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > __gnu_cxx::__to_xstring<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [clone .constprop.32]
+0 169 13 5 20 0 0 56 5 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > __gnu_cxx::__to_xstring<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [clone .constprop.44]
+0 682 36 5 77 0 0 264 1 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > __gnu_cxx::__to_xstring<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [clone .constprop.53]
+0 538 8 6 61 0 0 192 16 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > __gnu_cxx::__to_xstring<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [clone .constprop.57]
+0 1721 22 12 195 0 0 608 7 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long)
+0 7794 4 3 1812 8 1 1340 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+0 964 24 3 253 1 0 208 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long)
+0 1231 59 2 98 0 0 51 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_erase(unsigned long, unsigned long)
+0 2033 8 3 524 0 0 390 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)
+0 3372 55 5 750 0 0 739 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long)
+0 1183 21 7 228 0 0 215 1 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const
+0 234 7 2 54 1 0 46 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned long, unsigned long) const
+0 2099 4 4 391 2 1 147 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned long)
+0 177 6 4 45 0 0 32 0 0
+fn=std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::swap(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+0 4033 85 6 1519 0 0 836 0 0
+fn=std::__cxx11::messages<char>::messages(unsigned long)
+0 19 2 2 4 1 0 8 0 0
+fn=std::__cxx11::messages<wchar_t>::messages(unsigned long)
+0 19 1 1 4 0 0 8 1 1
+fn=std::__cxx11::moneypunct<char, false>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 112 4 4 37 2 1 31 0 0
+fn=std::__cxx11::moneypunct<char, true>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 112 6 6 37 0 0 31 0 0
+fn=std::__cxx11::moneypunct<wchar_t, false>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 101 5 5 26 1 0 31 0 0
+fn=std::__cxx11::moneypunct<wchar_t, true>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 101 4 4 26 0 0 31 0 0
+fn=std::__cxx11::numpunct<char>::_M_initialize_numpunct(__locale_struct*)
+0 413 7 7 136 4 1 75 0 0
+fn=std::__cxx11::numpunct<wchar_t>::_M_initialize_numpunct(__locale_struct*)
+0 349 5 5 73 5 0 75 3 3
+fn=std::__num_base::_S_format_float(std::ios_base const&, char*, char)
+0 2402872 30 3 155024 0 0 387560 0 0
+fn=std::__timepunct<char>::_M_initialize_timepunct(__locale_struct*)
+0 107 12 12 6 0 0 52 0 0
+fn=std::__timepunct<char>::__timepunct(std::__timepunct_cache<char>*, unsigned long)
+0 22 2 2 4 1 0 9 0 0
+fn=std::__timepunct<wchar_t>::_M_initialize_timepunct(__locale_struct*)
+0 105 13 13 5 0 0 51 0 0
+fn=std::__timepunct<wchar_t>::__timepunct(std::__timepunct_cache<wchar_t>*, unsigned long)
+0 22 2 2 4 1 0 9 1 1
+fn=std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer()
+0 132 6 2 55 0 0 44 1 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::_M_convert_to_external(char*, long)
+0 288 17 2 90 0 0 72 0 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::_M_destroy_internal_buffer()
+0 209 6 2 55 0 0 88 0 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::_M_terminate_output()
+0 370 33 4 155 0 0 84 0 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::basic_filebuf()
+0 704 41 7 88 8 0 484 10 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::close()
+0 596 21 4 116 0 0 248 0 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode)
+0 506 17 4 77 1 0 209 3 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::overflow(int)
+0 711 54 8 198 1 0 171 4 2
+fn=std::basic_filebuf<char, std::char_traits<char> >::underflow()
+0 224 13 6 76 6 1 60 0 0
+fn=std::basic_filebuf<char, std::char_traits<char> >::xsputn(char const*, long)
+0 6303376 18 7 1890858 9 0 788120 0 0
+fn=std::basic_ios<char, std::char_traits<char> >::_M_cache_locale(std::locale const&)
+0 780 9 3 78 0 0 286 0 0
+fn=std::basic_ios<char, std::char_traits<char> >::clear(std::_Ios_Iostate)
+0 72 7 1 36 2 0 12 0 0
+fn=std::basic_ios<char, std::char_traits<char> >::init(std::basic_streambuf<char, std::char_traits<char> >*)
+0 572 6 2 78 0 0 260 0 0
+fn=std::basic_ios<wchar_t, std::char_traits<wchar_t> >::_M_cache_locale(std::locale const&)
+0 120 3 3 12 0 0 44 0 0
+fn=std::basic_ios<wchar_t, std::char_traits<wchar_t> >::init(std::basic_streambuf<wchar_t, std::char_traits<wchar_t> >*)
+0 88 2 2 12 0 0 40 0 0
+fn=std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char)
+0 2252 11 11 632 5 0 351 0 0
+fn=std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+0 246 22 12 86 1 1 44 0 0
+fn=std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+0 4013550 252 6 1685691 95 0 882981 5 0
+fn=std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+0 36 2 2 6 0 0 8 0 0
+fn=std::basic_streambuf<char, std::char_traits<char> >::xsputn(char const*, long)
+0 5355335 7 3 1417605 1 0 945047 0 0
+fn=std::chrono::_V2::system_clock::now()
+0 16 1 1 6 0 0 2 0 0
+fn=std::codecvt<char, char, __mbstate_t> const& std::use_facet<std::codecvt<char, char, __mbstate_t> >(std::locale const&)
+0 209 5 2 99 0 0 33 0 0
+fn=std::codecvt<char, char, __mbstate_t>::codecvt(unsigned long)
+0 17 2 2 4 1 0 6 1 1
+fn=std::codecvt<char, char, __mbstate_t>::do_always_noconv() const
+0 315148 3 1 157574 0 0 0 0 0
+fn=std::codecvt<wchar_t, char, __mbstate_t>::codecvt(unsigned long)
+0 17 2 2 4 1 0 6 2 2
+fn=std::ctype<char> const& std::use_facet<std::ctype<char> >(std::locale const&)
+0 1473260 8 2 697860 1589 0 232620 0 0
+fn=std::ctype<char>::_M_widen_init() const
+0 1094 3 3 40 3 0 294 4 0
+fn=std::ctype<char>::ctype(unsigned short const*, bool, unsigned long)
+0 116 5 5 8 2 0 79 9 9
+fn=std::ctype<wchar_t> const& std::use_facet<std::ctype<wchar_t> >(std::locale const&)
+0 76 2 2 36 0 0 12 0 0
+fn=std::ctype<wchar_t>::_M_convert_to_wmask(unsigned short) const
+0 137 6 6 12 0 0 0 0 0
+fn=std::ctype<wchar_t>::_M_initialize_ctype()
+0 2757 4 4 5 0 0 810 20 20
+fn=std::ctype<wchar_t>::ctype(unsigned long)
+0 19 1 1 3 1 0 7 1 1
+fn=std::deque<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::~deque()
+0 49 5 5 20 1 0 11 0 0
+fn=std::error_category::error_category()
+0 8 1 1 4 1 0 2 0 0
+fn=std::future_category()
+0 16 2 2 2 1 1 3 0 0
+fn=std::ios_base::Init::Init()
+0 905 32 31 333 22 0 341 18 15
+fn=std::ios_base::_M_call_callbacks(std::ios_base::event)
+0 110 2 1 55 5 0 33 0 0
+fn=std::ios_base::_M_dispose_callbacks()
+0 132 6 2 55 0 0 44 0 0
+fn=std::ios_base::_M_init()
+0 540 6 2 90 0 0 240 0 0
+fn=std::ios_base::ios_base()
+0 1121 12 3 19 8 0 513 44 31
+fn=std::ios_base::~ios_base()
+0 176 5 2 33 11 0 44 0 0
+fn=std::istream::sentry::sentry(std::istream&, bool)
+0 764 14 7 256 15 0 150 0 0
+fn=std::locale::_Impl::_Impl(unsigned long)
+0 1019 69 69 72 43 1 455 56 49
+fn=std::locale::_Impl::_M_install_facet(std::locale::id const*, std::locale::facet const*)
+0 12240 8 6 4560 8 0 240 0 0
+fn=std::locale::facet::_S_create_c_locale(__locale_struct*&, char const*, __locale_struct*)
+0 9 1 1 2 0 0 3 0 0
+fn=std::locale::facet::_S_get_c_locale()
+0 775260 3 1 310104 4 0 155052 0 0
+fn=std::locale::facet::_S_get_c_name()
+0 14 1 1 7 0 0 0 0 0
+fn=std::locale::id::_M_id() const
+0 776858 3 1 310734 36271 5 46 0 0
+fn=std::locale::locale()
+0 1254 21 2 594 5 0 396 1 0
+fn=std::locale::locale(std::locale const&)
+0 12 1 1 10 2 0 2 0 0
+fn=std::locale::operator=(std::locale const&)
+0 570 10 3 300 0 0 60 0 0
+fn=std::locale::~locale()
+0 540 4 1 324 3 0 54 0 0
+fn=std::messages<char>::messages(unsigned long)
+0 19 2 2 4 0 0 8 0 0
+fn=std::messages<wchar_t>::messages(unsigned long)
+0 19 1 1 4 0 0 8 1 1
+fn=std::moneypunct<char, false>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 112 6 6 37 1 0 31 3 0
+fn=std::moneypunct<char, true>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 112 4 4 37 0 0 31 0 0
+fn=std::moneypunct<wchar_t, false>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 101 5 5 26 0 0 31 1 0
+fn=std::moneypunct<wchar_t, true>::_M_initialize_moneypunct(__locale_struct*, char const*)
+0 101 6 6 26 0 0 31 2 0
+fn=std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > > const& std::use_facet<std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > > >(std::locale const&)
+0 494 4 1 234 0 0 78 0 0
+fn=std::num_get<wchar_t, std::istreambuf_iterator<wchar_t, std::char_traits<wchar_t> > > const& std::use_facet<std::num_get<wchar_t, std::istreambuf_iterator<wchar_t, std::char_traits<wchar_t> > > >(std::locale const&)
+0 76 1 1 36 0 0 12 0 0
+fn=std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > > const& std::use_facet<std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > > >(std::locale const&)
+0 494 8 2 234 0 0 78 0 0
+fn=std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const
+0 465072 2 1 77512 1 0 77512 0 0
+fn=std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const
+0 50 4 2 10 0 0 10 0 0
+fn=std::num_put<wchar_t, std::ostreambuf_iterator<wchar_t, std::char_traits<wchar_t> > > const& std::use_facet<std::num_put<wchar_t, std::ostreambuf_iterator<wchar_t, std::char_traits<wchar_t> > > >(std::locale const&)
+0 76 2 2 36 0 0 12 0 0
+fn=std::numpunct<char>::_M_initialize_numpunct(__locale_struct*)
+0 413 7 7 136 1 0 75 2 0
+fn=std::numpunct<wchar_t>::_M_initialize_numpunct(__locale_struct*)
+0 349 5 5 73 0 0 75 2 0
+fn=std::ostream& std::ostream::_M_insert<double>(double)
+0 3720642 15 6 1550264 35011 0 620108 0 0
+fn=std::ostream& std::ostream::_M_insert<long>(long)
+0 533 8 5 212 4 0 86 0 0
+fn=std::ostream::flush()
+0 28 4 2 14 4 0 4 0 0
+fn=std::ostream::operator<<(int)
+0 100 1 1 30 0 0 0 0 0
+fn=std::ostream::operator<<(std::basic_streambuf<char, std::char_traits<char> >*)
+0 36 3 3 12 0 0 5 0 0
+fn=std::ostream::sentry::sentry(std::ostream&)
+0 3629262 8 2 1262352 84 0 788970 1 0
+fn=std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const
+0 9072020 16 10 1822311 276 0 2209871 1 0
+fn=std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const
+0 870 11 6 160 3 0 180 0 0
+fn=str_to_mpn.isra.0
+0 1095 30 5 257 5 1 190 7 0
+fn=strcasecmp
+0 7 2 2 3 1 1 1 0 0
+fn=strchrnul
+0 3102640 8 2 310264 17 2 0 0 0
+fn=strcmp
+0 256101 12 4 76732 876 144 0 0 0
+fn=strdup
+0 221 0 0 26 0 0 52 0 0
+fn=strlen
+0 1246356 31 8 155736 49 22 0 0 0
+fn=strncasecmp
+0 6 2 2 3 0 0 0 0 0
+fn=strsep
+0 2023 3 3 329 0 0 8 0 0
+fn=strtod
+0 72 4 2 36 4 0 0 0 0
+fn=strtol
+0 28 2 1 14 0 0 0 0 0
+fn=strtoul
+0 40 1 1 20 0 0 0 0 0
+fn=sysconf
+0 27 6 6 5 2 1 4 0 0
+fn=systrim.isra.1
+0 232 8 4 82 0 0 42 0 0
+fn=time
+0 60 3 3 5 1 1 5 0 0
+fn=uname
+0 5 1 1 1 0 0 0 0 0
+fn=ungetc
+0 287 10 5 112 2 0 35 0 0
+fn=uselocale
+0 3255546 11 3 1395234 903 0 620104 4 0
+fn=version_check_doit
+0 10 1 1 4 0 0 2 0 0
+fn=vfprintf
+0 22414735 309 61 5506968 39646 6 5196627 1154 7
+fn=void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [clone .isra.20]
+0 108 3 3 24 0 0 24 1 0
+fn=void std::vector<PSim::IForce*, std::allocator<PSim::IForce*> >::_M_emplace_back_aux<PSim::IForce* const&>(PSim::IForce* const&)
+0 45 3 3 12 0 0 11 0 0
+fn=void std::vector<PSim::PeriodicGrid*, std::allocator<PSim::PeriodicGrid*> >::_M_emplace_back_aux<PSim::PeriodicGrid*>(PSim::PeriodicGrid*&&)
+0 44375 4 4 9000 11 0 9500 128 127
+fn=void std::vector<PSim::particle*, std::allocator<PSim::particle*> >::_M_emplace_back_aux<PSim::particle* const&>(PSim::particle* const&)
+0 235378 9 8 61956 0 0 57151 8 0
+fn=void std::vector<PSim::particle*, std::allocator<PSim::particle*> >::_M_range_insert<__gnu_cxx::__normal_iterator<PSim::particle**, std::vector<PSim::particle*, std::allocator<PSim::particle*> > > >(__gnu_cxx::__normal_iterator<PSim::particle**, std::vector<PSim::particle*, std::allocator<PSim::particle*> > >, __gnu_cxx::__normal_iterator<PSim::particle**, std::vector<PSim::particle*, std::allocator<PSim::particle*> > >, __gnu_cxx::__normal_iterator<PSim::particle**, std::vector<PSim::particle*, std::allocator<PSim::particle*> > >, std::forward_iterator_tag)
+0 18764 11 11 3515 0 0 3220 0 0
+fn=vsnprintf
+0 3412904 17 3 620528 0 0 930792 64 2
+fn=wctob
+0 768 1 1 128 0 0 0 0 0
+fn=wctype_l
+0 1046 3 3 158 5 0 177 0 0
+fn=write
+0 190 7 1 95 4 0 0 0 0
+fn=writev
+0 90 3 1 45 45 0 0 0 0
+summary: 13780448314 210666 3912 4382770708 598529117 9234 683183442 4488599 1665507

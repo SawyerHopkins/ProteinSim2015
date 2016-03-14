@@ -24,13 +24,6 @@ SOFTWARE.*/
 
 LennardJones::~LennardJones()
 {
-	delete[] &cutOff;
-	delete[] &debyeLength;
-	delete[] &kT;
-	delete[] &radius;
-	delete[] &yukStr;
-	delete[] &mass;
-	delete[] &ljNum;
 }
 
 LennardJones::LennardJones(config* cfg)
@@ -65,69 +58,76 @@ LennardJones::LennardJones(config* cfg)
 	PSim::util::writeTerminal("---Lennard Jones Potential successfully added.\n\n", PSim::Colour::Cyan);
 }
 
-void LennardJones::iterCells(int boxSize, double time, particle* index, PeriodicGrid* itemCell)
+type3<double> LennardJones::iterCells(int index, int hash, double* sortedParticles, vector<tuple<int,int>>* cellStartEnd, systemState* state)
 {
-	for(std::map<int,particle*>::iterator it=itemCell->getBegin(); it != itemCell->getEnd(); ++it)
-	{
-		if (it->second->getName() != index->getName())
-		{
-			//Distance between the two particles.
-			double rSquared = PSim::util::pbcDist(index->getX(), index->getY(), index->getZ(), 
-																it->second->getX(), it->second->getY(), it->second->getZ(),
-																boxSize);
+	int start = get<0>((*cellStartEnd)[hash]);
 
-			//If the particles are in the potential well.
-			if (rSquared < cutOffSquared)
-			{
-				double r = sqrt(rSquared);
-				//If the particles overlap there are problems.
-				double size = (index->getRadius() + it->second->getRadius());
-				if(r< (0.8*size) )
+	type3<double> cellForce = type3<double>();
+
+	if (start != 0xffffffff) {
+		int end = get<1>((*cellStartEnd)[hash]);
+		for (int i=start; i<end; i++) {
+			if (i != index) {
+				int indexOffset = 4*index;
+				int iOffset = 4*i;
+
+				double rSquared = PSim::util::pbcDist(sortedParticles[indexOffset], sortedParticles[indexOffset+1], sortedParticles[indexOffset+2],
+																	sortedParticles[iOffset], sortedParticles[iOffset+1], sortedParticles[iOffset+2],
+																	state->boxSize);
+
+				//If the particles are in the potential well.
+				if (rSquared < cutOffSquared)
 				{
-					PSim::error::throwParticleOverlapError(index->getName(), it->second->getName(), r);
+					double r = sqrt(rSquared);
+					//If the particles overlap there are problems.
+					double size = (sortedParticles[indexOffset+3] + sortedParticles[iOffset+3]);
+					if(r< (0.8*size) )
+					{
+						PSim::error::throwParticleOverlapError(hash, i, index, r);
+					}
+
+					//-------------------------------------
+					//-----------FORCE CALCULATION---------
+					//-------------------------------------
+
+					//Predefinitions.
+					double rInv = (1.0  / r);
+					double yukExp = std::exp(-1.0 * (r * debyeInv));
+					//double LJ = std::pow(RadiusOverR,ljNum);
+					double LJ = PSim::util::powBinaryDecomp((size / r),ljNum);
+
+					//Attractive LJ.
+					double attract = ((2.0*LJ) - 1.0);
+					attract *= (4.0*ljNum*rInv*LJ);
+
+					//Repulsive Yukawa.
+					double repel = yukExp;
+					repel *= (rInv*rInv*(debyeLength + r)*yukStr);
+
+					double fNet = -kT*(attract+repel);
+
+					//Positive is attractive; Negative repulsive.
+					//fNet = -fNet;
+
+					//-------------------------------------
+					//------NORMALIZATION AND SETTING------
+					//-------------------------------------
+
+					//Normalize the force.
+					double unitVec[3] {0.0,0.0,0.0};
+					PSim::util::unitVectorAdv(sortedParticles[indexOffset], sortedParticles[indexOffset+1], sortedParticles[indexOffset+2],
+														sortedParticles[iOffset], sortedParticles[iOffset+1], sortedParticles[iOffset+2],
+														unitVec, r, state->boxSize);
+
+					//Updates the acceleration.;
+					cellForce.x += fNet*unitVec[0];
+					cellForce.y += fNet*unitVec[1];
+					cellForce.z += fNet*unitVec[2];
 				}
-
-				//-------------------------------------
-				//-----------FORCE CALCULATION---------
-				//-------------------------------------
-
-				//Predefinitions.
-				double rInv = (1.0  / r);
-				double yukExp = std::exp(-1.0 * (r * debyeInv));
-				//double LJ = std::pow(RadiusOverR,ljNum);
-				double LJ = PSim::util::powBinaryDecomp((size / r),ljNum);
-
-				//Attractive LJ.
-				double attract = ((2.0*LJ) - 1.0);
-				attract *= (4.0*ljNum*rInv*LJ);
-
-				//Repulsive Yukawa.
-				double repel = yukExp;
-				repel *= (rInv*rInv*(debyeLength + r)*yukStr);
-
-				double fNet = -kT*(attract+repel);
-
-				//Positive is attractive; Negative repulsive.
-				//fNet = -fNet;
-
-				//-------------------------------------
-				//------NORMALIZATION AND SETTING------
-				//-------------------------------------
-
-				//Normalize the force.
-				double unitVec[3] {0.0,0.0,0.0};
-				PSim::util::unitVectorAdv(index->getX(), index->getY(), index->getZ(), 
-													it->second->getX(), it->second->getY(), it->second->getZ(),
-													unitVec, r, boxSize);
-
-				//Updates the acceleration.;
-				type3<double>* frc = new type3<double>(fNet*unitVec[0],fNet*unitVec[1],fNet*unitVec[2]);
-
-				//Add to the net force on the particle.
-				index->updateForce(frc,it->second, (r < 1.1) ? true : false);
 			}
 		}
 	}
+	return cellForce;
 }
 
 void LennardJones::quench()
@@ -139,11 +139,48 @@ void LennardJones::quench()
 	debyeInv = 1.0 / debyeLength;
 }
 
-void LennardJones::getAcceleration(int index, PSim::PeriodicGrid* itemCell, PSim::particle** items, systemState* state)
+void LennardJones::getAcceleration(int index, double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state)
 {
-	for(auto it = itemCell->getFirstNeighbor(); it != itemCell->getLastNeighbor(); ++it)
-	{
-		iterCells(state->boxSize,state->currentTime,items[index],*it);
+	int hash = 0;
+	int indexOffset = index*4;
+	type3<int> cell = type3<int>();
+	type3<int> cRef = type3<int>();
+	double netForce[3] = {0.0,0.0,0.0};
+	int scale = state->cellScale;
+	int cellScaleSq = scale*scale;
+	int realIndex = 3*get<1>((*particleHashIndex)[index]);
+
+	cell.x = floor(sortedParticles[indexOffset] / state->cellSize);
+	cell.y = floor(sortedParticles[indexOffset+1] / state->cellSize);
+	cell.z = floor(sortedParticles[indexOffset+2] / state->cellSize);
+
+	for (int x=-1; x<=1; x++) {
+		for (int y=-1; y<=1; y++) {
+			for (int z=-1; z<=1; z++) {
+				cRef.x = cell.x + x;
+				cRef.y = cell.y + y;
+				cRef.z = cell.z + z;
+
+				cRef.x = cRef.x % scale;
+				cRef.y = cRef.y % scale;
+				cRef.z = cRef.z % scale;
+
+				cRef.x = (cRef.x < 0) ? cRef.x + scale : cRef.x;
+				cRef.y = (cRef.y < 0) ? cRef.y + scale : cRef.y;
+				cRef.z = (cRef.z < 0) ? cRef.z + scale : cRef.z;
+
+				hash = cRef.x + (scale * cRef.y) + (cellScaleSq * cRef.z);
+
+				type3<double> result = iterCells(index, hash, sortedParticles, cellStartEnd, state);
+				netForce[0] += result.x;
+				netForce[1] += result.y;
+				netForce[2] += result.z;
+			}
+		}
 	}
+
+	particleForce[realIndex] = netForce[0];
+	particleForce[realIndex+1] = netForce[1];
+	particleForce[realIndex+2] = netForce[2];
 }
 

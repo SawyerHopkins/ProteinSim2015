@@ -33,7 +33,11 @@ private:
 
 	//System entities.
 	particle** particles;
-	PeriodicGrid**** cells;
+	//Particle entities
+	vector<tuple<int,int>> particleHashIndex;
+	vector<tuple<int,int>> cellStartEnd;
+	double* sortedParticles;
+	double* particleForce;
 
 	//System integrator.
 	PSim::IIntegrator* integrator;
@@ -44,12 +48,6 @@ private:
 	 *-------------------SYSTEM INIT------------------
 	 ***********************************************/
 
-	/**
-	 * @brief Creates the cell system.
-	 * @param numCells The number of cells to be created.
-	 * @param scale The number of cells in each dimension. (numCells^1/3)
-	 */
-	void initCells(int scale);
 	/**
 	 * @brief Creates an initial uniform distribution of particles.
 	 * @param r The radius of the particles
@@ -90,7 +88,10 @@ private:
 	 * @brief Updates the cells that the particles are located in.
 	 * @return
 	 */
-	void updateCells();
+	void hashParticles();
+	void sortParticles();
+	void reorderParticles();
+	void pushParticleForce();
 
 
 	/********************************************//**
@@ -100,9 +101,6 @@ private:
 	void verifyPath();
 	void estimateCompletion(PSim::timer* tmr);
 	void writeToStream(string path, double value);
-	void allocateCells(int scale);
-	void setCellNeighbors(int scale);
-	void assignCellParticles();
 	void setSystemConstants(config* cfg,
 			PSim::IIntegrator* sysInt, PSim::defaultForceManager* sysFcs);
 
@@ -120,7 +118,6 @@ public:
 	 */
 	system() {
 		analysis = NULL;
-		cells = NULL;
 		cycleHour = 0;
 		integrator = NULL;
 		particles = NULL;
@@ -265,13 +262,6 @@ public:
 	 *---------------VERSION CONTROL-----------------
 	 ***********************************************/
 
-	/**
-	 * @brief Gets the flagged version of cell.h for debugging.
-	 * @return
-	 */
-	int getCellVersion() {
-		return PSim::PeriodicGrid::version;
-	}
 	/**
 	 * @brief Gets the flagged version of config.h for debugging.
 	 * @return

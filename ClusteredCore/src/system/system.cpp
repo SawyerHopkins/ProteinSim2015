@@ -89,7 +89,13 @@ system::system(config* cfg, PSim::IIntegrator* sysInt,
 	initParticles(r, m);
 	//Create cells.
 	int numCells = pow(state.cellScale, 3.0);
-	initCells(state.cellScale);
+	particleHashIndex = vector<tuple<int,int>>(state.nParticles, tuple<int,int>());
+	cellStartEnd = vector<tuple<int,int>>(numCells, tuple<int,int>(0xffffffff, 0xffffffff));
+	sortedParticles = new double[4*state.nParticles];
+	particleForce  = new double[3*state.nParticles];
+	hashParticles();
+	sortParticles();
+	reorderParticles();
 	chatterBox.consoleMessage("Created: " + tos(numCells) + " cells from scale: " + tos(state.cellScale));
 	writeSystemInit();
 }
@@ -173,18 +179,21 @@ void system::run(double endTime) {
 	//Run system until end time.
 	while (state.currentTime < state.endTime) {
 		//Get the forces acting on the system.
-		sysForces->getAcceleration(cells, particles, &state);
+		sysForces->getAcceleration(sortedParticles, particleForce, &particleHashIndex, &cellStartEnd, &state);
+		// Update the particle system
+		pushParticleForce();
 		//Get the next system.
 		integrator->nextSystem(particles, &state);
-		//Call cell manager.
-		updateCells();
-
+		// Rebuild the hash table
+		hashParticles();
+		sortParticles();
+		std::fill(cellStartEnd.begin(), cellStartEnd.end(), tuple<int,int>(0xffffffff, 0xffffffff));
+		reorderParticles();
 		//runAnalysis;
 		analysis->writeRunTimeState(particles, &state);
 		estimateCompletion(tmr);
 		//Update loading bar.
 		PSim::util::loadBar(state.currentTime, state.endTime);
-
 		//Increment counters.
 		state.currentTime += state.dTime;
 	}

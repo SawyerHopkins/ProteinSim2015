@@ -99,19 +99,6 @@ brownianIntegrator::brownianIntegrator(config* cfg) {
 }
 
 brownianIntegrator::~brownianIntegrator() {
-	delete &mass;
-	delete &temp;
-	delete &memSize;
-
-	delete &gamma;
-	delete &dt;
-	delete &y;
-
-	delete &coEff0;
-	delete &coEff1;
-	delete &coEff2;
-	delete &coEff3;
-
 	delete[] memX;
 	delete[] memY;
 	delete[] memZ;
@@ -119,11 +106,6 @@ brownianIntegrator::~brownianIntegrator() {
 	delete[] memCorrX;
 	delete[] memCorrY;
 	delete[] memCorrZ;
-
-	delete &sig1;
-	delete &sig2;
-	delete &corr;
-	delete &dev;
 }
 
 void brownianIntegrator::setupHigh(config* cfg) {
@@ -198,10 +180,11 @@ double brownianIntegrator::getWidth(double y) {
 
 int brownianIntegrator::nextSystem(PSim::particle** items, systemState* state) {
 	//Checks what method is needed.
+	firstStep(items, state);
 	if (state->currentTime == 0) {
-		firstStep(items, state);
+		//firstStep(items, state);
 	} else {
-		normalStep(items, state);
+		//normalStep(items, state);
 	}
 	return 0;
 }
@@ -221,19 +204,19 @@ int brownianIntegrator::firstStep(PSim::particle** items, systemState* state) {
 
 		int threadSeed = seed*(i+1);
 
-		memX[i] = rndGens[i]->g250(threadSeed);
-		memY[i] = rndGens[i]->g250(threadSeed);
-		memZ[i] = rndGens[i]->g250(threadSeed);
+		memX[i] = 0;//rndGens[i]->g250(threadSeed);
+		memY[i] = 0;//rndGens[i]->g250(threadSeed);
+		memZ[i] = 0;//rndGens[i]->g250(threadSeed);
 
-		type3<double>* posNew = new type3<double>();
+		type3<double> posNew = type3<double>();
 		double m = 1.0 / items[i]->getMass();
-		posNew->x = items[i]->getX() + (items[i]->getVX() * coEff1 * dt)
+		posNew.x = items[i]->getX() + (items[i]->getVX() * coEff1 * dt)
 				+ (items[i]->getFX() * coEff3 * dt * dt * m) + (sig1 * memX[i]);
-		posNew->y = items[i]->getY() + (items[i]->getVY() * coEff1 * dt)
+		posNew.y = items[i]->getY() + (items[i]->getVY() * coEff1 * dt)
 				+ (items[i]->getFY() * coEff3 * dt * dt * m) + (sig1 * memY[i]);
-		posNew->z = items[i]->getZ() + (items[i]->getVZ() * coEff1 * dt)
+		posNew.z = items[i]->getZ() + (items[i]->getVZ() * coEff1 * dt)
 				+ (items[i]->getFZ() * coEff3 * dt * dt * m) + (sig1 * memZ[i]);
-		items[i]->setPos(posNew, state->boxSize);
+		items[i]->setPos(&posNew, state->boxSize);
 
 	}
 }
@@ -270,26 +253,26 @@ int brownianIntegrator::normalStep(PSim::particle** items, systemState* state) {
 		double c1 = m * dt2 * coEff1;
 		double c2 = m * dt2 * coEff2;
 
-		type3<double>* posNew = new type3<double>();
+		type3<double> posNew = type3<double>();
 
 		//Run the integration routine.
-		posNew->x = (c0 * items[i]->getX());
-		posNew->x -= (coEff0 * items[i]->getX0());
-		posNew->x += (c1 * items[i]->getFX());
-		posNew->x += (c2 * (items[i]->getFX() - items[i]->getFX0()));
-		posNew->x += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
+		posNew.x = (c0 * items[i]->getX());
+		posNew.x -= (coEff0 * items[i]->getX0());
+		posNew.x += (c1 * items[i]->getFX());
+		posNew.x += (c2 * (items[i]->getFX() - items[i]->getFX0()));
+		posNew.x += (sig1 * memX[i]) + (coEff0 * memCorrX[i]);
 
-		posNew->y = (c0 * items[i]->getY());
-		posNew->y -= (coEff0 * items[i]->getY0());
-		posNew->y += (c1 * items[i]->getFY());
-		posNew->y += (c2 * (items[i]->getFY() - items[i]->getFY0()));
-		posNew->y += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
+		posNew.y = (c0 * items[i]->getY());
+		posNew.y -= (coEff0 * items[i]->getY0());
+		posNew.y += (c1 * items[i]->getFY());
+		posNew.y += (c2 * (items[i]->getFY() - items[i]->getFY0()));
+		posNew.y += (sig1 * memY[i]) + (coEff0 * memCorrY[i]);
 
-		posNew->z = (c0 * items[i]->getZ());
-		posNew->z -= (coEff0 * items[i]->getZ0());
-		posNew->z += (c1 * items[i]->getFZ());
-		posNew->z += (c2 * (items[i]->getFZ() - items[i]->getFZ0()));
-		posNew->z += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
+		posNew.z = (c0 * items[i]->getZ());
+		posNew.z -= (coEff0 * items[i]->getZ0());
+		posNew.z += (c1 * items[i]->getFZ());
+		posNew.z += (c2 * (items[i]->getFZ() - items[i]->getFZ0()));
+		posNew.z += (sig1 * memZ[i]) + (coEff0 * memCorrZ[i]);
 
 		//Velocity is not needed for brownianIntegration.
 		//Run velocity integration at the same frequency as
@@ -303,7 +286,7 @@ int brownianIntegrator::normalStep(PSim::particle** items, systemState* state) {
 		//-------------------------------------------------
 		//For all other cases do whatever.
 
-		(velFreq == 0 || velCounter == velFreq) ? velocityStep(items, i, posNew, dt, state->boxSize) :items[i]->setPos(posNew, state->boxSize);
+		(velFreq == 0 || velCounter == velFreq) ? velocityStep(items, i, &posNew, dt, state->boxSize) :items[i]->setPos(&posNew, state->boxSize);
 	}
 }
 	//Manage velocity output counter.

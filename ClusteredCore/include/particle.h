@@ -326,6 +326,7 @@ public:
 	 */
 	void updateForce(type3<double>* frc, particle* p, bool countPair = true);
 
+	void setForce(double* val);
 	/**
 	 * @brief Calculates the potential via force integration.
 	 */

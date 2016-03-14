@@ -28,6 +28,7 @@ namespace PSim {
  ***********************************************/
 
 void system::createInteractionsTable() {
+	/*
 	double cutOffSquared = 1.1 * 1.1;
 	int boxSize = state.boxSize;
 	for (int i = 0; i < state.nParticles; i++) {
@@ -53,6 +54,7 @@ void system::createInteractionsTable() {
 			}
 		}
 	}
+	*/
 }
 
 int system::particlesInFile(std::string sysState, std::string timeStamp) {
@@ -176,7 +178,7 @@ system* system::loadFromFile(config* cfg, std::string sysState,
 	oldSys->integrator = sysInt;
 	oldSys->sysForces = sysFcs;
 
-	oldSys->initCells(oldSys->state.cellScale);
+	//oldSys->initCells(oldSys->state.cellScale);
 	createRewindDir(oldSys);
 	oldSys->writeSystemInit();
 	return oldSys;
@@ -200,7 +202,7 @@ system* system::loadAnalysis(config* cfg, std::string sysState,
 	oldSys->trialName = sysState + "/-analysis-" + timeStamp;
 	oldSys->analysis = (analysisInterface == NULL) ? oldSys->defaultAnalysisInterface(count, bsize) : analysisInterface;
 
-	oldSys->initCells(oldSys->state.cellScale);
+	//oldSys->initCells(oldSys->state.cellScale);
 	createRewindDir(oldSys);
 	oldSys->createInteractionsTable();
 	return oldSys;
