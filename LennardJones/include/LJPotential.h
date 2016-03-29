@@ -27,6 +27,7 @@ private:
 		double mass; // m
 		double radius; // r
 		bool output;
+		long callCount;
 
 	public:
 
@@ -64,7 +65,7 @@ private:
 		 */
 		type3<double> iterCells(int index, int hash, double* sortedParticles, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 		
-		void quench();
+		void quench(systemState* state);
 
 };
 

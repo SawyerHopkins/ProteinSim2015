@@ -40,6 +40,7 @@ public:
 	 */
 	virtual bool isTimeDependent()=0;
 
+	virtual void quench(systemState* state)=0;
 	/**
 	 * @brief Get the name of the force for logging purposes.
 	 * @return

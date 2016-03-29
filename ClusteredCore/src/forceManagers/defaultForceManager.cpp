@@ -58,6 +58,7 @@ void defaultForceManager::addForce(IForce* f) {
 
 void defaultForceManager::getAcceleration(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd,systemState* state) {
 	IForce* currentForce = flist[0];
+	currentForce->quench(state);
 #pragma omp parallel
 	{
 #pragma omp for
