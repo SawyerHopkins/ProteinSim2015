@@ -180,11 +180,10 @@ double brownianIntegrator::getWidth(double y) {
 
 int brownianIntegrator::nextSystem(PSim::particle** items, systemState* state) {
 	//Checks what method is needed.
-	firstStep(items, state);
 	if (state->currentTime == 0) {
-		//firstStep(items, state);
+		firstStep(items, state);
 	} else {
-		//normalStep(items, state);
+		normalStep(items, state);
 	}
 	return 0;
 }
@@ -204,9 +203,9 @@ int brownianIntegrator::firstStep(PSim::particle** items, systemState* state) {
 
 		int threadSeed = seed*(i+1);
 
-		memX[i] = 0;//rndGens[i]->g250(threadSeed);
-		memY[i] = 0;//rndGens[i]->g250(threadSeed);
-		memZ[i] = 0;//rndGens[i]->g250(threadSeed);
+		memX[i] = rndGens[i]->g250(threadSeed);
+		memY[i] = rndGens[i]->g250(threadSeed);
+		memZ[i] = rndGens[i]->g250(threadSeed);
 
 		type3<double> posNew = type3<double>();
 		double m = 1.0 / items[i]->getMass();

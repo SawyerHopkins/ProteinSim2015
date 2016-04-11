@@ -1,0 +1,17 @@
+0 DebyeLength: 0.454545
+0.001 DebyeLength: 0.416667
+0.002 DebyeLength: 0.384615
+0.003 DebyeLength: 0.357143
+0.004 DebyeLength: 0.333333
+0.005 DebyeLength: 0.3125
+0.006 DebyeLength: 0.294118
+0.007 DebyeLength: 0.277778
+0.008 DebyeLength: 0.263158
+0.009 DebyeLength: 0.25
+0.01 DebyeLength: 0.238095
+0.011 DebyeLength: 0.227273
+0.012 DebyeLength: 0.217391
+0.013 DebyeLength: 0.208333
+0.014 DebyeLength: 0.2
+0.015 DebyeLength: 0.192308
+0.016 DebyeLength: 0.185185
