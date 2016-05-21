@@ -54,6 +54,7 @@ public:
 	 */
 	void getAcceleration(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 
+	void getPostRoutine(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 	/**
 	 * @brief Checks if the system contains a time dependent force.
 	 * @return True if time dependent. False otherwise.

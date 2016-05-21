@@ -2,6 +2,9 @@
 build
 linked
 
+# Ignore private repos
+NonLinear/
+
 # Ignore random project stuff
 .tern-port
 .tern-project

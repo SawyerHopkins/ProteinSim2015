@@ -1,1 +1,3 @@
 *.out.*
+PSim
+build/

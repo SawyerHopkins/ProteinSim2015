@@ -1,4 +1,4 @@
-*
-!*/
-!subdir.mk
-!.gitignore
+*.o
+*.d
+/*.o
+/*.d

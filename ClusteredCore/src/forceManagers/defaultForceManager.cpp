@@ -58,13 +58,24 @@ void defaultForceManager::addForce(IForce* f) {
 
 void defaultForceManager::getAcceleration(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd,systemState* state) {
 	IForce* currentForce = flist[0];
-	currentForce->quench(state);
 #pragma omp parallel
 	{
 #pragma omp for
 		for (int index = 0; index < state->nParticles; index++) {
 			//Iterates through all forces.
 			currentForce->getAcceleration(index, sortedParticles, particleForce, particleHashIndex, cellStartEnd, state);
+		}
+	}
+}
+
+void defaultForceManager::getPostRoutine(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd,systemState* state) {
+	IForce* currentForce = flist[0];
+#pragma omp parallel
+	{
+#pragma omp for
+		for (int index = 0; index < state->nParticles; index++) {
+			//Iterates through all forces.
+			currentForce->postRoutine(index, sortedParticles, particleForce, particleHashIndex, cellStartEnd, state);
 		}
 	}
 }

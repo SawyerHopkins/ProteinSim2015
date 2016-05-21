@@ -180,6 +180,7 @@ void system::run(double endTime) {
 	while (state.currentTime < state.endTime) {
 		//Get the forces acting on the system.
 		sysForces->getAcceleration(sortedParticles, particleForce, &particleHashIndex, &cellStartEnd, &state);
+		sysForces->getPostRoutine(sortedParticles, particleForce, &particleHashIndex, &cellStartEnd, &state);
 		// Update the particle system
 		pushParticleForce();
 		//Get the next system.

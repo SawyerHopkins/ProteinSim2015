@@ -95,7 +95,6 @@ type3<double> LennardJones::iterCells(int index, int hash, double* sortedParticl
 					//Predefinitions.
 					double rInv = (1.0  / r);
 					double yukExp = std::exp(-1.0 * (r * debyeInv));
-					//double LJ = std::pow(RadiusOverR,ljNum);
 					double LJ = PSim::util::powBinaryDecomp((size / r),ljNum);
 
 					//Attractive LJ.

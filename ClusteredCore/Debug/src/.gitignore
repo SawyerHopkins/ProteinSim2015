@@ -1,5 +1,4 @@
-*
-!*/
-!subdir.mk
-!.gitignore
-/integrators/
+*.o
+*.d
+/*.o
+/*.d
