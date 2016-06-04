@@ -44,29 +44,36 @@ void system::initParticles(double r, double m) {
 
 	int seedCube = seedSize*seedSize*seedSize;
 
-	int lowerSeed = 0;
-	int upperSeed = 0;
+	if (seedSize > 0) {
+		int lowerSeed = 0;
+		int upperSeed = 0;
 
-	if (seedSize % 2) {
-		lowerSeed = -seedSize / 2;
-		upperSeed = seedSize / 2;
-	} else {
-		lowerSeed = -seedSize / 2;
-		upperSeed = (seedSize / 2) + 1;
-	}
+		if (seedSize % 2 == 0) {
+			lowerSeed = -seedSize / 2;
+			upperSeed = seedSize / 2;
+		} else {
+			lowerSeed = -seedSize / 2;
+			upperSeed = (seedSize / 2) + 1;
+		}
 
-	int seedCount = 0;
-	for (int x = lowerSeed; x < upperSeed; x++) {
-		for (int y = lowerSeed; y < upperSeed; y++) {
-			for (int z = lowerSeed; z < upperSeed; z++) {
-				float center = boxSize/2.0; // Center of the box
-				particles[seedCount]->setX(center + (2*x*r), boxSize);
-				particles[seedCount]->setY(center + (2*y*r), boxSize);
-				particles[seedCount]->setZ(center + (2*z*r), boxSize);
+		cout << "Seeding: " << lowerSeed << " " << upperSeed;
 
-				seedCount++;
+		int seedCount = 0;
+		for (int x = lowerSeed; x < upperSeed; x++) {
+			for (int y = lowerSeed; y < upperSeed; y++) {
+				for (int z = lowerSeed; z < upperSeed; z++) {
+					float center = boxSize/2.0; // Center of the box
+					particles[seedCount] = new particle(seedCount);
+					particles[seedCount]->setX(center + (2.5*x*r), boxSize);
+					particles[seedCount]->setY(center + (2.5*y*r), boxSize);
+					particles[seedCount]->setZ(center + (2.5*z*r), boxSize);
+
+					seedCount++;
+				}
 			}
 		}
+
+		cout << "Finished seeding " << seedCount << " particles";
 	}
 
 	//Iterates through all points.

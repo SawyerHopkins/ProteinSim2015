@@ -177,7 +177,7 @@ void system::run(double endTime) {
 	tmr->start();
 
 	chatterBox.resetChatterCount();
-
+	analysis->writeRunTimeState(particles, &state);
 	//Run system until end time.
 	while (state.currentTime < state.endTime) {
 		//Get the forces acting on the system.
