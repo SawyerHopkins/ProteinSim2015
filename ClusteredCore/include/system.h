@@ -92,6 +92,7 @@ private:
 	void sortParticles();
 	void reorderParticles();
 	void pushParticleForce();
+	void iterateParticleInteractions(int index, int hash);
 
 
 	/********************************************//**
@@ -171,6 +172,7 @@ public:
 	 * @param endTime When to stop running the simulation.
 	 */
 	void run(double endTime);
+	void updateInteractions();
 
 	/********************************************//**
 	 *------------------SYSTEM OUTPUT-----------------
@@ -234,10 +236,6 @@ public:
 	 * @param tests
 	 */
 	void analysisManager(std::queue<std::string>* tests) { analysis->postAnalysis(tests, particles, &state); }
-	/**
-	 * Return the interactions list for each particle.
-	 */
-	void createInteractionsTable();
 	/**
 	 *
 	 * @brief Sets a new time step. Use with caution.

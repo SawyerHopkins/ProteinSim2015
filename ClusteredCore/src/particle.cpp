@@ -119,6 +119,14 @@ void particle::updateForce(type3<double>* pos,
 }
 
 void particle::setForce(double* val) {
+	//Reset interacting particles.
+	interactions.clear();
+	interactions.shrink_to_fit();
+	//Minimize memory allocations by making a guess at how many slots we need.
+	interactions.reserve(coorNumber);
+	//Reset coordination number;
+	coorNumber = 0;
+
 	frc0.x = frc.x;
 	frc0.y = frc.y;
 	frc0.z = frc.z;
@@ -133,9 +141,9 @@ float particle::calculatePotential() {
 	float dy = pos.y-pos0.y;
 	float dz = pos.z-pos0.z;
 
-	float px = (pos0.x*dx) + (0.5*dx*(frc.x-frc0.x));
-	float py = (pos0.y*dy) + (0.5*dy*(frc.y-frc0.y));
-	float pz = (pos0.z*dz) + (0.5*dz*(frc.z-frc0.z));
+	float px = (frc0.x*dx) + (0.5*dx*(frc.x-frc0.x));
+	float py = (frc0.y*dy) + (0.5*dy*(frc.y-frc0.y));
+	float pz = (frc0.z*dz) + (0.5*dz*(frc.z-frc0.z));
 
 	return px+py+pz;
 }
@@ -147,7 +155,6 @@ void particle::nextIter() {
 	interactions.shrink_to_fit();
 	//Minimize memory allocations by making a guess at how many slots we need.
 	interactions.reserve(coorNumber);
-
 	//Reset coordination number;
 	coorNumber = 0;
 

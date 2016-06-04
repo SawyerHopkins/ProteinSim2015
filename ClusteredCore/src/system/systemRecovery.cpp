@@ -27,36 +27,6 @@ namespace PSim {
  *-----------------SYSTEM RECOVERY----------------
  ***********************************************/
 
-void system::createInteractionsTable() {
-	/*
-	double cutOffSquared = 1.1 * 1.1;
-	int boxSize = state.boxSize;
-	for (int i = 0; i < state.nParticles; i++) {
-		PSim::particle* base = particles[i];
-		PSim::PeriodicGrid* itemCell =
-				cells[base->getCX()][base->getCY()][base->getCZ()];
-		for (auto currentCell = itemCell->getFirstNeighbor();
-				currentCell != itemCell->getLastNeighbor(); ++currentCell) {
-			for (auto member = (*currentCell)->getBegin();
-					member != (*currentCell)->getEnd(); ++member) {
-				if (member->second->getName() != base->getName()) {
-					//Distance between the two particles.
-					double rSquared = PSim::util::pbcDist(base->getX(),
-							base->getY(), base->getZ(), member->second->getX(),
-							member->second->getY(), member->second->getZ(),
-							boxSize);
-
-					//If the particles are in the potential well.
-					if (rSquared < cutOffSquared) {
-						base->addInteraction(member->second);
-					}
-				}
-			}
-		}
-	}
-	*/
-}
-
 int system::particlesInFile(std::string sysState, std::string timeStamp) {
 	std::string fullPath = sysState + "/snapshots/time-" + timeStamp
 			+ "/recovery.txt";
@@ -204,7 +174,7 @@ system* system::loadAnalysis(config* cfg, std::string sysState,
 
 	//oldSys->initCells(oldSys->state.cellScale);
 	createRewindDir(oldSys);
-	oldSys->createInteractionsTable();
+	oldSys->updateInteractions();
 	return oldSys;
 }
 }

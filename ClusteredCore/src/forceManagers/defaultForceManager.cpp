@@ -68,6 +68,7 @@ void defaultForceManager::getAcceleration(double* sortedParticles, double* parti
 	}
 }
 
+#ifdef WITHPOST
 void defaultForceManager::getPostRoutine(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd,systemState* state) {
 	IForce* currentForce = flist[0];
 #pragma omp parallel
@@ -79,5 +80,6 @@ void defaultForceManager::getPostRoutine(double* sortedParticles, double* partic
 		}
 	}
 }
+#endif
 
 }

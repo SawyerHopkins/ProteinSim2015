@@ -21,6 +21,7 @@
  SOFTWARE.*/
 
 #include "fastRandom.h"
+#include "utilities.h"
 
 namespace PSim {
 

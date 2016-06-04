@@ -30,9 +30,9 @@ analysisManager::analysisManager(string tName, systemState* state) {
 	xStart = new float [nParticles];
 	yStart = new float [nParticles];
 	zStart = new float [nParticles];
-	xPBC = new float[nParticles];
-	yPBC = new float[nParticles];
-	zPBC = new float[nParticles];
+	xPBC = new int[nParticles];
+	yPBC = new int[nParticles];
+	zPBC = new int[nParticles];
 	counter = 0;
 	boxSize = state->boxSize;
 

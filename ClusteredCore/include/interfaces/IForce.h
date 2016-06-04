@@ -40,8 +40,6 @@ public:
 	 */
 	virtual bool isTimeDependent()=0;
 
-	virtual void postRoutine(int index, double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state)=0;
-
 	virtual void quench(systemState* state)=0;
 	/**
 	 * @brief Get the name of the force for logging purposes.
@@ -51,6 +49,9 @@ public:
 		return name;
 	}
 
+#ifdef WITHPOST
+	virtual void postRoutine(int index, double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state)=0;
+#endif
 };
 
 typedef IForce* create_Force(config*);

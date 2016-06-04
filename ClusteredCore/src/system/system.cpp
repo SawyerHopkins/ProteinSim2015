@@ -180,9 +180,13 @@ void system::run(double endTime) {
 	while (state.currentTime < state.endTime) {
 		//Get the forces acting on the system.
 		sysForces->getAcceleration(sortedParticles, particleForce, &particleHashIndex, &cellStartEnd, &state);
+#ifdef WITHPOST
 		sysForces->getPostRoutine(sortedParticles, particleForce, &particleHashIndex, &cellStartEnd, &state);
+#endif
 		// Update the particle system
 		pushParticleForce();
+		// Get new particle interactions
+		updateInteractions();
 		//Get the next system.
 		integrator->nextSystem(particles, &state);
 		// Rebuild the hash table

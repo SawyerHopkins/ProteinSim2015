@@ -54,7 +54,6 @@ int main(int argc, char **argv)
 	bool isAnalysis = false;
 	std::queue<std::string> analysisArgs;
 	string rewindName = "";
-	bool isRewind = false;
 	string timeStamp = "";
 
 	int i = 0;
@@ -65,7 +64,6 @@ int main(int argc, char **argv)
 		string str(argv[i]);
 		if (str.compare("-r")==0)
 		{
-			isRewind = true;
 			//Make sure the next argument exists.
 			if ((i+2) < argc) {
 				//Name of file to analyze.

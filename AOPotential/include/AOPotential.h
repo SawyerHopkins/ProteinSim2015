@@ -54,7 +54,7 @@ private:
 		 * @param itemCell The cell containing the index particle.
 		 * @param items All particles in the system.
 		 */
-		void getAcceleration(int index, PSim::PeriodicGrid* itemCell, PSim::particle** items, systemState* state);
+		void getAcceleration(int index, double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 		/**
 		 * @brief Flag for a force dependent time.
 		 * @return True for time dependent. False otherwise. 
@@ -67,10 +67,9 @@ private:
 		 * @param index The particle to find the force on.
 		 * @param itemCell The cell to check for interactions in.
 		 */
-		void iterCells(int boxSize, double time, PSim::particle* index, PSim::PeriodicGrid* itemCell);
+		type3<double> iterCells(int index, int hash, double* sortedParticles, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 
-		void quench(){};
-
+		void quench(systemState* state) {};
 };
 
 //Class factories.

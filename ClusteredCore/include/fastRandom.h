@@ -1,6 +1,5 @@
 #ifndef FASTRANDOM_H
 #define FASTRANDOM_H
-#include "interfaces/IGrid.h"
 
 namespace PSim {
 
@@ -25,7 +24,19 @@ public:
 	fastRandom();
 	~fastRandom();
 
+	/**
+	 * A gaussian number algorithm.
+	 * @param seed
+	 * @param mu
+	 * @param sigma
+	 * @return
+	 */
 	double g250(int seed, double mu = 0.0, double sigma = 1.0);
+	/**
+	 * A pseudo-random number algorithm.
+	 * @param iseed
+	 * @return
+	 */
 	double psdrand(int iseed);
 };
 }

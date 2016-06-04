@@ -91,4 +91,73 @@ void system::pushParticleForce() {
 	}
 }
 
+void system::iterateParticleInteractions(int index, int hash) {
+	int start = get<0>(cellStartEnd[hash]);
+
+	type3<double> cellForce = type3<double>();
+
+	if (start != 0xffffffff) {
+		int end = get<1>(cellStartEnd[hash]);
+		for (int i=start; i<end; i++) {
+			if (i != index) {
+				int indexOffset = 4*index;
+				int iOffset = 4*i;
+
+				double rSquared = PSim::util::pbcDist(sortedParticles[indexOffset], sortedParticles[indexOffset+1], sortedParticles[indexOffset+2],
+																	sortedParticles[iOffset], sortedParticles[iOffset+1], sortedParticles[iOffset+2],
+																	state.boxSize);
+
+
+				double r = sqrt(rSquared);
+				//If the particles are in the potential well.
+				if (r < (1.2))
+				{
+					particles[index]->addInteraction(particles[i]);
+				}
+			}
+		}
+	}
+}
+
+void system::updateInteractions() {
+	using namespace std;
+#pragma omp parallel for
+	for (int index=0; index < state.nParticles; index++) {
+		int hash = 0;
+		int indexOffset = index*4;
+		type3<int> cell = type3<int>();
+		type3<int> cRef = type3<int>();
+		double netForce[3] = {0.0,0.0,0.0};
+		int scale = state.cellScale;
+		int cellScaleSq = scale*scale;
+		int realIndex = 3*get<1>(particleHashIndex[index]);
+
+		cell.x = floor(sortedParticles[indexOffset] / state.cellSize);
+		cell.y = floor(sortedParticles[indexOffset+1] / state.cellSize);
+		cell.z = floor(sortedParticles[indexOffset+2] / state.cellSize);
+
+		for (int x=-1; x<=1; x++) {
+			for (int y=-1; y<=1; y++) {
+				for (int z=-1; z<=1; z++) {
+					cRef.x = cell.x + x;
+					cRef.y = cell.y + y;
+					cRef.z = cell.z + z;
+
+					cRef.x = cRef.x % scale;
+					cRef.y = cRef.y % scale;
+					cRef.z = cRef.z % scale;
+
+					cRef.x = (cRef.x < 0) ? cRef.x + scale : cRef.x;
+					cRef.y = (cRef.y < 0) ? cRef.y + scale : cRef.y;
+					cRef.z = (cRef.z < 0) ? cRef.z + scale : cRef.z;
+
+					hash = cRef.x + (scale * cRef.y) + (cellScaleSq * cRef.z);
+
+					iterateParticleInteractions(index, hash);
+				}
+			}
+		}
+	}
+}
+
 }

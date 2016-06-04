@@ -140,6 +140,12 @@ public:
 	 */
 	static double powBinaryDecomp(double base, int exp);
 
+	/**
+	 * A keyed sorting algorithm. First tuple value is defined as the key.
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	static double sortParticleTuple(tuple<double,double> i, tuple<double,double> j) { return get<0>(i) < get<0>(j); }
 
 	/**

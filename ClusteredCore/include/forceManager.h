@@ -54,7 +54,6 @@ public:
 	 */
 	void getAcceleration(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 
-	void getPostRoutine(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state);
 	/**
 	 * @brief Checks if the system contains a time dependent force.
 	 * @return True if time dependent. False otherwise.
@@ -104,6 +103,17 @@ public:
 		return flist.end();
 	}
 
+#ifdef WITHPOST
+	/**
+	 * @brief An optional post routine for integration. Use compiler directive WITHPOST
+	 * @param sortedParticles
+	 * @param particleForce
+	 * @param particleHashIndex
+	 * @param cellStartEnd
+	 * @param state
+	 */
+	void getPostRoutine(double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state);
+#endif
 };
 
 }
