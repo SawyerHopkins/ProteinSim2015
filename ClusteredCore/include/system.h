@@ -30,6 +30,7 @@ private:
 
 	//Settings flags
 	double cycleHour;
+	int seedSize;
 
 	//System entities.
 	particle** particles;

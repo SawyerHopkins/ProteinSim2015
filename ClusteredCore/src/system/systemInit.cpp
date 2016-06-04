@@ -42,8 +42,35 @@ void system::initParticles(double r, double m) {
 
 	int boxSize = state.boxSize;
 
+	int seedCube = seedSize*seedSize*seedSize;
+
+	int lowerSeed = 0;
+	int upperSeed = 0;
+
+	if (seedSize % 2) {
+		lowerSeed = -seedSize / 2;
+		upperSeed = seedSize / 2;
+	} else {
+		lowerSeed = -seedSize / 2;
+		upperSeed = (seedSize / 2) + 1;
+	}
+
+	int seedCount = 0;
+	for (int x = lowerSeed; x < upperSeed; x++) {
+		for (int y = lowerSeed; y < upperSeed; y++) {
+			for (int z = lowerSeed; z < upperSeed; z++) {
+				float center = boxSize/2.0; // Center of the box
+				particles[seedCount]->setX(center + (2*x*r), boxSize);
+				particles[seedCount]->setY(center + (2*y*r), boxSize);
+				particles[seedCount]->setZ(center + (2*z*r), boxSize);
+
+				seedCount++;
+			}
+		}
+	}
+
 	//Iterates through all points.
-	for (int i = 0; i < state.nParticles; i++) {
+	for (int i = seedCube; i < state.nParticles; i++) {
 		particles[i] = new particle(i);
 
 		particles[i]->setX(distribution(gen) * boxSize, boxSize);
@@ -74,9 +101,10 @@ void system::initCheck(std::mt19937* gen,
 	int counter = 0;
 
 	int boxSize = state.boxSize;
+	int seedCube = seedSize*seedSize*seedSize;
 
 	//Search each particle for overlap.
-	for (int i = 0; i < state.nParticles; i++) {
+	for (int i = seedCube; i < state.nParticles; i++) {
 		PSim::util::loadBar(i, state.nParticles, i);
 		//Is the problem resolved?
 		bool resolution = false;

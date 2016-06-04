@@ -40,6 +40,8 @@ void system::setSystemConstants(config* cfg,
 	state.nParticles = cfg->getParam<int>("nParticles", 1000);
 	//How often to output snapshots.
 	state.outputFreq = cfg->getParam<int>("outputFreq", int(1.0 / state.dTime));
+	//Set initial seed size;
+	seedSize = cfg->getParam<int>("seedSize", 0);
 	//Set the integration method.
 	integrator = sysInt;
 	//Set the internal forces.
