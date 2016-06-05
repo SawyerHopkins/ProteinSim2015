@@ -55,25 +55,23 @@ void system::initParticles(double r, double m) {
 			lowerSeed = -seedSize / 2;
 			upperSeed = (seedSize / 2) + 1;
 		}
-
-		cout << "Seeding: " << lowerSeed << " " << upperSeed;
-
 		int seedCount = 0;
 		for (int x = lowerSeed; x < upperSeed; x++) {
 			for (int y = lowerSeed; y < upperSeed; y++) {
 				for (int z = lowerSeed; z < upperSeed; z++) {
 					float center = boxSize/2.0; // Center of the box
 					particles[seedCount] = new particle(seedCount);
-					particles[seedCount]->setX(center + (2.5*x*r), boxSize);
-					particles[seedCount]->setY(center + (2.5*y*r), boxSize);
-					particles[seedCount]->setZ(center + (2.5*z*r), boxSize);
-
+					particles[seedCount]->setX(center + (2.1*x*r), boxSize);
+					particles[seedCount]->setY(center + (2.1*y*r), boxSize);
+					particles[seedCount]->setZ(center + (2.1*z*r), boxSize);
+					particles[seedCount]->setRadius(r);
+					particles[seedCount]->setMass(m);
 					seedCount++;
 				}
 			}
 		}
 
-		cout << "Finished seeding " << seedCount << " particles";
+		chatterBox.consoleMessage("Finished seeding " + tos(seedCount) + " particles.", 3);
 	}
 
 	//Iterates through all points.
@@ -134,7 +132,7 @@ void system::initCheck(std::mt19937* gen,
 							+ particles[j]->getRadius();
 
 					//If the particles are slightly closer than twice their radius resolve conflict.
-					if (radius < 1.1 * r) {
+					if (radius < 1.0 * r) {
 						//Update resolution counter.
 						counter++;
 

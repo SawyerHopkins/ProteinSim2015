@@ -145,7 +145,7 @@ float particle::calculatePotential() {
 	float py = (frc0.y*dy) + (0.5*dy*(frc.y-frc0.y));
 	float pz = (frc0.z*dz) + (0.5*dz*(frc.z-frc0.z));
 
-	return px+py+pz;
+	return -(px+py+pz);
 }
 
 void particle::nextIter() {

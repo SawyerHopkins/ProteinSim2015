@@ -46,6 +46,7 @@ void analysisManager::writeSystemXYZ(particle** particles, int nParticles, int o
 					<< particles[i]->getY() << " " << particles[i]->getZ()
 					<< "\n";
 		}
+		myFile.close();
 	}
 }
 

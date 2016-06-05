@@ -52,6 +52,8 @@ void analysisManager::writeInitialState(particle** particles, systemState* state
 	initDisplacementTracker(particles, nParticles);
 	writeInitTemp(particles, nParticles);
 	writeSystem(particles, nParticles, trialName + "/initialState");
+	std::string movName = trialName + "/movie/system-initial";
+	writeSystemXYZ(particles, nParticles, true, 0, movName);
 }
 
 void analysisManager::writeRunTimeState(particle** particles, systemState* state) {
