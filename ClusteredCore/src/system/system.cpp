@@ -109,6 +109,9 @@ void system::writeSystemInit() {
 	myFile.open(trialName + "/sysConfig.cfg");
 
 	//Writes the system configuration.
+#ifdef WITHPOST
+	myFile << "Mode = WITHPOST\n";
+#endif
 	myFile << "trialName = " << trialName << "\n";
 	myFile << "nParticles = " << state.nParticles << "\n";
 	myFile << "Concentration = " << state.concentration << "\n";
