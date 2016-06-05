@@ -112,7 +112,9 @@ void system::iterateParticleInteractions(int index, int hash) {
 				//If the particles are in the potential well.
 				if (r < (1.2))
 				{
-					particles[index]->addInteraction(particles[i]);
+					int realIndex = get<1>(particleHashIndex[index]);
+					int realI = get<1>(particleHashIndex[i]);
+					particles[realIndex]->addInteraction(particles[realI]);
 				}
 			}
 		}
@@ -127,10 +129,8 @@ void system::updateInteractions() {
 		int indexOffset = index*4;
 		type3<int> cell = type3<int>();
 		type3<int> cRef = type3<int>();
-		double netForce[3] = {0.0,0.0,0.0};
 		int scale = state.cellScale;
 		int cellScaleSq = scale*scale;
-		int realIndex = 3*get<1>(particleHashIndex[index]);
 
 		cell.x = floor(sortedParticles[indexOffset] / state.cellSize);
 		cell.y = floor(sortedParticles[indexOffset+1] / state.cellSize);

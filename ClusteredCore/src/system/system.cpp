@@ -189,8 +189,6 @@ void system::run(double endTime) {
 #endif
 		// Update the particle system
 		pushParticleForce();
-		// Get new particle interactions
-		updateInteractions();
 		//Get the next system.
 		integrator->nextSystem(particles, &state);
 		// Rebuild the hash table
@@ -198,6 +196,8 @@ void system::run(double endTime) {
 		sortParticles();
 		std::fill(cellStartEnd.begin(), cellStartEnd.end(), tuple<int,int>(0xffffffff, 0xffffffff));
 		reorderParticles();
+		// Get new particle interactions
+		updateInteractions();
 		//runAnalysis;
 		analysis->writeRunTimeState(particles, &state);
 		estimateCompletion(tmr);
