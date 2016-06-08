@@ -50,7 +50,7 @@ brownianIntegrator::brownianIntegrator(config* cfg) {
 	}
 
 	//Sets the system temperature.
-	temp = cfg->getParam<double>("temp", 1.0);
+	kT = cfg->getParam<double>("kT", 1.0);
 
 	//Set the mass.
 	mass = cfg->getParam<double>("mass", 1.0);
@@ -75,9 +75,9 @@ brownianIntegrator::brownianIntegrator(config* cfg) {
 
 	double gamma2 = gamma * gamma;
 
-	sig1 = sqrt(+temp * sig1 / gamma2);
-	sig2 = sqrt(-temp * sig2 / gamma2);
-	corr = (temp / (gamma2)) * (gn / (sig1 * sig2));
+	sig1 = sqrt(+kT * sig1 / gamma2);
+	sig2 = sqrt(-kT * sig2 / gamma2);
+	corr = (kT / (gamma2)) * (gn / (sig1 * sig2));
 	dev = sqrt(1.0 - (corr * corr));
 
 	seed = cfg->getParam<int>("seed", 90210);

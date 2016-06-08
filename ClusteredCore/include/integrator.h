@@ -23,7 +23,7 @@ private:
 
 	//System variables
 	double mass;
-	double temp;
+	double kT;
 	int memSize;
 
 	//Variables vital to the force.

@@ -37,8 +37,8 @@ AOPotential::AOPotential(config* cfg)
 
 	//Set vital variables.
 
-	temp = cfg->getParam<double>("temp", 1.0);
-	kT = cfg->getParam<double>("kT",0.261);
+	wellDepth = cfg->getParam<double>("wellDepth", 0.261);
+	kT = cfg->getParam<double>("kT",1.0);
 
 	//Sets the integration time step.
 	dt = cfg->getParam<double>("timeStep",0.001);
@@ -47,7 +47,7 @@ AOPotential::AOPotential(config* cfg)
 	cutOff = cfg->getParam<double>("cutOff",1.1);
 
 	//Create secondary variables.
-	a1=-kT*temp*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0));
+	a1=-kT*wellDepth*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0));
 	a2=-3.0/(2.0*cutOff);
 	a3=1.0/(2.0*cutOff*cutOff*cutOff);
 
