@@ -32,6 +32,7 @@ LennardJones::LennardJones(config* cfg)
 	name = "Lennard Jones";
 
 	kT = cfg->getParam<double>("kT", 10.0);
+	temp = cfg->getParam<double>("temp", 1.0);
 
 	//Get the radius
 	radius = cfg->getParam<double>("radius",0.5);
@@ -105,7 +106,7 @@ type3<double> LennardJones::iterCells(int index, int hash, double* sortedParticl
 					double repel = yukExp;
 					repel *= (rInv*rInv*(debyeLength + r)*yukStr);
 
-					double fNet = -kT*(attract+repel);
+					double fNet = -kT*temp*(attract+repel);
 
 					//Positive is attractive; Negative repulsive.
 					//fNet = -fNet;

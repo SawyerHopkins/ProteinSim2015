@@ -37,7 +37,7 @@ AOPotential::AOPotential(config* cfg)
 
 	//Set vital variables.
 
-	//Sets the system drag.
+	temp = cfg->getParam<double>("temp", 1.0);
 	kT = cfg->getParam<double>("kT",0.261);
 
 	//Sets the integration time step.
@@ -47,7 +47,7 @@ AOPotential::AOPotential(config* cfg)
 	cutOff = cfg->getParam<double>("cutOff",1.1);
 
 	//Create secondary variables.
-	a1=-kT*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0));
+	a1=-kT*temp*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0))*(cutOff/(cutOff-1.0));
 	a2=-3.0/(2.0*cutOff);
 	a3=1.0/(2.0*cutOff*cutOff*cutOff);
 

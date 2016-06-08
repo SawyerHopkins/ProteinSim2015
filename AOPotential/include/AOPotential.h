@@ -20,6 +20,7 @@ class AOPotential : public PSim::IForce
 private:
 
 		//Variables vital to the force.
+		double temp;
 		double kT;
 		double cutOff;
 		double dt;
