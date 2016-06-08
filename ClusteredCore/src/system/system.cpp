@@ -35,7 +35,7 @@ void system::setSystemConstants(config* cfg,
 	//Set the random number generator seed.
 	state.seed = cfg->getParam<int>("seed", 90210);
 	//Sets the system temperature.
-	state.temp = cfg->getParam<double>("temp", 1.0);
+	state.temp = cfg->getParam<double>("kT", 1.0);
 	//Set the number of particles.
 	state.nParticles = cfg->getParam<int>("nParticles", 1000);
 	//How often to output snapshots.
