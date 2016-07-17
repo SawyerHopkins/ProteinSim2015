@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include "system.h"
+#include "RecoverySystem.h"
 #include <dlfcn.h>
 
 using namespace std;
@@ -81,18 +81,7 @@ PSim::defaultForceManager* loadForces(config* cfg)
 PSim::system* loadSystem(config* cfg, std::string aName, std::string timeStamp, PSim::brownianIntegrator* difeq, PSim::defaultForceManager* force)
 {
 	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
-	config* sysCfg =new config(aName + "/sysConfig.cfg");
-	PSim::system* sys = PSim::system::loadFromFile(sysCfg, aName, timeStamp, difeq, force);
-
-	double newTimeStep = cfg->getParam<double>("timeStep",0);
-	double newTemp = cfg->getParam<double>("temp",0);
-
-	if (newTimeStep > 0) { 
-		util::writeTerminal("\nReloading timestep: " + std::to_string(sys->setdTime(newTimeStep)) + " -> " + std::to_string(newTimeStep) + "\n", Colour::Magenta);
-	}
-	if (newTemp > 0) {
-		util::writeTerminal("\nReloading system temperature: " + std::to_string(sys->setdTime(newTemp)) + " -> " + std::to_string(newTemp) + "\n", Colour::Magenta);
-	}
+	PSim::RecoverySystem* sys = new PSim::RecoverySystem(cfg, aName, timeStamp, difeq, force);
 	return sys;
 }
 
@@ -127,6 +116,7 @@ void runScript(string aName, string timeStamp)
 
 	/*---------------FORCES---------------*/
 
+	util::writeTerminal("Loading Forces.\n", Colour::Green);
 	PSim::defaultForceManager* force = loadForces(cfg);
 
 	/*-------------INTEGRATOR-------------*/

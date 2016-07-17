@@ -36,13 +36,9 @@ defaultForceManager::defaultForceManager() {
 
 defaultForceManager::~defaultForceManager() {
 	//Free memory from the Force associated with the IForce Pointer.
-	for (std::vector<IForce*>::iterator i = flist.begin(); i != flist.end();
-			++i) {
-		delete[] *i;
-	}
+	flist.clear();
 	//Free memory of the IForce Pointers.
-	delete[] &flist;
-	delete[] &timeDependent;
+	delete &flist;
 }
 
 /********************************************//**

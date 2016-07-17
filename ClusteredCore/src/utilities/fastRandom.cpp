@@ -34,8 +34,6 @@ fastRandom::fastRandom() {
 }
 
 fastRandom::~fastRandom() {
-	delete &deviateAvailable;
-	delete &storedDeviate;
 }
 
 //random number generator

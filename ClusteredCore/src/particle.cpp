@@ -52,12 +52,6 @@ particle::particle(int pid) {
 }
 
 particle::~particle() {
-	delete &pos;
-	delete &pos0;
-	delete &vel;
-	delete &frc;
-	delete &frc0;
-	delete &cll;
 }
 
 /********************************************//**

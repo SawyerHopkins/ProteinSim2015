@@ -79,6 +79,7 @@ private:
 	 * @param name
 	 */
 	void writeSystem(particle** particles, int nParticles, std::string name);
+	void clusterCoorHistogram(std::vector<std::vector<particle*>> clusterPool);
 	void clusterSizeHistogram(std::vector<std::vector<particle*>> clusterPool);
 	void writeSystemState(particle** particles, int nParticles, double currentTime);
 	std::vector<std::vector<particle*>> findClusters(particle** particles, int nParticles);

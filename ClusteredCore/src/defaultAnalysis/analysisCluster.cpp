@@ -147,7 +147,33 @@ void analysisManager::clusterSizeHistogram(
 	}
 
 	std::ofstream myFile;
-	std::string fileName = trialName + "/clusterHistogram.txt";
+	std::string fileName = trialName + "/clusterSizeHistogram.txt";
+	myFile.open(fileName);
+
+	for (auto it = histo.begin(); it != histo.end(); ++it) {
+		myFile << it->first << " " << it->second << "\n";
+	}
+}
+
+void analysisManager::clusterCoorHistogram(
+		std::vector<std::vector<particle*>> clusterPool) {
+	std::map<int, int> histo;
+
+	// Iterate over each cluster
+	for (auto clustIT = clusterPool.begin(); clustIT != clusterPool.end();
+			++clustIT) {
+		for (auto partIT = clustIT->begin(); partIT != clustIT->end(); ++partIT) {
+			int key = (*partIT)->getCoorNumber();
+			if (histo.count(key)) {
+				histo[key] = histo[key] + 1;
+			} else {
+				histo[key] = 1;
+			}
+		}
+	}
+
+	std::ofstream myFile;
+	std::string fileName = trialName + "/clusterCoorHistogram.txt";
 	myFile.open(fileName);
 
 	for (auto it = histo.begin(); it != histo.end(); ++it) {

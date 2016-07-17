@@ -4,18 +4,24 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/system/AnalysisSystem.cpp \
+../src/system/RecoverySystem.cpp \
 ../src/system/system.cpp \
 ../src/system/systemHandling.cpp \
 ../src/system/systemInit.cpp \
 ../src/system/systemRecovery.cpp 
 
 OBJS += \
+./src/system/AnalysisSystem.o \
+./src/system/RecoverySystem.o \
 ./src/system/system.o \
 ./src/system/systemHandling.o \
 ./src/system/systemInit.o \
 ./src/system/systemRecovery.o 
 
 CPP_DEPS += \
+./src/system/AnalysisSystem.d \
+./src/system/RecoverySystem.d \
 ./src/system/system.d \
 ./src/system/systemHandling.d \
 ./src/system/systemInit.d \

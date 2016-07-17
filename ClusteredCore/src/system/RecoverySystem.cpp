@@ -20,35 +20,26 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.*/
 
-#include "analysisManager.h"
+#include "RecoverySystem.h"
 
 namespace PSim {
-void analysisManager::postAnalysis(std::queue<std::string>* tests, particle** particles, systemState* state) {
-	chatterBox.consoleMessage("Building cluster table.");
-	std::vector<std::vector<particle*>> clusterPool = findClusters(particles, state->nParticles);
-	chatterBox.consoleMessage("Loaded " + tos(clusterPool.size()) + " clusters.");
-	while (tests->size() > 0) {
-		std::string soda = PSim::util::tryPop(tests);
 
-		if ((soda == "--coorhist") || (soda == "-CH")) {
-			PSim::util::writeTerminal(
-					"\nRunning structural histrogram analysis.\n",
-					PSim::Colour::Green);
-			coordinationHistogram(particles, state->nParticles);
-		}
-		if ((soda == "--clusthist") || (soda == "-CLH")) {
-			PSim::util::writeTerminal(
-					"\nRunning cluster size histrogram analysis.\n",
-					PSim::Colour::Green);
-			clusterSizeHistogram(clusterPool);
-		}
-		if ((soda == "--clustcoor") || (soda == "-CLC")) {
-			PSim::util::writeTerminal(
-					"\nRunning cluster structural histrogram analysis.\n",
-					PSim::Colour::Green);
-			clusterCoorHistogram(clusterPool);
-		}
-	}
-}
+RecoverySystem::RecoverySystem(config* cfg, std::string sysState,
+		std::string timeStamp, PSim::IIntegrator* sysInt,
+		PSim::defaultForceManager* sysFcs) : system(cfg, sysInt, sysFcs, sysState + "/-rewind-" + timeStamp)
+{
+	// Read in each particle.
+	int nParts = particlesInFile(sysState, timeStamp);
+	// Load in the particles.
+	int count = readParticles(sysState, timeStamp);
+
+	// Maybe this should throw an error for count != nParts?
+	chatterBox.consoleMessage("Found " + tos(count) + " / " + tos(nParts) + " particles", 1);
+
+	analysis = defaultAnalysisInterface();
+
+	createRewindDir();
+	writeSystemInit();
 }
 
+}

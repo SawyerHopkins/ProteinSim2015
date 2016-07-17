@@ -67,16 +67,19 @@ void system::setSystemConstants(config* cfg,
 }
 
 system::system(config* cfg, PSim::IIntegrator* sysInt,
-		PSim::defaultForceManager* sysFcs) {
+		PSim::defaultForceManager* sysFcs, std::string tName) {
 
-	//Sets the trial name
-	trialName = cfg->getParam<std::string>("trialName", "");
-
+	//Sets the trial name, if not already set by a child class.
+	trialName = tName;
 	if (trialName == "") {
-		dirPrompt();
-	} else {
-		//Check that the provided directory exists.
-		verifyPath();
+		trialName = cfg->getParam<std::string>("trialName", "");
+
+		if (trialName == "") {
+			dirPrompt();
+		} else {
+			//Check that the provided directory exists.
+			verifyPath();
+		}
 	}
 
 	//Set time information
@@ -142,11 +145,11 @@ system::~system() {
 		delete particles[i];
 	}
 	delete[] particles;
+	delete[] particleForce;
+	delete[] sortedParticles;
 
-	//Delete the constants.
-	delete &state;
-	delete[] integrator;
-	delete[] sysForces;
+	delete integrator;
+	delete sysForces;
 }
 
 void system::estimateCompletion(PSim::timer* tmr) {
@@ -194,7 +197,7 @@ void system::run(double endTime) {
 		// Rebuild the hash table
 		hashParticles();
 		sortParticles();
-		std::fill(cellStartEnd.begin(), cellStartEnd.end(), tuple<int,int>(0xffffffff, 0xffffffff));
+		clearCells();
 		reorderParticles();
 		// Get new particle interactions
 		updateInteractions();

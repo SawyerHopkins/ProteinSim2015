@@ -1,4 +1,6 @@
-src/runSim.d: ../src/runSim.cpp ../../ClusteredCore/include/system.h \
+src/runSim.d: ../src/runSim.cpp \
+ ../../ClusteredCore/include/RecoverySystem.h \
+ ../../ClusteredCore/include/system.h \
  ../../ClusteredCore/include/integrator.h \
  ../../ClusteredCore/include/forceManager.h \
  ../../ClusteredCore/include/config.h ../../ClusteredCore/include/defs.h \
@@ -14,6 +16,8 @@ src/runSim.d: ../src/runSim.cpp ../../ClusteredCore/include/system.h \
  ../../ClusteredCore/include/fastRandom.h \
  ../../ClusteredCore/include/analysisManager.h \
  ../../ClusteredCore/include/interfaces/IAnalysisManager.h
+
+../../ClusteredCore/include/RecoverySystem.h:
 
 ../../ClusteredCore/include/system.h:
 

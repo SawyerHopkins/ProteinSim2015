@@ -40,16 +40,16 @@ int system::particlesInFile(std::string sysState, std::string timeStamp) {
 	return count;
 }
 
-int system::readParticles(system* oldSys, std::string sysState,
-		std::string timeStamp, int bsize) {
+int system::readParticles(std::string sysState,
+		std::string timeStamp) {
 	std::string fullPath = sysState + "/snapshots/time-" + timeStamp
 			+ "/recovery.txt";
 	chatterBox.consoleMessage("Reading: " + fullPath, 1);
-	ifstream state;
-	state.open(fullPath, ios_base::in);
+	ifstream streamState;
+	streamState.open(fullPath, ios_base::in);
 	// Read in each particle.
 	int count = 0;
-	for (std::string line; std::getline(state, line);) {
+	for (std::string line; std::getline(streamState, line);) {
 		istringstream data(line);
 
 		type3<double>* pos = new type3<double>();
@@ -66,38 +66,38 @@ int system::readParticles(system* oldSys, std::string sysState,
 		data >> m >> r;
 
 		// Set each particle to the oldest know position and advance to the newest known position.
-		oldSys->particles[count] = new particle(count);
-		oldSys->particles[count]->setPos(pos0, bsize);
-		oldSys->particles[count]->updateForce(frc0, NULL, false);
-		oldSys->particles[count]->nextIter();
-		oldSys->particles[count]->setPos(pos, bsize);
-		oldSys->particles[count]->updateForce(frc, NULL, false);
-		oldSys->particles[count]->setMass(m);
-		oldSys->particles[count]->setRadius(r);
+		particles[count] = new particle(count);
+		particles[count]->setPos(pos0, state.boxSize);
+		particles[count]->updateForce(frc0, NULL, false);
+		particles[count]->nextIter();
+		particles[count]->setPos(pos, state.boxSize);
+		particles[count]->updateForce(frc, NULL, false);
+		particles[count]->setMass(m);
+		particles[count]->setRadius(r);
 
 		count++;
 	}
 	return count;
 }
 
-void system::readSettings(system* oldSys, config* cfg) {
+void system::readSettings(config* cfg) {
 	cfg->showOutput();
-	oldSys->state.concentration = cfg->getParam<double>("Concentration", 0);
-	oldSys->state.cellSize = cfg->getParam<int>("cellSize", 0);
-	oldSys->state.cellScale = cfg->getParam<int>("cellScale", 0);
-	oldSys->state.temp = cfg->getParam<double>("temp", 0);
-	oldSys->state.currentTime = 0;
-	oldSys->state.dTime = cfg->getParam<double>("dTime", 0);
-	oldSys->state.outputFreq = cfg->getParam<int>("outputFreq", 0);
-	oldSys->cycleHour = cfg->getParam<double>("cycleHour", 0);
-	oldSys->state.seed = cfg->getParam<int>("seed", 0);
-	oldSys->state.boxSize = cfg->getParam<int>("boxSize", 0);
+	state.concentration = cfg->getParam<double>("Concentration", 0);
+	state.cellSize = cfg->getParam<int>("cellSize", 0);
+	state.cellScale = cfg->getParam<int>("cellScale", 0);
+	state.temp = cfg->getParam<double>("temp", 0);
+	state.currentTime = 0;
+	state.dTime = cfg->getParam<double>("dTime", 0);
+	state.outputFreq = cfg->getParam<int>("outputFreq", 0);
+	cycleHour = cfg->getParam<double>("cycleHour", 0);
+	state.seed = cfg->getParam<int>("seed", 0);
+	state.boxSize = cfg->getParam<int>("boxSize", 0);
 	cfg->hideOutput();
 }
 
-void system::createRewindDir(system* oldSys) {
+void system::createRewindDir() {
 	//Check that the provided directory exists.
-	bool validDir = checkDir(oldSys->trialName);
+	bool validDir = checkDir(trialName);
 	if (validDir == true) {
 		PSim::util::writeTerminal(
 				"\nTrial name already exists. Overwrite (y,n): ",
@@ -108,73 +108,18 @@ void system::createRewindDir(system* oldSys) {
 		std::cin >> cont;
 
 		if (cont != "Y" && cont != "y") {
-			oldSys->trialName = dirPrompt();
+			trialName = dirPrompt();
 		}
 	} else {
 		//Attempt to make the directory.
-		mkdir(oldSys->trialName.c_str(), 0777);
+		mkdir(trialName.c_str(), 0777);
 
 		//Check that we were able to make the desired directory.
-		validDir = checkDir(oldSys->trialName);
+		validDir = checkDir(trialName);
 		if (validDir == false) {
-			oldSys->trialName = dirPrompt();
+			trialName = dirPrompt();
 		}
 	}
 }
 
-system* system::loadFromFile(config* cfg, std::string sysState,
-		std::string timeStamp, PSim::IIntegrator* sysInt,
-		PSim::defaultForceManager* sysFcs) {
-	PSim::util::writeTerminal("\n\nLoading recovery state...\n",
-			PSim::Colour::Green);
-
-	system* oldSys = new system();
-
-	int bsize = cfg->getParam<int>("boxSize", 0);
-	int nParts = cfg->getParam<int>("nParticles", 0);
-
-	// Load in the particles.
-	oldSys->particles = new particle*[nParts];
-	int count = readParticles(oldSys, sysState, timeStamp, bsize);
-
-	// Maybe this should throw an error for count != nParts?
-	chatterBox.consoleMessage("Found " + tos(count) + " / " + tos(nParts) + " particles", 1);
-
-	// Pulls in the old system configuration. Don't recalculate it incase the settings.cfg gets changed incorrectly.
-	readSettings(oldSys, cfg);
-	oldSys->trialName = sysState + "/-rewind-" + timeStamp;
-	oldSys->analysis = oldSys->defaultAnalysisInterface(count, bsize);
-	oldSys->state.nParticles = count;
-	oldSys->integrator = sysInt;
-	oldSys->sysForces = sysFcs;
-
-	//oldSys->initCells(oldSys->state.cellScale);
-	createRewindDir(oldSys);
-	oldSys->writeSystemInit();
-	return oldSys;
-}
-
-system* system::loadAnalysis(config* cfg, std::string sysState,
-		std::string timeStamp, IAnalysisManager* analysisInterface) {
-	system* oldSys = new system();
-
-	// Read in each particle.
-	int nParts = particlesInFile(sysState, timeStamp);
-	oldSys->particles = new particle*[nParts];
-
-	int bsize = cfg->getParam<int>("boxSize", 0);
-	int count = readParticles(oldSys, sysState, timeStamp, bsize);
-	chatterBox.consoleMessage("Found " + tos(count) + " / " + tos(nParts) + " particles", 1);
-
-
-	readSettings(oldSys, cfg);
-	oldSys->state.nParticles = count;
-	oldSys->trialName = sysState + "/-analysis-" + timeStamp;
-	oldSys->analysis = (analysisInterface == NULL) ? oldSys->defaultAnalysisInterface(count, bsize) : analysisInterface;
-
-	//oldSys->initCells(oldSys->state.cellScale);
-	createRewindDir(oldSys);
-	oldSys->updateInteractions();
-	return oldSys;
-}
 }

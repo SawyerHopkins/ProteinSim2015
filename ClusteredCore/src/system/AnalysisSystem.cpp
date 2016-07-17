@@ -20,35 +20,31 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.*/
 
-#include "analysisManager.h"
+#include "analysisSystem.h"
 
 namespace PSim {
-void analysisManager::postAnalysis(std::queue<std::string>* tests, particle** particles, systemState* state) {
-	chatterBox.consoleMessage("Building cluster table.");
-	std::vector<std::vector<particle*>> clusterPool = findClusters(particles, state->nParticles);
-	chatterBox.consoleMessage("Loaded " + tos(clusterPool.size()) + " clusters.");
-	while (tests->size() > 0) {
-		std::string soda = PSim::util::tryPop(tests);
 
-		if ((soda == "--coorhist") || (soda == "-CH")) {
-			PSim::util::writeTerminal(
-					"\nRunning structural histrogram analysis.\n",
-					PSim::Colour::Green);
-			coordinationHistogram(particles, state->nParticles);
-		}
-		if ((soda == "--clusthist") || (soda == "-CLH")) {
-			PSim::util::writeTerminal(
-					"\nRunning cluster size histrogram analysis.\n",
-					PSim::Colour::Green);
-			clusterSizeHistogram(clusterPool);
-		}
-		if ((soda == "--clustcoor") || (soda == "-CLC")) {
-			PSim::util::writeTerminal(
-					"\nRunning cluster structural histrogram analysis.\n",
-					PSim::Colour::Green);
-			clusterCoorHistogram(clusterPool);
-		}
-	}
-}
+AnalysisSystem::AnalysisSystem(config* cfg,
+		std::string sysState,
+		std::string timeStamp, IAnalysisManager* analysisInterface) : system(cfg, NULL, NULL, sysState + "/-analysis-" + timeStamp)
+{
+	// Read in each particle.
+	int nParts = particlesInFile(sysState, timeStamp);
+	// Overwrite the particle system with the old one.
+	int count = readParticles(sysState, timeStamp);
+
+	// Maybe this should throw an error for count != nParts?
+	chatterBox.consoleMessage("Found " + tos(count) + " / " + tos(nParts) + " particles", 1);
+
+	analysis = (analysisInterface == NULL) ? defaultAnalysisInterface() : analysisInterface;
+	createRewindDir();
+
+	// We need to rebuild the interactions table.
+	hashParticles();
+	sortParticles();
+	clearCells();
+	reorderParticles();
+	updateInteractions();
 }
 
+}

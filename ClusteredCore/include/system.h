@@ -22,9 +22,6 @@ private:
 	 *-----------------SYSTEM VARIABLES---------------
 	 ***********************************************/
 
-	//Trial name
-	std::string trialName;
-
 	//Information about the system.
 	systemState state;
 
@@ -43,7 +40,6 @@ private:
 	//System integrator.
 	PSim::IIntegrator* integrator;
 	PSim::defaultForceManager* sysForces;
-	PSim::IAnalysisManager* analysis;
 
 	/********************************************//**
 	 *-------------------SYSTEM INIT------------------
@@ -89,9 +85,6 @@ private:
 	 * @brief Updates the cells that the particles are located in.
 	 * @return
 	 */
-	void hashParticles();
-	void sortParticles();
-	void reorderParticles();
 	void pushParticleForce();
 	void iterateParticleInteractions(int index, int hash);
 
@@ -111,27 +104,22 @@ public:
 	//Header Version.
 	static const int version = 1;
 
+	//Trial name
+	std::string trialName;
+
+	//Analysis system
+	PSim::IAnalysisManager* analysis;
+
 	/********************************************//**
 	 *---------------SYSTEM CONSTRUCTION--------------
 	 ***********************************************/
 
 	/**
-	 * @brief Default constructor used for loading system from recovery file.
-	 */
-	system() {
-		analysis = NULL;
-		cycleHour = 0;
-		integrator = NULL;
-		particles = NULL;
-		sysForces = NULL;
-	}
-	;
-	/**
 	 * @brief Constructs the particle system.
 	 * @return Nothing.
 	 */
 	system(config* cfg, PSim::IIntegrator* sysInt,
-			PSim::defaultForceManager* sysFcs);
+			PSim::defaultForceManager* sysFcs, std::string tName = "");
 	/**
 	 * @brief Destructs the particle system.
 	 * @return Nothing.
@@ -173,6 +161,10 @@ public:
 	 * @param endTime When to stop running the simulation.
 	 */
 	void run(double endTime);
+	void hashParticles();
+	void sortParticles();
+	void clearCells() { std::fill(cellStartEnd.begin(), cellStartEnd.end(), tuple<int,int>(0xffffffff, 0xffffffff)); };
+	void reorderParticles();
 	void updateInteractions();
 
 	/********************************************//**
@@ -198,31 +190,19 @@ public:
 	/**
 	 * @brief Find the number of line in a file.
 	 */
-	static int particlesInFile(std::string sysState, std::string timeStamp);
+	int particlesInFile(std::string sysState, std::string timeStamp);
 	/**
 	 * @brief Read in the sysConfig file.
 	 */
-	static void readSettings(system* oldSys, config* cfg);
+	void readSettings(config* cfg);
 	/**
 	 * @brief Load a system with particle data from file.
 	 */
-	static int readParticles(system* oldSys, std::string sysState,
-			std::string timeStamp, int bsize);
+	int readParticles(std::string sysState, std::string timeStamp);
 	/**
 	 * @brief Attempt to create the correct directory for rewind.
 	 */
-	static void createRewindDir(system* oldSys);
-	/**
-	 * @brief Recover a system state from output files.
-	 */
-	static system* loadFromFile(config* cfg, std::string sysState,
-			std::string timeStamp, PSim::IIntegrator* sysInt,
-			PSim::defaultForceManager* sysFcs);
-	/**
-	 * @brief Recover to a hulk state (only particle system initialized).
-	 */
-	static system* loadAnalysis(config* cfg, std::string sysState,
-			std::string timeStamp, IAnalysisManager* analysisInterface);
+	void createRewindDir();
 
 	/********************************************//**
 	 *-----------------SYSTEM ANALYSIS----------------
@@ -231,7 +211,7 @@ public:
 	/**
 	 * @return Gets the default analysis interface for the system.
 	 */
-	PSim::IAnalysisManager* defaultAnalysisInterface(int nParticles, int boxSize) { return new PSim::analysisManager(trialName, &state); }
+	PSim::IAnalysisManager* defaultAnalysisInterface() { return new PSim::analysisManager(trialName, &state); }
 	/**
 	 * @brief Runs the tests and analysis provided in the input string.
 	 * @param tests

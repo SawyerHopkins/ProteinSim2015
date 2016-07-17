@@ -25,7 +25,7 @@ public:
 	//Header Version.
 	static const int version = 1;
 	Diagnostics() { chatter = 0;}
-	~Diagnostics() { delete &chatter; };
+	~Diagnostics() {};
 	void clearChatter(int count = -1);
 	void endErrorLog();
 	void consolePrompt(string _message);

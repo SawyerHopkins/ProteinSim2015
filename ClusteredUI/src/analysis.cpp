@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include "system.h"
+#include "analysisSystem.h"
 #include <dlfcn.h>
 
 using namespace std;
@@ -42,9 +42,9 @@ void runAnalysis(std::queue<std::string>* analysisArgs)
 	string analysisName = PSim::util::tryPop(analysisArgs);
 	string timeStamp = PSim::util::tryPop(analysisArgs);
 
-	config* cfg =new config(analysisName + "/sysConfig.cfg");
+	config* cfg =new config(analysisName + "/settings.cfg");
 
 	util::writeTerminal("\nLoading particle system.\n", Colour::Green);
-	PSim::system* sys = PSim::system::loadAnalysis(cfg, analysisName, timeStamp,NULL);
-	sys->analysisManager(analysisArgs);
+	PSim::AnalysisSystem sys = PSim::AnalysisSystem(cfg, analysisName, timeStamp,NULL);
+	sys.analysisManager(analysisArgs);
 }
