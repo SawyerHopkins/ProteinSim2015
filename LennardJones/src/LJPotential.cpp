@@ -132,20 +132,6 @@ type3<double> LennardJones::iterCells(int index, int hash, double* sortedParticl
 	return cellForce;
 }
 
-void LennardJones::quench(systemState* state)
-{
-	if (callCount % state->outputFreq == 0){
-		debyeInv += 0.2;
-		debyeLength = 1.0 /debyeInv;
-
-		//Output the number of clusters with time.
-		std::ofstream myFile("quench.txt",
-				std::ios_base::app | std::ios_base::out);
-		myFile << state->currentTime << " DebyeLength: " << debyeLength << "\n";
-		myFile.close();
-	}
-}
-
 void LennardJones::getAcceleration(int index, double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state)
 {
 	int hash = 0;
