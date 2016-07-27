@@ -132,6 +132,10 @@ type3<double> LennardJones::iterCells(int index, int hash, double* sortedParticl
 	return cellForce;
 }
 
+void LennardJones::quench(systemState* state)
+{
+}
+
 void LennardJones::getAcceleration(int index, double* sortedParticles, double* particleForce, vector<tuple<int,int>>* particleHashIndex, vector<tuple<int,int>>* cellStartEnd, systemState* state)
 {
 	int hash = 0;
