@@ -139,9 +139,9 @@ float particle::calculatePotential() {
     float dfy = frc.y - frc0.y;
     float dfz = frc.z - frc0.z;
 
-    float dr = dx*dx + dy*dy + dz*dz;
-    float df = dfx*dfx + dfy*dfy + dfz*dfz;
-    float f0 = frc0.x*frc0.x + frc0.y*frc0.y + frc0.z*frc0.z;
+    float dr = sqrt(dx*dx + dy*dy + dz*dz);
+    float df = sqrt(dfx*dfx + dfy*dfy + dfz*dfz);
+    float f0 = sqrt(frc0.x*frc0.x + frc0.y*frc0.y + frc0.z*frc0.z);
 
     float p = (f0*dr) + (0.5*df*dr);
 
