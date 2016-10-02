@@ -137,6 +137,7 @@ void analysisManager::writeSystemState(particle** particles, int nParticles, dou
 	writeToStream(currentTime, trialName + "/clustGraph.txt", nClust);
 	writeToStream(currentTime, trialName + "/coorGraph.txt", avgCoor);
 	writeToStream(currentTime, trialName + "/meanR2Graph.txt", meanR2);
+    writeToStream(currentTime, trialName + "/meanPot.txt", pot);
 	writeToStream(currentTime, trialName + "/trackedMeanR2Graph.txt", trackedMeanR2);
 }
 

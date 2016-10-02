@@ -135,11 +135,17 @@ float particle::calculatePotential() {
 	float dy = pos.y-pos0.y;
 	float dz = pos.z-pos0.z;
 
-	float px = (frc0.x*dx) + (0.5*dx*(frc.x-frc0.x));
-	float py = (frc0.y*dy) + (0.5*dy*(frc.y-frc0.y));
-	float pz = (frc0.z*dz) + (0.5*dz*(frc.z-frc0.z));
+    float dfx = frc.x - frc0.x;
+    float dfy = frc.y - frc0.y;
+    float dfz = frc.z - frc0.z;
 
-	return -(px+py+pz);
+    float dr = dx*dx + dy*dy + dz*dz;
+    float df = dfx*dfx + dfy*dfy + dfz*dfz;
+    float f0 = frc0.x*frc0.x + frc0.y*frc0.y + frc0.z*frc0.z;
+
+    float p = (f0*dr) + (0.5*df*dr);
+
+	return -p;
 }
 
 void particle::nextIter() {
@@ -161,4 +167,3 @@ void particle::nextIter() {
 	frc.z = 0.0;
 }
 }
-
