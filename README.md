@@ -5,8 +5,6 @@ A langevin dynamics engine
 
 PSim2015 is a particle dynamics engine being developed in the Kansas State University Physics Department. 
 
-Keep update with the project at [www.psim.xyz](http://www.psim.xyz)
-
 ## Usage
 
 ### 1. Configuration File
