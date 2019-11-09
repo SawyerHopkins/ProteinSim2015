@@ -1,6 +1,14 @@
 # ProteinSim2015
 A langevin dynamics engine
 
+## Publication
+
+Experimental results and details are published in the The Journal of Chemical Physics:
+https://aip.scitation.org/doi/10.1063/1.5092130
+
+The force module for these non pairwise interactions described in this article is also publically available:
+https://github.com/SawyerHopkins/NonLinearForce
+
 ## Info
 
 PSim2015 is a particle dynamics engine being developed in the Kansas State University Physics Department. 
